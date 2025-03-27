@@ -33,6 +33,7 @@ const NearByCard = ({ data }) => {
             style={{ aspectRatio: "1/1" }}
             classNames={{"wrapper":"aspackt-image-card"}}
             isLoading={isLoading}
+            loading="lazy"
             src={`${BASEURL}${data.photo}`}
             onLoad={() => setIsLoading(false)}
             onError={() => setIsLoading(false)}
