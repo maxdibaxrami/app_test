@@ -1,7 +1,7 @@
 // @ts-ignore
 import { io } from 'socket.io-client';
 
-const SERVER_URL = 'https://copychic.ru'; // Update this to match your backend URL
+const SERVER_URL = 'https://copychic.ru:3000/'; // Update this to match your backend URL
 
 class SocketService {
   // @ts-ignore
