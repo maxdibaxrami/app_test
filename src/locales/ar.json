@@ -1,0 +1,524 @@
+{
+  "All":"الكل",
+  "welcome": "مرحبًا",
+  "description": "هذا تطبيق متعدد اللغات",
+  "Selectlanguageforcontinue": "اختر اللغة للمتابعة:",
+  "name": "الاسم",
+  "Bio": "السيرة الذاتية",
+  "Education":"التعليم",
+  "EnteryourBio": "أدخل سيرتك الذاتية",
+  "Workandeducation": "العمل والتعليم",
+  "EnteryourWorkandeducationstatus": "أدخل حالتك الوظيفية والتعليمية",
+  "Selectdateofbirth": "اختر تاريخ الميلاد",
+  "Iam": "أنا:",
+  "Selectedplancanbechangedatanytime": "يمكن تغيير الخطة المختارة في أي وقت.",
+  "Male": "ذكر",
+  "Female": "أنثى",
+  "Height": "الطول",
+  "RealationStatus": "الحالة الاجتماعية",
+  "Single": "أعزب",
+  "Taken": "مرتبط",
+  "open": "مفتوح",
+  "Irathernotsay": "أفضل عدم القول",
+  "Language": "اللغة:",
+  "Languages": "اللغات",
+  "SexualityStatus": "الوضع الجنسي:",
+  "en": "الإنجليزية",
+  "zh": "الصينية",
+  "es": "الإسبانية",
+  "hi": "الهندية",
+  "ar": "العربية",
+  "bn": "البنغالية",
+  "fr": "الفرنسية",
+  "ru": "الروسية",
+  "pt": "البرتغالية",
+  "id": "الإندونيسية",
+  "ja": "اليابانية",
+  "de": "الألمانية",
+  "pa": "البنجابية",
+  "ur": "الأردية",
+  "ko": "الكورية",
+  "vi": "الفيتنامية",
+  "fa": "الفارسية",
+  "tr": "التركية",
+  "ta": "التاميلية",
+  "it": "الإيطالية",
+  "straight": "مستقيم",
+  "gay": "مثلي",
+  "lesbian": "مثلية",
+  "bisexual": "ثنائي الجنس",
+  "asexual": "لاجنسي",
+  "pansexual": "جامع الجنس",
+  "queer": "كوير",
+  "questioning": "غير محدد",
+  "WhyIamhere": "لماذا أنا هنا",
+  "Heretodate": "للمواعدة",
+  "IwanttogoondatesandhaveagoodtimeNolabels": "أريد أن أذهب في مواعد وأستمتع. بدون تسميات.",
+  "Opentochat": "مفتوح للدردشة",
+  "ImheretochatandseewhereitgoesNopressure": "أنا هنا للدردشة وأرى إلى أين تصل الأمور. بدون ضغوط.",
+  "Readyforarelationship": "جاهز لعلاقة",
+  "ImlookingforsomethingthatlastsNogames": "أبحث عن شيء يدوم. لا ألعاب.",
+  "Interesting": "الاهتمامات:",
+  "Hiking": "التنزه",
+  "Cooking": "الطبخ",
+  "Traveling": "السفر",
+  "Guitar": "الجيتار",
+  "Photography": "التصوير الفوتوغرافي",
+  "Yoga": "اليوغا",
+  "Painting": "الرسم",
+  "Reading": "القراءة",
+  "Running": "الجري",
+  "Meditation": "التأمل",
+  "Cycling": "ركوب الدراجات",
+  "Surfing": "ركوب الأمواج",
+  "Gardening": "البستنة",
+  "Fishing": "الصيد",
+  "Rock Climbing": "تسلق الصخور",
+  "Dancing": "الرقص",
+  "Gaming": "الألعاب",
+  "Blogging": "المدونات",
+  "Swimming": "السباحة",
+  "Martial Arts": "الفنون القتالية",
+  "Bird Watching": "مراقبة الطيور",
+  "Karaoke": "كاريوكي",
+  "Skateboarding": "التزلج",
+  "Board Games": "ألعاب الطاولة",
+  "Archery": "الرماية",
+  "Skydiving": "القفز بالمظلات",
+  "Scuba Diving": "الغوص",
+  "Tennis": "التنس",
+  "Soccer": "كرة القدم",
+  "Basketball": "كرة السلة",
+  "Golf": "الجولف",
+  "Skiing": "التزلج",
+  "Snowboarding": "التزلج على الجليد",
+  "Bowling": "البولينج",
+  "Wine Tasting": "تذوق النبيذ",
+  "Baking": "الخبز",
+  "Knitting": "الحياكة",
+  "Sewing": "الخياطة",
+  "Pottery": "صناعة الفخار",
+  "Astronomy": "علم الفلك",
+  "Camping": "التخييم",
+  "Woodworking": "النجارة",
+  "Volunteering": "التطوع",
+  "Writing": "الكتابة",
+  "Poetry": "الشعر",
+  "Journaling": "كتابة المذكرات",
+  "Calligraphy": "الخط",
+  "Magic Tricks": "خدع سحرية",
+  "Stand-up Comedy": "الكوميديا الارتجالية",
+  "Cosplay": "تقليد الشخصيات",
+  "Tattoo Design": "تصميم الوشم",
+  "Origami": "الأوريغامي",
+  "Chess": "الشطرنج",
+  "Vegan Cooking": "الطبخ النباتي",
+  "Collecting Antiques": "جمع التحف",
+  "Fencing": "المبارزة",
+  "Parkour": "الباركور",
+  "Beekeeping": "تربية النحل",
+  "Leather Crafting": "صناعة الجلود",
+  "Mixology": "فن خلط المشروبات",
+  "Ice Skating": "التزلج على الجليد",
+  "Puzzles": "الألغاز",
+  "Robotics": "الروبوتات",
+  "Virtual Reality": "الواقع الافتراضي",
+  "Home Brewing": "صناعة البيرة المنزلية",
+  "Carpentry": "النجارة",
+  "Flower Arranging": "تنسيق الزهور",
+  "Metalworking": "الحدادة",
+  "Jewelry Making": "صناعة المجوهرات",
+  "Animal Rescue": "إنقاذ الحيوانات",
+  "Pilates": "البيلاتس",
+  "Kayaking": "التجديف",
+  "Bungee Jumping": "القفز بالحبال",
+  "Running Marathons": "الجري في الماراثونات",
+  "Dog Training": "تدريب الكلاب",
+  "Horseback Riding": "ركوب الخيل",
+  "Sailing": "الإبحار",
+  "Stand-up Paddleboarding": "التجديف واقفًا",
+  "Weightlifting": "رفع الأثقال",
+  "Bodybuilding": "كمال الأجسام",
+  "Competitive Gaming": "الألعاب التنافسية",
+  "Podcasting": "تقديم البودكاست",
+  "Vlogging": "تدوين الفيديو",
+  "Street Art": "فن الشارع",
+  "Historical Reenactments": "إعادة تمثيل تاريخية",
+  "Geocaching": "الجغرافيا",
+  "Hiking with Dogs": "التنزه مع الكلاب",
+  "DIY Projects": "مشاريع افعلها بنفسك",
+  "Car Restoration": "ترميم السيارات",
+  "Motorcycling": "ركوب الدراجات النارية",
+  "4x4 Off-roading": "القيادة على الطرق الوعرة",
+  "Mountain Biking": "ركوب الدراجات الجبلية",
+  "Frisbee Golf": "جولف الفريسبي",
+  "LARPing": "تمثيل الأدوار الحية",
+  "Drone Racing": "سباقات الطائرات بدون طيار",
+  "Rollerblading": "التزلج",
+  "Escape Rooms": "غرف الهروب",
+  "Trivia Nights": "ليالي المسابقات",
+  "Kite Surfing": "ركوب الأمواج بالطائرات الورقية",
+  "Astronaut Training": "تدريب رواد الفضاء",
+  "Selectinterested": "اختر اهتماماتك",
+  "UploadprofileImage": "ارفع صورة الملف الشخصي",
+  "profile_visibility": "رؤية الملف الشخصي",
+  "profile_visibility_desc": "عرض الملف الشخصي في حالة الاستكشاف",
+  "mode": "الوضع",
+  "mode_desc": "تغيير لون التطبيق إلى الوضعين الفاتح والداكن",
+  "delete_account": "حذف الحساب",
+  "delete_account_desc": "حذف الحساب نهائيًا. سيتم إزالة جميع البيانات",
+  "logout": "تسجيل الخروج",
+  "logout_desc": "تسجيل الخروج من الحساب",
+  "listbox_aria_label": "قائمة منسدلة مع أوصاف",
+  "edit_profile": "تحرير الملف الشخصي",
+  "loading": "جارٍ التحميل...",
+  "profile": "الملف الشخصي",
+  "boost_profile": "تعزيز الملف الشخصي",
+  "activity": "النشاط",
+  "see_likes": "يمكنك رؤية من أعجب بملفك الشخصي",
+  "who_like_you": "من أعجب بك",
+  "see_views": "يمكنك رؤية من شاهد ملفك الشخصي",
+  "who_viewed_profile": "من شاهد ملفك الشخصي",
+  "interested":"مهتم",
+  "more_about_me":"المزيد عني!",
+  "Editprofile": "تعديل الملف الشخصي",
+  "Name": "الاسم",
+  "Birthdate": "تاريخ الميلاد",
+  "Aboutme": "عني",
+  "Enteryourdescription": "أدخل وصفك",
+  "Whyyouarehere": "لماذا أنت هنا",
+  "Selectcountry": "اختر البلد",
+  "Argentina": "الأرجنتين",
+  "Venezuela": "فنزويلا",
+  "Brazil": "البرازيل",
+  "Switzerland": "سويسرا",
+  "Germany": "ألمانيا",
+  "Spain": "إسبانيا",
+  "France": "فرنسا",
+  "Italy": "إيطاليا",
+  "Mexico": "المكسيك",
+  "Lookingfor": "البحث عن",
+  "Close": "إغلاق",
+  "Save": "حفظ",
+  "Editmoreaboutme":"تعديل المزيد عني",
+  "edit_interesting": "تحرير اهتماماتك",
+  "interesting": "مثير",
+  "select_interesting": "اختر شيئًا مثيرًا",
+  "like": "أعجبني",
+  "close": "إغلاق",
+  "save": "حفظ",
+  "location": "الموقع",
+  "likeButton": "أعجبني",
+  "closeButton": "إغلاق",
+  "age": "العمر",
+  "verify": "تم التحقق",
+  "toggleFooter": "تبديل التذييل",
+  "workAndEducation": "العمل والتعليم:",
+  "aboutMe": "عني:",
+  "lookingFor": "أبحث عن",
+  "whyHere": "لماذا أنا هنا:",
+  "relationStatus": "حالة العلاقة:",
+  "kids": "الأطفال:",
+  "language": "اللغة:",
+  "sexuality": "الجنس:",
+  "moreAboutMe": "المزيد عني!",
+  "interests": "الاهتمامات",
+    "matches": "مطابقات",
+    "chat": "دردشة",
+    "others": "آخرون",
+          "new": "جديد",
+      "favorite": "مفضل",
+      "addToFavorite": "أضف إلى المفضلة",
+      "deleteChat": "حذف الدردشة",
+      "blockAndReport": "حظر وإبلاغ",
+      "online": "متصل",
+      "enterMessage": "أدخل رسالتك",
+      "cityButton": "مدينتي",
+      "countryButton": "بلدي",
+      "globalButton": "عالميًا",
+      "Setfilters":"تعيين الفلاتر",
+      "Searchbydistance":"البحث حسب المسافة",
+      "Distance(km)":"المسافة (كم)",
+
+      "Profile": "الملف الشخصي",
+      "Explore": "استكشاف",
+      "Nearby": "قريب",
+      "Likes": "الإعجابات",
+      "Chat": "الدردشة",
+      "Setting": "الإعدادات",
+      "EditProfile": "تعديل الملف الشخصي",
+      "Delete": "حذف",
+      "youshoulduploadminimum3photoandmaximum6photo":"يجب عليك تحميل 1 صور على الأقل و 6 صور كحد أقصى",
+      "addPhoto":"أضف صورة",
+      "hero_image_alt": "صورة بطل NextUI",
+      "match_text": "إنه تطابق!",
+      "keep_swiping": "استمر في السحب",
+      "send_message": "أرسل رسالة",
+      "nolikemessage":"لا توجد إعجابات. من فضلك، اذهب إلى صفحة الاستكشاف، واضغط إعجاب، وشارك في المزيد من الأنشطة.",
+      "exploreUserFilterNoUser":"لا يوجد المزيد من المستخدمين في الفلتر الخاص بك. من فضلك قم بتعديل الفلاتر الخاصة بك.",
+      "Remove_from_favorite":"إزالة من المفضلة",
+      "offline": "غير متصل",
+      "Youhavereachedyourdailylikelimitof50":"لقد وصلت إلى الحد اليومي للإعجابات وهو 50.",
+      "Youhavereachedyourdailylikelimitof5":"لقد وصلت إلى الحد اليومي للإعجابات وهو 5.",
+      "Reachedlimit":"وصلت إلى الحد",
+      "Tounlockallfeatures,youneedapremiumaccount.":"للوصول إلى جميع الميزات، يجب أن يكون لديك حساب مميز.",
+      "Inviteyourfriendsandgetapremiumaccount":"ادعُ أصدقاءك للحصول على 'TON' وستربح 50 طاقة لزيادة مستوى حسابك!",
+      "Next":"التالي",
+
+
+      "has_kids": "لديه أطفال",
+      "no_kids": "ليس لديه أطفال",
+      "wants_kids": "يريد أطفال",
+      "does_not_want_kids": "لا يريد أطفال",
+      "open_to_kids": "منفتح على الأطفال",
+
+
+      "smokes_regularly": "يدخن بانتظام",
+      "occasionally_smokes": "يدخن أحياناً",
+      "does_not_smoke": "لا يدخن",
+      "trying_to_quit_smoking": "يحاول الإقلاع عن التدخين",
+
+
+      "drinks_regularly": "يشرب بانتظام",
+      "occasionally_drinks": "يشرب أحياناً",
+      "does_not_drink": "لا يشرب",
+      "trying_to_quit_drinking": "يحاول الإقلاع عن الشرب",
+
+      "has_pets": "لديه حيوانات أليفة",
+      "no_pets": "ليس لديه حيوانات أليفة",
+      "likes_pets": "يحب الحيوانات الأليفة",
+      "does_not_like_pets": "لا يحب الحيوانات الأليفة",
+
+      "SmokingStatus": "التدخين",
+      "DrinkStatus": "شرب الكحول",
+      "PetStatus": "الحيوانات الأليفة",
+
+
+      "noMessages": "لا توجد محادثة بعد. ابدأوا الحديث وتعرفوا على بعضكم البعض!",
+      "invite_your_friend":"دعوة صديق",
+
+
+      "premium_account":"بريميوم",
+      "share_link":"مشاركة الرابط",
+
+      "high_school": "الثانوية العامة",
+      "some_college": "بعض الدراسة الجامعية",
+      "bachelor_degree": "درجة البكالوريوس",
+      "master_degree": "درجة الماجستير",
+      "phd": "درجة الدكتوراه",
+      "prefer_not_to_say": "أفضل عدم الإفصاح",
+
+      "You_need_more_energy_to_continue_Tap_here_to_recharge.":"أنت بحاجة إلى المزيد من الطاقة للاستمرار. \n اضغط هنا لإعادة الشحن.",
+
+      "You_can_send_a_message_without_matching_with_someone!":"يمكنك إرسال رسالة دون الحاجة إلى مطابقة مع شخص ما!",
+      "energy":"طاقة",
+      "add_energy": "إضافة طاقة",
+
+      "gift_List": "قائمة الهدايا",
+      "list_of_users_send_you_gift": "قائمة المستخدمين الذين أرسلوا لك هدايا",
+      "list_of_favorite_users": "قائمة المستخدمين المفضلين",
+      "Verification": "التحقق",
+      "Boost_Your_Trustworthiness": "تعزيز مصداقيتك",
+      "start_Camera": "ابدأ الكاميرا",
+      "take_Photo": "التقاط صورة",
+      "upload_Photo": "رفع صورة",
+  
+      "Profile_Verification_Requirements": "متطلبات التحقق من الملف الشخصي:",
+      "Make_sure_your_face_is_clearly_visible,_centered,_and_unobstructed.": "تأكد من أن وجهك مرئي بوضوح، في المنتصف، وغير محجوب.",
+      "Ensure_that_your_photo_is_taken_in_good_lighting_to_avoid_shadows_or_dark_areas.": "تأكد من أن صورتك تم التقاطها في إضاءة جيدة لتجنب الظلال أو المناطق المظلمة.",
+      "Avoid_using_filters_or_any_image_enhancements.": "تجنب استخدام الفلاتر أو أي تحسينات على الصورة.",
+      "Your_face_should_match_the_one_shown_in_your_profile_image_for_verification_purposes.": "يجب أن يتطابق وجهك مع الذي يظهر في صورة ملفك الشخصي لأغراض التحقق.",
+      "stars": "نجوم",
+      "ton": "طن",
+      "buy": "شراء",
+      "50_Energy": "50 طاقة",
+      "150_Energy": "150 طاقة",
+      "500_Energy": "500 طاقة",
+      "1000_Energy": "1000 طاقة",
+      "data_not_found": "لا توجد بيانات لعرضها.",
+      "min_max_2_18":"الحد الأدنى للإدخال هو حرفان والحد الأقصى 18 حرفًا",
+      "min_max_2_100":"الحد الأدنى للإدخال هو حرفان والحد الأقصى 100 حرفًا",
+      "access_to_location":"الوصول إلى الموقع",
+      "location_access_prompt":"يرجى التأكد من منح الوصول إلى الموقع مرة واحدة على الأقل حتى تعمل وظيفة التطبيق بشكل صحيح.",
+      "description_for_energy": "يشجع هذا النظام المستخدمين على البقاء نشطين ودعوة الأصدقاء والتمتع بتجارب أكثر إرضاءً داخل التطبيق. كلما تفاعل المستخدمون أكثر من خلال دعوة الآخرين واستخدام طاقاتهم، أصبحت تفاعلاتهم أغنى وأكثر إمتاعًا، مما يساعدهم في بناء علاقات ذات مغزى.",
+
+      "previous":"السابق",
+
+
+      "login_description":"اكتشف اتصالات جديدة، ودردش، وابحث عن المطابقات التي تناسب شخصيتك!",
+
+
+      "privacy_policy":"بالنقر على 'التالي'، فإنك توافق على سياسة الخصوصية وشروط الخدمة الخاصة بنا.",
+
+
+          "Fillprofiledata": "أكمل معلومات ملفك الشخصي",
+        "secondaryTextProfile": "قم بتوفير بياناتك لتحسين تجربتك والعثور على تطابقات أفضل.",
+
+        "whyTitle": "لماذا أنت هنا؟",
+        "whyDescription": "شارك نواياك وما تبحث عنه حتى نتمكن من خلق اتصالات ذات مغزى.",
+
+
+    "locationTitle": "حدد موقعك",
+    "locationDescription": "اختر دولتك و مدينتك لنتمكن من تقديم توصيات أفضل.",
+
+    "cityTitle": "اختر مدينتك",
+    "type_to_search":"اكتب للبحث...",
+
+    "photoTitle": "قم بتحميل صورة ملفك الشخصي",
+    "photoDescription": "اختر صورة واضحة وودية لتمثيل نفسك وترك انطباع أول جيد.",
+
+    "firstPhotoTitle": "اختر أول صورة للملف الشخصي",
+    "firstPhotoDescription": "اختر صورتك الرئيسية لترك انطباع أول قوي.",
+    "secondPhotoTitle": "اختر صورتك الثانية للملف الشخصي",
+    "secondPhotoDescription": "اختر صورة أخرى لإضافة المزيد من الشخصية إلى ملفك.",
+
+    "select_your_gender": "اختر جنسك",
+    "enter_city_name_alert_message":"يجب أن تدخل اسم مدينتك باللغة الإنجليزية",
+
+    "face_detect_error":"لا يمكننا اكتشاف أي وجه في صورتك. يجب أن تحتوي صورتك على وجه.",
+    "Crop_Image":"اقتصاص الصورة",
+
+    "task": "مهمة",
+
+
+    "title_task_Profile": "الملف الشخصي",
+    "description_task_Profile": "أكمل ملفك الشخصي للاستمتاع أكثر!",
+
+
+    "title_channel_Profile": "القناة",
+    "description_channel_Profile": "اشترك في قناتنا على Telegram!",
+
+
+    "title_like_Profile": "إعجاب",
+    "description_like_Profile": "قم بالإعجاب بـ 10 مستخدمين!",
+
+    "title_activity_Profile": "نشاط",
+    "description_activity_Profile": "اقض 30 دقيقة في التطبيق.",
+
+    "title_match_Profile": "تطابق",
+    "description_match_Profile": "تطابق مع 3 مستخدمين.",
+
+    "claim":"استلام",
+    "claimed": "تم الاستلام",
+
+    "title_Starter_Energy": "دفعة طاقة البداية",
+    "description_Starter_Energy": "احصل على 599 ساعة من الطاقة للتعزيز السريع.",
+    "title_advanced_Energy": "حزمة الطاقة المتقدمة",
+    "description_advanced_Energy": "عزز احتياطيات الطاقة لديك مع 1300 ساعة.",
+    "title_mega_Energy": "صفقة الطاقة الضخمة",
+    "description_mega_Energy": "عزز طاقتك مع 2400 ساعة من الطاقة.",
+    "title_supercharged_energy": "حزمة الطاقة المعززة",
+    "description_supercharged_energy": "افتح طاقة ضخمة تبلغ 5000 ساعة لأداء مثالي.",
+
+    "referral_user_text": "المستخدم الذي قمت بدعوته من خلال دعوتك.",
+
+
+
+  "claim_ton_text": "احصل على مكافأة TON الخاصة بك الآن!",
+  "activity_based_claim_text": "يتم حساب مكافأة TON بناءً على نشاط المستخدم ويمكن المطالبة بها كل شهر. فقط المستخدمين الذين لديهم نشاط مؤهلون للحصول على مكافأة TON.",
+
+   "block_text": "حظر",
+    "report_text": "إبلاغ",
+    "work_text": "عمل",
+
+    "instagram_text": "إنستجرام",
+    "weekend_getaway_text": "ما هو تصورك لعطلة نهاية الأسبوع المثالية؟",
+    "dinner_question_text": "مع من تحب أن تتناول العشاء، ولماذا؟",
+
+      "enter_work_position_text": "أدخل وظيفتك",
+    "enter_instagram_text": "أدخل إنستجرام الخاص بك",
+
+    "career_description": "دع شريكك المحتمل يعرف المزيد عن حياتك المهنية! شارك أين تعمل أو ما تفعله، ليحصلوا على لمحة عن شغفك وطموحاتك.",
+    "instagram_description": "اربط حسابك على إنستجرام لمنح شريكك نظرة سريعة على حياتك! شارك مغامراتك، هواياتك، ولحظاتك اليومية لتواصل أكثر شخصي.",
+    "personality_description": "دع شخصيتك تتألق! أجب عن بعض الأسئلة الممتعة والملهمة لنساعدك على العثور على أشخاص يشاركونك نفس الأجواء. هذه فرصتك للتميز!",
+    "questions_text": "أسئلة",
+
+    "error_text": "خطأ",
+    "insert_images_text": "أضف أكثر من 4 صور في ملفك الشخصي",
+
+    "verify_profile_text": "تحقق من ملفك الشخصي",
+
+    "task_complete_text": "تم إكمال المهمة بنجاح",
+      "success_text": "نجاح",
+  "not_enough_matches_text": "ليس لديك عدد كافٍ من المطابقات بعد.",
+  "daily_text": "يوميًا",
+  "not_active_enough_text": "أنت لست نشطًا بما يكفي. مطلوب نشاط بنسبة 80٪ على الأقل.",
+
+  "account_not_verified_text": "الحساب غير مُحقق.",
+  "how_much_earn_text": "كم تكسب؟",
+  "claim_reward_text": "تحتاج إلى 4 TON على الأقل للمطالبة بالمكافأة.",
+
+  "connect_wallet_text": "اتصل بمحفظتك",
+  "disconnect_wallet_text": "افصل محفظتك",
+  "payment_successful_text": "تم الدفع بنجاح",
+  "payment_failed_text": "فشل الدفع",
+  "power_added_successfully_text": "تمت إضافة الطاقة بنجاح",
+  "connect_wallet_prompt_text": "يرجى توصيل محفظتك لعرض خيارات Ton.",
+  "per_active_user_text": "لكل مستخدم نشط",
+
+  "1_month_premium": "بريميوم لمدة شهر واحد",
+  "3_month_premium": "بريميوم لمدة 3 أشهر",
+  "1_year_premium": "بريميوم لمدة عام",
+  "duration_1_month": "شهر واحد",
+  "duration_3_months": "3 أشهر",
+  "duration_1_year": "عام واحد",
+
+  "save_10_percent": "وفر 10٪ مقارنة بالفواتير الشهرية!",
+  "save_20_percent": "وفر 20٪ مع الخطة لمدة 3 أشهر!",
+  "save_30_percent": "وفر 30٪ مع الخطة السنوية!",
+
+  "message_anyone": "ارسل رسائل للجميع دون أي قيود.",
+  "unlimited_messaging": "رسائل غير محدودة لجميع المستخدمين.",
+  "see_who_viewed": "اكتشف من شاهد ملفك الشخصي.",
+  "see_who_likes": "تعرف على من يحبك.",
+  "boost_referral_rewards": "عزز مكافآت الإحالة بنسبة 20٪!",
+
+  "premium_account_activated": "تم تفعيل الحساب البريميوم.",
+
+  "dob_prompt": "أدخل تاريخ ميلادك لتخصيص تجربتك وتحسين دقة التوافق.",
+
+  "use_telegram_profile": "استخدم بروفايل تيليجرام الخاص بك",
+  "user_telegram_default_profile_picture": "ضع صورة البروفايل الافتراضية في تيليجرام كصورة بروفايلك"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+
+
+ 
+
+
+ 
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
