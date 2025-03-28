@@ -9,10 +9,10 @@ import { Button } from "@heroui/button";
 import { ChatIcon, CloseCircleIcon, GiftIcon, LikeIcon, LockIcon } from "@/Icons";
 import { useLaunchParams } from "@telegram-apps/sdk-react";
 import { useDispatch, useSelector } from "react-redux";
-import { dislikeUser, likeUser } from "@/features/likeSlice";
+import { likeUser } from "@/features/likeSlice";
 import { AppDispatch, RootState } from "@/store";
 import { NotFoundUserExplore } from "@/Icons/notFoundUserExplore";
-import { fetchFilteredExplore } from "@/features/exploreSlice";
+import { fetchFilteredExplore, removeUserFromState } from "@/features/exploreSlice";
 import { useTranslation } from "react-i18next";
 import { Popover, PopoverContent, PopoverTrigger, Spinner } from "@heroui/react";
 import { fetchMatches } from "@/features/matchSlice";
@@ -28,7 +28,7 @@ import 'swiper/css/effect-fade';
 import { EffectFade } from 'swiper/modules';
 
 const ExplorePage = () => {
-  const maxLikes = 50;
+  const maxLikes = 30;
   const dispatch: AppDispatch = useDispatch();
   const { data: user } = useSelector((state: RootState) => state.user);
   const { data: users, loading, page, limit, total, secondLoading } = useSelector((state: RootState) => state.explore);
@@ -53,6 +53,7 @@ const ExplorePage = () => {
   const closeModal = useCallback(() => setIsModalOpen(false), []);
 
   const handleLikeUser = useCallback(async () => {
+    console.log(likesCount > maxLikes)
     if (likesCount > maxLikes) return;
     try {
       if(user.premium === false){
@@ -74,13 +75,14 @@ const ExplorePage = () => {
   }, [dispatch, likesCount, maxLikes, user.id, users, activeSlideIndex, swiperInstance, openModal]);
 
   const handleNotLike = useCallback(() => {
+    console.log(users.length)
+
     if (likesCount > maxLikes) return;
-    swiperInstance?.slideNext();
+    swiperInstance.slideNext();
 
     if (user.premium === false) {
       dispatch(incrementLikes());
     }
-    dispatch(dislikeUser(users[activeSlideIndex].id));  // Dispatch the dislike action with the user's ID
   }, [dispatch, likesCount, maxLikes, swiperInstance]);
 
   const lp = useLaunchParams();
@@ -88,7 +90,7 @@ const ExplorePage = () => {
 
   // When reaching the end of the current batch, fetch new users
   useEffect(() => {
-    if (users && activeSlideIndex === users.length - 1 && page * limit < total) {
+    if (users && activeSlideIndex === users.length - 1) {
       dispatch(
         fetchFilteredExplore({
           userId: user.id.toString(),
@@ -103,11 +105,14 @@ const ExplorePage = () => {
       // Reset the slider to start with the new batch.
       setActiveSlideIndex(0);
     }
-  }, [activeSlideIndex, users, page, limit, total, dispatch, users.length]);
+  }, [activeSlideIndex, users, page, limit, total, dispatch]);
 
 
+  useEffect(()=>{
+    setActiveSlideIndex(0);
+  },[users])
 
-
+  
 
   if (loading || secondLoading) {
     return (
@@ -137,6 +142,7 @@ const ExplorePage = () => {
     );
   }
 
+  
 
   return (
     <div className="w-screen bg-background" style={{ position: "relative" }}>

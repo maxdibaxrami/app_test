@@ -102,10 +102,7 @@ const likeSlice = createSlice({
   name: 'like',
   initialState,
   reducers: {
-    dislikeUser: (state, action: PayloadAction<number>) => {
-      // Remove the user with the given id from the state data
-      state.data = state.data?.filter(user => user.id !== action.payload) || null;
-    },
+
   },
   extraReducers: (builder) => {
     builder
@@ -150,6 +147,5 @@ const likeSlice = createSlice({
 });
 
 // Export the new action for use in your components
-export const { dislikeUser } = likeSlice.actions;
 
 export default likeSlice.reducer;
