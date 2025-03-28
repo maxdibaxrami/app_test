@@ -10,7 +10,7 @@ import {
 } from "@heroui/react";
 import { BASEURL, getlookingfor } from "@/constant";
 import { useTranslation } from "react-i18next";
-import { CheckIcon, FlashIcon } from "@/Icons";
+import { CheckIcon, FlashIcon, GiftIcon } from "@/Icons";
 import { AppDispatch } from "@/store";
 import { useDispatch } from "react-redux";
 import { updateUserData, updateUserProfileViews } from "@/features/userSlice";
@@ -96,7 +96,8 @@ export const SendGiftCard = ({user, userIds}) => {
               onPress={HandleSendGifts}
 
             >
-               <p className="text-2xl mt-0.5">🎁</p>
+              <GiftIcon className="size-6 text-white"/>
+
             </Button>
           </Badge>
       </CardHeader>

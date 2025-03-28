@@ -6,7 +6,7 @@ import React, { useEffect, useState, useCallback } from "react";
 import ExploreCard from "./exploreCart";
 import MatchModal from "./matchModal";
 import { Button } from "@heroui/button";
-import { LockIcon } from "@/Icons";
+import { ChatIcon, CloseCircleIcon, GiftIcon, LikeIcon, LockIcon } from "@/Icons";
 import { useLaunchParams } from "@telegram-apps/sdk-react";
 import { useDispatch, useSelector } from "react-redux";
 import { dislikeUser, likeUser } from "@/features/likeSlice";
@@ -169,9 +169,10 @@ const ExplorePage = () => {
                 isIconOnly
                 color="success"
                 variant="shadow"
+                
               >
                 
-                <p className="text-3xl mt-0.5">🎁</p>
+                <GiftIcon className="size-7 text-white"/>
 
               </Button>
             </PopoverTrigger>
@@ -193,7 +194,7 @@ const ExplorePage = () => {
             variant="shadow"
             className="flex items-center justify-center"
           >
-            <p className="text-4xl mt-0.5">👎</p>
+            <CloseCircleIcon className="size-9"/>
           </Button>
         </div>
 
@@ -227,7 +228,7 @@ const ExplorePage = () => {
                   variant="shadow"
                   className="flex items-center justify-center"
                 >
-                  <p className="text-4xl">🤍</p>
+                  <LikeIcon className="size-9"/>
                 </Button>
               }
               colors={{ first: "#ff4b61", second: "#A8B2BD" }}
@@ -248,7 +249,7 @@ const ExplorePage = () => {
                 color="warning"
                 variant="shadow"
               >
-                 <p className="text-3xl mt-0.5">💬</p>
+                 <ChatIcon className="size-7 text-white"/>
               </Button>
             </PopoverTrigger>
             <PopoverContent className="p-1 backdrop-blur bg-background/90 backdrop-saturate-150">

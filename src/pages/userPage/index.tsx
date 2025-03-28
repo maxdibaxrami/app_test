@@ -15,7 +15,9 @@ import {
   EducationIcon,
   MoreIcon,
   LockIcon,
-  FavoriteColor
+  FavoriteColor,
+  GiftIcon,
+  LikeIcon
 } from "@/Icons/index";
 
 import { Page } from '@/components/Page.tsx';
@@ -737,8 +739,8 @@ export default function ProfilePage() {
         <Popover backdrop="opaque" showArrow placement="bottom-start">
           <PopoverTrigger>
 
-          <Button isDisabled={likesCount >= maxLikes} radius="lg" style={{ width: "52px", height: "52px" }} size="lg" isIconOnly color="success" variant="shadow">
-            <p className="text-2xl mt-0.5">🎁</p>
+          <Button isDisabled={likesCount >= maxLikes} radius="lg" style={{ width: "62px", height: "62px" }} size="lg" isIconOnly color="success" variant="shadow">
+            <GiftIcon className="size-7 text-white"/>
           </Button>
 
           </PopoverTrigger>
@@ -762,8 +764,8 @@ export default function ProfilePage() {
           ) : (
             <SparklesHeartText
               text={
-                <Button isDisabled={likedUser || liked || match} isLoading={requestLoading} radius="lg" style={{ width: "62px", height: "62px" }} size="lg" isIconOnly onPress={handleLikeUser} color="secondary" variant="shadow" className="flex items-center justify-center">
-                  <p className="text-4xl">🤍</p>
+                <Button isDisabled={likedUser || liked || match} isLoading={requestLoading} radius="lg" style={{ width: "72px", height: "72px" }} size="lg" isIconOnly onPress={handleLikeUser} color="secondary" variant="shadow" className="flex items-center justify-center">
+                  <LikeIcon className="size-9"/>
                 </Button>
               }
               colors={{ first: "#ff4b61", second: "#A8B2BD" }}
@@ -781,8 +783,8 @@ export default function ProfilePage() {
           <Popover backdrop="opaque" showArrow placement="bottom-end">
             <PopoverTrigger>
 
-            <Button isDisabled={likesCount >= maxLikes} radius="lg" style={{ width: "52px", height: "52px" }} size="lg" isIconOnly color="warning" variant="shadow">
-              <p className="text-2xl mt-0.5">💬</p>
+            <Button isDisabled={likesCount >= maxLikes} radius="lg" style={{ width: "62px", height: "62px" }} size="lg" isIconOnly color="warning" variant="shadow">
+              <ChatIcon className="size-7 text-white"/>
             </Button>
 
             </PopoverTrigger>

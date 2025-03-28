@@ -10,7 +10,7 @@ import {
 } from "@heroui/react";
 import { BASEURL, getlookingfor } from "@/constant";
 import { useTranslation } from "react-i18next";
-import { CheckIcon, FlashIcon } from "@/Icons";
+import { ChatIcon, CheckIcon, FlashIcon } from "@/Icons";
 import { AppDispatch } from "@/store";
 import { useDispatch } from "react-redux";
 import { updateUserData } from "@/features/userSlice";
@@ -116,7 +116,8 @@ export const FlashMessageCard = ({user, userIds}) => {
                 variant={"solid"}
                 
               >
-                <p className="text-3xl mt-0.5">💬</p>
+                <ChatIcon className="size-7 text-white"/>
+
               </Button>
             </Badge>
           }
