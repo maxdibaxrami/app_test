@@ -14,6 +14,7 @@ import NearByFilter from '@/components/naerby/NearByFilter';
 import { useRef } from 'react';
 
 const MainPage = () => {
+  
   const [searchParams] = useSearchParams();
   const lp = useLaunchParams();
   const FilterRef = useRef();

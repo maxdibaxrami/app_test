@@ -126,6 +126,7 @@ const exploreSlice = createSlice({
         }
         state.secondLoading = true;
         state.error = null;
+        
       })
       .addCase(
         fetchFilteredExplore.fulfilled,

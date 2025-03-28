@@ -103,7 +103,7 @@ const ExplorePage = () => {
       // Reset the slider to start with the new batch.
       setActiveSlideIndex(0);
     }
-  }, [activeSlideIndex, users, page, limit, total, dispatch, user.id]);
+  }, [activeSlideIndex, users, page, limit, total, dispatch, users.length]);
 
 
 

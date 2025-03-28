@@ -59,18 +59,6 @@ const BottomMenu = () => {
             variant="solid"
             radius="lg"
           >
-            <Tab
-              key="nearby"
-              href="/#/main?page=nearby"
-              title={
-                <div className="flex flex-col gap-2 justify-center items-center">
-                  <div className="rounded-full flex items-center justify-center">
-                    <FireIcon className="size-6" />
-                  </div>
-                  <p style={{ fontSize: "11px" }}>{t('Nearby')}</p>
-                </div>
-              }
-            />
 
             <Tab
               key="explore"
@@ -87,6 +75,32 @@ const BottomMenu = () => {
             />
 
             <Tab
+              key="likes"
+              href="/#/main?page=likes"
+              title={
+                <div className="flex flex-col gap-1 justify-center items-center">
+                  <div className="rounded-full flex items-center justify-center">
+                    <LikeIcon className="size-6" />
+                  </div>
+                  <p style={{ fontSize: "11px" }}>{t('Likes')}</p>
+                </div>
+              }
+            />
+
+            <Tab
+              key="nearby"
+              href="/#/main?page=nearby"
+              title={
+                <div className="flex flex-col gap-2 justify-center items-center">
+                  <div className="rounded-full flex items-center justify-center">
+                    <FireIcon className="size-6" />
+                  </div>
+                  <p style={{ fontSize: "11px" }}>{t('Nearby')}</p>
+                </div>
+              }
+            />
+            
+            <Tab
               key="chat"
               href="/#/main?page=chat"
               title={
@@ -99,18 +113,7 @@ const BottomMenu = () => {
               }
             />
 
-            <Tab
-              key="likes"
-              href="/#/main?page=likes"
-              title={
-                <div className="flex flex-col gap-1 justify-center items-center">
-                  <div className="rounded-full flex items-center justify-center">
-                    <LikeIcon className="size-6" />
-                  </div>
-                  <p style={{ fontSize: "11px" }}>{t('Likes')}</p>
-                </div>
-              }
-            />
+           
 
             <Tab
               key="profile"
