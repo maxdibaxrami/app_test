@@ -1,4 +1,4 @@
-import { Tabs, Tab } from "@heroui/react";
+import { Tabs, Tab, Badge } from "@heroui/react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FireIcon, ChatIcon, ProfileIcon, LikeIcon, LocationIcon } from '@/Icons/index';
 import { useSearchParams } from "react-router-dom";
@@ -23,7 +23,6 @@ const BottomMenu = () => {
       {searchParams.get('page') !== "nearby" && (
         <motion.div
           transition={{
-            ease: "anticipate",
             duration: 0.5,
           }}
           initial={{ bottom: "-120px" }}
@@ -72,7 +71,6 @@ const BottomMenu = () => {
                 </div>
               }
             />
-
 
             <Tab
               key="explore"

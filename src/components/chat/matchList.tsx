@@ -14,7 +14,7 @@ const MatchList = () => {
 
   return (
     (<div style={{position:"relative",zIndex:10}} className=" rounded-xl">
-      {match.length !== 0 &&
+      {match && match.length !== 0 &&
             <div style={{ paddingBottom: "0.5rem" }} className="flex justify-between items-center">
             <span className="text-large text-default-600 font-bold">
               {t("matches")}
@@ -22,7 +22,7 @@ const MatchList = () => {
           </div>
       }
 
-      {match.length !== 0 && !loading &&
+      {match && match.length !== 0 && !loading &&
             <ScrollShadow hideScrollBar size={20} className="flex gap-2 max-w-[100%] h-[70px]" orientation="horizontal">
               {(match.map((value, index) => {
                   const user2 = user.id !== value.likedUser.id? value.likedUser : value.user
@@ -41,7 +41,7 @@ const MatchList = () => {
       }
       
       
-      {match.length === 0 &&     
+      {match && match.length === 0 &&     
         <Alert
             color="default"
             description={t("no_match_description")}
