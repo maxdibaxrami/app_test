@@ -155,7 +155,7 @@ const SelectCity: React.FC<SelectCityProps> = ({
     }
     setIsLoading(true);
     const source = axios.CancelToken.source();
-    const endpoint = `https://copychic.ru:3000/api/cities/search?name=${encodeURIComponent(
+    const endpoint = `https://copychic.ru/api/cities/search?name=${encodeURIComponent(
       debouncedInput
     )}`;
     axiosInstance
