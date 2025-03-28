@@ -12,7 +12,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { likeUser } from "@/features/likeSlice";
 import { AppDispatch, RootState } from "@/store";
 import { NotFoundUserExplore } from "@/Icons/notFoundUserExplore";
-import { fetchFilteredExplore, removeUserFromState } from "@/features/exploreSlice";
+import { fetchFilteredExplore } from "@/features/exploreSlice";
 import { useTranslation } from "react-i18next";
 import { Popover, PopoverContent, PopoverTrigger, Spinner } from "@heroui/react";
 import { fetchMatches } from "@/features/matchSlice";
