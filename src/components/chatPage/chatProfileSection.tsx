@@ -30,7 +30,7 @@ const ChatProfileSection = ({ loading, profileDataState, userId2 }) => {
 
   if (loading) {
     return (
-      <Navbar className="fixed top-0 top-bar-height" style={{ paddingTop: getPaddingForPlatform() }}>
+      <Navbar className="fixed flex items-end top-0 main-content-safe" style={{ paddingTop: getPaddingForPlatform() }}>
         <NavbarContent justify="start">
           <NavbarItem className="lg:flex"></NavbarItem>
         </NavbarContent>

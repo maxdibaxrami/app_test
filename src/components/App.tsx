@@ -117,6 +117,7 @@ export function App() {
         ...updatedFilters, // Using updatedFilters directly
       }));
     }
+    
   }, [data]);
 
   useEffect(() => {
