@@ -1,14 +1,18 @@
-import { Tabs, Tab } from "@heroui/react";
+import { Tabs, Tab, Badge } from "@heroui/react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FireIcon, ChatIcon, ProfileIcon, LikeIcon, LocationIcon } from '@/Icons/index';
 import { useSearchParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useLaunchParams } from "@telegram-apps/sdk-react";
+import { useSelector } from "react-redux";
+import { RootState } from "@/store";
 
 const BottomMenu = () => {
   const [searchParams] = useSearchParams();
   const { t } = useTranslation();
   const lp = useLaunchParams();
+  
+  const { data } = useSelector((state: RootState) => state.like);  // Assuming the like slice is in state.like
 
   const getPaddingForPlatform = () => {
     if (['ios'].includes(lp.platform)) {
@@ -63,9 +67,12 @@ const BottomMenu = () => {
               key="likes"
               href="/#/main?page=likes"
               title={
+                
                 <div className="flex flex-col gap-1 justify-center items-center">
                   <div className="rounded-full flex items-center justify-center">
-                    <LikeIcon className="size-6" />
+                    <Badge size="sm" showOutline={false} color="danger" variant="shadow" content={data.length} isInvisible={data && data.length === 0} shape="circle">
+                      <LikeIcon className="size-6" />
+                    </Badge>
                   </div>
                   <p style={{ fontSize: "11px" }}>{t('Likes')}</p>
                 </div>
