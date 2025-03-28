@@ -398,12 +398,12 @@ export default function EditProfilePageText() {
         text={t("Save")}
         backgroundColor="#1FB6A8"
         textColor="#FFFFFF"
-        hasShineEffect={location.pathname === "/edit-profile-feild"}
+        hasShineEffect={location.pathname === "/edit-profile-field"}
         isEnabled={
-          !updatingUserData && location.pathname === "/edit-profile-feild"
+          !updatingUserData && location.pathname === "/edit-profile-field"
         }
         isLoaderVisible={updatingUserData}
-        isVisible={location.pathname === "/edit-profile-feild"}
+        isVisible={location.pathname === "/edit-profile-field"}
         onClick={handleSave}
       />
 
@@ -412,9 +412,9 @@ export default function EditProfilePageText() {
         backgroundColor={theme === "light"? "#FFFFFF" : "#000000"}
         textColor={theme === "light"? "#000000" : "#FFFFFF"}
         hasShineEffect={false}
-        isEnabled={location.pathname === "/edit-profile-feild"}
+        isEnabled={location.pathname === "/edit-profile-field"}
         isLoaderVisible={false}
-        isVisible={location.pathname === "/edit-profile-feild"}
+        isVisible={location.pathname === "/edit-profile-field"}
         position="left"
         onClick={()=> navigate(-1)}
       />

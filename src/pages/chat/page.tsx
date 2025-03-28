@@ -239,7 +239,7 @@ export default function ChatPage() {
         text={t("send_message")}
         backgroundColor="#1FB6A8"
         textColor="#FFFFFF"
-        hasShineEffect={location.pathname === "/edit-profile-feild"}
+        hasShineEffect={location.pathname === "/edit-profile-field"}
         isEnabled={true}
         isLoaderVisible={false}
         isVisible={true}

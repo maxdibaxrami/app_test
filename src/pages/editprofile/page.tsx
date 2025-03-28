@@ -309,7 +309,7 @@ export default function EditProfilePage() {
                 >
                   <ListboxItem
                     key="1"
-                    href={'/edit-profile-feild?page=input'}
+                    href={'/#/edit-profile-field?page=input'}
                     startContent={
                       <IconWrapper className="aspect-square flex items-center p-0 w-10 h-10 text-primary">
                         <p className="text-md">📝</p>
@@ -332,7 +332,7 @@ export default function EditProfilePage() {
 
                   <ListboxItem
                     key="1"
-                    href={'/edit-profile-feild?page=work'}
+                    href={'/#/edit-profile-field?page=work'}
                     startContent={
                       <IconWrapper className="aspect-square flex items-center p-0 w-10 h-10 text-primary">
                         <p className="text-md">💼</p>
@@ -355,7 +355,7 @@ export default function EditProfilePage() {
 
                   <ListboxItem
                     key="1"
-                    href={'/edit-profile-feild?page=instagram'}
+                    href={'/#/edit-profile-field?page=instagram'}
                     startContent={
                       <IconWrapper className="aspect-square flex items-center p-0 w-10 h-10 text-primary">
                         <p className="text-md">🔗</p>
@@ -378,7 +378,7 @@ export default function EditProfilePage() {
 
                   <ListboxItem
                     key="1"
-                    href={'/edit-profile-feild?page=quastion'}
+                    href={'/#/edit-profile-field?page=quastion'}
                     startContent={
                       <IconWrapper className="aspect-square flex items-center p-0 w-10 h-10 text-primary">
                         <p className="text-md">❓</p>
