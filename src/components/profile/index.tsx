@@ -60,7 +60,7 @@ const ProfilePage = () => {
       </div>
 
       <div className="mt-8">
-        <Card shadow="none" isPressable as={Link} to={"/add-firends"} className="border-1 border-default-200 dark:border-default-100  backdrop-blur bg-neutral/10" radius="lg">
+        <Card shadow="none" isPressable as={Link} to={"/add-friends"} className="border-1 border-default-200 dark:border-default-100  backdrop-blur bg-neutral/10" radius="lg">
           <div className="flex items-center p-2 h-full">
               <div>
                 <p className="text-4xl p-3">👫</p>

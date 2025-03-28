@@ -139,7 +139,7 @@ const TopBar = () => {
               </BlurFade>
             }
 
-            {location.pathname === "/add-firends" && 
+            {location.pathname === "/add-friends" && 
               <BlurFade className="flex items-center">
                 <AddFirendsIcon className="size-6 text-primary"/>
                 <p className="font-bold px-1 mx-1 text-inherit text-center font-bold tracking-tighter md:leading-[4rem] w-fit flex items-center jusitfy-center mx-auto gap-1.5">

@@ -239,7 +239,7 @@ const EnergyViewPage: React.FC = () => {
             <Card
               isPressable
               as={Link}
-              to={"/add-firends"}
+              to={"/add-friends"}
               className="border-1 border-default-200 dark:border-default-100 backdrop-blur bg-neutral/10"
               radius="lg"
             >
