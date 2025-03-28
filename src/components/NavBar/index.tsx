@@ -94,9 +94,9 @@ const BottomMenu = () => {
               key="nearby"
               href="/#/main?page=nearby"
               title={
-                <div className="flex flex-col gap-2 justify-center items-center">
+                <div className="flex flex-col gap-1 justify-center items-center">
                   <div className="rounded-full flex items-center justify-center">
-                    <FireIcon className="size-6" />
+                    <FireIcon className="size-6 fire-icon" />
                   </div>
                   <p style={{ fontSize: "11px" }}>{t('Nearby')}</p>
                 </div>
