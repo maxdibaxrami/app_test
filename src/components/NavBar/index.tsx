@@ -1,4 +1,4 @@
-import { Tabs, Tab, Badge } from "@heroui/react";
+import { Tabs, Tab } from "@heroui/react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FireIcon, ChatIcon, ProfileIcon, LikeIcon, LocationIcon } from '@/Icons/index';
 import { useSearchParams } from "react-router-dom";
