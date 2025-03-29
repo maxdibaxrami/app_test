@@ -13,6 +13,7 @@ import { SparklesCustomIconText } from "@/components/animate/customSarkles";
 import { motion } from "framer-motion";
 import { ProfileBackgroundSvg } from "@/Icons/profileBackgroundSVG";
 import { PermiumCardStars } from "./permiumCardsStars";
+import { PermiumCardEnergy } from "./permiumEnergyCard";
 
 
 const PremiumPage: React.FC = () => {
@@ -81,6 +82,35 @@ const PremiumPage: React.FC = () => {
   const TonPaymentList = [ {
     title: t("1_month_premium"), // English: "1-Month Premium", Farsi: "پریمیوم یک ماهه", Arabic: "بريميوم لمدة شهر واحد", Russian: "Премиум на 1 месяц"
     description: t("save_10_percent"), // English: "1-month premium subscription", Farsi: "اشتراک یک ماهه پریمیوم", Arabic: "اشتراك بريميوم لمدة شهر واحد", Russian: "Подписка премиум на 1 месяц"
+    price: 0.5,  // example TON price
+    duration: t("duration_1_month"), // English: "1 Month", Farsi: "یک ماه", Arabic: "شهر واحد", Russian: "1 месяц"
+    icon: "⭐️",
+    Id:"1month"
+  },
+  {
+    title: t("3_month_premium"), // English: "3-Month Premium", Farsi: "پریمیوم سه ماهه", Arabic: "بريميوم لمدة 3 أشهر", Russian: "Премиум на 3 месяца"
+    description: t("save_20_percent"), // English: "3-month premium subscription", Farsi: "اشتراک سه ماهه پریمیوم", Arabic: "اشتراك بريميوم لمدة 3 أشهر", Russian: "Подписка премиум на 3 месяца"
+    price: 1,  // example TON price (10% off monthly)
+    duration: t("duration_3_months"), // English: "3 Months", Farsi: "سه ماه", Arabic: "3 أشهر", Russian: "3 месяца"
+    icon: "🌟",
+    Id:"3months"
+
+  },
+  {
+    title: t("1_year_premium"), // English: "1-Year Premium", Farsi: "پریمیوم یک ساله", Arabic: "بريميوم لمدة عام", Russian: "Премиум на 1 год"
+    description: t("save_30_percent"), // English: "1-year premium subscription", Farsi: "اشتراک یک ساله پریمیوم", Arabic: "اشتراك بريميوم لمدة عام", Russian: "Подписка премиум на 1 год"
+    price: 2.5,  // example TON price (30% off monthly)
+    duration: t("duration_1_year"), // English: "1 Year", Farsi: "یک سال", Arabic: "عام واحد", Russian: "1 год"
+    icon: "🌠",
+    Id:"1year"
+
+  }]
+  
+
+
+  const StarPaymentList = [ {
+    title: t("1_month_premium"), // English: "1-Month Premium", Farsi: "پریمیوم یک ماهه", Arabic: "بريميوم لمدة شهر واحد", Russian: "Премиум на 1 месяц"
+    description: t("save_10_percent"), // English: "1-month premium subscription", Farsi: "اشتراک یک ماهه پریمیوم", Arabic: "اشتراك بريميوم لمدة شهر واحد", Russian: "Подписка премиум на 1 месяц"
     price: 2,  // example TON price
     duration: t("duration_1_month"), // English: "1 Month", Farsi: "یک ماه", Arabic: "شهر واحد", Russian: "1 месяц"
     icon: "⭐️",
@@ -98,19 +128,18 @@ const PremiumPage: React.FC = () => {
   {
     title: t("1_year_premium"), // English: "1-Year Premium", Farsi: "پریمیوم یک ساله", Arabic: "بريميوم لمدة عام", Russian: "Премиум на 1 год"
     description: t("save_30_percent"), // English: "1-year premium subscription", Farsi: "اشتراک یک ساله پریمیوم", Arabic: "اشتراك بريميوم لمدة عام", Russian: "Подписка премиум на 1 год"
-    price: 6,  // example TON price (30% off monthly)
+    price: 8,  // example TON price (30% off monthly)
     duration: t("duration_1_year"), // English: "1 Year", Farsi: "یک سال", Arabic: "عام واحد", Russian: "1 год"
     icon: "🌠",
     Id:"1year"
 
   }]
-  
 
 
-  const StarPaymentList = [ {
+  const EnergyPeymentList = [ {
     title: t("1_month_premium"), // English: "1-Month Premium", Farsi: "پریمیوم یک ماهه", Arabic: "بريميوم لمدة شهر واحد", Russian: "Премиум на 1 месяц"
     description: t("save_10_percent"), // English: "1-month premium subscription", Farsi: "اشتراک یک ماهه پریمیوم", Arabic: "اشتراك بريميوم لمدة شهر واحد", Russian: "Подписка премиум на 1 месяц"
-    price: 5,  // example TON price
+    price: 1300,  // example TON price
     duration: t("duration_1_month"), // English: "1 Month", Farsi: "یک ماه", Arabic: "شهر واحد", Russian: "1 месяц"
     icon: "⭐️",
     Id:"1month"
@@ -118,7 +147,7 @@ const PremiumPage: React.FC = () => {
   {
     title: t("3_month_premium"), // English: "3-Month Premium", Farsi: "پریمیوم سه ماهه", Arabic: "بريميوم لمدة 3 أشهر", Russian: "Премиум на 3 месяца"
     description: t("save_20_percent"), // English: "3-month premium subscription", Farsi: "اشتراک سه ماهه پریمیوم", Arabic: "اشتراك بريميوم لمدة 3 أشهر", Russian: "Подписка премиум на 3 месяца"
-    price: 9,  // example TON price (10% off monthly)
+    price: 2400,  // example TON price (10% off monthly)
     duration: t("duration_3_months"), // English: "3 Months", Farsi: "سه ماه", Arabic: "3 أشهر", Russian: "3 месяца"
     icon: "🌟",
     Id:"3months"
@@ -127,12 +156,13 @@ const PremiumPage: React.FC = () => {
   {
     title: t("1_year_premium"), // English: "1-Year Premium", Farsi: "پریمیوم یک ساله", Arabic: "بريميوم لمدة عام", Russian: "Премиум на 1 год"
     description: t("save_30_percent"), // English: "1-year premium subscription", Farsi: "اشتراک یک ساله پریمیوم", Arabic: "اشتراك بريميوم لمدة عام", Russian: "Подписка премиум на 1 год"
-    price: 13,  // example TON price (30% off monthly)
+    price: 5000,  // example TON price (30% off monthly)
     duration: t("duration_1_year"), // English: "1 Year", Farsi: "یک سال", Arabic: "عام واحد", Russian: "1 год"
     icon: "🌠",
     Id:"1year"
 
   }]
+
   
   
   if (loading) {
@@ -172,12 +202,36 @@ const PremiumPage: React.FC = () => {
             </p>
           </div>
           <Tabs classNames={{"panel":"w-full"}} size="lg" color="primary" fullWidth aria-label="Options">
+
+            <Tab  key="energy" title={
+                <p className="text-md flex items-center gap-1">
+                  🔋 {t("energy")}
+                </p>
+              }>
+              <Card className="w-full bg-transparent ">
+                                <CardBody className=" bg-primary/10">
+                                  <div className="grid grid-cols-1 sm:grid-cols-1 ">
+                                    {EnergyPeymentList.map((value, index) => (
+                                      <PermiumCardEnergy
+                                        key={index}
+                                        title={value.title}
+                                        description={value.description}
+                                        price={value.price}
+                                        icon={value.icon}
+                                        Id={value.Id}   
+                                      />
+                                    ))}
+                                  </div> 
+                                </CardBody>
+              </Card>
+            </Tab>
+
             <Tab  key="stars" title={
               <p className="text-md flex items-center gap-1">
                 ⭐️ Stars
             </p>
             }>
-     <Card className="w-full bg-transparent ">
+              <Card className="w-full bg-transparent ">
                                 <CardBody className=" bg-primary/10">
                                   <div className="grid grid-cols-1 sm:grid-cols-1 ">
                                     {StarPaymentList.map((value, index) => (

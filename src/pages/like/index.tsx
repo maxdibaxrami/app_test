@@ -1,19 +1,19 @@
 import LikeCard from "./likeCard";
-import { motion } from "framer-motion";
 import { RootState } from "@/store";
 import { useSelector } from "react-redux";
 import { NotFoundLike } from "@/Icons/notFoundLike";
 import { Button } from "@heroui/button";
-import { FireIcon } from "@/Icons";
+import { FireIcon, PerimumIcon } from "@/Icons";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
-import { Spinner } from "@heroui/react";
+import { Alert, Spinner } from "@heroui/react";
 
 
 
 export default function LikesPage() {
   const { t } = useTranslation();  // Initialize translation hook
   const { data, loading } = useSelector((state: RootState) => state.like);  // Assuming the like slice is in state.like
+  const { data: user } = useSelector((state: RootState) => state.user);
 
   if(loading){
     return <div className="h-screen w-screen flex flex-col p-6 items-center justify-center"> 
@@ -32,18 +32,38 @@ export default function LikesPage() {
     </div>
   }
   return (
-    <motion.div 
-      className="grid gap-2 grid-cols-2 py-2"
-      style={{
-        paddingTop: "4.5rem",
-        paddingBottom: "6rem",
-        paddingLeft:"18px",
-        paddingRight:"18px"
-      }}
-    >
+    <div>
+      <div 
+        className="grid gap-2 grid-cols-2 py-2"
+        style={{
+          paddingTop: "4.5rem",
+          paddingBottom: "6rem",
+          paddingLeft:"18px",
+          paddingRight:"18px"
+        }}
+      >
+          {!user.premium && 
+            <div className="col-span-2">
+              <Alert
+                color="warning"
+                description={t("premium_description")}
+                endContent={
+                  <Button as={Link} to={'/premium-Page'} color="warning" size="sm" variant="flat">
+                    {t("open")}
+                  </Button>
+                }
+                title={t("premium_title")}
+                variant="flat"
+                classNames={{"title":"font-bold"}}
+                icon={<PerimumIcon />}
+              />
+            </div>
+           }
 
-      {data.map((value, index) => (<LikeCard key={index} data={value} />))}
+        {data.map((value, index) => (<LikeCard key={index} data={value} />))}
 
-    </motion.div >
+      </div >
+    </div>
+
   );
 }

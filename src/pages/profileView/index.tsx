@@ -3,12 +3,14 @@ import { motion } from "framer-motion";
 import { RootState } from "@/store";
 import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
-import { Spinner } from "@heroui/react";
+import { Alert, Button, Spinner } from "@heroui/react";
 import { Page } from '@/components/Page.tsx';
 import TopBarPages from "@/components/tobBar/index";
 import { useLaunchParams } from "@telegram-apps/sdk-react";
 import { NotFoundUserExplore } from "@/Icons/notFoundUserExplore";
 import { useMemo } from "react";
+import { PerimumIcon } from "@/Icons";
+import { Link } from "react-router-dom";
 
 
 
@@ -73,6 +75,24 @@ export default function ProfileViewPage() {
             }}
           >
 
+          {!data.premium && 
+            <div className="col-span-2">
+              <Alert
+                color="warning"
+                description={t("premium_description")}
+                endContent={
+                  <Button as={Link} to={'/premium-Page'} color="warning" size="sm" variant="flat">
+                    {t("open")}
+                  </Button>
+                }
+                title={t("premium_title")}
+                variant="flat"
+                classNames={{"title":"font-bold"}}
+                icon={<PerimumIcon />}
+              />
+            </div>
+           }
+           
           {data && profileViews.map((value, index) => (<ProfileViewCard key={index} data={value} />))}
 
         </motion.div >

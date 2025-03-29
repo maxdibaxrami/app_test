@@ -449,7 +449,7 @@
 
   "account_not_verified_text": "الحساب غير مُحقق.",
   "how_much_earn_text": "كم تكسب؟",
-  "claim_reward_text": "تحتاج إلى 4 TON على الأقل للمطالبة بالمكافأة.",
+  "claim_reward_text": "تحتاج إلى 5 TON على الأقل للمطالبة بالمكافأة.",
 
   "connect_wallet_text": "اتصل بمحفظتك",
   "disconnect_wallet_text": "افصل محفظتك",
@@ -481,7 +481,17 @@
   "dob_prompt": "أدخل تاريخ ميلادك لتخصيص تجربتك وتحسين دقة التوافق.",
 
   "use_telegram_profile": "استخدم بروفايل تيليجرام الخاص بك",
-  "user_telegram_default_profile_picture": "ضع صورة البروفايل الافتراضية في تيليجرام كصورة بروفايلك"
+  "user_telegram_default_profile_picture": "ضع صورة البروفايل الافتراضية في تيليجرام كصورة بروفايلك",
+
+  "premium_title": "افتح مع بريميوم",
+  "premium_description": "احصل على هذه الميزة من خلال الترقية إلى حساب بريميوم!",
+
+
+  "education_text": "التعليم",
+  "enter_education_text": "أدخل تعليمك",
+  "education_description": "شارك خلفيتك التعليمية ليتمكن الأشخاص المهتمون من معرفة المزيد عن رحلتك الأكاديمية واهتماماتك. تواصل من خلال المعرفة والتجارب المشتركة!"
+
+
 
 
 

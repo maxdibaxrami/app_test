@@ -17,7 +17,6 @@ import { AppDispatch, RootState } from '../../store';
 import {
   BASEURL,
   getDrinkStatus,
-  getEducationStatus,
   gethobbies,
   getKidStatus,
   getlanguages,
@@ -59,7 +58,6 @@ export default function EditProfilePage() {
   const DrinkStatus = getDrinkStatus(t);
   const SmokingStatus = getSmokingStatus(t);
   const KidStatus = getKidStatus(t);
-  const Edocation = getEducationStatus(t);
 
   const { data: user, updateUserData, uploadProfileLoading, error } = useSelector(
     (state: RootState) => state.user
@@ -331,7 +329,7 @@ export default function EditProfilePage() {
                   </ListboxItem>
 
                   <ListboxItem
-                    key="1"
+                    key="3213123"
                     href={'/#/edit-profile-field?page=work'}
                     startContent={
                       <IconWrapper className="aspect-square flex items-center p-0 w-10 h-10 text-primary">
@@ -354,7 +352,7 @@ export default function EditProfilePage() {
                   </ListboxItem>
 
                   <ListboxItem
-                    key="1"
+                    key="143243"
                     href={'/#/edit-profile-field?page=instagram'}
                     startContent={
                       <IconWrapper className="aspect-square flex items-center p-0 w-10 h-10 text-primary">
@@ -377,7 +375,7 @@ export default function EditProfilePage() {
                   </ListboxItem>
 
                   <ListboxItem
-                    key="1"
+                    key="1543"
                     href={'/#/edit-profile-field?page=quastion'}
                     startContent={
                       <IconWrapper className="aspect-square flex items-center p-0 w-10 h-10 text-primary">
@@ -398,14 +396,33 @@ export default function EditProfilePage() {
                   >
                     <p className="font-semibold">{t("questions_text")}</p>
                   </ListboxItem>
+
                   <ListboxItem
-                    key="2"
-                    onPress={() => handleClickProfileData("Education")}
-                    description={
-                      Edocation.find(
-                        (Education) => Education.key == user.profileData.education
-                      ).label
+                    key="15ddd3"
+                    href={'/#/edit-profile-field?page=location'}
+                    startContent={
+                      <IconWrapper className="aspect-square flex items-center p-0 w-10 h-10 text-primary">
+                        <p className="text-md">📍</p>
+                      </IconWrapper>
                     }
+                    endContent={
+                      <ArrowRight
+                        style={{
+                          transform: `${
+                            i18n.language === "ar" || i18n.language === "fa"
+                              ? "rotate(180deg)"
+                              : "rotate(0deg)"
+                          }`,
+                        }}
+                      />
+                    }
+                  >
+                    <p className="font-semibold">{t("location")}</p>
+                  </ListboxItem>
+
+                  <ListboxItem
+                    key="15ddd3"
+                    href={'/#/edit-profile-field?page=education'}
                     startContent={
                       <IconWrapper className="aspect-square flex items-center p-0 w-10 h-10 text-primary">
                         <p className="text-md">👨‍🎓</p>
@@ -425,6 +442,7 @@ export default function EditProfilePage() {
                   >
                     <p className="font-semibold">{t("Education")}</p>
                   </ListboxItem>
+
 
                   <ListboxItem
                     key="3"

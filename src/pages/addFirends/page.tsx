@@ -110,7 +110,7 @@ export default function AddFirends() {
                         <div className="flex flex-col gap-1 items-start justify-center">
                           <h4 className="text-small font-semibold leading-none text-default-600">{t("how_much_earn_text")}</h4>
                           <h5 className="text-small tracking-tight text-default-400">{ActiveUsers * amoutPerUser} TON</h5>
-                          <p className="text-xs text-success/80">{`0.05 TON ${t("per_active_user_text")}`}</p>
+                          <p className="text-xs text-success/80">{`${amoutPerUser} TON ${t("per_active_user_text")}`}</p>
 
                         </div>
                       </div>
@@ -119,7 +119,7 @@ export default function AddFirends() {
                         radius="full"
                         size="sm"
                         onPress={() => {
-                          if(ActiveUsers * 0.05 < 5 ){
+                          if(ActiveUsers * amoutPerUser < 5 ){
                             addToast({
                               title: t("error_text"),
                               description: t("claim_reward_text"),

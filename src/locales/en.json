@@ -319,7 +319,7 @@
     "energy":"Energy",
     "add_energy": "add energy",
 
-    "claim_reward_text": "You need at least 4 TON to claim the reward.",
+    "claim_reward_text": "You need at least 5 TON to claim the reward.",
 
 
 
@@ -430,15 +430,16 @@
     "work_text": "Work",
 
     "instagram_text": "Instagram",
+    "enter_instagram_text": "Enter your Instagram",
+    "instagram_description": "Connect your Instagram to give your matches a sneak peek into your world! Share your adventures, hobbies, and everyday moments for a more personal touch.",
+
     "weekend_getaway_text": "What's your idea of the perfect weekend getaway?",
     "dinner_question_text": "Who would you love to have dinner with, and why?",
 
       "enter_work_position_text": "Enter your work position",
-      "enter_instagram_text": "Enter your Instagram",
 
 
       "career_description": "Let your potential matches know more about your career! Share where you work or what you do, so they can get a glimpse into your passions and ambitions.",
-      "instagram_description": "Connect your Instagram to give your matches a sneak peek into your world! Share your adventures, hobbies, and everyday moments for a more personal touch.",
       "personality_description": "Let your personality shine through! Answer a few fun and insightful questions to help us match you with people who share your vibe. This is your chance to stand out!",
       "questions_text": "Questions",
 
@@ -488,10 +489,16 @@
       "dob_prompt": "Enter your date of birth to personalize your experience and improve match accuracy.",
 
       "use_telegram_profile": "Use your Telegram profile",
-      "user_telegram_default_profile_picture": "Set your Telegram default profile picture as your profile photo"
+      "user_telegram_default_profile_picture": "Set your Telegram default profile picture as your profile photo",
+    
+      "premium_title": "Unlock with Premium",
+      "premium_description": "Get access to this feature by upgrading to a premium account!",
     
 
-
+      "education_text": "Education",
+      "enter_education_text": "Enter your education",
+      "education_description": "Share your education background to let potential matches know more about your academic journey and interests. Connect through shared knowledge and experiences!"
+    
 
 
 

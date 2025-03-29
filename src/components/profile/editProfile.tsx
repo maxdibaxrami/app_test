@@ -87,8 +87,6 @@ const EditProfile = forwardRef((props:any, ref)=> {
               <form className="flex flex-col">
 
                 {props.selectedItem==="WhyIamhere" && <LookingforList user={props.user.profileData} setSlideAvailable={HandlelookingForList} setSlideUnAvailable={HandlelookingForList}/>}
-
-
                 {props.selectedItem==="Education" &&  <EducationListSelector setSlideUnAvailable={HandlelookingForList} setSlideAvailable={HandleducationForList} user={props.user.profileData}  /> }
               </form>
             </ScrollShadow>

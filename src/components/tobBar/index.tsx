@@ -186,10 +186,13 @@ const TopBar = () => {
               </BlurFade>
             }
 
-            <div className="flex gap-1">
-              <ThemeSwitch/>
-              <EnergyButton/>
-            </div>
+            {searchParams.get("page") &&
+              <div className="flex gap-1">
+                <ThemeSwitch/>
+                <EnergyButton/>
+              </div>
+            }
+            
 
           </NavbarItem>
         </NavbarContent>

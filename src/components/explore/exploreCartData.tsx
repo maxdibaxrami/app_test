@@ -26,7 +26,7 @@ const ExploreCartData = ({ profile, openFooter }) => {
       color: "default",
       icon: <p className="text-xl p-1">👨‍🎓</p>,
       label: t("Education"),
-      text: profile.profileData.education.replace("_"," "),
+      text: profile?.profileData.education
     },
     {
       key: 2,

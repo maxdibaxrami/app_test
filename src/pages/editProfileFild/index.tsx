@@ -76,6 +76,7 @@ export default function EditProfilePageText() {
   const [quastion1, setquastion1] = useState(user?.question1 || "");
   const [quastion2, setquastion2] = useState(user?.question2 || "");
 
+  const [education, setEducation] = useState(user.profileData.education || "")
   const location = useLocation();
 
   const [searchParams] = useSearchParams();
@@ -215,6 +216,7 @@ export default function EditProfilePageText() {
         city,
         country,
         instagram,
+        education,
         question1: quastion1,
         question2: quastion2,
       };
@@ -291,6 +293,18 @@ export default function EditProfilePageText() {
                     placeholder={`${t("EnteryourBio")} ${t("min_max_2_100")}`}
                 />
 
+
+                </div>
+            }
+
+                {searchParams.get('page') === "location" && 
+                <div className="flex flex-col gap-4">
+
+                        <div className="mb-1 mt-1 px-6 pt-8 pb-4 flex flex-col gap-2">
+                        <p className="text-base font-semibold text-center">{t("locationTitle")} 📝</p>
+                        <p className="text-xs text-center">{t("locationDescription")}</p>
+                        </div>
+
                 {/* Integrated Autocomplete for City Selection */}
                 <Autocomplete
                     inputValue={inputValue}
@@ -322,6 +336,8 @@ export default function EditProfilePageText() {
                 />
                 </div>
             }
+
+         
             
             {searchParams.get('page') === "work" && 
                 <div className="flex flex-col gap-4">
@@ -390,6 +406,32 @@ export default function EditProfilePageText() {
                 />
                 </div>
             }
+
+
+
+   
+
+            {searchParams.get('page') === "education" && 
+                <div className="flex flex-col gap-4">
+
+                    <div className="mb-1 mt-1 px-6 pt-8 pb-4 flex flex-col gap-2">
+                        <p className="text-base font-semibold text-center">{t("education_text")}👨‍🎓</p>
+                        <p className="text-xs text-center">{t("education_description")}</p>
+                    </div>
+                <Input
+                    value={education}
+                    onChange={(e) => setEducation(e.target.value)}
+                    label={t("Education")}
+                    type="text"
+                    color="default"
+                    className="w-full"
+                    labelPlacement="inside"
+                    placeholder={`${t("enter_education_text")}`}
+                />
+                </div>
+            }
+
+
           </form>
         </section>
       </div>

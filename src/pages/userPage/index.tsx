@@ -249,7 +249,7 @@ export default function ProfilePage() {
         gradient: "bg-gradient-to-br from-[#C20E4D] to-[#F54180]",
         icon: <EducationIcon className="size-6" />,
         label: t("Education"),
-        text: UserData?.profileData.education.replace("_"," "),
+        text: UserData?.profileData.education,
       },
       {
         key: 2,

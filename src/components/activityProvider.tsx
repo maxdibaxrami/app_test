@@ -6,31 +6,43 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 const ActivityListener = () => {
-  let lastActivity = Date.now();
   const dispatch = useDispatch<AppDispatch>();
-  const { data: user } = useSelector((state: RootState) => state.user);
+  let lastActivity = Date.now();
   const { activityScore } = useSelector((state: RootState) => state.activity);
+  const { data } = useSelector((state: RootState) => state.user);
 
   useEffect(() => {
+    const handleActivity = () => {
+      lastActivity = Date.now();
+      dispatch(incrementActivity(0.1));
+    };
+
+    // Listen to mobile touch events
+    window.addEventListener("touchstart", handleActivity);
+    // Listen to desktop events (if applicable)
+    window.addEventListener("click", handleActivity);
+
     // Optionally boost the score if activity has occurred recently
     const interval = setInterval(() => {
-      if (Date.now() - lastActivity < 5000) {
-        dispatch(incrementActivity(1));
+      if (Date.now() - lastActivity < 10000) {
+        dispatch(incrementActivity(0.05));
       }
     }, 20000);
 
     return () => {
-       dispatch(
-              updateUserData({
-                userId: user.id.toString(),
-                updatedData: {
-                  activityScore: activityScore, // Adjust this logic as needed
-                },
-              })
-            );
+      dispatch(
+        updateUserData({
+          userId: data.id.toString(),
+          updatedData: {
+            activityScore: activityScore, // Adjust this logic as needed
+          },
+        })
+      );
+      window.removeEventListener("touchstart", handleActivity);
+      window.removeEventListener("click", handleActivity);
       clearInterval(interval);
     };
-  }, []);
+  }, [dispatch]);
 
   return null;
 };
