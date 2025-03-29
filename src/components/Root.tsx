@@ -1,4 +1,4 @@
-import { HeroUIProvider } from "@heroui/react";
+import { Button, HeroUIProvider } from "@heroui/react";
 import { ErrorBoundary } from '@/components/ErrorBoundary.tsx';
 import { ThemeProvider as NextThemesProvider } from "next-themes";
 import { App } from '@/components/App.tsx';
@@ -7,8 +7,11 @@ import { PoorInternetConnection } from "@/Icons/poorInternetConection";
 
 function ErrorBoundaryError() {
   return (
-    <div className="h-[100vh] bg-background flex items-center justify-center">
+    <div className="h-[100vh] bg-background flex items-center flex-col justify-center">
       <PoorInternetConnection/>
+      <Button onPress={()=> window.location.reload()}>
+        Reload
+      </Button>
     </div>
   );
 }

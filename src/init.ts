@@ -12,8 +12,6 @@ import {
   init as initSDK,
 } from '@telegram-apps/sdk-react';
 
-
-
 /**
  * Initializes the application and configures its dependencies.
  */
