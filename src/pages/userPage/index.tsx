@@ -42,6 +42,8 @@ import { PopOverPerimum } from "@/components/perimum/popOver";
 import TopBarPages from "@/components/tobBar/index";
 import { ProfileBackgroundSvg } from "@/Icons/profileBackgroundSVG";
 
+import ModalFormReport from '@/components/core/reportModal/index'
+
 export default function ProfilePage() {
   const maxLikes = 5;
   const { t } = useTranslation();  // Initialize translation hook
@@ -61,6 +63,8 @@ export default function ProfilePage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [likedUser, setLikedUser ] = useState(false);
   
+  const [openReportModal, setOpenModalReport] = useState(false)
+
   const RealationStatus = getRealationStatus(t)
   const languages = getlanguages(t)
   const SexualityStatus = getSexualityStatus(t)
@@ -406,6 +410,7 @@ export default function ProfilePage() {
                                         <DropdownMenu aria-label="Dropdown menu with icons" variant="faded">
                                           <DropdownItem
                                             key="edit"
+                                            onPress={()=> setOpenModalReport(true)}
                                           >
                                             {t("report_text")}
                                           </DropdownItem>
@@ -796,6 +801,9 @@ export default function ProfilePage() {
 
       </div>
 
+      <ModalFormReport isOpen={openReportModal} onClose={function (): void {
+        setOpenModalReport(false);
+      } } reportedUserId={Number(userId)} reporterId={user.id}/>
 
       <MatchModal
         isOpen={isModalOpen}

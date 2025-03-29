@@ -497,11 +497,20 @@
 
       "education_text": "Education",
       "enter_education_text": "Enter your education",
-      "education_description": "Share your education background to let potential matches know more about your academic journey and interests. Connect through shared knowledge and experiences!"
+      "education_description": "Share your education background to let potential matches know more about your academic journey and interests. Connect through shared knowledge and experiences!",
     
 
 
-
+      "report_modal_title": "Report User",
+      "enter_reason_placeholder": "Enter the reason",
+      "description_placeholder": "Provide additional details...",
+      "submit": "Submit",
+      "error_title": "Error",
+      "form_error_message": "Please fix the errors in the form",
+      "success_title": "Success",
+      "report_submission_success": "Report submitted successfully",
+      "submission_failed": "Submission failed",
+      "reason_required": "Reason is required"
 
 
 

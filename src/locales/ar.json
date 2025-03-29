@@ -489,7 +489,19 @@
 
   "education_text": "التعليم",
   "enter_education_text": "أدخل تعليمك",
-  "education_description": "شارك خلفيتك التعليمية ليتمكن الأشخاص المهتمون من معرفة المزيد عن رحلتك الأكاديمية واهتماماتك. تواصل من خلال المعرفة والتجارب المشتركة!"
+  "education_description": "شارك خلفيتك التعليمية ليتمكن الأشخاص المهتمون من معرفة المزيد عن رحلتك الأكاديمية واهتماماتك. تواصل من خلال المعرفة والتجارب المشتركة!",
+
+
+  "report_modal_title": "الإبلاغ عن المستخدم",
+  "enter_reason_placeholder": "أدخل السبب",
+  "description_placeholder": "قدم تفاصيل إضافية...",
+  "submit": "إرسال",
+  "error_title": "خطأ",
+  "form_error_message": "يرجى تصحيح الأخطاء في النموذج",
+  "success_title": "نجاح",
+  "report_submission_success": "تم إرسال التقرير بنجاح",
+  "submission_failed": "فشل في الإرسال",
+  "reason_required": "السبب مطلوب"
 
 
 
