@@ -5,7 +5,7 @@ import { App } from '@/components/App.tsx';
 import { ToastProvider } from "@heroui/toast";
 import { PoorInternetConnection } from "@/Icons/poorInternetConection";
 
-function ErrorBoundaryError({ error }: { error: unknown }) {
+function ErrorBoundaryError() {
   return (
     <div className="h-[100vh] bg-background flex items-center justify-center">
       <PoorInternetConnection/>
