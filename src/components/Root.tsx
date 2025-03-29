@@ -3,20 +3,12 @@ import { ErrorBoundary } from '@/components/ErrorBoundary.tsx';
 import { ThemeProvider as NextThemesProvider } from "next-themes";
 import { App } from '@/components/App.tsx';
 import { ToastProvider } from "@heroui/toast";
+import { PoorInternetConnection } from "@/Icons/poorInternetConection";
 
 function ErrorBoundaryError({ error }: { error: unknown }) {
   return (
-    <div>
-      <p>An unhandled error occurred:</p>
-      <blockquote>
-        <code>
-          {error instanceof Error
-            ? error.message
-            : typeof error === 'string'
-            ? error
-            : JSON.stringify(error)}
-        </code>
-      </blockquote>
+    <div className="h-[100vh] bg-background flex items-center justify-center">
+      <PoorInternetConnection/>
     </div>
   );
 }
