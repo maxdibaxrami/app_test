@@ -8,6 +8,7 @@ import {
   mainButton,
   secondaryButton,
   $debug,
+  swipeBehavior,
   init as initSDK,
 } from '@telegram-apps/sdk-react';
 
@@ -55,6 +56,14 @@ export function init(debug: boolean): void {
       // Bind the CSS variables for the viewport
       viewport.bindCssVars(); // Binds the default Telegram theme parameters
       viewport.requestFullscreen();
+      
+      if(viewport.bindCssVars.isAvailable()){
+          viewport.requestFullscreen();
+      }
+                
+      viewport.expand()
+      swipeBehavior.disableVertical()
+
     });
 
   // Bind the theme parameters to CSS variables (colors, etc.).

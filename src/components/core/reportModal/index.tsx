@@ -78,6 +78,7 @@ const ReportModal: React.FC<ReportModalProps> = ({ isOpen, onClose, reportedUser
       });
     } finally {
       setLoading(false); // Set loading to false after request completes
+      
     }
   };
 
