@@ -29,6 +29,8 @@
     "@tonconnect/ui": "^2.0.12",
     "@tonconnect/ui-react": "^2.0.9",
     "@types/socket.io-client": "^1.4.36",
+    "@vercel/analytics": "^1.5.0",
+    "@vercel/speed-insights": "^1.2.0",
     "axios": "^1.7.9",
     "browser-image-compression": "^2.0.2",
     "buffer": "^6.0.3",

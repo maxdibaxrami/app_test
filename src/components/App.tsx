@@ -167,6 +167,7 @@ export function App() {
                     element={data && data.profileStage !== "draft" ? <Navigate to="/main?page=explore" replace /> : <Navigate to="/sign-up" replace />}
                   />
                 </Routes>
+                     
             </HashRouter>
           </AppRoot>
       </Suspense>
