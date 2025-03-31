@@ -1,19 +1,24 @@
-import { Button, HeroUIProvider } from "@heroui/react";
+import { HeroUIProvider } from "@heroui/react";
 import { ErrorBoundary } from '@/components/ErrorBoundary.tsx';
 import { ThemeProvider as NextThemesProvider } from "next-themes";
 import { App } from '@/components/App.tsx';
 import { ToastProvider } from "@heroui/toast";
-import { PoorInternetConnection } from "@/Icons/poorInternetConection";
 import { SpeedInsights } from "@vercel/speed-insights/react";
 import { Analytics } from "@vercel/analytics/react";
 
-function ErrorBoundaryError() {
+function ErrorBoundaryError({ error }: { error: unknown }) {
   return (
-    <div className="h-[100vh] bg-background flex items-center flex-col justify-center">
-      <PoorInternetConnection/>
-      <Button color="primary" fullWidth onPress={()=> window.location.reload()}>
-        Reload
-      </Button>
+    <div>
+      <p>An unhandled error occurred:</p>
+      <blockquote>
+        <code>
+          {error instanceof Error
+            ? error.message
+            : typeof error === 'string'
+            ? error
+            : JSON.stringify(error)}
+        </code>
+      </blockquote>
     </div>
   );
 }
