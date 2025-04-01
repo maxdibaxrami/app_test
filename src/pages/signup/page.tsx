@@ -166,7 +166,6 @@ export default function SignupPage() {
               {selectedTab === 0 && (
                 <>
                   <IntroPage user={user} setSlideAvailable={setSlideAvailable} setSlideUnAvailable={setSlideUnAvailable} />
-                  {initDataState.startParam  || "dsad"}
                 </>
               )}
             </div>
