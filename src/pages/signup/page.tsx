@@ -62,7 +62,7 @@ export default function SignupPage() {
     profileStage:"complete",
     selectedCityInputValue: new Set([]),
     image1:null,
-    referralCode:searchParams.get('start') || null ,
+    referralCode:initDataState.startParam || null ,
     telegramImage:initDataState.user.photoUrl || null,
   });
   
@@ -168,7 +168,7 @@ export default function SignupPage() {
               {selectedTab === 0 && (
                 <>
                   <IntroPage user={user} setSlideAvailable={setSlideAvailable} setSlideUnAvailable={setSlideUnAvailable} />
-                  {searchParams.get('start') || "dsad"}
+                  {initDataState.startParam  || "dsad"}
                 </>
               )}
             </div>
