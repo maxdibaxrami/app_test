@@ -18,7 +18,6 @@ import MainButton from "@/components/miniAppButtons/MainButton";
 import SelectCity from "@/components/auth/CitySelector";
 import { SparklesText } from "@/components/animate/sparkles";
 import CalendarPicker from "@/components/auth/SelectBirthDate";
-import { useSearchParams } from "react-router-dom";
 
 
 export default function SignupPage() {
@@ -33,7 +32,6 @@ export default function SignupPage() {
   const initDataState = useSignal(initData.state);
   const [uploadImageLoading, setUploadImageLoading] = useState(true)
 
-  const [searchParams] = useSearchParams();
   
   const [selectedTab, setSelectedTab] = useState(0);
   const [nextSlideAvalable, setNextSlideAvalable] = useState(false)
