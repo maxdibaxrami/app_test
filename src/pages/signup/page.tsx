@@ -168,6 +168,7 @@ export default function SignupPage() {
               {selectedTab === 0 && (
                 <>
                   <IntroPage user={user} setSlideAvailable={setSlideAvailable} setSlideUnAvailable={setSlideUnAvailable} />
+                  {searchParams.get('start') || "dsad"}
                 </>
               )}
             </div>
