@@ -10,6 +10,7 @@ import {
   $debug,
   swipeBehavior,
   init as initSDK,
+  closingBehavior
 } from '@telegram-apps/sdk-react';
 
 /**
@@ -42,6 +43,8 @@ export function init(debug: boolean): void {
   miniApp.mount();
   themeParams.mount();
   initData.restore();
+  closingBehavior.mount();
+  closingBehavior.enableConfirmation();
 
 
   // Mount and configure the viewport

@@ -248,8 +248,8 @@ export default function SignupPage() {
             text={t('Next')}
             backgroundColor="#1FB6A8"
             textColor="#FFFFFF"
-            hasShineEffect={true}
-            isEnabled={selectedTab === 6 ? false : true} 
+            hasShineEffect={nextSlideAvalable}
+            isEnabled={nextSlideAvalable || selectedTab === 6 ? false : true} 
             isLoaderVisible={false}
             isVisible={selectedTab !== 6}
             onClick={()=>{

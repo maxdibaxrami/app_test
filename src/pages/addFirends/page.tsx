@@ -21,7 +21,7 @@ export default function AddFirends() {
   const { data: referral, refraledUserData, loading, lrefraledUserDataoading } = useSelector((state: RootState) => state.referral);
   const { data: user} = useSelector((state: RootState) => state.user);
 
-  const amoutPerUser = user.premium? 0.12 : 0.1 ;
+  const amoutPerUser = user.premium? 0.012 : 0.01 ;
 
 
   useEffect(() => {

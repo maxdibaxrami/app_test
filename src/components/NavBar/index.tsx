@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { FireIcon, ChatIcon, ProfileIcon, LikeIcon, LocationIcon } from '@/Icons/index';
 import { useSearchParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { useLaunchParams } from "@telegram-apps/sdk-react";
+import { hapticFeedback, useLaunchParams } from "@telegram-apps/sdk-react";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store";
 
@@ -27,7 +27,7 @@ const BottomMenu = () => {
       {searchParams.get('page') !== "nearby" && (
         <motion.div
           transition={{
-            duration: 0.5,
+            duration: 0.3,
           }}
           initial={{ bottom: "-120px" }}
           animate={{ bottom: "0px" }}
@@ -45,6 +45,11 @@ const BottomMenu = () => {
           <Tabs
             aria-label="Options"
             fullWidth
+            onChange={()=>{
+              if (hapticFeedback.impactOccurred.isAvailable()) {
+                hapticFeedback.impactOccurred('medium');
+              }
+            }}
             classNames={{
               tab: "h-auto p-1 m-1 color-white w-14 h-14",
               tabList: "bg-transparent gap-2 flex justify-center	",

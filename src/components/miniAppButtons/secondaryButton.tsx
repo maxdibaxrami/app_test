@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { secondaryButton, miniApp } from '@telegram-apps/sdk-react';
+import { hapticFeedback } from '@telegram-apps/sdk';
 
 interface SecondaryButtonProps {
   text?: string;
@@ -54,7 +55,12 @@ const SecondaryButton: React.FC<SecondaryButtonProps> = ({
 
     if (onClick && secondaryButton.onClick.isAvailable()) {
       // Bind the click listener
-      secondaryButton.onClick(onClick);
+      secondaryButton.onClick(()=>{
+        onClick()
+        if (hapticFeedback.impactOccurred.isAvailable()) {
+          hapticFeedback.impactOccurred('soft');
+        }
+      });
 
       return () => {
         // Unbind the click listener when component unmounts
