@@ -40,11 +40,12 @@ interface CitySearchInputProps {
   placeholder?: string;
   startContent?: React.ReactNode;
   endContent?:React.ReactNode;
+  showError:boolean;
 }
 
 // A memoized search input component.
 const CitySearchInput: React.FC<CitySearchInputProps> = React.memo(
-  ({ value, onChange, placeholder, startContent, endContent }) => {
+  ({ value, onChange, placeholder, startContent, endContent, showError }) => {
     const { t } = useTranslation();
 
     return (
@@ -56,6 +57,7 @@ const CitySearchInput: React.FC<CitySearchInputProps> = React.memo(
         endContent={endContent}
         labelPlacement="inside"
         label={t("cityTitle")} 
+        isInvalid={showError}
         
       />
     );
@@ -122,6 +124,7 @@ const SelectCity: React.FC<SelectCityProps> = ({
   selectedValueCityList,
   setSelectedCityKeys,
   selectedCityKeys,
+  showError
   
 }) => {
   const { t } = useTranslation();
@@ -202,6 +205,8 @@ const SelectCity: React.FC<SelectCityProps> = ({
         placeholder={t("type_to_search")}
         startContent={<SearchIcon className="size-5" />}
         endContent={isLoading && <Spinner size="sm" />}
+        showError={showError}
+        
         
       />
       {cityList.length > 0 && (

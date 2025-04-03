@@ -182,15 +182,15 @@ export default function SignupPage() {
             </div>
 
             <div className={selectedTab === 2 ? "fade-in" : ""}>
-    {selectedTab === 2 && (
-      <>
-        <div className="mb-1 mt-1 px-6 pt-8 pb-4 flex flex-col gap-2">
-          <p className="text-base font-semibold text-center">{t("Birthdate")} 📆</p>
-          <p className="text-xs text-center">{t("dob_prompt")}</p>
-        </div>
-        <CalendarPicker showError={showError} user={user} setSlideAvailable={setSlideAvailable} setSlideUnAvailable={setSlideUnAvailable} />
-      </>
-    )}
+            {selectedTab === 2 && (
+              <>
+                <div className="mb-1 mt-1 px-6 pt-8 pb-4 flex flex-col gap-2">
+                  <p className="text-base font-semibold text-center">{t("Birthdate")} 📆</p>
+                  <p className="text-xs text-center">{t("dob_prompt")}</p>
+                </div>
+                <CalendarPicker showError={showError} user={user} setSlideAvailable={setSlideAvailable} setSlideUnAvailable={setSlideUnAvailable} />
+              </>
+            )}
             </div>
 
             <div className={selectedTab === 3 ? "fade-in" : ""}>

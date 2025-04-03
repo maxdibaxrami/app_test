@@ -13,7 +13,7 @@ const ProfileDataAuth = ({ setSlideAvailable, setSlideUnAvailable, user, showErr
 
   // Check form validity to allow slide changes (name, bio, date of birth)
   useEffect(() => {
-    if (name.length > 2 && bio.length > 1 && name.length < 18 && bio.length < 100 && gender) {
+    if (name.length > 2 && bio.length > 3 && name.length < 18 && bio.length < 100 && gender) {
       setSlideAvailable("firstName", name);
       setSlideAvailable("bio", bio);
       setSlideAvailable("gender", gender);
