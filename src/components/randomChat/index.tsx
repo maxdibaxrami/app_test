@@ -5,14 +5,15 @@ import { useSelector } from 'react-redux';
 import io from 'socket.io-client';
 import { useTranslation } from 'react-i18next';
 import { useTheme } from 'next-themes';
-import { Button, Textarea } from '@heroui/react';
-import { SendIcon } from '@/Icons';
+import { Button, Card, CardBody, Textarea } from '@heroui/react';
+import { SearchIcon, SendIcon } from '@/Icons';
 import axios from '@/api/base';
 import ChatProfileSection from '../chatPage/chatProfileSection';
 import "../../pages/chat/style.css";
 import MessageSection from '../chatPage/message';
 import MainButton from '../miniAppButtons/MainButton';
 import SecondaryButton from '../miniAppButtons/secondaryButton';
+import { RandomChatSvg } from '@/Icons/randomChat';
 
 // Define your Message interface (for clarity)
 interface Message {
@@ -107,6 +108,9 @@ const RandomChat = () => {
     }
   };
 
+  useEffect(()=>{
+    setFilter(null)
+  },[])
   // Sends a chat message.
   const sendMessage = () => {
     if (socket && room && input.trim()) {
@@ -151,12 +155,15 @@ const RandomChat = () => {
     >
       {matched && (
         <>
+        <main style={{display:"flex",position:"relative", overflow: "auto", flexGrow:1 }}>
+
           <ChatProfileSection 
             userId2={partnerId} 
             profileDataState={profileDataState} 
             loading={messageUserLoading}
           />
           <MessageSection messages={messages} user={user} />
+        </main>
           <Textarea
             className="w-full"
             value={input}
@@ -176,30 +183,26 @@ const RandomChat = () => {
               </Button>
             }
           />
-          <Button onPress={cancelChat} style={{ marginTop: '1rem' }}>
-            Cancel Chat
-          </Button>
         </>
       )}
 
       {!matched && (
-        <div>
-          <input
-            type="text"
-            placeholder="Preferred Gender (optional)"
-            value={filter.gender}
-            onChange={(e) => setFilter({ ...filter, gender: e.target.value })}
-            style={{ marginRight: '1rem' }}
-          />
-          <input
-            type="text"
-            placeholder="City (optional)"
-            value={filter.city}
-            onChange={(e) => setFilter({ ...filter, city: e.target.value })}
-            style={{ marginRight: '1rem' }}
-          />
-          <button onClick={startChat}>Start Chat</button>
-          {isWaiting && !matched && <p>Waiting for a chat partner...</p>}
+        <div className='h-[80vh] flex flex-col items-center justify-center'>
+            <div className="mb-1 mt-1 px-6 pt-8 pb-4 flex flex-col gap-2">
+                        <p className="text-base font-semibold text-center">{t("anonymous_title")}🎲</p>
+                        <p className="text-xs text-center">{t("anonymous_description")}</p>
+             </div>
+          <RandomChatSvg/>
+          {isWaiting && 
+                    <Card>
+                    <CardBody className='flex flex-row items-center'>
+                      <SearchIcon className="size-5 m-1"/>
+                      <p className='text-xs'>{t("hold_on_anonymous")}</p>
+                    </CardBody>
+                  </Card>
+          
+          }
+        <button onClick={startChat}>dsa</button>
         </div>
       )}
 

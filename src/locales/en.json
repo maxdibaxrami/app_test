@@ -513,12 +513,15 @@
       "reason_required": "Reason is required",
 
 
-      "anonymous_chat": "Anonymous Chat",
+      "anonymous_chat": "GapOn",
       "waiting_for_partner": "Waiting for a chat partner...",
       "send": "Send",
       "start_chat": "Start Chat",
-      "end_chat": "End Chat"
+      "end_chat": "End Chat",
 
+      "anonymous_title": "Chat Anonymously. Meet Random People.",
+      "anonymous_description": "GapOn connects you instantly with strangers around the world for fun, safe, and anonymous conversations. Just tap and start chatting!",
+      "hold_on_anonymous":"Hold on! I’m finding your match—just a little more patience!"
 
 
 
