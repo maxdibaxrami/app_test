@@ -223,9 +223,9 @@ const RandomChat = () => {
             backgroundColor="#1FB6A8"
             textColor="#FFFFFF"
             hasShineEffect={true}
-            isEnabled={!matched}
+            isEnabled={matched}
             isLoaderVisible={isWaiting && !matched}
-            isVisible={!matched}
+            isVisible={matched}
             onClick={()=> startChat()}
           />
 
