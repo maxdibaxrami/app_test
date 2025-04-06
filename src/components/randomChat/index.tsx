@@ -216,7 +216,7 @@ const RandomChat = () => {
         />
       }
 
-      {!matched &&
+      {matched &&
         <>
           <MainButton
             text={t("start_chat")}
