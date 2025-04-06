@@ -501,7 +501,15 @@
   "success_title": "نجاح",
   "report_submission_success": "تم إرسال التقرير بنجاح",
   "submission_failed": "فشل في الإرسال",
-  "reason_required": "السبب مطلوب"
+  "reason_required": "السبب مطلوب",
+
+  "anonymous_chat": "دردشة مجهولة",
+  "waiting_for_partner": "في انتظار شريك للدردشة...",
+  "send": "إرسال",
+  "start_chat": "بدء الدردشة",
+
+  "end_chat": "إنهاء الدردشة"
+
 
 
 

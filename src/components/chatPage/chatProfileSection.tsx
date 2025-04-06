@@ -1,6 +1,5 @@
 import { Navbar, NavbarContent, NavbarItem, Skeleton, Avatar } from "@heroui/react";
 import { useRef } from 'react';
-import NearByUserModal from "../naerby/NearByModal";
 import { useTranslation } from "react-i18next";
 import { BASEURL } from "@/constant";
 import { useLaunchParams } from "@telegram-apps/sdk-react";
@@ -86,7 +85,6 @@ const ChatProfileSection = ({ loading, profileDataState, userId2 }) => {
         </NavbarContent>
         <NavbarContent justify="end"></NavbarContent>
       </Navbar>
-      {profileDataState && <NearByUserModal profile={profileDataState} ref={childRef} />}
     </>
   );
 };

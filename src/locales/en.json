@@ -510,7 +510,15 @@
       "success_title": "Success",
       "report_submission_success": "Report submitted successfully",
       "submission_failed": "Submission failed",
-      "reason_required": "Reason is required"
+      "reason_required": "Reason is required",
+
+
+      "anonymous_chat": "Anonymous Chat",
+      "waiting_for_partner": "Waiting for a chat partner...",
+      "send": "Send",
+      "start_chat": "Start Chat",
+      "end_chat": "End Chat"
+
 
 
 

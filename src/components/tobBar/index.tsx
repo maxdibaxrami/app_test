@@ -20,7 +20,8 @@ import {
   FavoriteColor,
   GiftIcon,
   FlashIcon,
-  PerimumIcon
+  PerimumIcon,
+  RandomChatIcon
 } from '@/Icons/index'
 
 import { useTranslation } from 'react-i18next';
@@ -74,6 +75,15 @@ const TopBar = () => {
                 <LocationIcon className="size-6 text-primary"/>
                   <p className="font-bold px-1 mx-1 text-inherit text-center font-bold tracking-tighter md:leading-[4rem] w-fit flex items-center jusitfy-center mx-auto gap-1.5">
                     {t('Explore')}
+                  </p>
+              </BlurFade>
+            }
+
+            {searchParams.get("page") === "RandomChat" && 
+              <BlurFade className="flex items-center">
+                <RandomChatIcon className="size-6 text-primary"/>
+                  <p className="font-bold px-1 mx-1 text-inherit text-center font-bold tracking-tighter md:leading-[4rem] w-fit flex items-center jusitfy-center mx-auto gap-1.5">
+                    {t('anonymous_chat')}
                   </p>
               </BlurFade>
             }

@@ -150,7 +150,7 @@ const ExplorePage = () => {
         effect={"fade"}
         grabCursor={true}
         className="mySwiper"
-        style={{ marginTop: "4rem" }}
+        style={{ marginTop: "5.5rem" }}
         allowTouchMove={false}
         modules={[EffectFade]}
         onSwiper={setSwiperInstance}

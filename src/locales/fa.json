@@ -491,7 +491,14 @@
   "success_title": "موفقیت",
   "report_submission_success": "گزارش با موفقیت ارسال شد",
   "submission_failed": "ارسال ناموفق بود",
-  "reason_required": "دلیل لازم است"
+  "reason_required": "دلیل لازم است",
+
+  "anonymous_chat": "چت ناشناس",
+  "waiting_for_partner": "در حال انتظار برای یک شریک گفتگو...",
+  "send": "ارسال",
+  "start_chat": "شروع چت",
+  "end_chat": "پایان چت"
+
 
 
 

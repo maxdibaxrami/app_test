@@ -85,7 +85,7 @@ export default function NearByPage() {
 
     if(!isLastTwoRows){
       return (
-        <div style={{ ...style, padding: "6px", paddingTop:"5.8rem" }}>
+        <div style={{ ...style, padding: "6px", paddingTop:"6rem" }}>
           <div style={{ width: "100%", aspectRatio: "3/4"}}>
             <NearByCard key={userItem.id} data={userItem} />
           </div>
@@ -93,7 +93,7 @@ export default function NearByPage() {
       );
     }
     return (
-      <div style={{ ...style,padding: "6px", paddingTop:"5.8rem",height:"500px"}}>
+      <div style={{ ...style,padding: "6px", paddingTop:"6rem",height:"500px"}}>
         <div style={{ width: "100%", aspectRatio: "3/4"}}>
           <NearByCard key={userItem.id} data={userItem} />
         </div>

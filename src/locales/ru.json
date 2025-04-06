@@ -503,7 +503,14 @@
     "success_title": "Успешно",
     "report_submission_success": "Жалоба успешно отправлена",
     "submission_failed": "Отправка не удалась",
-    "reason_required": "Причина обязательна"
+    "reason_required": "Причина обязательна",
+
+    "anonymous_chat": "Анонимный чат",
+    "waiting_for_partner": "Ожидание собеседника...",
+    "send": "Отправить",
+    "start_chat": "Начать чат",
+    "end_chat": "Завершить чат"
+
  
    
 

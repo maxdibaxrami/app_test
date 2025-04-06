@@ -82,7 +82,7 @@ const BottomMenu = () => {
               title={
                 <div className="flex gap-1 justify-center items-center">
                   <div className="rounded-full flex items-center justify-center">
-                    <FireIcon className="size-6 fire-icon" />
+                    <FireIcon className="size-6" />
                   </div>
                 </div>
               }
