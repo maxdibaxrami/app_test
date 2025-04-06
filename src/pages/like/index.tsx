@@ -36,7 +36,7 @@ export default function LikesPage() {
       <div 
         className="grid gap-2 grid-cols-2 py-2"
         style={{
-          paddingTop: "4.5rem",
+          paddingTop: "5.5rem",
           paddingBottom: "6rem",
           paddingLeft:"18px",
           paddingRight:"18px"

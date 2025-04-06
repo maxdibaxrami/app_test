@@ -1,5 +1,4 @@
 import ChatPage from '@/components/chat'
-import NavBar from '@/components/NavBar/index'
 import TopBar from '@/components/tobBar'
 import { Page } from '@/components/Page.tsx';
 import { useSearchParams } from "react-router-dom";
@@ -12,6 +11,7 @@ import { Button } from "@heroui/button";
 import { FitlerIcon } from '@/Icons';
 import NearByFilter from '@/components/naerby/NearByFilter';
 import { useRef } from 'react';
+import RandomChat from '@/components/randomChat';
 
 const MainPage = () => {
   
@@ -40,9 +40,6 @@ const MainPage = () => {
     <Page back={searchParams.get('page') === "nearby"}>
       {/* TopBar */}
         <TopBar />
-
-      <NavBar />
-
       <section style={{ paddingTop: getPaddingForPlatform() }} className="flex flex-col items-center justify-center gap-4">
         {searchParams.get('page') === "nearby" && (
           <div className="fade-in" style={{ width: "100%" }}>
@@ -53,6 +50,12 @@ const MainPage = () => {
         {searchParams.get('page') === "chat" && (
           <div className="fade-in" style={{ width: "100%" }}>
             <ChatPage />
+          </div>
+        )}
+
+        {searchParams.get('page') === "RandomChat" && (
+          <div className="fade-in" style={{ width: "100%" }}>
+            <RandomChat />
           </div>
         )}
 

@@ -258,6 +258,9 @@ html {
   animation: pulse 3s infinite ease-in-out;
 }
 
+.height-unset {
+  height: unset !important;
+}
 @keyframes pulse {
   0%, 100% {
     transform: scale(1.05);

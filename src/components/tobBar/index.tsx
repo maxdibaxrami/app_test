@@ -29,6 +29,8 @@ import { useSelector } from "react-redux";
 import { RootState } from "@/store";
 import ThemeSwitch from "./switchTheme";
 import { EnergyButton } from "./energyButton";
+import NavBar from "../NavBar";
+import { AnimatePresence, motion } from "framer-motion";
 
 
 const TopBar = () => {
@@ -39,9 +41,9 @@ const TopBar = () => {
 
 
   return (
-    <>
+    <div className="fixed flex flex-col top-0 z-50 w-full">
       <Navbar
-        className="top-0 fixed flex items-end text-default-600 main-content-safe z-50"
+        className="flex items-end text-default-600 main-content-safe "
       >
         <NavbarContent justify="start">
         </NavbarContent>
@@ -196,11 +198,34 @@ const TopBar = () => {
 
           </NavbarItem>
         </NavbarContent>
-
         <NavbarContent justify="end">
         </NavbarContent>
       </Navbar>
-    </>
+      <AnimatePresence>
+        {location.pathname === "/main" && 
+              <motion.div 
+                initial={{opacity:0, y:-100}}
+                animate={{opacity:1, y:0}}
+                exit={{opacity:0, y:-100}}
+                transition={{
+                  duration:0.3
+                  
+                }}
+              
+              >
+                <Navbar classNames={{"wrapper":"px-1 height-unset"}} className="w-full h-auto flex height-unset items-center justify-center">
+                  <NavbarContent className="w-full height-unset" justify="center">
+                    <NavbarItem className="w-full">
+                      <NavBar/>
+                    </NavbarItem>
+                  </NavbarContent>
+                </Navbar>
+              </motion.div>
+        }
+
+      </AnimatePresence>
+
+    </div>
   );
 };
 
