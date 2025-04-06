@@ -202,7 +202,6 @@ const RandomChat = () => {
                   </Card>
           
           }
-        <button onClick={startChat}>dsa</button>
         </div>
       )}
 
