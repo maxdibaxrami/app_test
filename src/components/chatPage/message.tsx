@@ -1,18 +1,17 @@
-// src/components/MessageSection.jsx
 import { motion } from "framer-motion";
 import { useTheme } from "next-themes";
-import { useCallback, useRef, useEffect } from "react";
-import { Image } from "@heroui/react";
+import "./style.css";
 import { BASEURL } from "@/constant";
 import { SeenIcon } from "@/Icons";
-import "./style.css";
+import { useCallback, useRef, useEffect } from "react";
+import {Image} from "@heroui/react";
 
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.05,
+      staggerChildren: 0.05, // Adjust the delay between messages here
     },
   },
 };
@@ -30,23 +29,21 @@ const formatTimestamp = (timestamp) => {
 };
 
 const MessageSection = ({ messages, user }) => {
-  const { theme } = useTheme();
+  const Theme = useTheme();
   const divRef = useRef(null);
 
   // Sort messages by timestamp
-  const sortedMessages = [...messages].sort(
-    (a, b) => new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime()
-  );
+  const sortedMessages = [...messages].sort((a, b) => new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime());
 
-  // Scroll to the bottom when messages change
+  // Scroll to the bottom of the div when sortedMessages change
   const moveBottom = useCallback(() => {
     if (divRef.current) {
-      divRef.current.scrollTop = divRef.current.scrollHeight;
+      divRef.current.scrollTop = divRef.current.scrollHeight; // Scroll to the bottom
     }
   }, [sortedMessages]);
 
   useEffect(() => {
-    moveBottom();
+    moveBottom(); // Scroll whenever sortedMessages change
   }, [sortedMessages, moveBottom]);
 
   return (
@@ -55,16 +52,12 @@ const MessageSection = ({ messages, user }) => {
       initial="hidden"
       animate="visible"
       ref={divRef}
-      className={`${
-        theme === "light"
-          ? "message-container-light"
-          : "message-container-dark"
-      } w-full flex flex-col border-small px-1 gradient--telegram rounded-small border-default-200 dark:border-default-100`}
+      className={`${Theme.theme === "light" ? "message-container-light" : "message-container-dark"} w-full flex flex-col border-small px-1 gradient--telegram rounded-small border-default-200 dark:border-default-100`}
       style={{ overflow: "scroll", paddingTop: "118px" }}
     >
       {sortedMessages.map((msg, index) => {
-        const isCurrentUser = msg.senderId === user.id;
-        const messageType = isCurrentUser ? "me" : "you";
+        const isCurrentUser = msg.senderId == user.id; // Determine if the message is from the current user
+        const messageType = isCurrentUser ? "me" : "you"; // Set message type based on senderId
 
         if (msg.type === "time") {
           return (
@@ -78,26 +71,16 @@ const MessageSection = ({ messages, user }) => {
           <motion.div
             key={index}
             variants={messageVariants}
-            className={`chat-${messageType} chat-m ${
-              messageType === "me"
-                ? "backdrop-blur bg-neutral/40 backdrop-saturate-150"
-                : "backdrop-blur bg-primary/80 backdrop-saturate-150"
-            } flex flex-col`}
+            className={`chat-${messageType} chat-m ${messageType === "me" ? "backdrop-blur	bg-neutral/30 backdrop-saturate-150" : "backdrop-blur	bg-primary/80 backdrop-saturate-150"} flex flex-col`}
           >
             <div className={`chat-bubble chat-${messageType}`}>
               {!msg.mediaUrl && <p>{msg.content}</p>}
+
               {msg.mediaUrl && (
-                <Image
-                  alt="conversation"
-                  className="chat-image"
-                  src={`${BASEURL}${msg.mediaUrl}`}
-                />
+                <Image alt="conversation" className="chat-image" src={`${BASEURL}${msg.mediaUrl}`}/>
               )}
-              <small
-                className={`chat${messageType}--time flex items-center w-90 justify-between`}
-              >
-                {formatTimestamp(msg.timestamp)}{" "}
-                {msg.readAt && <SeenIcon className="size-4 mx-2" />}
+              <small className={`chat${messageType}--time flex items-center w-90 justify-between`}>
+                {formatTimestamp(msg.timestamp)} {msg.readAt && <SeenIcon className="size-4 mx-2" />}
               </small>
             </div>
           </motion.div>

@@ -219,14 +219,14 @@ const RandomChat = () => {
       {matched &&
         <>
           <MainButton
-            text={t("start_chat")}
+            text={t("send_message")}
             backgroundColor="#1FB6A8"
             textColor="#FFFFFF"
             hasShineEffect={true}
             isEnabled={matched}
             isLoaderVisible={isWaiting && !matched}
             isVisible={matched}
-            onClick={()=> startChat()}
+            onClick={()=> sendMessage()}
           />
 
           <SecondaryButton
