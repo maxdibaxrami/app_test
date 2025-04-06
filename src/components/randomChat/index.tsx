@@ -1,9 +1,13 @@
 // src/components/RandomChat.jsx
+import { RootState } from '@/store';
 import { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import io from 'socket.io-client';
 
 const RandomChat = () => {
-  const currentUserId = '1'; // Replace with your dynamic user id
+  const { data : user } = useSelector((state: RootState) => state.user);
+
+  const currentUserId = user.id; // Replace with your dynamic user id
   const SERVER_URL = 'https://copychic.ru/'; // Update this to match your backend URL
 
   // Local states

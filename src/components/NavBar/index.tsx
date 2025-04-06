@@ -54,7 +54,7 @@ const BottomMenu = () => {
                 
                 <div className="flex gap-1 justify-center items-center">
                   <div className="rounded-full flex items-center justify-center">
-                    <Badge size="sm" showOutline={false} color="danger" variant="shadow" content={data.length} isInvisible={data && data.length === 0} shape="circle">
+                    <Badge size="sm" showOutline={false} color="danger" variant="shadow" content={data && data.length} isInvisible={data && data.length === 0} shape="circle">
                       <LikeIcon className="size-6" />
                     </Badge>
                   </div>
