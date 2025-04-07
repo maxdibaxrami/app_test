@@ -13,6 +13,7 @@ import messageReducer from './features/messageSlice';
 import statusReducer from './features/statusSlice';
 import referralReducer from './features/refralSlice';
 import activityReducer from './features/activitySlice';
+import chatSlice from './features/chatSlice';
 
 // Configure the store
 export const store = configureStore({
@@ -30,6 +31,7 @@ export const store = configureStore({
     status: statusReducer,
     referral: referralReducer,
     activity: activityReducer,
+    chat:chatSlice
 
   },
 });

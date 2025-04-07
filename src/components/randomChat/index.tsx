@@ -1,8 +1,7 @@
 // src/components/RandomChat.tsx
 import { RootState } from '@/store';
 import { useState, useEffect, useCallback } from 'react';
-import { useSelector } from 'react-redux';
-import io from 'socket.io-client';
+import { useSelector, useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { useTheme } from 'next-themes';
 import { addToast, Textarea } from '@heroui/react';
@@ -13,11 +12,12 @@ import MainButton from '../miniAppButtons/MainButton';
 import SecondaryButton from '../miniAppButtons/secondaryButton';
 import { RandomChatSvg } from '@/Icons/randomChat';
 import "../../pages/chat/style.css";
+import useChatSocket from '@/socket/useChatSocket';
 
-import Lottie from "lottie-react";
-import animationData from "@/components/animate/searchAnimation.json";
+import { 
+  startWaiting, chatMatched, addMessage, cancelChat as cancelChatAction, resetChat 
+} from '@/features/chatSlice';
 
-// Define your Message interface
 interface Message {
   senderId: string;
   recipientId: string;
@@ -26,40 +26,40 @@ interface Message {
   timestamp: string;
 }
 
-const SERVER_URL = 'https://copychic.ru/'; // Your backend URL
-
 const RandomChat = () => {
   const { data: user } = useSelector((state: RootState) => state.user);
+  const chatState = useSelector((state: RootState) => state.chat);
+
+  const dispatch = useDispatch();
   const { t } = useTranslation();
   const { theme } = useTheme();
   const currentUserId = user.id.toString();
 
-  // Local state variables
-  const [socket, setSocket] = useState(null);
+  // Local state for filters and input; socket is managed via custom hook.
   const [filter, setFilter] = useState<{ gender: string; city: string }>({ gender: '', city: '' });
-  const [isWaiting, setIsWaiting] = useState(false);
-  const [matched, setMatched] = useState(false);
-  const [room, setRoom] = useState('');
-  const [partnerId, setPartnerId] = useState('');
-  const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
   const [profileDataState, setProfileDataState] = useState<any>(null);
   const [messageUserLoading, setMessageUserLoading] = useState(true);
-  const [chatCancelledMessage, setChatCancelledMessage] = useState('');
 
+  // Get socket using custom hook (this persists as long as the user id doesn't change)
+  const socket = useChatSocket(currentUserId);
+
+  useEffect(()=>{
+    setFilter(null)
+  },[])
   // Fetch partner profile data
   const fetchProfileData = useCallback(async () => {
     try {
-      const response = await axios.get(`/users/${partnerId}`);
+      const response = await axios.get(`/users/${chatState.partnerId}`);
       return response.data;
     } catch (error) {
       console.error("Error fetching profile data:", error);
       return null;
     }
-  }, [partnerId]);
+  }, [chatState.partnerId]);
 
   useEffect(() => {
-    if (partnerId) {
+    if (chatState.partnerId) {
       const getProfileData = async () => {
         setMessageUserLoading(true);
         const data = await fetchProfileData();
@@ -68,58 +68,34 @@ const RandomChat = () => {
       };
       getProfileData();
     }
-  }, [partnerId, fetchProfileData]);
+  }, [chatState.partnerId, fetchProfileData]);
 
-  // Initialize Socket.IO connection
-  useEffect(() => {
-    const newSocket = io(SERVER_URL, {
-      query: { userId: currentUserId },
-    });
-    setSocket(newSocket);
-    return () => {
-      newSocket.disconnect();
-    };
-  }, [currentUserId]);
-
-  useEffect(()=>{
-    setFilter(null)
-  },[])
   // Set up socket event listeners
   useEffect(() => {
     if (!socket) return;
 
     const onWaiting = (data: any) => {
       console.log('Waiting for partner:', data);
-      setIsWaiting(true);
+      dispatch(startWaiting());
     };
 
     const onMatched = (data: { room: string; partnerId: string }) => {
       console.log('Matched with partner:', data);
-      setRoom(data.room);
-      setPartnerId(data.partnerId);
-      setMatched(true);
-      setIsWaiting(false);
+      dispatch(chatMatched({ room: data.room, partnerId: data.partnerId }));
     };
 
     const onMessage = (data: { message: Message }) => {
-      // Append new message to state using functional update.
-      setMessages((prev) => [...prev, data.message]);
+      dispatch(addMessage(data.message));
     };
 
     const onChatCancelled = (data: { message: string }) => {
       console.log('Chat cancelled:', data);
-      setChatCancelledMessage(data.message);
+      dispatch(cancelChatAction({ chatCancelledMessage: data.message }));
       addToast({
         title: t("randomchat_error_title"),
-        description: `${t("randomchat_error_text")}`,
+        description: t("randomchat_error_text"),
         color: "secondary",
       });
-      // Reset chat state
-      setMatched(false);
-      setRoom('');
-      setPartnerId('');
-      setMessages([]);
-      
     };
 
     socket.on('waitingForPartner', onWaiting);
@@ -133,43 +109,39 @@ const RandomChat = () => {
       socket.off('randomMessage', onMessage);
       socket.off('chatCancelled', onChatCancelled);
     };
-  }, [socket]);
+  }, [socket, dispatch, t]);
 
   // Handler: Start Chat
   const startChat = useCallback(() => {
     if (socket) {
       socket.emit('startRandomChat', { userId: currentUserId, ...filter });
-      setIsWaiting(true);
+      dispatch(startWaiting());
     }
-  }, [socket, currentUserId, filter]);
+  }, [socket, currentUserId, filter, dispatch]);
 
   // Handler: Send Message
   const sendMessage = useCallback(() => {
-    if (socket && room && input.trim()) {
+    if (socket && chatState.room && input.trim()) {
       const message: Message = {
         senderId: currentUserId,
-        recipientId: partnerId,
+        recipientId: chatState.partnerId,
         content: input,
         timestamp: new Date().toISOString(),
       };
-      socket.emit('sendRandomMessage', { room, message });
-      setMessages((prev) => [...prev, message]);
+      socket.emit('sendRandomMessage', { room: chatState.room, message });
+      dispatch(addMessage(message));
       setInput('');
     }
-  }, [socket, room, input, currentUserId, partnerId]);
+  }, [socket, chatState.room, input, currentUserId, chatState.partnerId, dispatch]);
 
-  // Handler: Cancel Chat (Notify backend and update UI)
+  // Handler: Cancel Chat
   const cancelChat = useCallback(() => {
     if (socket) {
-      // Pass room info if available
-      socket.emit('cancelRandomChat', { userId: currentUserId, room });
-      // Optionally, immediately update state for a snappy UI
-      setMatched(false);
-      setRoom('');
-      setPartnerId('');
-      setMessages([]);
+      socket.emit('cancelRandomChat', { userId: currentUserId, room: chatState.room });
+      // Reset Redux chat state (this persists even if the route changes)
+      dispatch(resetChat());
     }
-  }, [socket, currentUserId, room]);
+  }, [socket, currentUserId, chatState.room, dispatch]);
 
   return (
     <div 
@@ -180,75 +152,58 @@ const RandomChat = () => {
         marginBottom: "3rem",
       }}
     >
-      {chatCancelledMessage && (
-        <div className="chat-cancelled-message">
-          <p>{chatCancelledMessage}</p>
+
+      {chatState.isActive ? (
+        <div className="h-full flex flex-col relative">
+          <ChatProfileSection 
+            userId2={chatState.partnerId} 
+            profileDataState={profileDataState} 
+            loading={messageUserLoading}
+            position={false}
+            online={true}
+          />
+          <main style={{ display: "flex", position: "relative", overflow: "auto", flexGrow: 1 }}>
+            <MessageSection disablePadding={true} messages={chatState.messages} user={user} />
+          </main>
+          <Textarea
+            className="w-full"
+            value={input}
+            onValueChange={setInput}
+            minRows={1}
+            placeholder={t("enterMessage")}
+            size="lg"
+            variant="flat"
+          />
+        </div>
+      ) : (
+        <div className="h-[80vh] flex flex-col items-center">
+          <div className="mb-1 mt-1 px-6 pt-8 pb-4 flex flex-col gap-2">
+            <p className="text-base font-semibold text-center">{t("anonymous_title")} 🎲</p>
+            <p className="text-xs text-center">{t("anonymous_description")}</p>
+          </div>
+          <RandomChatSvg />
+          <button onClick={startChat} className="mt-4">
+            {t("start_chat")}
+          </button>
+          {chatState.isWaiting && <p>{t("waiting_for_partner")}</p>}
         </div>
       )}
 
-      {isWaiting?
-        <div className='h-[70vh]'>
-          <Lottie animationData={animationData} loop={true} autoplay={true} />
-        </div>
-      :
-        matched ? 
-          <div className="h-full flex flex-col relative">
-            <ChatProfileSection 
-              userId2={partnerId} 
-              profileDataState={profileDataState} 
-              loading={messageUserLoading}
-              position={false}
-              online={true}
-            />
-            <main style={{ display: "flex", position: "relative", overflow: "auto", flexGrow: 1 }}>
-              <MessageSection disablePadding={true} messages={messages} user={user} />
-            </main>
-            <Textarea
-              className="w-full"
-              value={input}
-              onValueChange={setInput}
-              minRows={1}
-              placeholder={t("enterMessage")}
-              size="lg"
-              variant="flat"
-            />
-          </div>
-         : 
-          <div className="h-[80vh] flex flex-col items-center justify-center">
-            <div className="mb-1 mt-1 px-6 pt-8 pb-4 flex flex-col gap-2">
-              <p className="text-base font-semibold text-center">{t("anonymous_title")} 🎲</p>
-              <p className="text-xs text-center">{t("anonymous_description")}</p>
-            </div>
-            <RandomChatSvg />
-            <button onClick={startChat} className="mt-4">
-              {t("start_chat")}
-            </button>
-
-            <button onClick={cancelChat} className="mt-4">
-              {t("end chat")}
-            </button>
-            {isWaiting && <p>{t("waiting_for_partner")}</p>}
-          </div>
-        
-      }
-
-      
-
       {/* Action Buttons */}
-      {!matched && (
+      {!chatState.isActive && (
         <MainButton
           text={t("start_chat")}
           backgroundColor="#1FB6A8"
           textColor="#FFFFFF"
           hasShineEffect={true}
-          isEnabled={!matched}
-          isLoaderVisible={isWaiting && !matched}
-          isVisible={!matched}
+          isEnabled={!chatState.isActive}
+          isLoaderVisible={chatState.isWaiting && !chatState.isActive}
+          isVisible={!chatState.isActive}
           onClick={startChat}
         />
       )}
 
-      {matched && (
+      {(chatState.isWaiting || chatState.isActive) && (
         <SecondaryButton
           text={t("end_chat")}
           backgroundColor={theme === "light" ? "#FFFFFF" : "#000000"}
@@ -261,15 +216,15 @@ const RandomChat = () => {
         />
       )}
 
-      {matched && (
+      {chatState.isActive && (
         <MainButton
           text={t("send_message")}
           backgroundColor="#1FB6A8"
           textColor="#FFFFFF"
           hasShineEffect={true}
-          isEnabled={matched}
-          isLoaderVisible={isWaiting && !matched}
-          isVisible={matched}
+          isEnabled={chatState.isActive}
+          isLoaderVisible={chatState.isWaiting && !chatState.isActive}
+          isVisible={chatState.isActive}
           onClick={sendMessage}
         />
       )}
