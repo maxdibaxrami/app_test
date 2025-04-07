@@ -195,7 +195,7 @@ const RandomChat = ({socket}) => {
       }
 
       {/* Action Buttons */}
-      {!chatState.isActive && (
+      {(!chatState.isWaiting || !chatState.isActive) && (
         <MainButton
           text={t("start_chat")}
           backgroundColor="#1FB6A8"
