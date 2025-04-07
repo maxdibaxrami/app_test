@@ -14,6 +14,9 @@ import SecondaryButton from '../miniAppButtons/secondaryButton';
 import { RandomChatSvg } from '@/Icons/randomChat';
 import "../../pages/chat/style.css";
 
+import Lottie from "lottie-react";
+import animationData from "@/components/animate/searchAnimation.json";
+
 // Define your Message interface
 interface Message {
   senderId: string;
@@ -168,7 +171,6 @@ const RandomChat = () => {
       className="relative w-screen px-5 h-full text-default-700"
       style={{
         maxHeight: "100%",
-        height: 'calc(100vh - 170px)',
         paddingTop: "6.5rem",
         marginBottom: "3rem",
       }}
@@ -179,45 +181,53 @@ const RandomChat = () => {
         </div>
       )}
 
-      {matched ? (
-        <div className="h-full flex flex-col relative">
-          <ChatProfileSection 
-            userId2={partnerId} 
-            profileDataState={profileDataState} 
-            loading={messageUserLoading}
-            position={false}
-            online={true}
-          />
-          <main style={{ display: "flex", position: "relative", overflow: "auto", flexGrow: 1 }}>
-            <MessageSection disablePadding={true} messages={messages} user={user} />
-          </main>
-          <Textarea
-            className="w-full"
-            value={input}
-            onValueChange={setInput}
-            minRows={1}
-            placeholder={t("enterMessage")}
-            size="lg"
-            variant="flat"
-          />
+      {isWaiting?
+        <div className='h-[70vh]'>
+          <Lottie animationData={animationData} loop={true} autoplay={true} />
         </div>
-      ) : (
-        <div className="h-[80vh] flex flex-col items-center justify-center">
-          <div className="mb-1 mt-1 px-6 pt-8 pb-4 flex flex-col gap-2">
-            <p className="text-base font-semibold text-center">{t("anonymous_title")} 🎲</p>
-            <p className="text-xs text-center">{t("anonymous_description")}</p>
+      :
+        matched ? 
+          <div className="h-full flex flex-col relative">
+            <ChatProfileSection 
+              userId2={partnerId} 
+              profileDataState={profileDataState} 
+              loading={messageUserLoading}
+              position={false}
+              online={true}
+            />
+            <main style={{ display: "flex", position: "relative", overflow: "auto", flexGrow: 1 }}>
+              <MessageSection disablePadding={true} messages={messages} user={user} />
+            </main>
+            <Textarea
+              className="w-full"
+              value={input}
+              onValueChange={setInput}
+              minRows={1}
+              placeholder={t("enterMessage")}
+              size="lg"
+              variant="flat"
+            />
           </div>
-          <RandomChatSvg />
-          <button onClick={startChat} className="mt-4">
-            {t("start_chat")}
-          </button>
+         : 
+          <div className="h-[80vh] flex flex-col items-center justify-center">
+            <div className="mb-1 mt-1 px-6 pt-8 pb-4 flex flex-col gap-2">
+              <p className="text-base font-semibold text-center">{t("anonymous_title")} 🎲</p>
+              <p className="text-xs text-center">{t("anonymous_description")}</p>
+            </div>
+            <RandomChatSvg />
+            <button onClick={startChat} className="mt-4">
+              {t("start_chat")}
+            </button>
 
-          <button onClick={cancelChat} className="mt-4">
-            {t("end chat")}
-          </button>
-          {isWaiting && <p>{t("waiting_for_partner")}</p>}
-        </div>
-      )}
+            <button onClick={cancelChat} className="mt-4">
+              {t("end chat")}
+            </button>
+            {isWaiting && <p>{t("waiting_for_partner")}</p>}
+          </div>
+        
+      }
+
+      
 
       {/* Action Buttons */}
       {!matched && (
@@ -233,7 +243,7 @@ const RandomChat = () => {
         />
       )}
 
-      {(isWaiting || matched) && (
+      {matched && (
         <SecondaryButton
           text={t("end_chat")}
           backgroundColor={theme === "light" ? "#FFFFFF" : "#000000"}
