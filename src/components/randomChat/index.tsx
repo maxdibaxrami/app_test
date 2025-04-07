@@ -111,6 +111,7 @@ const RandomChat = () => {
       setRoom('');
       setPartnerId('');
       setMessages([]);
+      
     };
 
     socket.on('waitingForPartner', onWaiting);
@@ -118,13 +119,6 @@ const RandomChat = () => {
     socket.on('randomMessage', onMessage);
     socket.on('chatCancelled', onChatCancelled);
 
-    setSocket(null);
-    setIsWaiting(false);
-    setMatched(false);
-    setRoom('');
-    setPartnerId('');
-    setMessages([]);
-    
     return () => {
       socket.off('waitingForPartner', onWaiting);
       socket.off('randomChatMatched', onMatched);
