@@ -12,6 +12,8 @@ import MainButton from '../miniAppButtons/MainButton';
 import SecondaryButton from '../miniAppButtons/secondaryButton';
 import { RandomChatSvg } from '@/Icons/randomChat';
 import "../../pages/chat/style.css";
+import Lottie from "lottie-react";
+import animationData from "@/components/animate/searchAnimation.json";
 
 import { 
   startWaiting, chatMatched, addMessage, cancelChat as cancelChatAction, resetChat 
@@ -151,41 +153,49 @@ const RandomChat = ({socket}) => {
       }}
     >
 
-      {chatState.isActive ? (
-        <div className="h-full flex flex-col relative">
-          <ChatProfileSection 
-            userId2={chatState.partnerId} 
-            profileDataState={profileDataState} 
-            loading={messageUserLoading}
-            position={false}
-            online={true}
-          />
-          <main style={{ display: "flex", position: "relative", overflow: "auto", flexGrow: 1 }}>
-            <MessageSection disablePadding={true} messages={chatState.messages} user={user} />
-          </main>
-          <Textarea
-            className="w-full"
-            value={input}
-            onValueChange={setInput}
-            minRows={1}
-            placeholder={t("enterMessage")}
-            size="lg"
-            variant="flat"
-          />
-        </div>
-      ) : (
+      {chatState.isWaiting? 
         <div className="h-[80vh] flex flex-col items-center">
           <div className="mb-1 mt-1 px-6 pt-8 pb-4 flex flex-col gap-2">
             <p className="text-base font-semibold text-center">{t("anonymous_title")} 🎲</p>
             <p className="text-xs text-center">{t("anonymous_description")}</p>
           </div>
-          <RandomChatSvg />
-          <button onClick={startChat} className="mt-4">
-            {t("start_chat")}
-          </button>
-          {chatState.isWaiting && <p>{t("waiting_for_partner")}</p>}
+          <Lottie animationData={animationData} loop={true} autoplay={true} />
         </div>
-      )}
+        :chatState.isActive ? (
+          <div className="h-full flex flex-col relative">
+            <ChatProfileSection 
+              userId2={chatState.partnerId} 
+              profileDataState={profileDataState} 
+              loading={messageUserLoading}
+              position={false}
+              online={true}
+            />
+            <main style={{ display: "flex", position: "relative", overflow: "auto", flexGrow: 1 }}>
+              <MessageSection disablePadding={true} messages={chatState.messages} user={user} />
+            </main>
+            <Textarea
+              className="w-full"
+              value={input}
+              onValueChange={setInput}
+              minRows={1}
+              placeholder={t("enterMessage")}
+              size="lg"
+              variant="flat"
+            />
+          </div>
+        ) : (
+          <div className="h-[80vh] flex flex-col items-center">
+            <div className="mb-1 mt-1 px-6 pt-8 pb-4 flex flex-col gap-2">
+              <p className="text-base font-semibold text-center">{t("anonymous_title")} 🎲</p>
+              <p className="text-xs text-center">{t("anonymous_description")}</p>
+            </div>
+            <RandomChatSvg />
+            <button onClick={startChat} className="mt-4">
+              {t("start_chat")}
+            </button>
+          </div>
+        )
+      }
 
       {/* Action Buttons */}
       {!chatState.isActive && (
