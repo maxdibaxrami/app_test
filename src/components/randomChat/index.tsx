@@ -5,8 +5,7 @@ import { useSelector } from 'react-redux';
 import io from 'socket.io-client';
 import { useTranslation } from 'react-i18next';
 import { useTheme } from 'next-themes';
-import { Button, Card, CardBody, Textarea } from '@heroui/react';
-import { SearchIcon, SendIcon } from '@/Icons';
+import {Textarea } from '@heroui/react';
 import axios from '@/api/base';
 import ChatProfileSection from '../chatPage/chatProfileSection';
 import "../../pages/chat/style.css";
@@ -14,6 +13,8 @@ import MessageSection from '../chatPage/message';
 import MainButton from '../miniAppButtons/MainButton';
 import SecondaryButton from '../miniAppButtons/secondaryButton';
 import { RandomChatSvg } from '@/Icons/randomChat';
+import searchAnimation from '../../components/animate/searchAnimation.json'
+import Lottie from "lottie-react";
 
 // Define your Message interface (for clarity)
 interface Message {
@@ -97,6 +98,22 @@ const RandomChat = () => {
         // Expect backend sends data.message formatted as Message
         setMessages((prev) => [...prev, data.message]);
       });
+
+      socket.on('cancelRandomChat', (data) => {
+        // Expect backend sends data.message formatted as Message
+        setMessages((prev) => [...prev, data.message]);
+        socket.disconnect();
+        setSocket(null);
+        setIsWaiting(false);
+        setMatched(false);
+        setRoom('');
+        setPartnerId('');
+        setMessages([]);
+        
+      });
+
+
+      
     }
   }, [socket]);
 
@@ -148,21 +165,25 @@ const RandomChat = () => {
       className="relative w-screen px-5 h-full text-default-700"
       style={{
         maxHeight: "100%",
-        height:"100%",
+        height:'calc(100vh - 170px)',
         paddingTop:"6.5rem",
         marginBottom:"3rem",
       }}
     >
       {matched && (
-        <>
-        <main style={{display:"flex",position:"relative", overflow: "auto", flexGrow:1 }}>
+        <div className='h-[100%] flex relative flex-col'>
 
-          <ChatProfileSection 
+        <ChatProfileSection 
             userId2={partnerId} 
             profileDataState={profileDataState} 
             loading={messageUserLoading}
+            position={false}
+            online={true}
           />
-          <MessageSection messages={messages} user={user} />
+
+
+        <main style={{display:"flex",position:"relative", overflow: "auto", flexGrow:1 }}>
+        <MessageSection disablePadding={true} messages={messages} user={user} />
         </main>
           <Textarea
             className="w-full"
@@ -172,38 +193,27 @@ const RandomChat = () => {
             placeholder={t("enterMessage")}
             size="lg"
             variant="flat"
-            endContent={
-              <Button
-                onPress={sendMessage}
-                isIconOnly
-                size="lg"
-                color="primary"
-              >
-                <SendIcon />
-              </Button>
-            }
           />
-        </>
+        </div>
       )}
 
-      {!matched && (
+      {!matched && !isWaiting && (
         <div className='h-[80vh] flex flex-col items-center justify-center'>
             <div className="mb-1 mt-1 px-6 pt-8 pb-4 flex flex-col gap-2">
                         <p className="text-base font-semibold text-center">{t("anonymous_title")}🎲</p>
                         <p className="text-xs text-center">{t("anonymous_description")}</p>
              </div>
           <RandomChatSvg/>
-          {isWaiting && 
-                    <Card>
-                    <CardBody className='flex flex-row items-center'>
-                      <SearchIcon className="size-5 m-1"/>
-                      <p className='text-xs'>{t("hold_on_anonymous")}</p>
-                    </CardBody>
-                  </Card>
-          
-          }
+                    <button onClick={()=> startChat()}>fdsfds</button>
+
         </div>
       )}
+
+      {isWaiting && !matched && 
+              <div className='h-[80vh] flex flex-col items-center justify-center'>
+                      <Lottie animationData={searchAnimation} loop={true} autoplay={true} />
+              </div>
+          }
 
       {!matched &&
         <MainButton

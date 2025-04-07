@@ -2,15 +2,13 @@ import { Navbar, NavbarContent, NavbarItem, Skeleton, Avatar } from "@heroui/rea
 import { useRef } from 'react';
 import { useTranslation } from "react-i18next";
 import { BASEURL } from "@/constant";
-import { useLaunchParams } from "@telegram-apps/sdk-react";
 import { Link } from "react-router-dom";
 import { useSelector } from 'react-redux';
 import { RootState } from "@/store";
 
-const ChatProfileSection = ({ loading, profileDataState, userId2 }) => {
+const ChatProfileSection = ({ loading, profileDataState, userId2, position=true, online=false }) => {
   const childRef = useRef();
   const { t } = useTranslation();
-  const lp = useLaunchParams();
 
   // Accessing online status from Redux state based on userId2
   const isUserOnline = useSelector((state : RootState) => state.status.onlineUsers.some(user => user.userId === userId2));
@@ -22,14 +20,13 @@ const ChatProfileSection = ({ loading, profileDataState, userId2 }) => {
     }
   };
 
-  const getPaddingForPlatform = () => {
-    return ['ios'].includes(lp.platform) ? '50px' : '25px';
-  };
   
 
   if (loading) {
     return (
-      <Navbar className="fixed flex items-end top-0 main-content-safe" style={{ paddingTop: getPaddingForPlatform() }}>
+      <Navbar 
+        className={position ? "fixed flex items-end top-0 main-content-safe" : "flex items-end main-content-safe"}
+        >
         <NavbarContent justify="start">
           <NavbarItem className="lg:flex"></NavbarItem>
         </NavbarContent>
@@ -51,7 +48,7 @@ const ChatProfileSection = ({ loading, profileDataState, userId2 }) => {
     <>
       <Navbar
         disableAnimation
-        className="fixed flex items-end top-0 main-content-safe"
+        className={position ? "fixed flex items-end top-0 main-content-safe" : "flex items-end main-content-safe"}
         classNames={{ wrapper: "px-4" }}
       >
         <NavbarContent justify="start">
@@ -59,7 +56,7 @@ const ChatProfileSection = ({ loading, profileDataState, userId2 }) => {
         </NavbarContent>
         <NavbarContent className="flex items-end" justify="center">
           <Link to={`/user?userId=${userId2}`} className="lg:flex flex items-center" onClick={handleClick}>
-            <div className="relative pb-2">
+            <div className="relative">
               <Avatar
                 className="mx-1"
                 color={isUserOnline ? "success" : "primary"}
@@ -71,7 +68,7 @@ const ChatProfileSection = ({ loading, profileDataState, userId2 }) => {
             </div>
             <div className="flex flex-col mx-1 text-start">
               <span className="text-l text-foreground font-bold">{profileDataState.firstName}</span>
-              {isUserOnline ? (
+              {isUserOnline || online ? (
                 <span className="text-small bold" style={{ color: "#22c55e" }}>
                   {t("Online")}
                 </span>
