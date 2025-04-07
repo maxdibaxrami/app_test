@@ -12,7 +12,6 @@ import MainButton from '../miniAppButtons/MainButton';
 import SecondaryButton from '../miniAppButtons/secondaryButton';
 import { RandomChatSvg } from '@/Icons/randomChat';
 import "../../pages/chat/style.css";
-import useChatSocket from '@/socket/useChatSocket';
 
 import { 
   startWaiting, chatMatched, addMessage, cancelChat as cancelChatAction, resetChat 
@@ -26,7 +25,8 @@ interface Message {
   timestamp: string;
 }
 
-const RandomChat = () => {
+const RandomChat = ({socket}) => {
+
   const { data: user } = useSelector((state: RootState) => state.user);
   const chatState = useSelector((state: RootState) => state.chat);
 
@@ -41,8 +41,6 @@ const RandomChat = () => {
   const [profileDataState, setProfileDataState] = useState<any>(null);
   const [messageUserLoading, setMessageUserLoading] = useState(true);
 
-  // Get socket using custom hook (this persists as long as the user id doesn't change)
-  const socket = useChatSocket(currentUserId);
 
   useEffect(()=>{
     setFilter(null)
@@ -148,7 +146,7 @@ const RandomChat = () => {
       className="relative w-screen px-5 h-full text-default-700"
       style={{
         maxHeight: "100%",
-        paddingTop: "6.5rem",
+        paddingTop: "4.5rem",
         marginBottom: "3rem",
       }}
     >
