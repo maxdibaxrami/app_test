@@ -156,8 +156,6 @@ const RandomChat = () => {
       // Pass room info if available
       socket.emit('cancelRandomChat', { userId: currentUserId, room });
       // Optionally, immediately update state for a snappy UI
-      setSocket(null);
-      setIsWaiting(false);
       setMatched(false);
       setRoom('');
       setPartnerId('');
@@ -212,6 +210,10 @@ const RandomChat = () => {
           <RandomChatSvg />
           <button onClick={startChat} className="mt-4">
             {t("start_chat")}
+          </button>
+
+          <button onClick={cancelChat} className="mt-4">
+            {t("end chat")}
           </button>
           {isWaiting && <p>{t("waiting_for_partner")}</p>}
         </div>
