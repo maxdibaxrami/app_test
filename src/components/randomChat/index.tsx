@@ -190,9 +190,6 @@ const RandomChat = ({socket}) => {
               <p className="text-xs text-center">{t("anonymous_description")}</p>
             </div>
             <RandomChatSvg />
-            <button onClick={startChat} className="mt-4">
-              {t("start_chat")}
-            </button>
           </div>
         )
       }
