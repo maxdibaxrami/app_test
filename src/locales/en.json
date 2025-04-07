@@ -521,7 +521,11 @@
 
       "anonymous_title": "Chat Anonymously. Meet Random People.",
       "anonymous_description": "GapOn connects you instantly with strangers around the world for fun, safe, and anonymous conversations. Just tap and start chatting!",
-      "hold_on_anonymous":"Hold on! I’m finding your match—just a little more patience!"
+      "hold_on_anonymous":"Hold on! I’m finding your match—just a little more patience!",
+
+
+      "randomchat_error_title": "Chat Ended",
+      "randomchat_error_text": "The other user has left the conversation."
 
 
 

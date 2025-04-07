@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 import io from 'socket.io-client';
 import { useTranslation } from 'react-i18next';
 import { useTheme } from 'next-themes';
-import { Textarea } from '@heroui/react';
+import { addToast, Textarea } from '@heroui/react';
 import axios from '@/api/base';
 import ChatProfileSection from '../chatPage/chatProfileSection';
 import MessageSection from '../chatPage/message';
@@ -109,6 +109,11 @@ const RandomChat = () => {
     const onChatCancelled = (data: { message: string }) => {
       console.log('Chat cancelled:', data);
       setChatCancelledMessage(data.message);
+      addToast({
+        title: t("randomchat_error_title"),
+        description: `${t("randomchat_error_text")}`,
+        color: "secondary",
+      });
       // Reset chat state
       setMatched(false);
       setRoom('');
