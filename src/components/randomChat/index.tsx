@@ -118,6 +118,13 @@ const RandomChat = () => {
     socket.on('randomMessage', onMessage);
     socket.on('chatCancelled', onChatCancelled);
 
+    setSocket(null);
+    setIsWaiting(false);
+    setMatched(false);
+    setRoom('');
+    setPartnerId('');
+    setMessages([]);
+    
     return () => {
       socket.off('waitingForPartner', onWaiting);
       socket.off('randomChatMatched', onMatched);
@@ -155,7 +162,6 @@ const RandomChat = () => {
       // Pass room info if available
       socket.emit('cancelRandomChat', { userId: currentUserId, room });
       // Optionally, immediately update state for a snappy UI
-      socket.disconnect();
       setSocket(null);
       setIsWaiting(false);
       setMatched(false);
