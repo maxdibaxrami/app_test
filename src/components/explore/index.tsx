@@ -150,7 +150,7 @@ const ExplorePage = () => {
         effect={"fade"}
         grabCursor={true}
         className="mySwiper"
-        style={{ marginTop: "5.5rem" }}
+        style={{ marginTop: "6rem" }}
         allowTouchMove={false}
         modules={[EffectFade]}
         onSwiper={setSwiperInstance}
@@ -169,8 +169,8 @@ const ExplorePage = () => {
             <PopoverTrigger>
               <Button
                 isDisabled={likesCount >= maxLikes}
-                radius="full"
-                style={{ width: "62px", height: "62px" }}
+                radius="lg"
+                style={{ width: "55px", height: "55px" }}
                 size="lg"
                 isIconOnly
                 color="success"
@@ -192,8 +192,8 @@ const ExplorePage = () => {
           <Button
             isDisabled={likesCount >= maxLikes}
             onClick={handleNotLike}
-            radius="full"
-            style={{ width: "72px", height: "72px" }}
+            radius="lg"
+            style={{ width: "65px", height: "65px" }}
             size="lg"
             isIconOnly
             color="primary"
@@ -209,8 +209,8 @@ const ExplorePage = () => {
             <PopOverPerimum isOpen={true}>
               <Button
                 isDisabled
-                radius="full"
-                style={{ width: "72px", height: "72px" }}
+                radius="lg"
+                style={{ width: "65px", height: "65px" }}
                 size="lg"
                 isIconOnly
                 color="secondary"
@@ -224,9 +224,8 @@ const ExplorePage = () => {
             <SparklesHeartText
               text={
                 <Button
-                  radius="full"
-                  style={{ width: "72px", height: "72px" }}
-                  size="lg"
+                  style={{ width: "65px", height: "65px" }}
+                  radius="lg"
                   isLoading={requestLoading}
                   isIconOnly
                   onPress={handleLikeUser}
@@ -248,8 +247,8 @@ const ExplorePage = () => {
             <PopoverTrigger>
               <Button
                 isDisabled={likesCount >= maxLikes}
-                radius="full"
-                style={{ width: "62px", height: "62px" }}
+                radius="lg"
+                style={{ width: "55px", height: "55px" }}
                 size="lg"
                 isIconOnly
                 color="warning"

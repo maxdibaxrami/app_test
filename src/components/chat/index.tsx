@@ -11,7 +11,7 @@ const ChatPage = () => {
       style={{
         overflow: "scroll",
         marginTop:"6.5rem",
-        paddingBottom: "6rem",
+        paddingBottom: "1rem",
         zIndex: 5,
       }}
       id="chatScrollcontainer"

@@ -85,7 +85,7 @@ export default function NearByPage() {
 
     if(!isLastTwoRows){
       return (
-        <div style={{ ...style, padding: "6px", paddingTop:"6rem" }}>
+        <div style={{ ...style, padding: "6px", paddingTop:"6.2rem" }}>
           <div style={{ width: "100%", aspectRatio: "3/4"}}>
             <NearByCard key={userItem.id} data={userItem} />
           </div>
@@ -128,9 +128,6 @@ export default function NearByPage() {
       >
         {Cell}
       </Grid>
-      <div className="h-[100px]">
-          fdsfdsf
-      </div>
       {/* Loading spinner for more data */}
       {loadingMore && hasMore && (
         <div className="w-full mt-6 mb-6 flex items-center justify-center">
