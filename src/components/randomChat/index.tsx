@@ -153,6 +153,7 @@ const RandomChat = ({socket}) => {
       }}
     >
 
+
       {chatState.isWaiting? 
         <div className="h-[80vh] flex flex-col items-center">
           <div className="mb-1 mt-1 px-6 pt-8 pb-4 flex flex-col gap-2">
@@ -193,9 +194,12 @@ const RandomChat = ({socket}) => {
           </div>
         )
       }
-
+      <div>
+        <button onClick={startChat}>start</button>
+        <button onClick={cancelChat}>end</button>
+      </div>
       {/* Action Buttons */}
-      {(!chatState.isWaiting || !chatState.isActive) && (
+      {(!chatState.isWaiting) && (
         <MainButton
           text={t("start_chat")}
           backgroundColor="#1FB6A8"
@@ -213,7 +217,7 @@ const RandomChat = ({socket}) => {
           text={t("end_chat")}
           backgroundColor={theme === "light" ? "#FFFFFF" : "#000000"}
           textColor={theme === "light" ? "#000000" : "#FFFFFF"}
-          hasShineEffect={false}
+          hasShineEffect={true}
           isEnabled={true}
           isVisible={true}
           position="left"
