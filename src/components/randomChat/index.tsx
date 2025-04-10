@@ -154,7 +154,7 @@ const RandomChat = ({socket}) => {
     >
 
       {chatState.isWaiting? 
-        <div className="h-[80vh] flex flex-col items-center">
+        <div className="h-[75vh] flex flex-col items-center">
           <div className="mb-1 mt-1 px-6 pt-8 pb-4 flex flex-col gap-2">
             <p className="text-base font-semibold text-center">{t("anonymous_title")} 🎲</p>
             <p className="text-xs text-center">{t("anonymous_description")}</p>
@@ -162,7 +162,7 @@ const RandomChat = ({socket}) => {
           <Lottie animationData={animationData} loop={true} autoplay={true} />
         </div>
         :chatState.isActive ? (
-          <div style={{minHeight:"100%"}} className="h-full h-[75vh] flex flex-col relative">
+          <div style={{minHeight:"100%"}} className="h-full flex flex-col relative">
             <ChatProfileSection 
               userId2={chatState.partnerId} 
               profileDataState={profileDataState} 
@@ -170,7 +170,7 @@ const RandomChat = ({socket}) => {
               position={false}
               online={true}
             />
-            <main style={{ display: "flex", position: "relative", overflow: "auto", flexGrow: 1 }}>
+            <main className='h-[75vh]' style={{ display: "flex", position: "relative", overflow: "auto", flexGrow: 1 }}>
               <MessageSection disablePadding={true} messages={chatState.messages} user={user} />
             </main>
             <Textarea
@@ -180,7 +180,7 @@ const RandomChat = ({socket}) => {
               minRows={1}
               placeholder={t("enterMessage")}
               size="lg"
-              
+
               variant="flat"
             />
           </div>
