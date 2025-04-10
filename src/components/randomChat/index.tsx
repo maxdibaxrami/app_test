@@ -198,18 +198,22 @@ const RandomChat = ({socket}) => {
       <button onClick={cancelChat}>end_chat</button>
 
       {/* Action Buttons */}
-      {(!chatState.isWaiting || !chatState.isActive) && (
-        <MainButton
-          text={t("start_chat")}
-          backgroundColor="#1FB6A8"
-          textColor="#FFFFFF"
-          hasShineEffect={true}
-          isEnabled={!chatState.isActive}
-          isLoaderVisible={chatState.isWaiting && !chatState.isActive}
-          isVisible={!chatState.isActive}
-          onClick={startChat}
-        />
-      )}
+      <MainButton
+        text={chatState.isActive ? t("send_message") : t("start_chat")}
+        backgroundColor="#1FB6A8"
+        textColor="#FFFFFF"
+        hasShineEffect={true}
+        // When active, enable the button. Otherwise, only enable it if not waiting.
+        isEnabled={chatState.isActive ? chatState.isActive : !chatState.isWaiting}
+        // Show the loader only when waiting and not active.
+        isLoaderVisible={chatState.isWaiting && !chatState.isActive}
+        // You could always show the button; if you need conditional visibility, adjust accordingly.
+        isVisible={!chatState.isWaiting}
+        // Choose the onClick handler based on whether chat is active.
+        onClick={chatState.isActive ? sendMessage : startChat}
+      />
+
+
 
       {(chatState.isWaiting || chatState.isActive) && (
         <SecondaryButton
@@ -224,18 +228,7 @@ const RandomChat = ({socket}) => {
         />
       )}
 
-      {chatState.isActive && !chatState.isWaiting &&  (
-        <MainButton
-          text={t("send_message")}
-          backgroundColor="#1FB6A8"
-          textColor="#FFFFFF"
-          hasShineEffect={true}
-          isEnabled={chatState.isActive}
-          isLoaderVisible={chatState.isWaiting && !chatState.isActive}
-          isVisible={chatState.isActive}
-          onClick={sendMessage}
-        />
-      )}
+      
     </div>
   );
 };
