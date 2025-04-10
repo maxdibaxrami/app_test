@@ -162,7 +162,7 @@ const RandomChat = ({socket}) => {
           <Lottie animationData={animationData} loop={true} autoplay={true} />
         </div>
         :chatState.isActive ? (
-          <div className="h-full flex flex-col relative">
+          <div style={{minHeight:"100%"}} className="h-full h-[75vh] flex flex-col relative">
             <ChatProfileSection 
               userId2={chatState.partnerId} 
               profileDataState={profileDataState} 
