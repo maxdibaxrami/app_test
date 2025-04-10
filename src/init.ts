@@ -63,7 +63,7 @@ export function init(debug: boolean): void {
       }
                 
       viewport.expand()
-      swipeBehavior.disableVertical()
+      swipeBehavior.disableVertical();
 
     });
 
