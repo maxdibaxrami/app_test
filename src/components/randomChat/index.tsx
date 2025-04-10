@@ -180,6 +180,7 @@ const RandomChat = ({socket}) => {
               minRows={1}
               placeholder={t("enterMessage")}
               size="lg"
+              
               variant="flat"
             />
           </div>
