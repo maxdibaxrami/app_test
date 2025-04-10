@@ -65,14 +65,7 @@ const SecondaryButton: React.FC<SecondaryButtonProps> = ({
 
   useEffect(()=>{
     return () => {
-      console.log("dsdsadas")
-      secondaryButton.setParams({
-        isEnabled:false,
-        isVisible:false,
-        hasShineEffect:false
-      });
       secondaryButton.unmount();
-
     }
   },[])
 

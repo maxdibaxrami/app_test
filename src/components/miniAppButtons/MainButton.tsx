@@ -63,12 +63,6 @@ const MainButton: React.FC<MainButtonProps> = ({
   useEffect(()=>{
     return () => {
 
-        mainButton.setParams({
-          isEnabled:false,
-          isVisible:false,
-          hasShineEffect:false,
-        });
-
         mainButton.unmount();
 
     }
