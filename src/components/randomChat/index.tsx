@@ -170,7 +170,7 @@ const RandomChat = ({socket}) => {
               position={false}
               online={true}
             />
-            <main className='h-[75vh]' style={{ display: "flex", position: "relative", overflow: "auto", flexGrow: 1 }}>
+            <main className='h-[55vh]' style={{ display: "flex", position: "relative", overflow: "auto", flexGrow: 1 }}>
               <MessageSection disablePadding={true} messages={chatState.messages} user={user} />
             </main>
             <Textarea
