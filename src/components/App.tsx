@@ -81,7 +81,6 @@ export function App() {
   }, [dispatch, initDataState.hash]);
 
   useEffect(() => {
-    console.log("ssssssss")
 
     // Once user data is loaded, dispatch the secondary fetches only once
     if (data && data.profileStage !== "draft" && !hasFetchedDetails) {
@@ -164,7 +163,7 @@ export function App() {
                   ))}
                   <Route
                     path="*"
-                    element={data && data.profileStage !== "draft" ? <Navigate to="/main?page=explore" replace /> : <Navigate to="/sign-up" replace />}
+                    element={data && data.profileStage !== "draft" ? <Navigate to="/main?page=profile" replace /> : <Navigate to="/sign-up" replace />}
                   />
                 </Routes>
                      
