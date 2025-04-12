@@ -7,9 +7,12 @@ import Lottie from "lottie-react";
 import animationData from "@/components/animate/completeProfileModal.json";
 import { useTranslation } from "react-i18next";
 import MainButton from "../miniAppButtons/MainButton";
+import SecondaryButton from "../miniAppButtons/secondaryButton";
+import { useNavigate } from 'react-router-dom';
 
   export default function CompleteProfileAlertModal({isOpen}) {
   const { t } = useTranslation();
+  const navigate = useNavigate();
 
     return (
       <>
@@ -35,7 +38,9 @@ import MainButton from "../miniAppButtons/MainButton";
           </ModalContent>
         </Modal>
         {isOpen && 
-                <MainButton
+        <>
+        
+        <MainButton
                 text={`${t("title_profile_complete")}📝`} 
                 backgroundColor="#1FB6A8"
                 textColor="#FFFFFF"
@@ -47,6 +52,22 @@ import MainButton from "../miniAppButtons/MainButton";
                   
                 }}
               />
+              
+        <SecondaryButton
+            text={t('previous')}
+            backgroundColor="#000000"
+            textColor="#FFFFFF"
+            hasShineEffect={false}
+            isEnabled={true} 
+            isLoaderVisible={false}
+            isVisible={true}
+            position="left"
+            onClick={()=>{
+                navigate(-1);
+            }}
+          />
+        </>
+            
         
         }
 
