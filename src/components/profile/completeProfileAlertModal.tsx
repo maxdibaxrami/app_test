@@ -34,19 +34,22 @@ import MainButton from "../miniAppButtons/MainButton";
             )}
           </ModalContent>
         </Modal>
+        {isOpen && 
+                <MainButton
+                text={`${t("title_profile_complete")}📝`} 
+                backgroundColor="#1FB6A8"
+                textColor="#FFFFFF"
+                hasShineEffect={true}
+                isEnabled={true} 
+                isLoaderVisible={false}
+                isVisible={true}
+                onClick={()=>{
+                  
+                }}
+              />
+        
+        }
 
-        <MainButton
-            text={`${t("title_profile_complete")}📝`} 
-            backgroundColor="#1FB6A8"
-            textColor="#FFFFFF"
-            hasShineEffect={true}
-            isEnabled={true} 
-            isLoaderVisible={false}
-            isVisible={true}
-            onClick={()=>{
-              
-            }}
-          />
 
       </>
     );
