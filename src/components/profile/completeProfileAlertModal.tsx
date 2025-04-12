@@ -61,7 +61,7 @@ import { useNavigate } from 'react-router-dom';
             isEnabled={true} 
             isLoaderVisible={false}
             isVisible={true}
-            position="left"
+            position="bottom"
             onClick={()=>{
                 navigate(-1);
             }}
