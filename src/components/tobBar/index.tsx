@@ -42,7 +42,7 @@ const TopBar = () => {
 
 
   return (
-    <div className="fixed flex flex-col top-0 z-50 w-full">
+    <div style={{zIndex:999999}} className="fixed flex flex-col top-0 w-full">
       <Navbar
         className="flex items-end text-default-600 main-content-safe "
       >

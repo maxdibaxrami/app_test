@@ -516,7 +516,11 @@
   "hold_on_anonymous":"انتظر قليلاً! أنا أبحث عن تطابقك—فقط احتفظ بالصبر!",
 
       "randomchat_error_title": "انتهاء الدردشة",
-    "randomchat_error_text": "المستخدم الآخر غادر المحادثة."
+    "randomchat_error_text": "المستخدم الآخر غادر المحادثة.",
+
+          "title_profile_complete": "أكمل ملفك الشخصي",
+      "description_profile_complete": "أكمل ملفك الشخصي لفتح هذه الميزة والحصول على تطابقات أفضل!"
+      
 
 
 

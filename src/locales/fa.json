@@ -504,7 +504,11 @@
   "hold_on_anonymous":"منتظر بمون! در حال پیدا کردن تطبیق شما هستم—فقط کمی صبر کنید!",
 
   "randomchat_error_title": "چت پایان یافت",
-  "randomchat_error_text": "کاربر مقابل گفتگو را ترک کرد."
+  "randomchat_error_text": "کاربر مقابل گفتگو را ترک کرد.",
+
+
+  "title_profile_complete": "پروفایل خود را کامل کنید",
+  "description_profile_complete": "برای دسترسی به این ویژگی و دریافت تطبیق‌های بهتر، پروفایل‌تان را کامل کنید!"
 
 
 

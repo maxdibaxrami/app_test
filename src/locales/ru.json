@@ -517,7 +517,13 @@
 
 
         "randomchat_error_title": "Чат завершён",
-    "randomchat_error_text": "Другой пользователь покинул беседу."
+    "randomchat_error_text": "Другой пользователь покинул беседу.",
+
+
+
+
+    "title_profile_complete": "Заполни свой профиль",
+    "description_profile_complete":"Заполни профиль, чтобы разблокировать эту функцию и получать лучшие совпадения!"
 
 
 

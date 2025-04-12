@@ -525,7 +525,11 @@
 
 
       "randomchat_error_title": "Chat Ended",
-      "randomchat_error_text": "The other user has left the conversation."
+      "randomchat_error_text": "The other user has left the conversation.",
+
+      "title_profile_complete": "Complete Your Profile",
+      "description_profile_complete": "Fill in your profile to unlock this feature and get better matches!"
+   
 
 
 

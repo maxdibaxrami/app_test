@@ -84,7 +84,7 @@ const IntroPage = ({ setSlideUnAvailable, setSlideAvailable, user }) => {
         {['android', 'ios'].includes(lp.platform) ? null : <div style={{marginTop:"50px"}}></div>}
         <div className="flex items-center justify-center flex-col text-center">
           <img className="mb-4" style={{height:"70px"}} src="/assets/icon.png"/>
-          <SparklesText className="text-5xl" sparklesCount={15} text="FACE MATCH" />
+          <SparklesText className="text-5xl" sparklesCount={10} text="FACE MATCH" />
         </div>
         <p className="text-center text-sm">{t("login_description")}</p>
         <div>
