@@ -53,7 +53,7 @@ const MessageSection = ({ messages, user, disablePadding=false }) => {
       animate="visible"
       ref={divRef}
       className={`${Theme.theme === "light" ? "message-container-light" : "message-container-dark"} w-full flex flex-col border-small px-1 gradient--telegram rounded-small border-default-200 dark:border-default-100`}
-      style={{ overflow: "scroll", paddingTop: disablePadding? "15px" :"118px" }}
+      style={{ overflow: "scroll", paddingTop: disablePadding? "200px" :"118px" }}
     >
       {sortedMessages.map((msg, index) => {
         const isCurrentUser = msg.senderId == user.id; // Determine if the message is from the current user

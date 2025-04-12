@@ -183,7 +183,7 @@ const RandomChat = ({socket}) => {
               online={true}
             />
             <main style={{ display: "flex", position: "relative", overflow: "auto", flexGrow: 1 }}>
-              <MessageSection disablePadding={false} messages={chatState.messages} user={user} />
+              <MessageSection disablePadding={true} messages={chatState.messages} user={user} />
             </main>
             <Textarea
               className="w-full"
