@@ -69,7 +69,9 @@ const SecondaryButton: React.FC<SecondaryButtonProps> = ({
       secondaryButton.setParams({
         isEnabled:false,
         isVisible:false,
-        hasShineEffect:false
+        hasShineEffect:false,
+        position:"left"
+
       });
       secondaryButton.unmount();
 
