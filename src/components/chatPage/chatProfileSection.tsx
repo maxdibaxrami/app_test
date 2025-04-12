@@ -25,7 +25,9 @@ const ChatProfileSection = ({ loading, profileDataState, userId2, position=true,
   if (loading) {
     return (
       <Navbar 
-        className={position ? "fixed flex items-end top-0 main-content-safe" : "flex items-end main-content-safe"}
+       style={position? {width:"100%"} : {width:"fit-content"}}
+
+        className={position ? "fixed flex items-end top-0 main-content-safe" : "flex absolute top-[120px] left-1/2 -translate-x-1/2 items-end main-content-safe"}
         >
         <NavbarContent justify="start">
           <NavbarItem className="lg:flex"></NavbarItem>
@@ -48,13 +50,14 @@ const ChatProfileSection = ({ loading, profileDataState, userId2, position=true,
     <>
       <Navbar
         disableAnimation
-        className={position ? "fixed flex items-end top-0 main-content-safe" : "flex items-end main-content-safe"}
+        style={position? {width:"100%"} : {width:"fit-content"}}
+        className={position ? "fixed flex items-end top-0 main-content-safe" : "flex top-[120px] left-1/2 -translate-x-1/2 absolute rounded-2xl items-center main-content-safe"}
         classNames={{ wrapper: "px-4" }}
       >
         <NavbarContent justify="start">
           <NavbarItem className="lg:flex"></NavbarItem>
         </NavbarContent>
-        <NavbarContent className="flex items-end" justify="center">
+        <NavbarContent className="flex items-center" justify="center">
           <Link to={`/user?userId=${userId2}`} className="lg:flex flex items-center" onClick={handleClick}>
             <div className="relative">
               <Avatar

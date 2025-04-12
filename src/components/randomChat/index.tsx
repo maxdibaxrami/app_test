@@ -18,6 +18,7 @@ import animationData from "@/components/animate/searchAnimation.json";
 import { 
   startWaiting, chatMatched, addMessage, cancelChat as cancelChatAction, resetChat 
 } from '@/features/chatSlice';
+import { useLaunchParams } from '@telegram-apps/sdk-react';
 
 interface Message {
   senderId: string;
@@ -31,6 +32,9 @@ const RandomChat = ({socket}) => {
 
   const { data: user } = useSelector((state: RootState) => state.user);
   const chatState = useSelector((state: RootState) => state.chat);
+
+  const lp = useLaunchParams();
+  
 
   const dispatch = useDispatch();
   const { t } = useTranslation();
@@ -143,18 +147,26 @@ const RandomChat = ({socket}) => {
     }
   }, [socket, currentUserId, chatState.room, dispatch]);
 
+  const getPaddingForPlatform = () => {
+    if (['ios'].includes(lp.platform)) {
+      // iOS/macOS specific padding (e.g., accounting for notches)
+      return '50px'; // Adjust as needed for iOS notch
+    } else {
+      // Android/base padding
+      return '25px'; // Default padding
+    }
+  };
+
   return (
     <div 
-      className="relative w-screen px-5 h-full text-default-700"
+      className="relative w-screen h-full text-default-700"
       style={{
         maxHeight: "100%",
-        paddingTop: "4.5rem",
-        marginBottom: "3rem",
       }}
     >
 
       {chatState.isWaiting? 
-        <div className="h-[75vh] flex flex-col items-center">
+        <div style={{paddingTop: "4.5rem"}} className="h-[75vh] px-5 flex flex-col items-center">
           <div className="mb-1 mt-1 px-6 pt-8 pb-4 flex flex-col gap-2">
             <p className="text-base font-semibold text-center">{t("anonymous_title")} 🎲</p>
             <p className="text-xs text-center">{t("anonymous_description")}</p>
@@ -162,7 +174,7 @@ const RandomChat = ({socket}) => {
           <Lottie animationData={animationData} loop={true} autoplay={true} />
         </div>
         :chatState.isActive ? (
-          <div style={{minHeight:"100%"}} className="h-full flex flex-col relative">
+          <div style={{height:`calc(100vh - ${getPaddingForPlatform()})`}} className="h-full flex flex-col relative">
             <ChatProfileSection 
               userId2={chatState.partnerId} 
               profileDataState={profileDataState} 
@@ -170,8 +182,8 @@ const RandomChat = ({socket}) => {
               position={false}
               online={true}
             />
-            <main className='h-[55vh]' style={{ display: "flex", position: "relative", overflow: "auto", flexGrow: 1 }}>
-              <MessageSection disablePadding={true} messages={chatState.messages} user={user} />
+            <main style={{ display: "flex", position: "relative", overflow: "auto", flexGrow: 1 }}>
+              <MessageSection disablePadding={false} messages={chatState.messages} user={user} />
             </main>
             <Textarea
               className="w-full"
@@ -180,12 +192,11 @@ const RandomChat = ({socket}) => {
               minRows={1}
               placeholder={t("enterMessage")}
               size="lg"
-
               variant="flat"
             />
           </div>
         ) : (
-          <div className="h-[80vh] flex flex-col items-center">
+          <div style={{paddingTop: "4.5rem"}}  className="h-[80vh] px-5 flex flex-col items-center">
             <div className="mb-1 mt-1 px-6 pt-8 pb-4 flex flex-col gap-2">
               <p className="text-base font-semibold text-center">{t("anonymous_title")} 🎲</p>
               <p className="text-xs text-center">{t("anonymous_description")}</p>
@@ -194,6 +205,9 @@ const RandomChat = ({socket}) => {
           </div>
         )
       }
+      <button onClick={startChat}>start</button>
+
+      <button onClick={cancelChat}>end_chat</button>
 
       {/* Action Buttons */}
       <MainButton
