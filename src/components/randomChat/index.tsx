@@ -205,10 +205,6 @@ const RandomChat = ({socket}) => {
           </div>
         )
       }
-      <button onClick={startChat}>start</button>
-
-      <button onClick={cancelChat}>end_chat</button>
-
       {/* Action Buttons */}
       <MainButton
         text={chatState.isActive ? t("send_message") : t("start_chat")}
