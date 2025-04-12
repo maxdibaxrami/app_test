@@ -51,7 +51,7 @@ const ChatProfileSection = ({ loading, profileDataState, userId2, position=true,
       <Navbar
         disableAnimation
         style={position? {width:"100%"} : {width:"fit-content"}}
-        className={position ? "fixed flex items-end top-0 main-content-safe" : "flex top-[120px] h-[3rem] left-1/2 -translate-x-1/2 absolute rounded-2xl items-center main-content-safe"}
+        className={position ? "fixed flex items-end top-0 main-content-safe" : "flex top-[120px] h-[3rem] left-1/2 -translate-x-1/2 absolute rounded-2xl items-center"}
         classNames={{ wrapper: "px-4" }}
       >
         <NavbarContent justify="start">
