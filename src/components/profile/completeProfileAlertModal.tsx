@@ -49,7 +49,7 @@ import { useNavigate } from 'react-router-dom';
                 isLoaderVisible={false}
                 isVisible={true}
                 onClick={()=>{
-                  
+                  navigate('/edit-profile-stepper')
                 }}
               />
               

@@ -59,6 +59,7 @@ const MainPage = lazy(() => import('@/pages/main/index'));
 const SignupPage = lazy(() => import('@/pages/signup/page'));
 const Setting = lazy(() => import('@/pages/setting/page'));
 const ChatPage = lazy(() => import('@/pages/chat/page'));
+const EditProfileStepper = lazy(() => import('@/pages/editProfileStepper/index'));
 
 // Lazy load grouped components by extracting a specific key.
 const ProfileEdit = lazyGroup(importProfileGroup, 'EditProfile');
@@ -95,4 +96,6 @@ export const routes: Route[] = [
   { path: '/verify-account', Component: VerifyAccount, title: 'Verify Account', auth: true },
   { path: '/energy', Component: EnergyPageComponent, title: 'Energy', auth: true },
   { path: '/edit-profile-field', Component: EditProfileField, title: 'Edit Profile Field', auth: true },
+  { path: '/edit-profile-stepper', Component: EditProfileStepper, title: 'Edit Profile stepper', auth: true },
+
 ];
