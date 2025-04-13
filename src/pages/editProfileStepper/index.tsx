@@ -13,12 +13,14 @@ import MainButton from "@/components/miniAppButtons/MainButton";
 import { SparklesText } from "@/components/animate/sparkles";
 import LookingforList from "@/components/core/WhyIamHereAuthList";
 import SelectCity from "@/components/auth/CitySelector";
+import { useNavigate } from "react-router-dom";
 
 export default function EditProfileStepper() {
 
 
   const { t } = useTranslation();
   const { data } = useSelector((state: RootState) => state.user);
+  const navigate = useNavigate();
 
   const lp = useLaunchParams();
 
@@ -70,13 +72,10 @@ export default function EditProfileStepper() {
     setSelectedTab(selectedTab - 1)
   };
 
-
-  
-
-  
   const handleSignup = async () => {
+    setUploadImageLoading(true);
+
     try {
-  
       // Destructure unwanted keys and gather the rest into "restUser"
       const { selectedCityInputValue, ...restUser } = user;
   
@@ -96,6 +95,7 @@ export default function EditProfileStepper() {
     } finally {
       // Ensure loading is turned off regardless of the outcome
       setUploadImageLoading(false);
+      navigate('/edit-profile-stepper')
     }
   };
   

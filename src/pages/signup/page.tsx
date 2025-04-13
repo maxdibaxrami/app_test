@@ -259,8 +259,6 @@ export default function SignupPage() {
             position="left"
             onClick={prevPage}
           />
-        
-        
          
         </motion.div>
     </Page>
