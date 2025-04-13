@@ -3,11 +3,10 @@ import { useEffect, useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import FinalStepAuth from "@/components/auth/finalStep";
 import { Page } from "@/components/Page";
-import { useLaunchParams, useSignal, initData } from "@telegram-apps/sdk-react";
-import { signupUser } from "@/features/authSlice";
+import { useLaunchParams } from "@telegram-apps/sdk-react";
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../store';
-import { fetchUserData } from "@/features/userSlice";
+import { updateUserData } from "@/features/userSlice";
 import { useTranslation } from "react-i18next";
 import SecondaryButton from "@/components/miniAppButtons/secondaryButton";
 import MainButton from "@/components/miniAppButtons/MainButton";
@@ -24,7 +23,6 @@ export default function EditProfileStepper() {
   const lp = useLaunchParams();
 
   const dispatch = useDispatch<AppDispatch>();
-  const initDataState = useSignal(initData.state);
   const [uploadImageLoading, setUploadImageLoading] = useState(true)
 
   
@@ -42,6 +40,7 @@ export default function EditProfileStepper() {
     country:null,
     profileStage:"complete2",
     selectedCityInputValue: new Set([]),
+    lookingFor:null
   });
   
   useEffect(()=>{
@@ -87,12 +86,11 @@ export default function EditProfileStepper() {
       };
   
       // Dispatch the signup action
-      const result = await dispatch(signupUser({ userData, id: data.id }));
+      await dispatch(updateUserData({
+        userId: data.id.toString(),
+        updatedData: userData
+      }));
   
-      // Check if signup was successful, then fetch updated user data
-      if (signupUser.fulfilled.match(result)) {
-        await dispatch(fetchUserData(initDataState.user.id.toString()));
-      }
     } catch (error) {
       console.error("Error during signup or image upload:", error);
     } finally {
