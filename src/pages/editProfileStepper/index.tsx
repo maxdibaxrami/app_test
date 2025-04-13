@@ -181,9 +181,7 @@ export default function EditProfileStepper() {
             isVisible={selectedTab !== 2}
             onClick={()=>{
               if(selectedTab === 2 ){
-                  NextPage()
                   handleSignup()
-
               }
               if(nextSlideAvalable){
                 NextPage()
