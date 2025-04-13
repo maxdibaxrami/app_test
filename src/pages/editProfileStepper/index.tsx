@@ -180,7 +180,7 @@ export default function EditProfileStepper() {
             isLoaderVisible={false}
             isVisible={selectedTab !== 2}
             onClick={()=>{
-              if(selectedTab === 1 ){
+              if(selectedTab === 2 ){
                   NextPage()
                   handleSignup()
 
