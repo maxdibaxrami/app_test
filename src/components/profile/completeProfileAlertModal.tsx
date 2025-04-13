@@ -24,8 +24,27 @@ import { useNavigate } from 'react-router-dom';
           classNames={{
             "base":"bg-content1/70 backdrop-blur-md"
           }}
-          disableAnimation
           size="md"
+
+          motionProps={{
+            variants: {
+              enter: {
+                opacity: 1,
+                transition: {
+                  duration: 0.3,
+                  ease: "easeOut",
+                },
+              },
+              exit: {
+                opacity: 0,
+                transition: {
+                  duration: 0.2,
+                  ease: "easeIn",
+                },
+              },
+            },
+          }}
+
         >
           <ModalContent>
             {() => (
