@@ -26,7 +26,7 @@ import { useNavigate } from 'react-router-dom';
             {() => (
               <>
                 <ModalBody>
-                    <div className="mb-1 mt-1 px-6 pt-2 pb-2 flex flex-col gap-2">
+                    <div className="mb-1 mt-1 px-6 pt-2 flex flex-col gap-2">
                         <p className="text-base text-center font-semibold">{t("title_profile_complete")} 📝</p>
                         <p className="text-xs text-center">{t("description_profile_complete")}</p>
                     </div>
