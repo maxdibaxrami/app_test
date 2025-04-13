@@ -105,10 +105,9 @@ export default function EditProfileStepper() {
 
 
   return (
-    <Page back={false}>
+    <Page back={true}>
         <motion.div className="flex flex-col justify-between">
           {['android', 'ios'].includes(lp.platform) ? <div className="top-bar-height w-full safe-area-top"></div> : null}
-        
         {
         selectedTab !== 0 ?
         ['android', 'ios'].includes(lp.platform) ? 
@@ -178,7 +177,7 @@ export default function EditProfileStepper() {
             isLoaderVisible={false}
             isVisible={selectedTab !== 2}
             onClick={()=>{
-              if(selectedTab === 2 ){
+              if(selectedTab === 1 ){
                   handleSignup()
               }
               if(nextSlideAvalable){
