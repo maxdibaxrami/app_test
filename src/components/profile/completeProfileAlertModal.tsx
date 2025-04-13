@@ -22,7 +22,7 @@ import { useNavigate } from 'react-router-dom';
           isOpen={isOpen}
           hideCloseButton
           classNames={{
-            "base":"bg-content1/70 backdrop-blur-md"
+            "base":"bg-content1/70"
           }}
           size="sm"
 
