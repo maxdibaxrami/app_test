@@ -21,6 +21,8 @@ import { useNavigate } from 'react-router-dom';
           isKeyboardDismissDisabled={true}
           isOpen={isOpen}
           hideCloseButton
+          disableAnimation
+          size="xs"
         >
           <ModalContent>
             {() => (
