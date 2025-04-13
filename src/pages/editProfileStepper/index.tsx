@@ -28,7 +28,7 @@ export default function EditProfileStepper() {
   const [uploadImageLoading, setUploadImageLoading] = useState(true)
 
   
-  const [selectedTab, setSelectedTab] = useState(1);
+  const [selectedTab, setSelectedTab] = useState(0);
   const [nextSlideAvalable, setNextSlideAvalable] = useState(false)
   const [showError, setShowError] = useState(false)
 
