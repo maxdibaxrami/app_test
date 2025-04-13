@@ -21,8 +21,11 @@ import { useNavigate } from 'react-router-dom';
           isKeyboardDismissDisabled={true}
           isOpen={isOpen}
           hideCloseButton
+          classNames={{
+            "base":"bg-content1/70 backdrop-blur-md"
+          }}
           disableAnimation
-          size="xs"
+          size="md"
         >
           <ModalContent>
             {() => (
