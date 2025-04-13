@@ -24,7 +24,7 @@ import { useNavigate } from 'react-router-dom';
           classNames={{
             "base":"bg-content1/70 backdrop-blur-md"
           }}
-          size="md"
+          size="sm"
 
           motionProps={{
             variants: {
