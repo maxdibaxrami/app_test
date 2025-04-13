@@ -14,6 +14,7 @@ import { SparklesText } from "@/components/animate/sparkles";
 import LookingforList from "@/components/core/WhyIamHereAuthList";
 import SelectCity from "@/components/auth/CitySelector";
 import { useNavigate } from "react-router-dom";
+import RealationStatusAuth from '@/components/auth/RealationStatusAuth';
 
 export default function EditProfileStepper() {
 
@@ -158,6 +159,19 @@ export default function EditProfileStepper() {
             <div className={selectedTab === 2 ? "fade-in" : ""}>
               {selectedTab === 2 && (
                 <>
+                  <div className="mb-1 mt-1 px-6 pt-8 pb-4 flex flex-col gap-2">
+                    <p className="text-base font-semibold text-center">{t("whyTitle")} 🤔</p>
+                    <p className="text-xs text-center">{t("whyDescription")}</p>
+                  </div>
+                  <RealationStatusAuth user={user} setSlideAvailable={setSlideAvailable} setSlideUnAvailable={setSlideUnAvailable} />
+                </>
+              )}
+            </div>
+
+            
+            <div className={selectedTab === 3 ? "fade-in" : ""}>
+              {selectedTab === 3 && (
+                <>
                   <FinalStepAuth uploadImageLoading={uploadImageLoading} setSlideAvailable={setSlideAvailable} setSlideUnAvailable={setSlideUnAvailable} />
                 </>
               )}
@@ -173,11 +187,11 @@ export default function EditProfileStepper() {
             backgroundColor="#1FB6A8"
             textColor="#FFFFFF"
             hasShineEffect={nextSlideAvalable}
-            isEnabled={ selectedTab === 2 ? false : true} 
+            isEnabled={ selectedTab === 3 ? false : true} 
             isLoaderVisible={false}
-            isVisible={selectedTab !== 2}
+            isVisible={selectedTab !== 3}
             onClick={()=>{
-              if(selectedTab === 1 ){
+              if(selectedTab === 2 ){
                   handleSignup()
               }
               if(nextSlideAvalable){
@@ -199,10 +213,10 @@ export default function EditProfileStepper() {
             backgroundColor="#000000"
             textColor="#FFFFFF"
             hasShineEffect={false}
-            isEnabled={selectedTab === 2 ? false : true} 
+            isEnabled={selectedTab === 3 ? false : true} 
             isLoaderVisible={false}
             isVisible={
-              !(selectedTab === 0 || selectedTab === 2)
+              !(selectedTab === 0 || selectedTab === 3)
             }
             position="left"
             onClick={prevPage}
