@@ -535,7 +535,7 @@ export default function ProfilePage() {
                             
                             }
 
-                    {UserData?.profileData && UserData?.profileData.education !== null && UserData.profileData.education !=="prefer_not_to_say" &&
+                    {UserData?.profileData && UserData?.profileData.education !== null && UserData.profileData.education !=="" && UserData.profileData.education !==" " &&
 
                         <ListboxSection                   
                           classNames={{"heading":"font-bold"}} 
@@ -551,7 +551,7 @@ export default function ProfilePage() {
                         </ListboxSection>
                     }
 
-                        {UserData?.profileData && UserData?.profileData.work !== null && UserData.profileData.work !=="prefer_not_to_say" &&
+                        {UserData?.profileData && UserData?.profileData.work !== null && UserData.profileData.work !==" " && UserData.profileData.work !=="" &&
                                                 <ListboxSection                   
                                                 classNames={{"heading":"font-bold"}} 
                                                 className="relative" 
