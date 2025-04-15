@@ -196,7 +196,7 @@ export default function ProfilePage() {
       return <motion.div
         className="flex gap-3 mt-1 mb-1"
         initial={{ opacity: 1 }}
-        style={{ marginLeft: "4px" }}
+        style={{ marginLeft: "0px" }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         transition={{
@@ -365,14 +365,16 @@ export default function ProfilePage() {
               >
               
       
-                  <div  className="px-3 w-full mb-4">
-                    <div style={{marginTop:`${getPaddingForPlatform()}`}} className="w-full px-1 bg-neutral/10 text-default-700 border-small rounded-large border-default-200 dark:border-default-100">
+                  <div  className="w-full mb-32">
+                    <div style={{marginTop:`${getPaddingForPlatform()}`}} className="w-full px-1  text-default-700">
                       <Listbox 
                         aria-label="Listbox menu with sections" 
                         variant="solid"
                         
                       >
-                        <ListboxItem>
+                        <ListboxItem
+                          className="border-small px-3 py-3 mb-2 rounded-large bg-neutral/10 border-default-200 dark:border-default-100"
+                        >
                           <div className="flex flex-grow w-full">
                                 <div className="flex flex-col w-full">
                                   <div className="flex items-center justify-between w-full ">
@@ -432,8 +434,10 @@ export default function ProfilePage() {
                         </ListboxItem>
                         {UserData.photos && UserData.photos[0] && 
                               <ListboxSection>
-                                <ListboxItem classNames={{"base":"px-0"}} isReadOnly>
-                                    <Image 
+                                <ListboxItem 
+                                  className="border-small  rounded-large bg-neutral/10 border-default-200 dark:border-default-100"
+                                  classNames={{"base":"px-0 py-0"}} isReadOnly>
+                                            <Image 
                                           alt="Profile hero Image"
                                           className="w-full h-full"
                                           classNames={{
@@ -452,15 +456,16 @@ export default function ProfilePage() {
                             }
                         <ListboxSection                   
                           classNames={{"heading":"font-bold"}} 
-                          className="relative" 
+                          className="relative px-3 py-3  border-small rounded-large bg-neutral/10 border-default-200 dark:border-default-100"
                           title={t("WhyIamhere")}>
                          
                          {profileItems.map((item,index) => {
                             if(item.key === 3 )
                             {
                               return <ListboxItem
+                              className="px-1"
                               key={index+5}
-                              className="px-0 py-1"
+
                               >
                               <ProfileCard
                                 key={item.key}
@@ -477,7 +482,7 @@ export default function ProfilePage() {
 
                         <ListboxSection                   
                           classNames={{"heading":"font-bold"}} 
-                          className="relative" 
+                          className="relative px-3 py-3  border-small rounded-large bg-neutral/10 border-default-200 dark:border-default-100"
                           title={t("Bio")}>
                               <ListboxItem
                                 key={321321}
@@ -490,7 +495,7 @@ export default function ProfilePage() {
 
                           <ListboxSection                   
                             classNames={{"heading":"font-bold"}} 
-                            className="relative" 
+                            className="relative px-3 py-3  border-small rounded-large bg-neutral/10 border-default-200 dark:border-default-100"
                             title={t("more_about_me")}>
 
                               <ListboxItem
@@ -515,8 +520,10 @@ export default function ProfilePage() {
 
 
                             {UserData.photos && UserData.photos[1] && 
-                              <ListboxSection>
-                                <ListboxItem classNames={{"base":"px-0"}} isReadOnly>
+                              <ListboxSection
+                                className="relative py-1 border-small rounded-large bg-neutral/10 border-default-200 dark:border-default-100"
+                              >
+                                <ListboxItem classNames={{"base":"px-0 py-0"}} isReadOnly>
                                     <Image 
                                           alt="Profile hero Image"
                                           className="w-full h-full"
@@ -539,7 +546,7 @@ export default function ProfilePage() {
 
                         <ListboxSection                   
                           classNames={{"heading":"font-bold"}} 
-                          className="relative" 
+                          className="relative px-3 py-3  border-small rounded-large bg-neutral/10 border-default-200 dark:border-default-100"
                           title={t("Education")}>
                               <ListboxItem
                                 key={321321}
@@ -552,9 +559,9 @@ export default function ProfilePage() {
                     }
 
                         {UserData?.profileData && UserData?.profileData.work !== null && UserData.profileData.work !==" " && UserData.profileData.work !=="" &&
-                                                <ListboxSection                   
+                                              <ListboxSection                   
                                                 classNames={{"heading":"font-bold"}} 
-                                                className="relative" 
+                                                className="relative px-3 py-3  border-small rounded-large bg-neutral/10 border-default-200 dark:border-default-100"
                                                 title={t("work_text")}>
                                                     <ListboxItem
                                                       key={321321}
@@ -568,8 +575,11 @@ export default function ProfilePage() {
 
 
                           {UserData.photos && UserData.photos[2] && 
-                              <ListboxSection>
-                                <ListboxItem classNames={{"base":"px-0"}} isReadOnly>
+                              <ListboxSection
+                              className="relative py-0 border-small rounded-large bg-neutral/10 border-default-200 dark:border-default-100"
+                              >
+                                <ListboxItem classNames={{"base":"px-0 py-0"}} isReadOnly>
+
                                     <Image 
                                           alt="Profile hero Image"
                                           className="w-full h-full"
@@ -591,7 +601,7 @@ export default function ProfilePage() {
                             {UserData.interests && UserData.interests.length > 0  && 
                             <ListboxSection 
                               classNames={{"heading":"font-bold"}} 
-                              className="relative" 
+                              className="relative px-3 py-3  border-small rounded-large bg-neutral/10 border-default-200 dark:border-default-100"
                               title={t("interested")}
                             >
                                 <ListboxItem
@@ -620,9 +630,11 @@ export default function ProfilePage() {
 
                             }
 
-                            {UserData.photos && 
-                              <ListboxSection>
-                                <ListboxItem classNames={{"base":"px-0"}} isReadOnly>
+                            {UserData.photos && UserData.photos.slice(3, 9).length !==0 &&
+                              <ListboxSection
+                                className="relative py-1  border-small rounded-large bg-neutral/10 border-default-200 dark:border-default-100"
+                              >
+                                <ListboxItem classNames={{"base":"px-0 py-0"}} isReadOnly>
                                   <div className="grid gap-2 grid-cols-2">
                                     {UserData.photos.slice(3, 9).map((value)=>{
                                       return <div>
@@ -653,7 +665,7 @@ export default function ProfilePage() {
 
                             <ListboxSection                   
                               classNames={{"heading":"font-bold"}} 
-                              className="relative" 
+                              className="relative px-3 py-3  border-small rounded-large bg-neutral/10 border-default-200 dark:border-default-100"
                               title={t("weekend_getaway_text")}>
                                   <ListboxItem
                                     key={32132231}
@@ -670,7 +682,7 @@ export default function ProfilePage() {
 
                             <ListboxSection                   
                               classNames={{"heading":"font-bold"}} 
-                              className="relative" 
+                              className="relative px-3 py-3  border-small rounded-large bg-neutral/10 border-default-200 dark:border-default-100"
                               title={t("dinner_question_text")}>
                                   <ListboxItem
                                     key={32178321}
@@ -682,11 +694,11 @@ export default function ProfilePage() {
                             </ListboxSection>
                           }
 
-                            {UserData?.instagram && UserData?.instagram !== null &&
+                            {UserData?.instagram && UserData?.instagram !== null && UserData?.instagram !== "" && UserData?.instagram !== " " && 
 
                             <ListboxSection                   
                               classNames={{"heading":"font-bold"}} 
-                              className="relative" 
+                              className="relative px-3 py-3  border-small rounded-large bg-neutral/10 border-default-200 dark:border-default-100"
                               title={t("instagram_text")}>
                                   <ListboxItem
                                     key={32178321}
@@ -701,7 +713,7 @@ export default function ProfilePage() {
 
                             <ListboxSection                   
                               classNames={{"heading":"font-bold"}} 
-                              className="relative" 
+                              className="relative px-3 py-3  border-small rounded-large bg-neutral/10 border-default-200 dark:border-default-100"
                               title={t("location")}>
                                   <ListboxItem
                                     key={38321}
