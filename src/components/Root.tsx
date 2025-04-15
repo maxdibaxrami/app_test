@@ -1,24 +1,20 @@
-import { HeroUIProvider } from "@heroui/react";
+import { Button, HeroUIProvider } from "@heroui/react";
 import { ErrorBoundary } from '@/components/ErrorBoundary.tsx';
 import { ThemeProvider as NextThemesProvider } from "next-themes";
 import { App } from '@/components/App.tsx';
 import { ToastProvider } from "@heroui/toast";
 import { SpeedInsights } from "@vercel/speed-insights/react";
 import { Analytics } from "@vercel/analytics/react";
+import animationData from "@/components/animate/error.json";
+import Lottie from "lottie-react";
 
-function ErrorBoundaryError({ error }: { error: unknown }) {
+function ErrorBoundaryError() {
   return (
-    <div>
-      <p>An unhandled error occurred:</p>
-      <blockquote>
-        <code>
-          {error instanceof Error
-            ? error.message
-            : typeof error === 'string'
-            ? error
-            : JSON.stringify(error)}
-        </code>
-      </blockquote>
+    <div className="h-full flex items-center jusitfy-center flex-col">
+        <Lottie animationData={animationData} loop={true} autoplay={true} />
+        <Button onPress={()=> location.reload()} color="primary" variant="shadow">
+          Refresh the app
+        </Button>
     </div>
   );
 }
