@@ -1,8 +1,6 @@
 import axios from 'axios';
-//import { retrieveLaunchParams } from '@telegram-apps/sdk';
 
 // Retrieve initDataRaw from Telegram's launch parameters
-//const { initDataRaw } = retrieveLaunchParams();
 
 // Create an Axios instance
 const axiosInstance = axios.create({
@@ -10,19 +8,19 @@ const axiosInstance = axios.create({
   timeout: 40000, // Set a timeout for requests
 });
 
-/*
-  / Add a request interceptor to include initDataRaw in the Authorization header
+// Add interceptor to attach either JWT or Telegram data on each request
 axiosInstance.interceptors.request.use(
   (config) => {
-    if (initDataRaw) {
-      config.headers['Authorization'] = `tma ${initDataRaw}`;
+    // Check if a JWT token exists in local storage
+    const token = localStorage.getItem('access_token');
+
+    if (token) {
+      config.headers['Authorization'] = `Bearer ${token}`;
     }
+
     return config;
   },
-  (error) => {
-    return Promise.reject(error);
-  }
+  (error) => Promise.reject(error)
 );
-*/
 
 export default axiosInstance;

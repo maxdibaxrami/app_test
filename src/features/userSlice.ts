@@ -118,7 +118,9 @@ export const fetchUserData = createAsyncThunk(
   'user/fetchData',
   async (userId: string) => {
     const response = await axios.get(`/users/telegram/${userId}`);
-    return response.data as UserData;
+    const { access_token } = response.data;
+    localStorage.setItem('access_token', access_token);
+    return response.data.user as UserData;
   }
 );
 
