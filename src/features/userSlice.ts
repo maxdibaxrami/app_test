@@ -1,11 +1,6 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import axios from '../api/base';
 
-// Define the shape of the user data
-const getLocalStorageData = (): UserData | null => {
-  const storedData = localStorage.getItem('userDataFull');
-  return storedData ? JSON.parse(storedData) : null;
-};
 
 interface Photo {
   id: number;
@@ -93,7 +88,7 @@ interface UserState {
 
 // Initial state
 const initialState: UserState = {
-  data: getLocalStorageData() || null,
+  data: null,
   loading: false,
   updateUserData: false,
   uploadProfileLoading: false,
@@ -235,13 +230,11 @@ const userSlice = createSlice({
       .addCase(fetchUserData.fulfilled, (state, action: PayloadAction<UserData>) => {
         state.loading = false;
         state.data = action.payload;
-        localStorage.setItem('userDataFull', JSON.stringify(action.payload));
       })
       .addCase(fetchUserData.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message || 'Failed to fetch user data';
         if (action.error.code === "ERR_BAD_REQUEST") {
-          localStorage.clear();
           state.data = null;
         }
       })
@@ -354,7 +347,6 @@ const userSlice = createSlice({
         // Update user data with premium info from the response
         if (state.data) {
           state.data = { ...state.data, ...action.payload };
-          localStorage.setItem('userDataFull', JSON.stringify(state.data));
         }
       })
       .addCase(activatePremium.rejected, (state, action) => {
