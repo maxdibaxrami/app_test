@@ -37,7 +37,7 @@ const ProfilePage = () => {
         <div className="flex w-full flex-col">
         <User
             avatarProps={{
-              src:user.photos[0].smallUrl,
+              src:user.photos[0]? user.photos[0].smallUrl : null,
               color:"primary",
               className:"w-20 h-20 rounded-xl"
             }}
