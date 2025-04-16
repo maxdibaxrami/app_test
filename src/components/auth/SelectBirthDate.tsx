@@ -72,7 +72,6 @@ const CalendarPicker = ({ setSlideAvailable, setSlideUnAvailable, user, showErro
                     showMonthAndYearPickers
                     minValue={minDate}
                     maxValue={maxDate}
-                    color="primary"
                     label={t("Birthdate")}
                     errorMessage={(value) => {
                       if (value.isInvalid) {
