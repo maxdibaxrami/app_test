@@ -1,4 +1,4 @@
-import { Calendar } from "@heroui/react";
+import { DatePicker } from "@heroui/react";
 import { useEffect, useState } from "react";
 import { parseDate, today, getLocalTimeZone, DateValue } from "@internationalized/date";
 
@@ -60,7 +60,8 @@ const CalendarPicker = ({ setSlideAvailable, setSlideUnAvailable, user, showErro
     <div className="flex justify-between flex-col px-6 pb-4">
       <form className="flex w-full flex-col gap-2">
         <div className="flex flex-col gap-4">
-                  <Calendar 
+                  <DatePicker 
+                    isRequired 
                     value={value}
                     onChange={handleDateChange}
                     style={{ width: "100%" }}
@@ -68,10 +69,9 @@ const CalendarPicker = ({ setSlideAvailable, setSlideUnAvailable, user, showErro
                     minValue={minDate}
                     maxValue={maxDate}
                     color="primary"
-                    
+                    label="Birth date" 
                     errorMessage="Select date of birth"
                     isInvalid={showError && value === null}
-                    
                   />
             </div>
           </form>
