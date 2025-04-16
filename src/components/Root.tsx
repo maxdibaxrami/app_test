@@ -5,17 +5,22 @@ import { App } from '@/components/App.tsx';
 import { ToastProvider } from "@heroui/toast";
 import { SpeedInsights } from "@vercel/speed-insights/react";
 import { Analytics } from "@vercel/analytics/react";
-import animationData from "@/components/animate/error.json";
-import Lottie from "lottie-react";
+//import animationData from "@/components/animate/error.json";
+//import Lottie from "lottie-react";
 
-function ErrorBoundaryError() {
+function ErrorBoundaryError({ error }: { error: unknown }) {
   return (
-    <div className="h-screen gap-4 bg-white flex items-center justify-center flex-col">
-        <Lottie animationData={animationData} loop={true} autoplay={true} />
-        <p className="text-md text-black"> No internet connection :( </p>
-        <Button onPress={()=> location.reload()} color="primary" variant="shadow">
-          Refresh the app
-        </Button>
+    <div>
+      <p>An unhandled error occurred:</p>
+      <blockquote>
+        <code>
+          {error instanceof Error
+            ? error.message
+            : typeof error === 'string'
+            ? error
+            : JSON.stringify(error)}
+        </code>
+      </blockquote>
     </div>
   );
 }
