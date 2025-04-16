@@ -327,7 +327,7 @@ export default function EditProfileStepper() {
             backgroundColor="#000000"
             textColor="#FFFFFF"
             hasShineEffect={false}
-            isEnabled={selectedTab <= 2 && selectedTab >=10 ? false : true} 
+            isEnabled={selectedTab <= 2 && selectedTab >=10} 
             isLoaderVisible={false}
             isVisible={
               !(selectedTab === 0 || selectedTab === 2 || selectedTab === 1)
