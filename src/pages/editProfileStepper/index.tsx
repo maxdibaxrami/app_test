@@ -172,8 +172,7 @@ export default function EditProfileStepper() {
               {selectedTab === 2 && (
                 <>
                   <div className="mb-1 mt-1 px-6 pt-8 pb-4 flex flex-col gap-2">
-                    <p className="text-base font-semibold text-center">{t("whyTitle")} 🤔</p>
-                    <p className="text-xs text-center">{t("whyDescription")}</p>
+                    <p className="text-base font-semibold text-center">{t("RealationStatus")} 👩‍❤️‍👨</p>
                   </div>
                   <RealationStatusAuth user={user} setSlideAvailable={setSlideAvailable} setSlideUnAvailable={setSlideUnAvailable} />
                 </>
@@ -185,8 +184,7 @@ export default function EditProfileStepper() {
               {selectedTab === 3 && (
                 <>
                   <div className="mb-1 mt-1 px-6 pt-8 pb-4 flex flex-col gap-2">
-                    <p className="text-base font-semibold text-center">{t("whyTitle")} 🤔</p>
-                    <p className="text-xs text-center">{t("whyDescription")}</p>
+                    <p className="text-base font-semibold text-center">{t("interested")} 😍</p>
                   </div>
                   <InterestingAuth user={user} setSlideAvailable={setSlideAvailable} setSlideUnAvailable={setSlideUnAvailable} />
                 </>
@@ -197,8 +195,7 @@ export default function EditProfileStepper() {
               {selectedTab === 4 && (
                 <>
                   <div className="mb-1 mt-1 px-6 pt-8 pb-4 flex flex-col gap-2">
-                    <p className="text-base font-semibold text-center">{t("whyTitle")} 🤔</p>
-                    <p className="text-xs text-center">{t("whyDescription")}</p>
+                    <p className="text-base font-semibold text-center">{t("Height")} 📏</p>
                   </div>
                   <HeightAuth user={user} setSlideAvailable={setSlideAvailable} setSlideUnAvailable={setSlideUnAvailable} />
                 </>
@@ -209,8 +206,7 @@ export default function EditProfileStepper() {
               {selectedTab === 5 && (
                 <>
                   <div className="mb-1 mt-1 px-6 pt-8 pb-4 flex flex-col gap-2">
-                    <p className="text-base font-semibold text-center">{t("whyTitle")} 🤔</p>
-                    <p className="text-xs text-center">{t("whyDescription")}</p>
+                    <p className="text-base font-semibold text-center">{t("Language")} 🈶</p>
                   </div>
                   <LanguageAuth user={user} setSlideAvailable={setSlideAvailable} setSlideUnAvailable={setSlideUnAvailable} />
                 </>
@@ -221,8 +217,7 @@ export default function EditProfileStepper() {
               {selectedTab === 6 && (
                 <>
                   <div className="mb-1 mt-1 px-6 pt-8 pb-4 flex flex-col gap-2">
-                    <p className="text-base font-semibold text-center">{t("whyTitle")} 🤔</p>
-                    <p className="text-xs text-center">{t("whyDescription")}</p>
+                    <p className="text-base font-semibold text-center">{t("SmokingStatus")} 🚬</p>
                   </div>
                   <SmokingListSelector user={user} setSlideAvailable={setSlideAvailable} setSlideUnAvailable={setSlideUnAvailable} />
                 </>
@@ -233,8 +228,7 @@ export default function EditProfileStepper() {
               {selectedTab === 7 && (
                 <>
                   <div className="mb-1 mt-1 px-6 pt-8 pb-4 flex flex-col gap-2">
-                    <p className="text-base font-semibold text-center">{t("whyTitle")} 🤔</p>
-                    <p className="text-xs text-center">{t("whyDescription")}</p>
+                    <p className="text-base font-semibold text-center">{t("PetStatus")} 🐶</p>
                   </div>
                   <PetsListSelector user={user} setSlideAvailable={setSlideAvailable} setSlideUnAvailable={setSlideUnAvailable} />
                 </>
@@ -246,8 +240,7 @@ export default function EditProfileStepper() {
               {selectedTab === 8 && (
                 <>
                   <div className="mb-1 mt-1 px-6 pt-8 pb-4 flex flex-col gap-2">
-                    <p className="text-base font-semibold text-center">{t("whyTitle")} 🤔</p>
-                    <p className="text-xs text-center">{t("whyDescription")}</p>
+                    <p className="text-base font-semibold text-center">{t("kids")} 👦</p>
                   </div>
                   <KidsListSelector user={user} setSlideAvailable={setSlideAvailable} setSlideUnAvailable={setSlideUnAvailable} />
                 </>
@@ -258,8 +251,7 @@ export default function EditProfileStepper() {
               {selectedTab === 9 && (
                 <>
                   <div className="mb-1 mt-1 px-6 pt-8 pb-4 flex flex-col gap-2">
-                    <p className="text-base font-semibold text-center">{t("whyTitle")} 🤔</p>
-                    <p className="text-xs text-center">{t("whyDescription")}</p>
+                    <p className="text-base font-semibold text-center">{t("DrinkStatus")} 🥃</p>
                   </div>
                   <DrinkListSelector user={user} setSlideAvailable={setSlideAvailable} setSlideUnAvailable={setSlideUnAvailable} />
                 </>
