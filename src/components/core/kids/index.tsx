@@ -29,8 +29,9 @@ import { useTranslation } from "react-i18next";
   };
   
 const KidsListSelector = ({setSlideAvailable, setSlideUnAvailable, user}) => {
-  
-  const [selected, setSelected] = useState(user.moreAboutMe.kids || user.kids);
+  const initialValue = user.moreAboutMe? user.moreAboutMe.kids : user.kids
+
+  const [selected, setSelected] = useState(initialValue);
   const { t } = useTranslation();
 
   useEffect(()=>{

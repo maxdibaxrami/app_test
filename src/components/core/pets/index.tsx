@@ -30,7 +30,9 @@ import { useTranslation } from "react-i18next";
   
 const PetsListSelector = ({setSlideAvailable, setSlideUnAvailable, user}) => {
   
-  const [selected, setSelected] = useState(user.moreAboutMe.pets || user.pets);
+  const initialValue = user.moreAboutMe? user.moreAboutMe.pets : user.pets
+
+  const [selected, setSelected] = useState(initialValue);
   const { t } = useTranslation();
 
   useEffect(()=>{
