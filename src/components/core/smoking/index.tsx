@@ -30,7 +30,7 @@ import { useTranslation } from "react-i18next";
   
 const SmokingListSelector = ({setSlideAvailable, setSlideUnAvailable, user}) => {
   
-  const [selected, setSelected] = useState(user.moreAboutMe.smoking);
+  const [selected, setSelected] = useState(user.moreAboutMe.smoking || user.smoking);
   const { t } = useTranslation();
 
   useEffect(()=>{

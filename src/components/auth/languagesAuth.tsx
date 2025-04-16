@@ -29,7 +29,7 @@ import { useTranslation } from "react-i18next";
   };
   
 const LanguageAuth = ({setSlideAvailable, setSlideUnAvailable, user}) => {
-  const [selected, setSelected] = useState(user.moreAboutMe.languages);
+  const [selected, setSelected] = useState(user.moreAboutMe.languages || user.languages);
   const { t } = useTranslation();
 
   useEffect(()=>{

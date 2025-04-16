@@ -30,7 +30,7 @@ import { useTranslation } from "react-i18next";
   
 const DrinkListSelector = ({setSlideAvailable, setSlideUnAvailable, user}) => {
   
-  const [selected, setSelected] = useState(user.moreAboutMe.drink);
+  const [selected, setSelected] = useState(user.moreAboutMe.drink || user.drink);
   const { t } = useTranslation();
 
   useEffect(()=>{

@@ -7,7 +7,7 @@ import { useTranslation } from "react-i18next";
   
 const HeightAuth = ({setSlideAvailable, setSlideUnAvailable, user}) => {
     const { t } = useTranslation();
-    const [value, setValue] = useState<SliderValue>(user.moreAboutMe.height);
+    const [value, setValue] = useState<SliderValue>(user.moreAboutMe.height || user.height);
 
     useEffect(()=>{
       if(value !== null ){
