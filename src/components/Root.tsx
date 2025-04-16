@@ -1,4 +1,4 @@
-import { Button, HeroUIProvider } from "@heroui/react";
+import { HeroUIProvider } from "@heroui/react";
 import { ErrorBoundary } from '@/components/ErrorBoundary.tsx';
 import { ThemeProvider as NextThemesProvider } from "next-themes";
 import { App } from '@/components/App.tsx';
