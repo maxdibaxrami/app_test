@@ -123,9 +123,9 @@ export default function EditProfileStepper() {
     <Page back={true}>
         <motion.div className="flex flex-col justify-between">
           {['android', 'ios'].includes(lp.platform) ? <div className="top-bar-height w-full safe-area-top"></div> : null}
-        {
-        selectedTab !== 0 ?
-        ['android', 'ios'].includes(lp.platform) ? 
+        
+
+        {['android', 'ios'].includes(lp.platform) ? 
           <div className="fixed top-0 w-full flex items-center justify-center top-bar-height safe-area-top text-center"> 
             <SparklesText sparklesCount={10} className="text-xl" text="FACE MATCH" /> 
           </div>
@@ -133,8 +133,6 @@ export default function EditProfileStepper() {
           <div style={{marginTop:"20px", height:"20px"}} className="flex w-full items-center justify-center text-center"> 
             <SparklesText sparklesCount={10} className="text-xl" text="FACE MATCH" /> 
           </div> 
-        :
-        null
         }
           <div style={{ overflow:"scroll" }} className="w-full">
         
