@@ -308,33 +308,39 @@ export default function EditProfileStepper() {
               }
             }
           />
-          <SecondaryButton
-            text={t('previous')}
-            backgroundColor="#000000"
-            textColor="#FFFFFF"
-            hasShineEffect={false}
-            isEnabled={selectedTab === 10 ? false : true} 
-            isLoaderVisible={false}
-            isVisible={
-              !(selectedTab === 0 || selectedTab === 10)
-            }
-            position="left"
-            onClick={prevPage}
-          />
+          {selectedTab >= 2 ?
+            <SecondaryButton
+              text={t('previous')}
+              backgroundColor="#000000"
+              textColor="#FFFFFF"
+              hasShineEffect={false}
+              isEnabled={selectedTab === 10 ? false : true} 
+              isLoaderVisible={false}
+              isVisible={
+                !(selectedTab === 0 || selectedTab === 10)
+              }
+              position="left"
+              onClick={prevPage}
+            />
+
+          :
+            <SecondaryButton
+              text={t('skip')}
+              backgroundColor="#000000"
+              textColor="#FFFFFF"
+              hasShineEffect={false}
+              isEnabled={selectedTab <= 2 && selectedTab >=10} 
+              isLoaderVisible={false}
+              isVisible={
+                !(selectedTab === 0 || selectedTab === 2 || selectedTab === 1)
+              }
+              position={selectedTab <= 2 ? "left" : "bottom" }
+              onClick={NextPage}
+            />
+          }
+
         
-          <SecondaryButton
-            text={t('skip')}
-            backgroundColor="#000000"
-            textColor="#FFFFFF"
-            hasShineEffect={false}
-            isEnabled={selectedTab <= 2 && selectedTab >=10} 
-            isLoaderVisible={false}
-            isVisible={
-              !(selectedTab === 0 || selectedTab === 2 || selectedTab === 1)
-            }
-            position={selectedTab <= 2 ? "left" : "bottom" }
-            onClick={NextPage}
-          />
+
         
         
          
