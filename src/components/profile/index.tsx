@@ -39,7 +39,7 @@ const ProfilePage = () => {
             avatarProps={{
               src:user.photos[0].smallUrl,
               color:"primary",
-              className:"w-20 h-20"
+              className:"w-20 h-20 rounded-xl"
             }}
             classNames={{
               "name":"text-xl px-2 py-1 font-bold",
