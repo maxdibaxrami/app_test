@@ -50,7 +50,14 @@ export default function EditProfileStepper() {
     country:null,
     profileStage:"complete2",
     selectedCityInputValue: new Set([]),
-    lookingFor:null
+    lookingFor:null,
+    interests:null,
+    height:null,
+    languages:null,
+    smoking:null,
+    pets:null,
+    kids:null,
+    drink:null
   });
   
   useEffect(()=>{
