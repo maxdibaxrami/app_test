@@ -15,6 +15,13 @@ import LookingforList from "@/components/core/WhyIamHereAuthList";
 import SelectCity from "@/components/auth/CitySelector";
 import { useNavigate } from "react-router-dom";
 import RealationStatusAuth from '@/components/auth/RealationStatusAuth';
+import InterestingAuth from "@/components/auth/interstingAuth";
+import HeightAuth from "@/components/auth/HeightAuth";
+import LanguageAuth from "@/components/auth/languagesAuth";
+import SmokingListSelector from "@/components/core/smoking";
+import PetsListSelector from "@/components/core/pets";
+import KidsListSelector from "@/components/core/kids";
+import DrinkListSelector from "@/components/core/drink";
 
 export default function EditProfileStepper() {
 
@@ -128,8 +135,8 @@ export default function EditProfileStepper() {
             {selectedTab === 0 && (
               <>
                 <div className="mb-1 mt-1 px-6 pt-8 pb-4 flex flex-col gap-2">
-                  <p className="text-base font-semibold text-center">{t("Birthdate")} 📆</p>
-                  <p className="text-xs text-center">{t("dob_prompt")}</p>
+                  <p className="text-base font-semibold text-center">{t("locationTitle")} 📍</p>
+                  <p className="text-xs text-center">{t("locationDescription")}</p>
                 </div>
                 <SelectCity 
                     selectedValueCityList={selectedValueCityList} 
@@ -168,9 +175,97 @@ export default function EditProfileStepper() {
               )}
             </div>
 
-            
+
             <div className={selectedTab === 3 ? "fade-in" : ""}>
               {selectedTab === 3 && (
+                <>
+                  <div className="mb-1 mt-1 px-6 pt-8 pb-4 flex flex-col gap-2">
+                    <p className="text-base font-semibold text-center">{t("whyTitle")} 🤔</p>
+                    <p className="text-xs text-center">{t("whyDescription")}</p>
+                  </div>
+                  <InterestingAuth user={user} setSlideAvailable={setSlideAvailable} setSlideUnAvailable={setSlideUnAvailable} />
+                </>
+              )}
+            </div>
+
+            <div className={selectedTab === 4 ? "fade-in" : ""}>
+              {selectedTab === 4 && (
+                <>
+                  <div className="mb-1 mt-1 px-6 pt-8 pb-4 flex flex-col gap-2">
+                    <p className="text-base font-semibold text-center">{t("whyTitle")} 🤔</p>
+                    <p className="text-xs text-center">{t("whyDescription")}</p>
+                  </div>
+                  <HeightAuth user={user} setSlideAvailable={setSlideAvailable} setSlideUnAvailable={setSlideUnAvailable} />
+                </>
+              )}
+            </div>
+
+            <div className={selectedTab === 5 ? "fade-in" : ""}>
+              {selectedTab === 5 && (
+                <>
+                  <div className="mb-1 mt-1 px-6 pt-8 pb-4 flex flex-col gap-2">
+                    <p className="text-base font-semibold text-center">{t("whyTitle")} 🤔</p>
+                    <p className="text-xs text-center">{t("whyDescription")}</p>
+                  </div>
+                  <LanguageAuth user={user} setSlideAvailable={setSlideAvailable} setSlideUnAvailable={setSlideUnAvailable} />
+                </>
+              )}
+            </div>
+
+            <div className={selectedTab === 6 ? "fade-in" : ""}>
+              {selectedTab === 6 && (
+                <>
+                  <div className="mb-1 mt-1 px-6 pt-8 pb-4 flex flex-col gap-2">
+                    <p className="text-base font-semibold text-center">{t("whyTitle")} 🤔</p>
+                    <p className="text-xs text-center">{t("whyDescription")}</p>
+                  </div>
+                  <SmokingListSelector user={user} setSlideAvailable={setSlideAvailable} setSlideUnAvailable={setSlideUnAvailable} />
+                </>
+              )}
+            </div>
+
+            <div className={selectedTab === 7 ? "fade-in" : ""}>
+              {selectedTab === 7 && (
+                <>
+                  <div className="mb-1 mt-1 px-6 pt-8 pb-4 flex flex-col gap-2">
+                    <p className="text-base font-semibold text-center">{t("whyTitle")} 🤔</p>
+                    <p className="text-xs text-center">{t("whyDescription")}</p>
+                  </div>
+                  <PetsListSelector user={user} setSlideAvailable={setSlideAvailable} setSlideUnAvailable={setSlideUnAvailable} />
+                </>
+              )}
+            </div>
+
+
+            <div className={selectedTab === 8 ? "fade-in" : ""}>
+              {selectedTab === 8 && (
+                <>
+                  <div className="mb-1 mt-1 px-6 pt-8 pb-4 flex flex-col gap-2">
+                    <p className="text-base font-semibold text-center">{t("whyTitle")} 🤔</p>
+                    <p className="text-xs text-center">{t("whyDescription")}</p>
+                  </div>
+                  <KidsListSelector user={user} setSlideAvailable={setSlideAvailable} setSlideUnAvailable={setSlideUnAvailable} />
+                </>
+              )}
+            </div>
+
+            <div className={selectedTab === 9 ? "fade-in" : ""}>
+              {selectedTab === 9 && (
+                <>
+                  <div className="mb-1 mt-1 px-6 pt-8 pb-4 flex flex-col gap-2">
+                    <p className="text-base font-semibold text-center">{t("whyTitle")} 🤔</p>
+                    <p className="text-xs text-center">{t("whyDescription")}</p>
+                  </div>
+                  <DrinkListSelector user={user} setSlideAvailable={setSlideAvailable} setSlideUnAvailable={setSlideUnAvailable} />
+                </>
+              )}
+            </div>
+
+          
+            
+            
+            <div className={selectedTab === 10 ? "fade-in" : ""}>
+              {selectedTab === 10 && (
                 <>
                   <FinalStepAuth uploadImageLoading={uploadImageLoading} setSlideAvailable={setSlideAvailable} setSlideUnAvailable={setSlideUnAvailable} />
                 </>
@@ -187,11 +282,11 @@ export default function EditProfileStepper() {
             backgroundColor="#1FB6A8"
             textColor="#FFFFFF"
             hasShineEffect={nextSlideAvalable}
-            isEnabled={ selectedTab === 3 ? false : true} 
+            isEnabled={ selectedTab === 10 ? false : true} 
             isLoaderVisible={false}
-            isVisible={selectedTab !== 3}
+            isVisible={selectedTab !== 10}
             onClick={()=>{
-              if(selectedTab === 2 ){
+              if(selectedTab === 9 ){
                   handleSignup()
               }
               if(nextSlideAvalable){
@@ -206,20 +301,32 @@ export default function EditProfileStepper() {
               }
             }
           />
-
-        
           <SecondaryButton
             text={t('previous')}
             backgroundColor="#000000"
             textColor="#FFFFFF"
             hasShineEffect={false}
-            isEnabled={selectedTab === 3 ? false : true} 
+            isEnabled={selectedTab === 10 ? false : true} 
             isLoaderVisible={false}
             isVisible={
-              !(selectedTab === 0 || selectedTab === 3)
+              !(selectedTab === 0 || selectedTab === 10)
             }
             position="left"
             onClick={prevPage}
+          />
+        
+          <SecondaryButton
+            text={t('skip')}
+            backgroundColor="#000000"
+            textColor="#FFFFFF"
+            hasShineEffect={false}
+            isEnabled={selectedTab <= 2 && selectedTab >=10 ? false : true} 
+            isLoaderVisible={false}
+            isVisible={
+              !(selectedTab === 0 || selectedTab === 2 || selectedTab === 1)
+            }
+            position={selectedTab <= 2 ? "left" : "bottom" }
+            onClick={NextPage}
           />
         
         
