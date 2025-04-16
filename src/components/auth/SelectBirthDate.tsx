@@ -1,12 +1,16 @@
 import { DatePicker } from "@heroui/react";
 import { useEffect, useState } from "react";
 import { parseDate, today, getLocalTimeZone, DateValue } from "@internationalized/date";
+import { useTranslation } from "react-i18next";
 
 const CalendarPicker = ({ setSlideAvailable, setSlideUnAvailable, user, showError }) => {
   // Define min and max allowed dates
   const minDate = parseDate("1900-01-01");
   const todayDate = today(getLocalTimeZone());
   const maxDate = todayDate.subtract({ years: 18 });
+
+  const { t } = useTranslation();
+  
 
   const [age, setAge] = useState(user.age);
   const [dateBirth, setDateBirth] = useState(user.dateBirth);
@@ -69,8 +73,13 @@ const CalendarPicker = ({ setSlideAvailable, setSlideUnAvailable, user, showErro
                     minValue={minDate}
                     maxValue={maxDate}
                     color="primary"
-                    label="Birth date" 
-                    errorMessage="Select date of birth"
+                    label={t("Birthdate")}
+                    errorMessage={(value) => {
+                      if (value.isInvalid) {
+                        return t("Selectdateofbirth");
+                      }
+                      return t("Selectdateofbirth");
+                    }}
                     isInvalid={showError && value === null}
                   />
             </div>
