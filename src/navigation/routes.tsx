@@ -59,7 +59,7 @@ const MainPage = lazy(() => import('@/pages/main/index'));
 const SignupPage = lazy(() => import('@/pages/signup/page'));
 const Setting = lazy(() => import('@/pages/setting/page'));
 const ChatPage = lazy(() => import('@/pages/chat/page'));
-const EditProfileStepper = lazy(() => import('@/pages/editProfileStepper/index'));
+import  EditProfileStepper from '@/pages/editProfileStepper/index';
 
 // Lazy load grouped components by extracting a specific key.
 const ProfileEdit = lazyGroup(importProfileGroup, 'EditProfile');
