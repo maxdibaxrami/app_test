@@ -16,13 +16,6 @@ function ErrorBoundaryError({ error }: { error: unknown }) {
     <Button onPress={()=> location.reload()} color="primary" variant="shadow">
       Refresh the app
     </Button>
-    <code>
-           {error instanceof Error
-             ? error.message
-             : typeof error === 'string'
-             ? error
-             : JSON.stringify(error)}
-         </code>
 </div>
   );
 }
