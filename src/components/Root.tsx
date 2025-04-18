@@ -8,7 +8,7 @@ import { Analytics } from "@vercel/analytics/react";
 import Lottie from "lottie-react";
 import animationData from "@/components/animate/error.json";
 
-function ErrorBoundaryError({ error }: { error: unknown }) {
+function ErrorBoundaryError() {
   return (
     <div className="h-screen gap-4 bg-white flex items-center justify-center flex-col">
     <Lottie animationData={animationData} loop={true} autoplay={true} />
