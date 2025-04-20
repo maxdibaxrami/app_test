@@ -24,6 +24,9 @@ import MobileApp from './wapper';
 import ActivityListener from './activityProvider';
 import { useTheme } from 'next-themes';
 
+// Blocked user page/component
+import BlockedUserPage from '@/pages/blockedUser';
+
 const GetStoredLanguage = async () => {
   try {
     const cloudStorage = (await import('@telegram-apps/sdk')).cloudStorage;
@@ -55,7 +58,6 @@ const initializeI18n = async () => {
 };
 
 export function App() {
-
   const lp = useLaunchParams();
   const isDark = useSignal(miniApp.isDark);
   const initDataState = useSignal(initData.state);
@@ -65,112 +67,101 @@ export function App() {
   const [hasFetchedDetails, setHasFetchedDetails] = useState(false);
   const { theme } = useTheme();
 
+  // Set WebApp colors
   useEffect(() => {
-    if (theme === "light") {
-      postEvent('web_app_set_bottom_bar_color', { color: "#FFFFFF" });
-      postEvent('web_app_set_background_color', { color: "#FFFFFF" });
-    } else {
-      postEvent('web_app_set_bottom_bar_color', { color: "#000000" });
-      postEvent('web_app_set_background_color', { color: "#000000" });
-    }
+    const bg = theme === 'light' ? '#FFFFFF' : '#000000';
+    postEvent('web_app_set_bottom_bar_color', { color: bg });
+    postEvent('web_app_set_background_color', { color: bg });
   }, [theme]);
 
+  // Initial user fetch
   useEffect(() => {
-    // Dispatch fetchUserData only once with the initial hash
     dispatch(fetchUserData(initDataState.user.id.toString()));
   }, [dispatch, initDataState.hash]);
 
+  // Secondary data fetches
   useEffect(() => {
-
-    // Once user data is loaded, dispatch the secondary fetches only once
-    if (data && data.profileStage !== "draft" && !hasFetchedDetails) {
+    if (data && data.profileStage !== 'draft' && !hasFetchedDetails) {
       setHasFetchedDetails(true);
-      console.log("feeeeeee")
-      const updatedFilters = {
-        ageRange: null,
-        city: null,
-        country: null,
-        languages: null,
-        genderFilter: data.gender === "male" ? "female" : "male",
-      };
-      // Dispatch filters to Redux store
+      const genderOpposite = data.gender === 'male' ? 'female' : 'male';
+      const updatedFilters = { ageRange: null, city: null, country: null, languages: null, genderFilter: genderOpposite };
       dispatch(setFilters(updatedFilters));
-
       const userId = data.id.toString();
-
       dispatch(fetchReferralData(userId));
       dispatch(fetchLikes(userId));
       dispatch(fetchMatches(userId));
       dispatch(fetchConversations(userId));
-      dispatch(fetchFilteredExplore({
-        userId: userId,  // Replace with actual user ID
-        page: 1,
-        limit: 10,
-      }));
-
-      dispatch(fetchNearBySliceUsers({
-        userId: data.id.toString(),
-        page: 1,
-        limit: 50,
-        genderFilter: updatedFilters.genderFilter,
-        ...updatedFilters, // Using updatedFilters directly
-      }));
+      dispatch(fetchFilteredExplore({ userId, page: 1, limit: 10 }));
+      dispatch(fetchNearBySliceUsers({ userId, page: 1, limit: 50, genderFilter: genderOpposite, ...updatedFilters }));
     }
-    
-  }, [data]);
+  }, [data, dispatch, hasFetchedDetails]);
 
+  // Clear on bad auth
   useEffect(() => {
-    if (error === "ERR_BAD_REQUEST") {
-      localStorage.clear();
-    }
+    if (error === 'ERR_BAD_REQUEST') localStorage.clear();
   }, [error]);
 
+  // I18n init
   useEffect(() => {
-    const loadI18n = async () => {
+    (async () => {
       await initializeI18n();
       const currentLang = i18next.language;
       document.documentElement.lang = currentLang;
       document.documentElement.dir = ['ar', 'fa'].includes(currentLang) ? 'rtl' : 'ltr';
       FontHandller();
-    };
-    loadI18n();
-    FontHandller();
-    setIsLoading(false);
-  }, [i18next]);
+      setIsLoading(false);
+    })();
+  }, []);
 
+  // show loading spinner while auth & i18n initializing
+  if (isLoading || loading) return <Loading />;
 
-  if (isLoading || loading) {
-    return <Loading />;
+  // early return for blocked users
+  if (data?.isBlocked) {
+    return (
+      <I18nextProvider i18n={i18next}>
+        <AppRoot appearance={isDark ? 'dark' : 'light'} platform={['macos', 'ios'].includes(lp.platform) ? 'ios' : 'base'}>
+          <HashRouter>
+            <Routes>
+              <Route path="/blocked-user" element={<BlockedUserPage />} />
+              <Route path="*" element={<Navigate to="/blocked-user" replace />} />
+            </Routes>
+          </HashRouter>
+        </AppRoot>
+      </I18nextProvider>
+    );
   }
 
+  // normal app routes
   return (
     <I18nextProvider i18n={i18next}>
       <Suspense fallback={<Loading />}>
         <ActivityListener />
-          <AppRoot appearance={isDark ? 'dark' : 'light'} platform={['macos', 'ios'].includes(lp.platform) ? 'ios' : 'base'}>
-            <HashRouter>
-                <Routes>
-                  {data && routes.filter(route => route.auth === (data.profileStage !== "draft")).map(route => (
-                    <Route
-                      key={route.path}
-                      path={route.path}
-                      element={
-                        <MobileApp>
-                          <route.Component />
-                        </MobileApp>
-                      }
-                    />
-                  ))}
+        <AppRoot appearance={isDark ? 'dark' : 'light'} platform={['macos', 'ios'].includes(lp.platform) ? 'ios' : 'base'}>
+          <HashRouter>
+            <Routes>
+              {/* app routes */}
+              {routes
+                .filter(route => route.auth === (data.profileStage !== 'draft'))
+                .map(route => (
                   <Route
-                    path="*"
-                    element={data && data.profileStage !== "draft" ? <Navigate to="/main?page=profile" replace /> : <Navigate to="/sign-up" replace />}
+                    key={route.path}
+                    path={route.path}
+                    element={<MobileApp><route.Component /></MobileApp>}
                   />
-                </Routes>
-                     
-            </HashRouter>
-          </AppRoot>
+                ))}
+              <Route
+                path="*"
+                element={
+                  data.profileStage !== 'draft'
+                    ? <Navigate to="/main?page=profile" replace />
+                    : <Navigate to="/sign-up" replace />
+                }
+              />
+            </Routes>
+          </HashRouter>
+        </AppRoot>
       </Suspense>
-
     </I18nextProvider>
   );
 }

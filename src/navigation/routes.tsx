@@ -1,6 +1,5 @@
 import { lazy } from 'react';
 import type { ComponentType, JSX } from 'react';
-
 // Helper: Accepts an importer returning a record of components and a key.
 // Returns a lazy-loaded component that wraps the chosen component.
 function lazyGroup<T extends Record<string, ComponentType<any>>>(

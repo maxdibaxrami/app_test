@@ -529,7 +529,11 @@
       "skip": "Skip",
 
       "title_profile_complete": "Complete Your Profile",
-      "description_profile_complete": "Fill in your profile to unlock this feature and get better matches!"
+      "description_profile_complete": "Fill in your profile to unlock this feature and get better matches!",
+
+      "block_user_title": "You Are Banned",
+      "block_user_text": "You have been banned for violating our privacy policy or engaging in inappropriate behavior."
+   
    
 
 

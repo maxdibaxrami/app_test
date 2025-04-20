@@ -55,6 +55,7 @@ export interface UserData {
   lastActive: string | null;
   verifiedAccount: boolean;
   photos: Photo[];
+  isBlocked:boolean;
   blockedUsers: shortuser[] | null;
   favoriteUsers: shortuser[] | null;
   age: number;

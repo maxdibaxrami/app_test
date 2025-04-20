@@ -92,13 +92,13 @@ const MainPage = () => {
               zIndex: 50,
               left: "50%",
               transform: "translateX(-50%)",
-              bottom: "130px"
+              bottom: "30px"
             }}
             className="fade-in"
           >
             <Button
               variant="shadow"
-              size="lg"
+              size="md"
               onPress={handleFilterClick}
               radius="lg"
               isIconOnly
@@ -106,7 +106,7 @@ const MainPage = () => {
               color="primary"
               className="bg-primary/80 backdrop-blur"
             >
-              <FitlerIcon />
+              <FitlerIcon className="size-5"/>
             </Button>
           </div>
         )}
