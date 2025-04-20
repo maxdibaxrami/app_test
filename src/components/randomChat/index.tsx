@@ -35,6 +35,9 @@ const RandomChat = ({socket}) => {
 
   const lp = useLaunchParams();
   
+  useEffect(()=>{
+    console.log(chatState)
+  },[chatState])
 
   const dispatch = useDispatch();
   const { t } = useTranslation();
@@ -51,6 +54,7 @@ const RandomChat = ({socket}) => {
   useEffect(()=>{
     setFilter(null)
   },[])
+
   // Fetch partner profile data
   const fetchProfileData = useCallback(async () => {
     try {
@@ -89,7 +93,14 @@ const RandomChat = ({socket}) => {
     };
 
     const onMessage = (data: { message: Message }) => {
-      dispatch(addMessage(data.message));
+      console.log(data)
+      const message: Message = {
+        senderId: chatState.partnerId,
+        recipientId: currentUserId,
+        content: data.message.toString(),
+        timestamp: new Date().toISOString(),
+      };
+      dispatch(addMessage(message));
     };
 
     const onChatCancelled = (data: { message: string }) => {
