@@ -9,6 +9,7 @@ import CompleteProfileAlertModal from '@/components/profile/completeProfileAlert
 import { Button } from '@heroui/button';
 import { FitlerIcon } from '@/Icons';
 import useChatSocket from '@/socket/useChatSocket';
+import Loading from '@/components/spinner/loading';
 
 // Lazy-load pages with prefetch hints for better perceived performance
 const ChatPage = lazy(() => import(/* webpackPrefetch: true */ '@/components/chat'));
@@ -19,7 +20,7 @@ const NearByPage = lazy(() => import(/* webpackPrefetch: true */ '@/pages/nearby
 const RandomChat = lazy(() => import(/* webpackPrefetch: true */ '@/components/randomChat'));
 const NearByFilter = lazy(() => import(/* webpackPrefetch: true */ '@/components/naerby/NearByFilter'));
 
-const fallbackUI = <div className="flex-1 flex items-center justify-center">Loading...</div>;
+const fallbackUI = <Loading/>;
 
 const MainPage = () => {
   const [searchParams] = useSearchParams();
