@@ -12,7 +12,6 @@ const NearByCard = ({ data }) => {
         as={Link}
         to={`/user?userId=${data.id}`}
         className="py-4 h-[100%] bg-neutral/10"
-        isPressable
         shadow="none"
         disableAnimation
       >
