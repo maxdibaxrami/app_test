@@ -32,9 +32,9 @@ const initialState: ConversationState = {
 // Thunk to fetch conversations for a given user
 export const fetchConversations = createAsyncThunk(
   'message/fetchConversations',
-  async (userId: string, { rejectWithValue }) => {
+  async ({}, { rejectWithValue }) => {
     try {
-      const response = await axios.get(`/messages/chat-list/${userId}`);
+      const response = await axios.get(`/messages/chat-list/`);
       return response.data as Conversation[]; // Explicitly type the response
     } catch (error: any) {
       return rejectWithValue(error.response?.data || 'Failed to fetch conversations');

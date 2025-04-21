@@ -73,7 +73,6 @@ export const fetchFilteredExplore = createAsyncThunk(
   'explore/fetchFilteredExplore',
   async (
     {
-      userId,
       ageRange,
       city,
       country,
@@ -81,7 +80,6 @@ export const fetchFilteredExplore = createAsyncThunk(
       page,
       limit,
     }: {
-      userId: string;
       ageRange?: string;
       city?: string;
       country?: string;
@@ -93,7 +91,7 @@ export const fetchFilteredExplore = createAsyncThunk(
   ) => {
     try {
       const queryParams = buildQueryParams({ ageRange, city, country, languages, page, limit });
-      const response = await axios.get(`/users/filter/${userId}?${queryParams}`);
+      const response = await axios.get(`/users/filter?${queryParams}`);
       return response.data as { users: User[]; total: number };
     } catch (error: any) {
       return rejectWithValue(error.response?.data || 'Failed to fetch filtered users');

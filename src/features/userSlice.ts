@@ -103,7 +103,7 @@ const initialState: UserState = {
 
 export const fetchUserDataId = createAsyncThunk(
   'user/fetchDataById',
-  async (userId: string) => {
+  async (userId:string) => {
     const response = await axios.get(`/users/${userId}`);
     return response.data as UserData;
   }
@@ -123,8 +123,8 @@ export const fetchUserData = createAsyncThunk(
 // Thunk to update user data
 export const updateUserData = createAsyncThunk(
   'user/updateData',
-  async ({ userId, updatedData }: { userId: string; updatedData: any }) => {
-    const response = await axios.patch(`/users/${userId}`, updatedData);
+  async ({ updatedData }: { updatedData: any }) => {
+    const response = await axios.patch(`/users/`, updatedData);
     console.log(response.data);
     return response.data as Partial<UserData>;
   }
@@ -141,7 +141,7 @@ export const updateUserProfileViews = createAsyncThunk(
 
 export const updateUserPhoto = createAsyncThunk(
   'user/updatePhoto',
-  async ({ userId, photoFile }: { userId: string; photoFile: any }, { rejectWithValue }) => {
+  async ({ userId ,photoFile }: { userId:string ,photoFile: any }, { rejectWithValue }) => {
     try {
       const formData = new FormData();
       formData.append('file', photoFile);
@@ -210,9 +210,9 @@ export const verifyUserPhoto = createAsyncThunk(
 // NEW: Thunk to activate premium subscription
 export const activatePremium = createAsyncThunk(
   'user/activatePremium',
-  async ({ userId, duration }: { userId: string; duration: '1month' | '3months' | '1year' }) => {
+  async ({ duration }: { duration: '1month' | '3months' | '1year' }) => {
     // Call the premium activation endpoint
-    const response = await axios.post('/users/premium/activate', { userId, duration });
+    const response = await axios.post('/users/premium/activate', { duration });
     return response.data as Partial<UserData>;
   }
 );

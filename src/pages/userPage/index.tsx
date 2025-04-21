@@ -30,7 +30,7 @@ import { useEffect, useMemo, useState } from "react";
 import { fetchUserDataId, updateUserData, updateUserProfileViews } from "@/features/userSlice";
 import { useSearchParams } from "react-router-dom";
 import { fetchMatches } from "@/features/matchSlice";
-import { fetchLikesAnotherUser, likeUser } from "@/features/likeSlice";
+import { likeUser } from "@/features/likeSlice";
 import MatchModal from "@/components/explore/matchModal";
 import { motion } from "framer-motion";
 import { incrementLikes, resetLikes, setLastReset } from "@/features/NearByLikeLimitation";
@@ -52,7 +52,7 @@ export default function ProfilePage() {
   const dispatch = useDispatch<AppDispatch>();
 
   const { data: user, updateUserData:updateUserDataLoading , userPageData : UserData , userPageLoading : LoadingUser } = useSelector((state: RootState) => state.user);
-  const { fetchLikeAntoherUser, requestLoading } = useSelector((state: RootState) => state.like);
+  const { data:likes, requestLoading } = useSelector((state: RootState) => state.like);
 
   const { data : matchs } = useSelector((state: RootState) => state.match);
 
@@ -99,11 +99,11 @@ export default function ProfilePage() {
   },[UserData, LoadingUser])
 
   const liked = useMemo(() => {
-    if (fetchLikeAntoherUser) {
-      return !!fetchLikeAntoherUser.some((like) => like.id === user.id);
+    if (likes) {
+      return !!likes.some((like) => like.id === user.id);
     }
     return false;
-  }, [fetchLikeAntoherUser, user.id]);
+  }, [likes, user.id]);
 
   const match = useMemo(() => {
     if (matchs && UserData) {
@@ -124,7 +124,6 @@ export default function ProfilePage() {
 
   useEffect(()=> {
     if(userId){
-      dispatch(fetchLikesAnotherUser(userId))
       dispatch(fetchUserDataId(userId))
     }
   } ,[userId])
@@ -174,7 +173,7 @@ export default function ProfilePage() {
 
     try {
       // Dispatch the action and unwrap the result
-      const resultAction = await dispatch(likeUser({ userId: user.id , likedUserId: parseInt(userId) }));
+      const resultAction = await dispatch(likeUser({ likedUserId: parseInt(userId) }));
       if(user.premium === false){
         dispatch(incrementLikes())
       }
@@ -183,7 +182,7 @@ export default function ProfilePage() {
       // @ts-ignore
       if (resultAction.payload.isMatch === true) {
         openModal()
-        dispatch(fetchMatches(user.id.toString()));
+        dispatch(fetchMatches());
       }
       
     } catch (error) {

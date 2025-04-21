@@ -64,7 +64,6 @@ export const fetchNearBySliceUsers = createAsyncThunk(
   'nearBy/fetchNearBySliceUsers',
   async (
     {
-      userId,
       ageRange,
       city,
       country,
@@ -76,7 +75,6 @@ export const fetchNearBySliceUsers = createAsyncThunk(
       limit,
       genderFilter, // Add gender filter here
     }: {
-      userId: string;
       ageRange?: string;
       city?: string;
       country?: string;
@@ -106,7 +104,7 @@ export const fetchNearBySliceUsers = createAsyncThunk(
       });
 
       // Make the API call to fetch the users with the filters and pagination
-      const response = await axios.get(`/users/explore/basic/${userId}?${queryParams}`);
+      const response = await axios.get(`/users/explore/basic?${queryParams}`);
       return response.data as { users: User[]; total: number }; // Return users and total count
     } catch (error: any) {
       return rejectWithValue(error.response?.data || 'Failed to fetch explore users');

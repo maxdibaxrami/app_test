@@ -1,7 +1,6 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import axios from '../api/base';
 
-// Define the shape of a like (user data structure)
 interface Like {
   id: number;
   telegramId: string;
@@ -37,63 +36,42 @@ interface Like {
   photos: any[];  // Photos array (you can define the structure as needed)
 }
 
-// Define the state for likes
 interface LikeState {
   data: Like[] | null;
   loading: boolean;
   requestLoading: boolean;
   error: string | null;
-  fetchLikeAntoherUser: Like[]| null,
-  fetchLikeAntoherUserLoading:boolean
 }
 
-// Initial state
 const initialState: LikeState = {
   data: null,
-  loading: true,
-  requestLoading:false,
+  loading: false,
+  requestLoading: false,
   error: null,
-  fetchLikeAntoherUser: null,
-  fetchLikeAntoherUserLoading : true,
 };
 
-// Thunk to fetch like data (user details)
+// Fetch all likes for the *authenticated* user
 export const fetchLikes = createAsyncThunk(
   'like/fetchLikes',
-  async (userId: string) => {
-    const response = await axios.get(`/like/${userId}/likes`);
-    return response.data as Like[]; // Explicitly type the response
+  async (_, { rejectWithValue }) => {
+    try {
+      const { data } = await axios.get<Like[]>('/like/likes');
+      return data;
+    } catch (err: any) {
+      return rejectWithValue(err.response?.data || 'Failed to fetch likes');
+    }
   }
 );
 
-export const fetchLikesAnotherUser = createAsyncThunk(
-  'like/fetchLikesAnotherUser',
-  async (userId: string) => {
-    const response = await axios.get(`/like/${userId}/likes`);
-    return response.data as Like[]; // Explicitly type the response
-  }
-);
-
+// Send a “like” to someone (JWT provides your own userId)
 export const likeUser = createAsyncThunk(
   'like/likeUser',
-  async ({ userId, likedUserId }: { userId: number; likedUserId: number }, { rejectWithValue }) => {
+  async (likedUserId: number, { rejectWithValue }) => {
     try {
-      // Making the POST request to like the user
-      const response = await axios.post(`/like`, { userId, likedUserId });
-      if(response.data.matchCreated){
-        return {
-          "likedUserId" : likedUserId,
-          "isMatch":true
-        };
-      }
-        return {
-          "likedUserId" : likedUserId,
-          "isMatch":false
-
-        };
-      
-    } catch (error: any) {
-      return rejectWithValue(error.response?.data || 'Failed to like user');
+      const { data } = await axios.post<{ matchCreated: boolean }>('/like', { likedUserId });
+      return { likedUserId, isMatch: data.matchCreated };
+    } catch (err: any) {
+      return rejectWithValue(err.response?.data || 'Failed to like user');
     }
   }
 );
@@ -101,13 +79,11 @@ export const likeUser = createAsyncThunk(
 const likeSlice = createSlice({
   name: 'like',
   initialState,
-  reducers: {
-
-  },
-  extraReducers: (builder) => {
+  reducers: {},
+  extraReducers: builder => {
     builder
-      // Existing cases for fetchLikes, fetchLikesAnotherUser, and likeUser...
-      .addCase(fetchLikes.pending, (state) => {
+      // —— fetchLikes —— //
+      .addCase(fetchLikes.pending, state => {
         state.loading = true;
         state.error = null;
       })
@@ -117,35 +93,26 @@ const likeSlice = createSlice({
       })
       .addCase(fetchLikes.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.error.message || 'Failed to fetch likes';
+        state.error = action.payload as string;
       })
-      .addCase(fetchLikesAnotherUser.pending, (state) => {
-        state.fetchLikeAntoherUserLoading = true;
-        state.error = null;
-      })
-      .addCase(fetchLikesAnotherUser.fulfilled, (state, action: PayloadAction<Like[]>) => {
-        state.fetchLikeAntoherUserLoading = false;
-        state.fetchLikeAntoherUser = action.payload;
-      })
-      .addCase(fetchLikesAnotherUser.rejected, (state, action) => {
-        state.fetchLikeAntoherUserLoading = false;
-        state.error = action.error.message || 'Failed to fetch likes';
-      })
-      .addCase(likeUser.pending, (state) => {
-        state.error = null;
+
+      // —— likeUser —— //
+      .addCase(likeUser.pending, state => {
         state.requestLoading = true;
+        state.error = null;
       })
       .addCase(likeUser.fulfilled, (state, action: PayloadAction<{ likedUserId: number; isMatch: boolean }>) => {
-        state.data = state.data?.filter(user => user.id !== action.payload.likedUserId) || null;
+        // remove them from “to‑like” list on success
+        if (state.data) {
+          state.data = state.data.filter(u => u.id !== action.payload.likedUserId);
+        }
         state.requestLoading = false;
       })
       .addCase(likeUser.rejected, (state, action) => {
-        state.error = action.payload as string || 'Failed to like user';
         state.requestLoading = false;
+        state.error = action.payload as string;
       });
   },
 });
-
-// Export the new action for use in your components
 
 export default likeSlice.reducer;

@@ -5,9 +5,9 @@ import axios from '../api/base';
 // Async thunk for handling the referral API request
 export const fetchReferralData = createAsyncThunk(
   'referral/fetchReferralData',
-  async (referralId: string, { rejectWithValue }) => {
+  async (_, { rejectWithValue }) => {
     try {
-      const response = await axios.get(`/users/referral/${referralId}/`);
+      const response = await axios.get(`/users/referral/`);
       return response.data;
     } catch (error) {
       return rejectWithValue(error.response ? error.response.data : error.message);
@@ -18,9 +18,9 @@ export const fetchReferralData = createAsyncThunk(
 
 export const fetchReferralUsersData = createAsyncThunk(
   'referral/fetchReferralUsersData',
-  async (referralId: string, { rejectWithValue }) => {
+  async (_, { rejectWithValue }) => {
     try {
-      const response = await axios.get(`/users/referred/${referralId}/`);
+      const response = await axios.get(`/users/referred/`);
       return response.data;
     } catch (error) {
       return rejectWithValue(error.response ? error.response.data : error.message);
@@ -31,9 +31,9 @@ export const fetchReferralUsersData = createAsyncThunk(
 // Async thunk for applying the referral reward (no need to store response)
 export const applyReferralReward = createAsyncThunk(
   'referral/applyReferralReward',
-  async (referralId: string, { rejectWithValue }) => {
+  async (_, { rejectWithValue }) => {
     try {
-      await axios.post(`/users/apply-referral-reward/${referralId}`);
+      await axios.post(`/users/apply-referral-reward/`);
     } catch (error) {
       return rejectWithValue(error.response ? error.response.data : error.message);
     }

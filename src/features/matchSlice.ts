@@ -62,9 +62,9 @@ const initialState: MatchState = {
 // Thunk to fetch matches (user matches)
 export const fetchMatches = createAsyncThunk(
   'match/fetchMatches',
-  async (userId: string, { rejectWithValue }) => {
+  async (_, { rejectWithValue }) => {
     try {
-      const response = await axios.get(`/matches/user/${userId}`);
+      const response = await axios.get(`/matches/user`);
       return response.data as Match[]; // Explicitly type the response
     } catch (error: any) {
       return rejectWithValue(error.response?.data || 'Failed to fetch matches');
