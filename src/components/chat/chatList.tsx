@@ -25,7 +25,6 @@ const ChatList = () => {
   const HandleAddToFavorite = async (value) => {
     const arrayOfIds = user.favoriteUsers.map(v=> v.id)
     await dispatch(updateUserData({
-      userId: user.id.toString(),
       updatedData: {
         favoriteUsers: Array.isArray(arrayOfIds) ? [...arrayOfIds, value] : [value]  // Ensure favoriteUsers is an array
       }
@@ -36,7 +35,6 @@ const ChatList = () => {
     const arrayOfIds = user.favoriteUsers.map(v=> v.id)
 
     await dispatch(updateUserData({
-      userId: user.id.toString(),
       updatedData: {
         favoriteUsers: Array.isArray(arrayOfIds)
           ? arrayOfIds.filter(favorite => favorite != value)  // Remove the user with the matching id
@@ -48,7 +46,6 @@ const ChatList = () => {
   const HandleBlockUser = async (value) => {
     const arrayOfIds = user.blockedUsers.map(v=> v.id)
     await dispatch(updateUserData({
-      userId: user.id.toString(),
       updatedData: {
         blockedUsers: Array.isArray(arrayOfIds) ? [...arrayOfIds, value] : [value]  // Ensure blockedUsers is an array
       }
@@ -106,7 +103,7 @@ const ChatList = () => {
   }, [data, user.favoriteUsers, selectedValue, user]);
   
   useEffect(()=>{
-      dispatch(fetchConversations(user.id.toString()));
+      dispatch(fetchConversations());
   },[])
 
   return (

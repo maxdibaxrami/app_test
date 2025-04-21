@@ -9,7 +9,6 @@ const ActivityListener = () => {
   const dispatch = useDispatch<AppDispatch>();
   let lastActivity = Date.now();
   const { activityScore } = useSelector((state: RootState) => state.activity);
-  const { data } = useSelector((state: RootState) => state.user);
 
   useEffect(() => {
     const handleActivity = () => {
@@ -32,7 +31,6 @@ const ActivityListener = () => {
     return () => {
       dispatch(
         updateUserData({
-          userId: data.id.toString(),
           updatedData: {
             activityScore: activityScore, // Adjust this logic as needed
           },

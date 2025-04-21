@@ -222,7 +222,7 @@ export default function EditProfilePageText() {
       };
 
       // Dispatch the update thunk (PATCH)
-      dispatch(updateUserData({ userId: user.id.toString(), updatedData }));
+      dispatch(updateUserData({ updatedData }));
     }
     navigate(-1)
   };

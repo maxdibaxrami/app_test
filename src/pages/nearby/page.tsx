@@ -24,7 +24,6 @@ export default function NearByPage() {
     if (!loading && !loadingMore && hasMore) {
       dispatch(
         fetchNearBySliceUsers({
-          userId: user.id.toString(),
           page: page,
           limit: 50,
           ...filters,

@@ -43,7 +43,6 @@ export const PermiumCard = ({ title, description, price, tonConnectUIInstance, i
       // Transaction success - update user state
       await dispatch(
         activatePremium({
-          userId: user.id.toString(),
           duration: Id
         })
       );

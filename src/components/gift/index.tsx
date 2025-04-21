@@ -37,7 +37,6 @@ export const SendGiftCard = ({user, userIds}) => {
         }));
 
         await dispatch(updateUserData({
-          userId: userIds.id.toString(),
           updatedData: {
             rewardPoints : userIds.rewardPoints - 10
           }

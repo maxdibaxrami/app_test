@@ -36,7 +36,6 @@ export const FlashMessageCard = ({user, userIds}) => {
         setLoading(true)
 
         await dispatch(updateUserData({
-          userId: userIds.id.toString(),
           updatedData: {
             rewardPoints : userIds.rewardPoints - 20
           }

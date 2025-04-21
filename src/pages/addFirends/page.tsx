@@ -25,7 +25,7 @@ export default function AddFirends() {
 
 
   useEffect(() => {
-    dispatch(fetchReferralUsersData(user.id.toString()));
+    dispatch(fetchReferralUsersData());
   }, []);
 
   const getPaddingForPlatform = () => {

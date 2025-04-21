@@ -277,7 +277,6 @@ export const TaskCard: React.FC<TaskCardProps> = ({
     try {
       await dispatch(
         updateUserData({
-          userId: user.id.toString(),
           updatedData: {
             rewardPoints: user.rewardPoints + parseInt(reward), // Adjust this logic as needed
           },

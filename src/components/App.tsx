@@ -86,13 +86,12 @@ export function App() {
       const genderOpposite = data.gender === 'male' ? 'female' : 'male';
       const updatedFilters = { ageRange: null, city: null, country: null, languages: null, genderFilter: genderOpposite };
       dispatch(setFilters(updatedFilters));
-      const userId = data.id.toString();
-      dispatch(fetchReferralData(userId));
-      dispatch(fetchLikes(userId));
-      dispatch(fetchMatches(userId));
-      dispatch(fetchConversations(userId));
-      dispatch(fetchFilteredExplore({ userId, page: 1, limit: 10 }));
-      dispatch(fetchNearBySliceUsers({ userId, page: 1, limit: 50, genderFilter: genderOpposite, ...updatedFilters }));
+      dispatch(fetchReferralData());
+      dispatch(fetchLikes());
+      dispatch(fetchMatches());
+      dispatch(fetchConversations());
+      dispatch(fetchFilteredExplore({  page: 1, limit: 10 }));
+      dispatch(fetchNearBySliceUsers({ page: 1, limit: 50, genderFilter: genderOpposite, ...updatedFilters }));
     }
   }, [data, dispatch, hasFetchedDetails]);
 

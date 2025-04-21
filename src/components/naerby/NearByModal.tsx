@@ -75,7 +75,7 @@ const NearByUserModal = forwardRef((props:any, ref) => {
 
     try {
       // Dispatch the action and unwrap the result
-      const resultAction = await dispatch(likeUser({ userId: props.userId , likedUserId: props.profile.id }));
+      const resultAction = await dispatch(likeUser({likedUserId: props.profile.id }));
       
       const newCount = likesCount + 1;
       setLikesCount(newCount);
@@ -84,7 +84,7 @@ const NearByUserModal = forwardRef((props:any, ref) => {
       // @ts-ignore
       if (resultAction.payload.isMatch === true) {
         props.openModal()
-        dispatch(fetchMatches(props.userId));
+        dispatch(fetchMatches());
         
       }
 

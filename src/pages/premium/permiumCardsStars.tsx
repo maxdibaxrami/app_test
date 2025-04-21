@@ -57,7 +57,6 @@ export const PermiumCardStars = ({ title, description, price, icon, Id }) => {
           // Payment successful – update the user's reward points.
           await dispatch(
             activatePremium({
-              userId: user.id.toString(),
               duration: Id
             })
           );

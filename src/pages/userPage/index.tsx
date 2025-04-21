@@ -143,7 +143,6 @@ export default function ProfilePage() {
     
       const arrayOfIds = user.favoriteUsers.map(v=> v.id)
       await dispatch(updateUserData({
-        userId: user.id.toString(),
         updatedData: {
           favoriteUsers: Array.isArray(arrayOfIds) ? [...arrayOfIds, value] : [value]  // Ensure favoriteUsers is an array
         }
@@ -155,7 +154,6 @@ export default function ProfilePage() {
       const arrayOfIds = user.favoriteUsers.map(v=> v.id)
 
       await dispatch(updateUserData({
-        userId: user.id.toString(),
         updatedData: {
           favoriteUsers: Array.isArray(arrayOfIds)
             ? arrayOfIds.filter(favorite => favorite != value)  // Remove the user with the matching id
@@ -172,8 +170,8 @@ export default function ProfilePage() {
     }  
 
     try {
-      // Dispatch the action and unwrap the result
-      const resultAction = await dispatch(likeUser({ likedUserId: parseInt(userId) }));
+      // @ts-ignore
+      const resultAction = await dispatch(likeUser({ likedUserId: userId }));
       if(user.premium === false){
         dispatch(incrementLikes())
       }

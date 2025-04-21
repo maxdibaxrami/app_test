@@ -45,7 +45,6 @@ const ExploreFilter = forwardRef((props,ref) => {{
   const onSetFilter = () => {
 
           dispatch(fetchFilteredExplore({
-            userId:data.id.toString(),
             ageRange: `${age[0]},${age[1]}`,
             city:locationValue==="city"? data.city : null,
             country:locationValue==="country"? data.country : null,

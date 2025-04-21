@@ -4,8 +4,8 @@ import { motion } from "framer-motion";
 import FinalStepAuth from "@/components/auth/finalStep";
 import { Page } from "@/components/Page";
 import { useLaunchParams } from "@telegram-apps/sdk-react";
-import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch, RootState } from '../../store';
+import { useDispatch } from 'react-redux';
+import { AppDispatch } from '../../store';
 import { updateUserData } from "@/features/userSlice";
 import { useTranslation } from "react-i18next";
 import SecondaryButton from "@/components/miniAppButtons/secondaryButton";
@@ -27,7 +27,6 @@ export default function EditProfileStepper() {
 
 
   const { t } = useTranslation();
-  const { data } = useSelector((state: RootState) => state.user);
   const navigate = useNavigate();
 
   const lp = useLaunchParams();
@@ -101,7 +100,6 @@ export default function EditProfileStepper() {
   
       // Dispatch the signup action
       await dispatch(updateUserData({
-        userId: data.id.toString(),
         updatedData: userData
       }));
   

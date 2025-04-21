@@ -64,7 +64,7 @@ const ExplorePage = () => {
       );
       //@ts-ignore
       if (resultAction.payload?.isMatch === true) {
-        dispatch(fetchMatches(user.id.toString()));
+        dispatch(fetchMatches());
         openModal();
       }
     } catch (error) {
@@ -93,7 +93,6 @@ const ExplorePage = () => {
     if (users && activeSlideIndex === users.length - 1) {
       dispatch(
         fetchFilteredExplore({
-          userId: user.id.toString(),
           ageRange: null,
           city: null,
           country: null,

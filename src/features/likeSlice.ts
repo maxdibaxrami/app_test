@@ -66,7 +66,7 @@ export const fetchLikes = createAsyncThunk(
 // Send a “like” to someone (JWT provides your own userId)
 export const likeUser = createAsyncThunk(
   'like/likeUser',
-  async (likedUserId: number, { rejectWithValue }) => {
+  async (likedUserId: any, { rejectWithValue }) => {
     try {
       const { data } = await axios.post<{ matchCreated: boolean }>('/like', { likedUserId });
       return { likedUserId, isMatch: data.matchCreated };

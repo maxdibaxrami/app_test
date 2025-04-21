@@ -41,7 +41,6 @@ export const EnergyCard = ({ title, description, price, energy, tonConnectUIInst
       // Transaction success - update user state
       await dispatch(
         updateUserData({
-          userId: user.id.toString(),
           updatedData: {
             rewardPoints: user.rewardPoints + energy,
           },

@@ -58,7 +58,7 @@ const EditProfile = forwardRef((props:any, ref)=> {
 
     if (Object.keys(updatedData).length > 0) {
       // Dispatch the update action only if there are changes
-      await dispatch(updateUserData({ userId: props.user.id, updatedData }));
+      await dispatch(updateUserData({ updatedData }));
     }
 
     onClose(); // Close the modal after saving

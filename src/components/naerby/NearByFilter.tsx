@@ -53,7 +53,6 @@ const ExploreFilter = forwardRef((props, ref) => {
     // Fetch users based on the updated filters
     dispatch(
       fetchNearBySliceUsers({
-        userId: data.id.toString(),
         ageRange: `${age[0]},${age[1]}`,
         city: locationValue === "city" ? data.city : null,
         country: locationValue === "country" ? data.country : null,

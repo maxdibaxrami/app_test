@@ -56,7 +56,6 @@ export const StarsCard = ({ title, description, price, energy, icon }) => {
           // Payment successful – update the user's reward points.
           await dispatch(
             updateUserData({
-              userId: user.id.toString(),
               updatedData: { rewardPoints: user.rewardPoints + energy },
             })
           );

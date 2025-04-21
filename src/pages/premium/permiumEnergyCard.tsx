@@ -25,7 +25,6 @@ export const PermiumCardEnergy = ({ title, description, price, icon, Id }) => {
     try {
 
       await dispatch(updateUserData({
-        userId: user.id.toString(),
         updatedData: {
           rewardPoints : user.rewardPoints - price
         }
@@ -34,7 +33,6 @@ export const PermiumCardEnergy = ({ title, description, price, icon, Id }) => {
       // Transaction success - update user state
       await dispatch(
         activatePremium({
-          userId: user.id.toString(),
           duration: Id
         })
       );

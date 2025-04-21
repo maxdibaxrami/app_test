@@ -1,12 +1,12 @@
-import { Button, HeroUIProvider } from "@heroui/react";
+import { HeroUIProvider } from "@heroui/react";
 import { ErrorBoundary } from '@/components/ErrorBoundary.tsx';
 import { ThemeProvider as NextThemesProvider } from "next-themes";
 import { App } from '@/components/App.tsx';
 import { ToastProvider } from "@heroui/toast";
 import { SpeedInsights } from "@vercel/speed-insights/react";
 import { Analytics } from "@vercel/analytics/react";
-import Lottie from "lottie-react";
-import animationData from "@/components/animate/error.json";
+//import Lottie from "lottie-react";
+//import animationData from "@/components/animate/error.json";
 
 function ErrorBoundaryError({ error }: { error: unknown }) {
   return (
