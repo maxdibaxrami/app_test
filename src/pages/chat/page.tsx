@@ -64,7 +64,7 @@ export default function ChatPage() {
 
   const fetchProfileData = async () => {
     try {
-      const response = await axios.get(`/users/${userId2}`);
+      const response = await axios.get(`/users/?userId=${userId2}`);
       return response.data;
     } catch (error) {
       console.error("Error fetching profile data:", error);
@@ -76,7 +76,7 @@ export default function ChatPage() {
   const fetchMessages = async () => {
     dispatch(setLoading(true));
     try {
-      const response = await axios.get(`/messages/user/${userId2}/${user.id}`);
+      const response = await axios.get(`/messages/chat/${userId2}/`);
       dispatch(setMessages(response.data));
       dispatch(setLoading(false));
     } catch (error) {

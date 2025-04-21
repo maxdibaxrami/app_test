@@ -104,7 +104,7 @@ const initialState: UserState = {
 export const fetchUserDataId = createAsyncThunk(
   'user/fetchDataById',
   async (userId:string) => {
-    const response = await axios.get(`/users/${userId}`);
+    const response = await axios.get(`/users/?userId=${userId}`);
     return response.data as UserData;
   }
 );
