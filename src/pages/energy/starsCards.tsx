@@ -32,7 +32,7 @@ export const StarsCard = ({ title, description, price, energy, icon }) => {
 
       // Call your backend endpoint to create an invoice.
       const response = await axios.post("/invoice/create-invoice", payload);
-      if (!response.data || !response.data.result) {
+      if (!response.data) {
         throw new Error("Invoice URL not received");
       }
 
@@ -41,6 +41,7 @@ export const StarsCard = ({ title, description, price, energy, icon }) => {
       // Check if invoice feature is supported:
       if (invoice.open.isAvailable()) {
         // Open the invoice in URL mode using the returned URL.
+        console.log(response.data)
         // The second parameter 'url' ensures that the SDK treats the passed value as a URL.
         const status = await invoice.open(response.data.invoice, "url");
         console.log(status)
