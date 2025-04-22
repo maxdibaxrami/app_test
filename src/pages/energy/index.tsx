@@ -167,7 +167,7 @@ const EnergyViewPage: React.FC = () => {
     {
       title: t("title_Starter_Energy"),
       description: t("description_Starter_Energy"),
-      price: 0.1,
+      price: 1.5,
       energy: 599,
       icon:"🌕"
     },
