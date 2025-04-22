@@ -33,7 +33,7 @@ export const PermiumCardStars = ({ title, description, price, icon, Id }) => {
 
       // Call your backend endpoint to create an invoice.
       const response = await axios.post("/invoice/create-invoice", payload);
-      if (!response.data || !response.data.result) {
+      if (!response.data) {
         throw new Error("Invoice URL not received");
       }
 
