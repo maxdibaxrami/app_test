@@ -94,7 +94,7 @@ const ChatList = () => {
   
       // If "Favorite" is selected, only show favorite users
       if (selectedValue === "Favorite") {
-        return user.favoriteUsers.map(v=> v.id).includes(targetUser);
+        return user.favoriteUsers.map(v => v.id).includes(targetUser);
       }
   
       // Otherwise, return all users except blocked ones

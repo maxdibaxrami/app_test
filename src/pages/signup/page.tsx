@@ -123,7 +123,7 @@ export default function SignupPage() {
   
       // Check if signup was successful, then fetch updated user data
       if (signupUser.fulfilled.match(result)) {
-        await dispatch(fetchUserData(initDataState.user.id.toString()));
+        await dispatch(fetchUserData(initDataState));
       }
     } catch (error) {
       console.error("Error during signup or image upload:", error);

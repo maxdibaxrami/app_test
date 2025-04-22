@@ -76,8 +76,8 @@ export function App() {
 
   // Initial user fetch
   useEffect(() => {
-    dispatch(fetchUserData(initDataState.user.id.toString()));
-  }, [dispatch, initDataState.hash]);
+    dispatch(fetchUserData(initDataState));
+  }, [dispatch, initDataState]);
 
   // Secondary data fetches
   useEffect(() => {

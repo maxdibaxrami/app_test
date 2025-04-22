@@ -112,8 +112,8 @@ export const fetchUserDataId = createAsyncThunk(
 // Thunk to fetch user data
 export const fetchUserData = createAsyncThunk(
   'user/fetchData',
-  async (userId: string) => {
-    const response = await axios.get(`/users/telegram/${userId}`);
+  async (initData: any) => {
+    const response = await axios.post(`/users/telegram`, { initData });
     const { access_token } = response.data;
     localStorage.setItem('access_token', access_token);
     return response.data.user as UserData;
