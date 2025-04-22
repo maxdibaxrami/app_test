@@ -111,7 +111,7 @@ const PremiumPage: React.FC = () => {
   const StarPaymentList = [ {
     title: t("1_month_premium"), // English: "1-Month Premium", Farsi: "پریمیوم یک ماهه", Arabic: "بريميوم لمدة شهر واحد", Russian: "Премиум на 1 месяц"
     description: t("save_10_percent"), // English: "1-month premium subscription", Farsi: "اشتراک یک ماهه پریمیوم", Arabic: "اشتراك بريميوم لمدة شهر واحد", Russian: "Подписка премиум на 1 месяц"
-    price: 2,  // example TON price
+    price: 0.1,  // example TON price
     duration: t("duration_1_month"), // English: "1 Month", Farsi: "یک ماه", Arabic: "شهر واحد", Russian: "1 месяц"
     icon: "⭐️",
     Id:"1month"
