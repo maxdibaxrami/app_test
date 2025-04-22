@@ -42,7 +42,7 @@ export const StarsCard = ({ title, description, price, energy, icon }) => {
       if (invoice.open.isAvailable()) {
         // Open the invoice in URL mode using the returned URL.
         // The second parameter 'url' ensures that the SDK treats the passed value as a URL.
-        const status = await invoice.open(response.data.result, "url");
+        const status = await invoice.open(response.data.invoice, "url");
         console.log(status)
         // After the promise resolves, invoice.isOpened() should be false.
         if (status === "cancelled" || status === "failed") {
