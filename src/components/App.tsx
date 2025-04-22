@@ -60,6 +60,7 @@ const initializeI18n = async () => {
 export function App() {
   const lp = useLaunchParams();
   const isDark = useSignal(miniApp.isDark);
+  const initDataState = useSignal(initData.state);
   const dispatch = useDispatch<AppDispatch>();
   const { data, loading, error } = useSelector((state: RootState) => state.user);
   const [isLoading, setIsLoading] = useState(true);
@@ -75,8 +76,8 @@ export function App() {
 
   // Initial user fetch
   useEffect(() => {
-    dispatch(fetchUserData(lp));
-  }, [dispatch, lp]);
+    dispatch(fetchUserData(lp.initDataRaw));
+  }, [dispatch, initDataState]);
 
   // Secondary data fetches
   useEffect(() => {
