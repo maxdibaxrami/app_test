@@ -60,7 +60,7 @@ const ExplorePage = () => {
         dispatch(incrementLikes());
       }
       const resultAction = await dispatch(
-        likeUser({ userId: user.id, likedUserId: users[activeSlideIndex].id })
+        likeUser(users[activeSlideIndex].id)
       );
       //@ts-ignore
       if (resultAction.payload?.isMatch === true) {

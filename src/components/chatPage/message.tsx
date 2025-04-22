@@ -2,7 +2,6 @@ import { motion } from "framer-motion";
 import { useTheme } from "next-themes";
 import "./style.css";
 import { BASEURL } from "@/constant";
-import { SeenIcon } from "@/Icons";
 import { useCallback, useRef, useEffect } from "react";
 import {Image} from "@heroui/react";
 
@@ -80,7 +79,7 @@ const MessageSection = ({ messages, user, disablePadding=false }) => {
                 <Image alt="conversation" className="chat-image" src={`${BASEURL}${msg.mediaUrl}`}/>
               )}
               <small className={`chat${messageType}--time flex items-center w-90 justify-between`}>
-                {formatTimestamp(msg.timestamp)} {msg.readAt && <SeenIcon className="size-4 mx-2" />}
+                {formatTimestamp(msg.timestamp)}
               </small>
             </div>
           </motion.div>

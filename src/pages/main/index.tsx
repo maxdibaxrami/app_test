@@ -15,7 +15,6 @@ import RandomChat from '@/components/randomChat';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/store';
 import useChatSocket from '@/socket/useChatSocket';
-import CompleteProfileAlertModal from '@/components/profile/completeProfileAlertModal';
 
 const MainPage = () => {
   
@@ -110,14 +109,7 @@ const MainPage = () => {
             </Button>
           </div>
         )}
-
-          <CompleteProfileAlertModal 
-            isOpen={
-              user.profileStage === "complete" &&
-              searchParams.get("page") !== "profile" &&
-              searchParams.get("page") !== "RandomChat"
-            }
-          />        
+    
           
           <NearByFilter ref={FilterRef} />
       </section>

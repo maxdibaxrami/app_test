@@ -75,6 +75,7 @@ export default function ChatPage() {
 
   const fetchMessages = async () => {
     dispatch(setLoading(true));
+    
     try {
       const response = await axios.get(`/messages/chat/${userId2}/`);
       dispatch(setMessages(response.data));
@@ -219,7 +220,7 @@ export default function ChatPage() {
               <p className="text-tiny text-center">{t("noMessages")}</p>
             </motion.div>
           }
-          <MessageSection user={user} messages={messages} /> {/* Pass messages to MessageSection */}
+          <MessageSection user={user} messages={!messageLoading? messages : []} /> {/* Pass messages to MessageSection */}
         </main>
         <ChatInput 
           inputMessage={inputMessage} 

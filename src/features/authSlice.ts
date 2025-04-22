@@ -12,7 +12,6 @@ interface AuthState {
 // Signup Request
 interface SignupPayload {
   userData: any;  // Replace 'any' with the actual type of userData if known
-  id: number;     // Adjust type as needed
 }
 
 // Define the type for the response
@@ -24,8 +23,8 @@ interface SignupResponse {
 
 export const signupUser = createAsyncThunk<SignupResponse, SignupPayload>(
   'auth/signup',
-  async ({ userData, id }) => {
-    const response = await axios.put(`/users/${id}`, userData);
+  async ({ userData }) => {
+    const response = await axios.put(`/users/`, userData);
     return response.data; // Assuming `response.data` is your signup data
   }
 );

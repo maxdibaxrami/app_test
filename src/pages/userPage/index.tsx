@@ -171,7 +171,7 @@ export default function ProfilePage() {
 
     try {
       // Dispatch the action and unwrap the result
-      const resultAction = await dispatch(likeUser({ likedUserId: userId }));
+      const resultAction = await dispatch(likeUser( userId ));
       if(user.premium === false){
         dispatch(incrementLikes())
       }

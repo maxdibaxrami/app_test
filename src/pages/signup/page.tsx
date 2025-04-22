@@ -1,5 +1,5 @@
 import "./style.css"
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import IntroPage from "@/components/auth/introPage";
 import ProfileDataAuth from "@/components/auth/ProfileDataAuth";
@@ -16,6 +16,8 @@ import SecondaryButton from "@/components/miniAppButtons/secondaryButton";
 import MainButton from "@/components/miniAppButtons/MainButton";
 import { SparklesText } from "@/components/animate/sparkles";
 import CalendarPicker from "@/components/auth/SelectBirthDate";
+import LookingforList from "@/components/core/WhyIamHereAuthList";
+import SelectCity from "@/components/auth/CitySelector";
 
 
 export default function SignupPage() {
@@ -37,9 +39,9 @@ export default function SignupPage() {
 
   const [isSelectTelegramImage, setIsSelectTelegramImage] = useState(false)
 
-  //const [selectedCityKeys, setSelectedCityKeys] = useState(new Set([]));
+  const [selectedCityKeys, setSelectedCityKeys] = useState(new Set([]));
 
-  //const selectedValueCityList = useMemo(() => Array.from(selectedCityKeys).join(", "), [selectedCityKeys]);
+  const selectedValueCityList = useMemo(() => Array.from(selectedCityKeys).join(", "), [selectedCityKeys]);
 
 
   const [user, setUser] = useState({
@@ -48,7 +50,10 @@ export default function SignupPage() {
     firstName: initDataState.user.firstName,
     gender: null,
     bio: '',
+    city:null,
+    country:null,
     age: null,
+    lookingFor:'1',
     dateBirth: null,
     languages:[i18n.language],
     language:i18n.language,
@@ -119,11 +124,12 @@ export default function SignupPage() {
       };
   
       // Dispatch the signup action
-      const result = await dispatch(signupUser({ userData, id: data.id }));
+      const result = await dispatch(signupUser({ userData }));
   
       // Check if signup was successful, then fetch updated user data
       if (signupUser.fulfilled.match(result)) {
-        await dispatch(fetchUserData(initDataState));
+        await dispatch(fetchUserData(lp.initDataRaw));
+
       }
     } catch (error) {
       console.error("Error during signup or image upload:", error);
@@ -192,6 +198,32 @@ export default function SignupPage() {
               {selectedTab === 3 && (
                 <>
                   <div className="mb-1 mt-1 px-6 pt-8 pb-4 flex flex-col gap-2">
+                    <p className="text-base font-semibold text-center">{t("locationTitle")} 📍</p>
+                    <p className="text-xs text-center">{t("locationDescription")}</p>
+                  </div>
+                  <SelectCity selectedValueCityList={selectedValueCityList} setSelectedCityKeys={setSelectedCityKeys} selectedCityKeys={selectedCityKeys} showError={showError} user={user} setSlideAvailable={setSlideAvailable} setSlideUnAvailable={setSlideUnAvailable} />
+                </>
+              )}
+              
+              
+            </div>
+
+            <div className={selectedTab === 4 ? "fade-in" : ""}>
+              {selectedTab === 4 && (
+                <>
+                  <div className="mb-1 mt-1 px-6 pt-8 pb-4 flex flex-col gap-2">
+                    <p className="text-base font-semibold text-center">{t("whyTitle")} 🤔</p>
+                    <p className="text-xs text-center">{t("whyDescription")}</p>
+                  </div>
+                  <LookingforList showError={showError} user={user} setSlideAvailable={setSlideAvailable} setSlideUnAvailable={setSlideUnAvailable} />
+                </>
+              )}
+            </div>
+
+            <div className={selectedTab === 5 ? "fade-in" : ""}>
+              {selectedTab === 5 && (
+                <>
+                  <div className="mb-1 mt-1 px-6 pt-8 pb-4 flex flex-col gap-2">
                     <p className="text-base text-center font-semibold">{t("photoTitle")} 📸</p>
                     <p className="text-xs text-center">{t("photoDescription")}</p>
                   </div>
@@ -200,8 +232,8 @@ export default function SignupPage() {
               )}
             </div>
 
-            <div className={selectedTab === 4 ? "fade-in" : ""}>
-              {selectedTab === 4 && (
+            <div className={selectedTab === 6 ? "fade-in" : ""}>
+              {selectedTab === 6 && (
                 <>
                   <FinalStepAuth uploadImageLoading={uploadImageLoading} setSlideAvailable={setSlideAvailable} setSlideUnAvailable={setSlideUnAvailable} />
                 </>
@@ -218,11 +250,11 @@ export default function SignupPage() {
             backgroundColor="#1FB6A8"
             textColor="#FFFFFF"
             hasShineEffect={nextSlideAvalable}
-            isEnabled={ selectedTab === 4 ? false : true} 
+            isEnabled={ selectedTab === 6 ? false : true} 
             isLoaderVisible={false}
-            isVisible={selectedTab !== 4}
+            isVisible={selectedTab !== 6}
             onClick={()=>{
-              if(selectedTab === 3 ){
+              if(selectedTab === 5 ){
                 if(user.image1 !== null || isSelectTelegramImage){
                   NextPage()
                   handleSignup()
@@ -251,10 +283,10 @@ export default function SignupPage() {
             backgroundColor="#000000"
             textColor="#FFFFFF"
             hasShineEffect={false}
-            isEnabled={selectedTab === 4 ? false : true} 
+            isEnabled={selectedTab === 6 ? false : true} 
             isLoaderVisible={false}
             isVisible={
-              !(selectedTab === 0 || selectedTab === 4)
+              !(selectedTab === 0 || selectedTab === 6)
             }
             position="left"
             onClick={prevPage}
