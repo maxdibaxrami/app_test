@@ -31,9 +31,7 @@ const ActivityListener = () => {
     return () => {
       dispatch(
         updateUserData({
-          updatedData: {
             activityScore: activityScore, // Adjust this logic as needed
-          },
         })
       );
       window.removeEventListener("touchstart", handleActivity);

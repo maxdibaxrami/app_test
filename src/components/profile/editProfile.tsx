@@ -16,7 +16,6 @@ import LookingforList from "@/components/core/WhyIamHereAuthList";
 import { AppDispatch } from "@/store";
 import { useDispatch } from "react-redux";
 import { updateUserData } from "@/features/userSlice";
-import EducationListSelector from "../core/education";
 
 
 const EditProfile = forwardRef((props:any, ref)=> {
@@ -26,7 +25,6 @@ const EditProfile = forwardRef((props:any, ref)=> {
 
   // States to track editable fields
   const [whyIamHere, setWhyIamHere] = useState(props.user.profileData.lookingFor || ""); 
-  const [workAndEducation, setWorkAndEducation] = useState(props.user.profileData.education || "");
 
 
 
@@ -34,9 +32,7 @@ const EditProfile = forwardRef((props:any, ref)=> {
     setWhyIamHere(b)
   }
 
-  const HandleducationForList = (_,b) => {
-    setWorkAndEducation(b)
-  }
+
 
   // Update ref handlers for opening and closing modal
   useImperativeHandle(ref, () => ({
@@ -49,9 +45,6 @@ const EditProfile = forwardRef((props:any, ref)=> {
   const handleSaveData = async () => {
     const updatedData: any = {};
 
-    if (workAndEducation !== props.user.education) {
-      updatedData.education = workAndEducation;
-    }
     if (whyIamHere !== props.user.lookingFor) {
       updatedData.lookingFor = whyIamHere;
     }
@@ -74,10 +67,8 @@ const EditProfile = forwardRef((props:any, ref)=> {
             <div className="flex items-center gap-2">
 
               {props.selectedItem==="WhyIamhere" && <p className="text-md">🤔</p>}
-              {props.selectedItem==="Education" && <p className="text-md">👨‍🎓</p>}
               
               {props.selectedItem==="WhyIamhere" && t("WhyIamhere")}
-              {props.selectedItem==="Education" &&  t('Education') }
               
             </div>
 
@@ -87,7 +78,6 @@ const EditProfile = forwardRef((props:any, ref)=> {
               <form className="flex flex-col">
 
                 {props.selectedItem==="WhyIamhere" && <LookingforList user={props.user.profileData} setSlideAvailable={HandlelookingForList} setSlideUnAvailable={HandlelookingForList}/>}
-                {props.selectedItem==="Education" &&  <EducationListSelector setSlideUnAvailable={HandlelookingForList} setSlideAvailable={HandleducationForList} user={props.user.profileData}  /> }
               </form>
             </ScrollShadow>
 

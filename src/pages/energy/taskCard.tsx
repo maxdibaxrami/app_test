@@ -5,7 +5,7 @@ import { addToast, Chip } from "@heroui/react";
 import { useTranslation } from "react-i18next";
 import { AppDispatch, RootState } from "@/store";
 import { isUserSubscribed } from "@/helpers/checkUserJoinChannel";
-import { increaseReferralReward, updateUserData } from "@/features/userSlice";
+import { increaseReferralReward } from "@/features/userSlice";
 
 interface TaskCardProps {
   title: string;

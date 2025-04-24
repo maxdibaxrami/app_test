@@ -13,7 +13,7 @@ import { useTranslation } from "react-i18next";
 import { CheckIcon, FlashIcon, GiftIcon } from "@/Icons";
 import { AppDispatch } from "@/store";
 import { useDispatch } from "react-redux";
-import { decreaseReferralReward, updateUserData, updateUserProfileViews } from "@/features/userSlice";
+import { decreaseReferralReward, updateUserProfileViews } from "@/features/userSlice";
 import { GiftSendConfetti } from "../explore/buttonEffect";
 
 export const SendGiftCard = ({user, userIds}) => {

@@ -38,6 +38,7 @@ interface Like {
 
 interface LikeState {
   data: Like[] | null;
+  likedUsers: any;
   loading: boolean;
   requestLoading: boolean;
   error: string | null;
@@ -45,6 +46,7 @@ interface LikeState {
 
 const initialState: LikeState = {
   data: null,
+  likedUsers: null,
   loading: false,
   requestLoading: false,
   error: null,
@@ -76,6 +78,18 @@ export const likeUser = createAsyncThunk(
   }
 );
 
+export const fetchLiked = createAsyncThunk(
+  'like/fetchLikeds',
+  async (_, { rejectWithValue }) => {
+    try {
+      const { data } = await axios.get<Like[]>('/like/likesByThisUser');
+      return data;
+    } catch (err: any) {
+      return rejectWithValue(err.response?.data || 'Failed to fetch likes');
+    }
+  }
+);
+
 const likeSlice = createSlice({
   name: 'like',
   initialState,
@@ -95,6 +109,20 @@ const likeSlice = createSlice({
         state.loading = false;
         state.error = action.payload as string;
       })
+
+      //liked
+
+
+      .addCase(fetchLiked.pending, state => {
+        state.error = null;
+      })
+      .addCase(fetchLiked.fulfilled, (state, action: PayloadAction<Like[]>) => {
+        state.likedUsers = action.payload;
+      })
+      .addCase(fetchLiked.rejected, (state, action) => {
+        state.error = action.payload as string;
+      })
+
 
       // —— likeUser —— //
       .addCase(likeUser.pending, state => {

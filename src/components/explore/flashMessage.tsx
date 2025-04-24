@@ -13,7 +13,7 @@ import { useTranslation } from "react-i18next";
 import { ChatIcon, CheckIcon, FlashIcon } from "@/Icons";
 import { AppDispatch } from "@/store";
 import { useDispatch } from "react-redux";
-import { decreaseReferralReward, updateUserData } from "@/features/userSlice";
+import { decreaseReferralReward } from "@/features/userSlice";
 import { useNavigate } from "react-router-dom";
 
 export const FlashMessageCard = ({user, userIds}) => {

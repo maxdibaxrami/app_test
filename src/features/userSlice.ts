@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import axios from '../api/base';
 
-
+// --- Interfaces ---
 interface Photo {
   id: number;
   large?: string;
@@ -29,7 +29,7 @@ interface MoreAboutMe {
   pets: string | null;
 }
 
-interface shortuser {
+interface ShortUser {
   id: number;
   firstName?: string;
   age?: number;
@@ -51,29 +51,27 @@ export interface UserData {
   premium: boolean;
   activityScore: number | null;
   gender: string;
-  profileViews: shortuser[] | null;
+  profileViews: ShortUser[] | null;
   lastActive: string | null;
   verifiedAccount: boolean;
   photos: Photo[];
-  isBlocked:boolean;
-  blockedUsers: shortuser[] | null;
-  favoriteUsers: shortuser[] | null;
+  isBlocked: boolean;
+  blockedUsers: ShortUser[] | null;
+  favoriteUsers: ShortUser[] | null;
   age: number;
   languagePreferences: string[] | null;
   isDeleted: boolean;
   language: string;
   lat: string;
   lon: string;
-  profileViewsIds?: number[];
-  giftUsers?: number[] | shortuser[] | null;
   rewardPoints?: number;
   profileStage: string;
   question1?: string;
   question2?: string;
   instagram?: string;
+  giftUsers?: any;
 }
 
-// Define the user state
 interface UserState {
   data: UserData | null;
   loading: boolean;
@@ -87,333 +85,222 @@ interface UserState {
   verifiedAccountStatus: boolean;
 }
 
-// Initial state
 const initialState: UserState = {
   data: null,
   loading: false,
   updateUserData: false,
   uploadProfileLoading: false,
   uploadProfileError: null,
-  error: null,
   userPageData: null,
   userPageLoading: true,
+  error: null,
   verifiedAccountLoading: false,
   verifiedAccountStatus: false,
 };
 
-export const fetchUserDataId = createAsyncThunk(
+// --- Thunks ---
+export const fetchUserDataId = createAsyncThunk<UserData, string>(
   'user/fetchDataById',
-  async (userId:string) => {
-    const response = await axios.get(`/users/?userId=${userId}`);
-    return response.data as UserData;
+  async (userId) => {
+    const { data } = await axios.get(`/users/?userId=${userId}`);
+    return data as UserData;
   }
 );
 
-// Thunk to fetch user data
-export const fetchUserData = createAsyncThunk(
+export const fetchUserData = createAsyncThunk<UserData, any>(
   'user/fetchData',
-  async (initData: any) => {
+  async (initData) => {
     const response = await axios.post(`/users/telegram`, { initData });
-    const { access_token } = response.data;
-    localStorage.setItem('access_token', access_token);
+    localStorage.setItem('access_token', response.data.access_token);
     return response.data.user as UserData;
   }
 );
 
-// Thunk to update user data
-export const updateUserData = createAsyncThunk(
+export const updateUserData = createAsyncThunk<Partial<UserData>, any>(
   'user/updateData',
-  async ({ updatedData }: { updatedData: any }) => {
-    const response = await axios.patch(`/users/`, updatedData);
-    console.log(response.data);
-    return response.data as Partial<UserData>;
+  async (updatedData) => {
+    const { data } = await axios.patch(`/users/`, updatedData.updatedData);
+    return data as Partial<UserData>;
   }
 );
 
-export const updateUserProfileViews = createAsyncThunk(
+export const updateUserProfileViews = createAsyncThunk<Partial<UserData>, { userId: string; updatedData: any }>(
   'user/updateUserProfileViews',
-  async ({ userId, updatedData }: { userId: string; updatedData: any }) => {
-    const response = await axios.patch(`/users/${userId}`, updatedData);
-    console.log(response.data);
-    return response.data as Partial<UserData>;
+  async ({ userId, updatedData }) => {
+    const { data } = await axios.patch(`/users/${userId}`, updatedData);
+    return data as Partial<UserData>;
   }
 );
 
-export const updateUserPhoto = createAsyncThunk(
+export const updateUserPhoto = createAsyncThunk<Photo, { userId: string; photoFile: any }, { rejectValue: string }>(
   'user/updatePhoto',
-  async ({ userId ,photoFile }: { userId:string ,photoFile: any }, { rejectWithValue }) => {
+  async ({ userId, photoFile }, { rejectWithValue }) => {
     try {
       const formData = new FormData();
       formData.append('file', photoFile);
-      const response = await axios.patch(`/photo/update-file/${userId}`, formData, {
+      const { data } = await axios.patch(`/photo/update-file/${userId}`, formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
         maxBodyLength: Infinity,
         maxContentLength: Infinity,
       });
-      return response.data as Photo;
-    } catch (error: any) {
-      return rejectWithValue(error.response.data || 'Failed to update photo');
+      return data as Photo;
+    } catch (err: any) {
+      return rejectWithValue(err.response?.data || 'Failed to update photo');
     }
   }
 );
 
-export const uploadProfileImage = createAsyncThunk(
+export const uploadProfileImage = createAsyncThunk<Photo, { userId: string; imageFile: any; order: number }>(
   'auth/uploadProfileImage',
-  async ({ userId, imageFile, order }: any) => {
-    let fileBlob;
+  async ({ userId, imageFile, order }) => {
+    let fileBlob: Blob;
     if (typeof imageFile === 'string') {
-      const imageResponse = await fetch(imageFile);
-      fileBlob = await imageResponse.blob();
+      const resp = await fetch(imageFile);
+      fileBlob = await resp.blob();
     } else {
       fileBlob = imageFile;
     }
     const formData = new FormData();
     formData.append('file', fileBlob, 'image.jpg');
     formData.append('userId', userId);
-    formData.append('order', order);
-    const response = await axios.post(`/photo/upload/`, formData, {
+    formData.append('order', order.toString());
+    const { data } = await axios.post(`/photo/upload/`, formData, {
       headers: { 'Content-Type': 'multipart/form-data' },
       maxBodyLength: Infinity,
       maxContentLength: Infinity,
     });
-    return response.data;
+    return data as Photo;
   }
 );
 
-
-export const fetchUserPhotoFromTelegram = createAsyncThunk(
-  'user/fetchDataUserTeegram',
-  async ({ userId, image }: { userId: string; image: string }) => {
-    const response = await axios.get(`/photo/fetch-image?imageUrl=${image}&userId=${userId}`);
-    return response.data as UserData;
+export const fetchUserPhotoFromTelegram = createAsyncThunk<UserData, { userId: string; image: string }>(
+  'user/fetchDataFromTelegram',
+  async ({ userId, image }) => {
+    const { data } = await axios.get(`/photo/fetch-image?imageUrl=${image}&userId=${userId}`);
+    return data as UserData;
   }
 );
 
-export const verifyUserPhoto = createAsyncThunk(
+export const verifyUserPhoto = createAsyncThunk<Partial<UserData>, { userId: string; photoFile: File }, { rejectValue: string }>(
   'user/verifyPhoto',
-  async ({ userId, photoFile }: { userId: string; photoFile: File }, { rejectWithValue }) => {
+  async ({ userId, photoFile }, { rejectWithValue }) => {
     try {
       const formData = new FormData();
       formData.append('userId', userId);
       formData.append('file', photoFile);
-      const response = await axios.post('/photo/verify', formData, {
+      const { data } = await axios.post('/photo/verify', formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
         maxBodyLength: Infinity,
       });
-      return response.data;
-    } catch (error: any) {
-      return rejectWithValue(error.response?.data);
+      return data as Partial<UserData>;
+    } catch (err: any) {
+      return rejectWithValue(err.response?.data || 'Failed to verify photo');
     }
   }
 );
 
-// NEW: Thunk to activate premium subscription
-export const activatePremium = createAsyncThunk(
+export const activatePremium = createAsyncThunk<Partial<UserData>, { duration: '1month' | '3months' | '1year' }>(
   'user/activatePremium',
-  async ({ duration }: { duration: '1month' | '3months' | '1year' }) => {
-    // Call the premium activation endpoint
-    const response = await axios.post('/users/premium/activate', { duration });
-    return response.data as Partial<UserData>;
+  async ({ duration }) => {
+    const { data } = await axios.post('/users/premium/activate', { duration });
+    return data as Partial<UserData>;
   }
 );
 
-
-export const increaseReferralReward = createAsyncThunk<
-  void,                // our endpoints return nothing
-  { amount: number },  // thunk argument
-  { rejectValue: string }
->(
+export const increaseReferralReward = createAsyncThunk<Partial<UserData>, { amount: number }, { rejectValue: string }>(
   'user/increaseReferralReward',
   async ({ amount }, { rejectWithValue }) => {
     try {
-      await axios.post('/users/increase-reward', { amount });
+      const { data } = await axios.post('/users/increase-reward', { amount });
+      return data as Partial<UserData>;
     } catch (err: any) {
       return rejectWithValue(err.response?.data || 'Failed to increase reward');
     }
   }
 );
 
-// NEW: decrease referral reward
-export const decreaseReferralReward = createAsyncThunk<
-  void,
-  { amount: number },
-  { rejectValue: string }
->(
+export const decreaseReferralReward = createAsyncThunk<Partial<UserData>, { amount: number }, { rejectValue: string }>(
   'user/decreaseReferralReward',
   async ({ amount }, { rejectWithValue }) => {
     try {
-      await axios.post('/users/decrease-reward', { amount });
+      const { data } = await axios.post('/users/decrease-reward', { amount });
+      return data as Partial<UserData>;
     } catch (err: any) {
       return rejectWithValue(err.response?.data || 'Failed to decrease reward');
     }
   }
 );
 
+// --- Slice ---
 const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder
-      // Fetch user data cases
-      .addCase(fetchUserData.pending, (state) => {
-        state.loading = true;
-        state.error = null;
-      })
-      .addCase(fetchUserData.fulfilled, (state, action: PayloadAction<UserData>) => {
-        state.loading = false;
-        state.data = action.payload;
-      })
-      .addCase(fetchUserData.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.error.message || 'Failed to fetch user data';
-        if (action.error.code === "ERR_BAD_REQUEST") {
-          state.data = null;
-        }
-      })
+      // --- fetch user ---
+      .addCase(fetchUserData.pending, (state) => { state.loading = true; state.error = null; })
+      .addCase(fetchUserData.fulfilled, (state, action: PayloadAction<UserData>) => { state.loading = false; state.data = action.payload; })
+      .addCase(fetchUserData.rejected, (state, action) => { state.loading = false; state.error = action.error.message || null; })
 
-      // Handle fetching user by ID
-      .addCase(fetchUserDataId.pending, (state) => {
-        state.userPageLoading = true;
-        state.error = null;
-      })
-      .addCase(fetchUserDataId.fulfilled, (state, action: PayloadAction<UserData>) => {
-        state.userPageLoading = false;
-        state.userPageData = action.payload;
-      })
-      .addCase(fetchUserDataId.rejected, (state, action) => {
-        state.userPageLoading = false;
-        state.error = action.error.message || 'Failed to fetch user data';
-      })
+      // --- fetch by ID ---
+      .addCase(fetchUserDataId.pending, (state) => { state.userPageLoading = true; state.error = null; })
+      .addCase(fetchUserDataId.fulfilled, (state, action: PayloadAction<UserData>) => { state.userPageLoading = false; state.userPageData = action.payload; })
+      .addCase(fetchUserDataId.rejected, (state, action) => { state.userPageLoading = false; state.error = action.error.message || null; })
 
-      // Handle user update cases
-      .addCase(updateUserData.pending, (state) => {
-        state.updateUserData = true;
-        state.error = null;
-      })
+      // --- update user ---
+      .addCase(updateUserData.pending, (state) => { state.updateUserData = true; state.error = null; })
       .addCase(updateUserData.fulfilled, (state, action: PayloadAction<Partial<UserData>>) => {
         state.updateUserData = false;
-        if (state.data) {
-          state.data = { ...state.data, ...action.payload };
-        } else {
-          state.data = action.payload as UserData;
-        }
+        if (state.data) state.data = { ...state.data, ...action.payload };
       })
-      .addCase(updateUserData.rejected, (state, action) => {
-        state.updateUserData = false;
-        state.error = action.error.message || 'Failed to update user data';
+      .addCase(updateUserData.rejected, (state, action) => { state.updateUserData = false; state.error = action.error.message || action.payload as string || null; })
+
+      // --- profile views update ---
+      .addCase(updateUserProfileViews.fulfilled, (state, action: PayloadAction<Partial<UserData>>) => {
+        if (state.data) state.data = { ...state.data, ...action.payload };
       })
 
-      // Handle update user photo cases
-      .addCase(updateUserPhoto.pending, (state) => {
-        state.uploadProfileLoading = true;
-        state.error = null;
-      })
+      // --- photo updates ---
+      .addCase(updateUserPhoto.pending, (state) => { state.uploadProfileLoading = true; state.error = null; })
       .addCase(updateUserPhoto.fulfilled, (state, action: PayloadAction<Photo>) => {
         state.uploadProfileLoading = false;
         if (state.data) {
-          const updatedPhotos = state.data.photos.map(photo =>
-            photo.id === action.payload.id ? action.payload : photo
-          );
-          state.data.photos = updatedPhotos;
+          state.data.photos = state.data.photos.map(p => p.id === action.payload.id ? action.payload : p);
         }
       })
-      .addCase(updateUserPhoto.rejected, (state) => {
-        state.uploadProfileLoading = false;
-        state.error = 'Failed to update photo';
-      })
+      .addCase(updateUserPhoto.rejected, (state, action) => { state.uploadProfileLoading = false; state.error = action.payload || 'Failed to update photo'; })
 
-      // Handle upload profile image cases
-      .addCase(uploadProfileImage.pending, (state) => {
-        state.uploadProfileLoading = true;
-        state.uploadProfileError = null;
-      })
+      .addCase(uploadProfileImage.pending, (state) => { state.uploadProfileLoading = true; state.uploadProfileError = null; })
       .addCase(uploadProfileImage.fulfilled, (state, action: PayloadAction<Photo>) => {
         state.uploadProfileLoading = false;
-        if (state.data) {
-          state.data.photos.push(action.payload);
-        }
+        if (state.data) state.data.photos.push(action.payload);
       })
-      .addCase(uploadProfileImage.rejected, (state) => {
-        state.uploadProfileLoading = false;
-        state.error = 'Failed to upload profile image';
-      })
+      .addCase(uploadProfileImage.rejected, (state, action) => { state.uploadProfileLoading = false; state.uploadProfileError = action.error.message || null; })
 
-      // Handle verify user photo cases
-      .addCase(verifyUserPhoto.pending, (state) => {
-        state.verifiedAccountLoading = true;
-        state.error = null;
-        state.verifiedAccountStatus = false;
-      })
-      .addCase(verifyUserPhoto.fulfilled, (state, action) => {
-        state.verifiedAccountLoading = false;
-        if (state.data) {
-          state.data.verifiedAccount = action.payload.verified || false;
-        }
-      })
-      .addCase(verifyUserPhoto.rejected, (state, action) => {
-        state.verifiedAccountLoading = false;
-        state.verifiedAccountStatus = true;
-        state.error = (action.payload as string) || 'Failed to verify photo';
-      })
+      .addCase(fetchUserPhotoFromTelegram.pending, (state) => { state.uploadProfileLoading = true; })
+      .addCase(fetchUserPhotoFromTelegram.fulfilled, (state) => { state.uploadProfileLoading = false; })
+      .addCase(fetchUserPhotoFromTelegram.rejected, (state) => { state.uploadProfileLoading = false; })
 
-      //////////////////
+      // --- verify photo ---
+      .addCase(verifyUserPhoto.pending, (state) => { state.verifiedAccountLoading = true; state.error = null; state.verifiedAccountStatus = false; })
+      .addCase(verifyUserPhoto.fulfilled, (state, action: PayloadAction<Partial<UserData>>) => { state.verifiedAccountLoading = false; if (state.data) state.data = { ...state.data, ...action.payload }; })
+      .addCase(verifyUserPhoto.rejected, (state, action) => { state.verifiedAccountLoading = false; state.verifiedAccountStatus = true; state.error = action.payload || action.error.message || null; })
 
-      .addCase(fetchUserPhotoFromTelegram.pending, (state) => {
-        state.uploadProfileLoading = true;
-      })
-      .addCase(fetchUserPhotoFromTelegram.fulfilled, (state) => {
-        state.uploadProfileLoading = false;
-      })
-      .addCase(fetchUserPhotoFromTelegram.rejected, (state) => {
-        state.uploadProfileLoading = false;
+      // --- premium ---
+      .addCase(activatePremium.pending, (state) => { state.error = null; })
+      .addCase(activatePremium.fulfilled, (state, action: PayloadAction<Partial<UserData>>) => { if (state.data) state.data = { ...state.data, ...action.payload }; })
+      .addCase(activatePremium.rejected, (state, action) => { state.error = action.error.message || null; })
 
-      })
+      // --- reward adjustments ---
+      .addCase(increaseReferralReward.pending, (state) => { state.updateUserData = true; state.error = null; })
+      .addCase(increaseReferralReward.fulfilled, (state, action: PayloadAction<Partial<UserData>>) => { state.updateUserData = false; if (state.data) state.data = { ...state.data, ...action.payload }; })
+      .addCase(increaseReferralReward.rejected, (state, action) => { state.updateUserData = false; state.error = action.payload || action.error.message || null; })
 
-
-      // Handle activate premium cases
-      .addCase(activatePremium.pending, (state) => {
-        // Optionally, you can set a loading flag for premium activation here
-        state.error = null;
-      })
-      .addCase(activatePremium.fulfilled, (state, action: PayloadAction<Partial<UserData>>) => {
-        // Update user data with premium info from the response
-        if (state.data) {
-          state.data = { ...state.data, ...action.payload };
-        }
-      })
-      .addCase(activatePremium.rejected, (state, action) => {
-        state.error = action.error.message || 'Failed to activate premium';
-      })
-
-      .addCase(increaseReferralReward.pending, (state) => {
-        state.loading = true;
-        state.error = null;
-      })
-      .addCase(increaseReferralReward.fulfilled, (state) => {
-        state.loading = false;
-        // optionally you could bump a local rewardPoints counter here, 
-        // or refetch user data if you want the latest from server
-      })
-      .addCase(increaseReferralReward.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.payload || action.error.message || 'Failed to increase referral reward';
-      })
-
-      // decrease-referral
-      .addCase(decreaseReferralReward.pending, (state) => {
-        state.loading = true;
-        state.error = null;
-      })
-      .addCase(decreaseReferralReward.fulfilled, (state) => {
-        state.loading = false;
-      })
-      .addCase(decreaseReferralReward.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.payload || action.error.message || 'Failed to decrease referral reward';
-      })
+      .addCase(decreaseReferralReward.pending, (state) => { state.updateUserData = true; state.error = null; })
+      .addCase(decreaseReferralReward.fulfilled, (state, action: PayloadAction<Partial<UserData>>) => { state.updateUserData = false; if (state.data) state.data = { ...state.data, ...action.payload }; })
+      .addCase(decreaseReferralReward.rejected, (state, action) => { state.updateUserData = false; state.error = action.payload || action.error.message || null; });
   }
-
 });
 
 export default userSlice.reducer;

@@ -52,7 +52,7 @@ export default function ProfilePage() {
   const dispatch = useDispatch<AppDispatch>();
 
   const { data: user, updateUserData:updateUserDataLoading , userPageData : UserData , userPageLoading : LoadingUser } = useSelector((state: RootState) => state.user);
-  const { data:likes, requestLoading } = useSelector((state: RootState) => state.like);
+  const { requestLoading, likedUsers } = useSelector((state: RootState) => state.like);
 
   const { data : matchs } = useSelector((state: RootState) => state.match);
 
@@ -78,9 +78,10 @@ export default function ProfilePage() {
   const openModal = () => setIsModalOpen(true);
 
   useEffect(()=>{
-
+      //@ts-ignore
     if (UserData && LoadingUser != true && UserData.id.toString() == userId && Array.isArray(UserData.profileViewsIds)) {
       const userId = user.id;
+      //@ts-ignore
       const arrayOfIds = UserData.profileViewsIds;
       // Check if the user's ID is not already in the profileViews array
       if (arrayOfIds.includes(userId)) {
@@ -99,12 +100,15 @@ export default function ProfilePage() {
   },[UserData, LoadingUser])
 
   const liked = useMemo(() => {
-    if (likes) {
-      return !!likes.some((like) => like.id === user.id);
+    if (likedUsers) {
+      return !!likedUsers.some((like) => like === parseInt(userId));
     }
     return false;
-  }, [likes, user.id]);
+  }, [likedUsers, userId]);
 
+  useEffect(()=> {
+    console.log(liked)
+  }, [liked] )
   const match = useMemo(() => {
     if (matchs && UserData) {
       return !!matchs.some((match) => match.likedUser.id === UserData.id || match.user.id === UserData.id);
@@ -143,9 +147,7 @@ export default function ProfilePage() {
     
       const arrayOfIds = user.favoriteUsers.map(v=> v.id)
       await dispatch(updateUserData({
-        updatedData: {
           favoriteUsers: Array.isArray(arrayOfIds) ? [...arrayOfIds, value] : [value]  // Ensure favoriteUsers is an array
-        }
       }));
 
     };
@@ -154,11 +156,9 @@ export default function ProfilePage() {
       const arrayOfIds = user.favoriteUsers.map(v=> v.id)
 
       await dispatch(updateUserData({
-        updatedData: {
           favoriteUsers: Array.isArray(arrayOfIds)
             ? arrayOfIds.filter(favorite => favorite != value)  // Remove the user with the matching id
             : []  // If favoriteUsers is not an array, set it to an empty array
-        }
       }));
     };
 

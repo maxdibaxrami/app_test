@@ -4,15 +4,14 @@ import { addToast, Button, Card, CardBody, Chip } from "@heroui/react";
 import { useTranslation } from "react-i18next";
 import { TON_WALLET } from "@/constant";
 import { MatchConfetti } from "@/components/explore/buttonEffect";
-import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "@/store";
-import { increaseReferralReward, updateUserData } from "@/features/userSlice";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "@/store";
+import { increaseReferralReward } from "@/features/userSlice";
 import { SparklesCustomIconText } from "@/components/animate/customSarkles";
 
 export const EnergyCard = ({ title, description, price, energy, tonConnectUIInstance, icon }) => {
   const { t } = useTranslation();
   const [txStatus, setTxStatus] = useState("idle"); // idle, pending, success, or error
-  const { data: user } = useSelector((state: RootState) => state.user);
 
   const dispatch: AppDispatch = useDispatch();
 

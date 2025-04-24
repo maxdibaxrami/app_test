@@ -58,7 +58,7 @@ const RandomChat = ({socket}) => {
   // Fetch partner profile data
   const fetchProfileData = useCallback(async () => {
     try {
-      const response = await axios.get(`/users/${chatState.partnerId}`);
+      const response = await axios.get(`/users/?userId=${chatState.partnerId}`);
       return response.data;
     } catch (error) {
       console.error("Error fetching profile data:", error);

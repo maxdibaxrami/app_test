@@ -109,7 +109,7 @@ export default function SignupPage() {
           uploadProfileImage({
             userId: data.id.toString(),
             imageFile: user.image1,
-            order: "1",
+            order: 1,
           })
         );
       }

@@ -14,7 +14,7 @@ import en from '../locales/en.json';
 import ru from '../locales/ru.json';
 import ar from '../locales/ar.json';
 import fa from '../locales/fa.json';
-import { fetchLikes } from '@/features/likeSlice';
+import { fetchLiked, fetchLikes } from '@/features/likeSlice';
 import { fetchMatches } from '@/features/matchSlice';
 import { fetchFilteredExplore } from '@/features/exploreSlice';
 import { fetchConversations } from '@/features/conversationsSlice';
@@ -89,6 +89,7 @@ export function App() {
       dispatch(fetchReferralData());
       dispatch(fetchLikes());
       dispatch(fetchMatches());
+      dispatch(fetchLiked());
       dispatch(fetchConversations());
       dispatch(fetchFilteredExplore({  page: 1, limit: 10 }));
       dispatch(fetchNearBySliceUsers({ page: 1, limit: 50, genderFilter: genderOpposite, ...updatedFilters }));

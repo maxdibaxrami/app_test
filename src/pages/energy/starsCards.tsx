@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import axios from '@/api/base';
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/store";
-import { increaseReferralReward, updateUserData } from "@/features/userSlice";
+import { increaseReferralReward } from "@/features/userSlice";
 import { MatchConfetti } from "@/components/explore/buttonEffect";
 import { SparklesCustomIconText } from "@/components/animate/customSarkles";
 import { invoice } from "@telegram-apps/sdk-react";
