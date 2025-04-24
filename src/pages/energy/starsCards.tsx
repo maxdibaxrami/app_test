@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import axios from '@/api/base';
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/store";
-import { updateUserData } from "@/features/userSlice";
+import { increaseReferralReward, updateUserData } from "@/features/userSlice";
 import { MatchConfetti } from "@/components/explore/buttonEffect";
 import { SparklesCustomIconText } from "@/components/animate/customSarkles";
 import { invoice } from "@telegram-apps/sdk-react";
@@ -55,11 +55,8 @@ export const StarsCard = ({ title, description, price, energy, icon }) => {
           setTxStatus("error");
         } else {
           // Payment successful – update the user's reward points.
-          await dispatch(
-            updateUserData({
-              updatedData: { rewardPoints: user.rewardPoints + energy },
-            })
-          );
+          await dispatch(increaseReferralReward({ amount:energy }))
+          
           addToast({
             title: t("payment_successful_text"),
             description: t("power_added_successfully_text"),

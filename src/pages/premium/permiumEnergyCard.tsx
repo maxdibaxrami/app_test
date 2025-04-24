@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import { MatchConfetti } from "@/components/explore/buttonEffect";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/store";
-import { activatePremium, updateUserData } from "@/features/userSlice";
+import { activatePremium, decreaseReferralReward, updateUserData } from "@/features/userSlice";
 import { SparklesCustomIconText } from "@/components/animate/customSarkles";
 import { resetLikes, setLastReset } from "@/features/likeLimitationSlice";
 import { resetLikes as limitationLike, setLastReset as resetLastreaset } from "@/features/likeLimitationSlice";
@@ -29,6 +29,7 @@ export const PermiumCardEnergy = ({ title, description, price, icon, Id }) => {
           rewardPoints : user.rewardPoints - price
         }
       }));
+      await dispatch(decreaseReferralReward({ amount:parseInt(price) }))
 
       // Transaction success - update user state
       await dispatch(

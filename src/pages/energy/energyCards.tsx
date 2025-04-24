@@ -6,7 +6,7 @@ import { TON_WALLET } from "@/constant";
 import { MatchConfetti } from "@/components/explore/buttonEffect";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/store";
-import { updateUserData } from "@/features/userSlice";
+import { increaseReferralReward, updateUserData } from "@/features/userSlice";
 import { SparklesCustomIconText } from "@/components/animate/customSarkles";
 
 export const EnergyCard = ({ title, description, price, energy, tonConnectUIInstance, icon }) => {
@@ -38,14 +38,7 @@ export const EnergyCard = ({ title, description, price, energy, tonConnectUIInst
       // Send the transaction through the TonConnect UI
       await tonConnectUIInstance.sendTransaction(transaction);
   
-      // Transaction success - update user state
-      await dispatch(
-        updateUserData({
-          updatedData: {
-            rewardPoints: user.rewardPoints + energy,
-          },
-        })
-      );
+      await dispatch(increaseReferralReward({ amount:energy }))
   
       addToast({
         title: t("payment_successful_text"),

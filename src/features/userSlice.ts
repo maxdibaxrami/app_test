@@ -217,6 +217,38 @@ export const activatePremium = createAsyncThunk(
   }
 );
 
+
+export const increaseReferralReward = createAsyncThunk<
+  void,                // our endpoints return nothing
+  { amount: number },  // thunk argument
+  { rejectValue: string }
+>(
+  'user/increaseReferralReward',
+  async ({ amount }, { rejectWithValue }) => {
+    try {
+      await axios.post('/users/increase-reward', { amount });
+    } catch (err: any) {
+      return rejectWithValue(err.response?.data || 'Failed to increase reward');
+    }
+  }
+);
+
+// NEW: decrease referral reward
+export const decreaseReferralReward = createAsyncThunk<
+  void,
+  { amount: number },
+  { rejectValue: string }
+>(
+  'user/decreaseReferralReward',
+  async ({ amount }, { rejectWithValue }) => {
+    try {
+      await axios.post('/users/decrease-reward', { amount });
+    } catch (err: any) {
+      return rejectWithValue(err.response?.data || 'Failed to decrease reward');
+    }
+  }
+);
+
 const userSlice = createSlice({
   name: 'user',
   initialState,
@@ -352,8 +384,36 @@ const userSlice = createSlice({
       })
       .addCase(activatePremium.rejected, (state, action) => {
         state.error = action.error.message || 'Failed to activate premium';
-      });
-  },
+      })
+
+      .addCase(increaseReferralReward.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(increaseReferralReward.fulfilled, (state) => {
+        state.loading = false;
+        // optionally you could bump a local rewardPoints counter here, 
+        // or refetch user data if you want the latest from server
+      })
+      .addCase(increaseReferralReward.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload || action.error.message || 'Failed to increase referral reward';
+      })
+
+      // decrease-referral
+      .addCase(decreaseReferralReward.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(decreaseReferralReward.fulfilled, (state) => {
+        state.loading = false;
+      })
+      .addCase(decreaseReferralReward.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload || action.error.message || 'Failed to decrease referral reward';
+      })
+  }
+
 });
 
 export default userSlice.reducer;

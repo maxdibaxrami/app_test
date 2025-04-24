@@ -5,7 +5,7 @@ import { addToast, Chip } from "@heroui/react";
 import { useTranslation } from "react-i18next";
 import { AppDispatch, RootState } from "@/store";
 import { isUserSubscribed } from "@/helpers/checkUserJoinChannel";
-import { updateUserData } from "@/features/userSlice";
+import { increaseReferralReward, updateUserData } from "@/features/userSlice";
 
 interface TaskCardProps {
   title: string;
@@ -275,13 +275,8 @@ export const TaskCard: React.FC<TaskCardProps> = ({
 
     // If all validations pass, update the user reward.
     try {
-      await dispatch(
-        updateUserData({
-          updatedData: {
-            rewardPoints: user.rewardPoints + parseInt(reward), // Adjust this logic as needed
-          },
-        })
-      );
+      await dispatch(increaseReferralReward({ amount:parseInt(reward) }))
+      
     } catch (error) {
       console.error("Error updating user data:", error);
       setLoading(false)

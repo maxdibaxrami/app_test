@@ -13,7 +13,7 @@ import { useTranslation } from "react-i18next";
 import { ChatIcon, CheckIcon, FlashIcon } from "@/Icons";
 import { AppDispatch } from "@/store";
 import { useDispatch } from "react-redux";
-import { updateUserData } from "@/features/userSlice";
+import { decreaseReferralReward, updateUserData } from "@/features/userSlice";
 import { useNavigate } from "react-router-dom";
 
 export const FlashMessageCard = ({user, userIds}) => {
@@ -34,13 +34,7 @@ export const FlashMessageCard = ({user, userIds}) => {
         }
 
         setLoading(true)
-
-        await dispatch(updateUserData({
-          updatedData: {
-            rewardPoints : userIds.rewardPoints - 20
-          }
-        }));
-
+        await dispatch(decreaseReferralReward({ amount:20 }))
         setLoading(false)
         setgifSended(true)
         setTimeout(()=>{
