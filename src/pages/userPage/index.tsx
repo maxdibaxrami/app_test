@@ -79,6 +79,7 @@ export default function ProfilePage() {
 
   useEffect(()=>{
       //@ts-ignore
+
     if (UserData && LoadingUser != true && UserData.id.toString() == userId && Array.isArray(UserData.profileViewsIds)) {
       const userId = user.id;
       //@ts-ignore
