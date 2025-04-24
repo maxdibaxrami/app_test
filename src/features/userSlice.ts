@@ -256,11 +256,6 @@ const userSlice = createSlice({
       })
       .addCase(updateUserData.rejected, (state, action) => { state.updateUserData = false; state.error = action.error.message || action.payload as string || null; })
 
-      // --- profile views update ---
-      .addCase(updateUserProfileViews.fulfilled, (state, action: PayloadAction<Partial<UserData>>) => {
-        if (state.data) state.data = { ...state.data, ...action.payload };
-      })
-
       // --- photo updates ---
       .addCase(updateUserPhoto.pending, (state) => { state.uploadProfileLoading = true; state.error = null; })
       .addCase(updateUserPhoto.fulfilled, (state, action: PayloadAction<Photo>) => {
