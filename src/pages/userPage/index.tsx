@@ -14,10 +14,8 @@ import {
   HeartIcon,
   EducationIcon,
   MoreIcon,
-  LockIcon,
   FavoriteColor,
   GiftIcon,
-  LikeIcon
 } from "@/Icons/index";
 
 import { Page } from '@/components/Page.tsx';
@@ -29,15 +27,11 @@ import { BASEURL, getDrinkStatus, gethobbies, getKidStatus, getlanguages, getPet
 import { useEffect, useMemo, useState } from "react";
 import { fetchUserDataId, updateUserData, updateUserProfileViews } from "@/features/userSlice";
 import { useSearchParams } from "react-router-dom";
-import { fetchMatches } from "@/features/matchSlice";
-import { likeUser } from "@/features/likeSlice";
 import MatchModal from "@/components/explore/matchModal";
 import { motion } from "framer-motion";
-import { incrementLikes, resetLikes, setLastReset } from "@/features/NearByLikeLimitation";
+import { resetLikes, setLastReset } from "@/features/NearByLikeLimitation";
 import { SendGiftCard } from "@/components/gift";
-import { SparklesHeartText } from "@/components/animate/hearSparkles";
 import { FlashMessageCard } from "@/components/explore/flashMessage";
-import { PopOverPerimum } from "@/components/perimum/popOver";
 
 import TopBarPages from "@/components/tobBar/index";
 import { ProfileBackgroundSvg } from "@/Icons/profileBackgroundSVG";
@@ -52,16 +46,13 @@ export default function ProfilePage() {
   const dispatch = useDispatch<AppDispatch>();
 
   const { data: user, updateUserData:updateUserDataLoading , userPageData : UserData , userPageLoading : LoadingUser } = useSelector((state: RootState) => state.user);
-  const { requestLoading, likedUsers } = useSelector((state: RootState) => state.like);
-
-  const { data : matchs } = useSelector((state: RootState) => state.match);
+  const { likedUsers } = useSelector((state: RootState) => state.like);
 
   const { likesCount, lastReset } = useSelector((state: RootState) => state.NearByLimitation);
 
   const userId = searchParams.get("userId")
 
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [likedUser, setLikedUser ] = useState(false);
   
   const [openReportModal, setOpenModalReport] = useState(false)
 
@@ -75,7 +66,6 @@ export default function ProfilePage() {
   const KidStatus = getKidStatus(t)
 
   const closeModal = () => setIsModalOpen(false);
-  const openModal = () => setIsModalOpen(true);
 
   useEffect(()=>{
       //@ts-ignore
@@ -110,12 +100,6 @@ export default function ProfilePage() {
   useEffect(()=> {
     console.log(liked)
   }, [liked] )
-  const match = useMemo(() => {
-    if (matchs && UserData) {
-      return !!matchs.some((match) => match.likedUser.id === UserData.id || match.user.id === UserData.id);
-    }
-    return false;
-  }, [matchs, UserData]);
 
 
   useEffect(() => {
@@ -164,30 +148,6 @@ export default function ProfilePage() {
     };
 
 
-  const handleLikeUser = async () => {
-    
-    if (likesCount >= maxLikes && searchParams.get('page') != "likes")  {
-      return;
-    }  
-
-    try {
-      // Dispatch the action and unwrap the result
-      const resultAction = await dispatch(likeUser( userId ));
-      if(user.premium === false){
-        dispatch(incrementLikes())
-      }
-      setLikedUser(true)
-
-      // @ts-ignore
-      if (resultAction.payload.isMatch === true) {
-        openModal()
-        dispatch(fetchMatches());
-      }
-      
-    } catch (error) {
-      console.error('Failed to like user:', error);
-    }
-  };
 
 
     const ProfileCard = ({ color, icon, text }) => {
@@ -765,30 +725,6 @@ export default function ProfilePage() {
         </Popover>
 
         </div>
-
-        <div
-          className="p-2 "
-          style={{ borderRadius: "50%", zIndex: 50 }}
-        >
-           {likesCount >= maxLikes ? (
-            <PopOverPerimum isOpen={true}>
-              <Button isDisabled={true} radius="full" style={{ width: "62px", height: "62px" }} size="lg" isIconOnly color="secondary" variant="shadow" className="flex items-center justify-center">
-                <LockIcon style={{ width: "2.5rem", height: "2.5rem" }} className="size-8" />
-              </Button>
-            </PopOverPerimum>
-          ) : (
-            <SparklesHeartText
-              text={
-                <Button isDisabled={likedUser || liked || match} isLoading={requestLoading} radius="lg" style={{ width: "72px", height: "72px" }} size="lg" isIconOnly onPress={handleLikeUser} color="secondary" variant="shadow" className="flex items-center justify-center">
-                  <LikeIcon className="size-9"/>
-                </Button>
-              }
-              colors={{ first: "#ff4b61", second: "#A8B2BD" }}
-              sparklesCount={5} 
-            />
-          )}
-        </div>
-
 
         <div
           className="p-2"
