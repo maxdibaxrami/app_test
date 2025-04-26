@@ -78,7 +78,7 @@ export const TaskCard: React.FC<TaskCardProps> = ({
     if (taskType === "COMPLETE_PROFILE") {
       if (!user.question1) {
         addToast({
-          title: t("error_text"),
+          title: t("title_profile_complete"),
           description: t("weekend_getaway_text"),
           color: "danger",
         });
@@ -87,7 +87,7 @@ export const TaskCard: React.FC<TaskCardProps> = ({
       }
       if (!user.instagram) {
         addToast({
-          title: t("error_text"),
+          title: t("title_profile_complete"),
           description: t("instagram_text"),
           color: "danger",
         });
@@ -97,7 +97,7 @@ export const TaskCard: React.FC<TaskCardProps> = ({
       }
       if (!user.interests || user.interests.length === 0) {
         addToast({
-          title: t("error_text"),
+          title: t("title_profile_complete"),
           description: t("Selectinterested"),
           color: "danger",
         });
@@ -107,7 +107,7 @@ export const TaskCard: React.FC<TaskCardProps> = ({
       }
       if (!user.photos || user.photos.length < 3) {
         addToast({
-          title: t("error_text"),
+          title: t("title_profile_complete"),
           description: t("insert_images_text"),
           color: "danger",
         });
@@ -117,7 +117,7 @@ export const TaskCard: React.FC<TaskCardProps> = ({
       }
       if (!user.profileData || user.profileData.bio.length < 3) {
         addToast({
-          title: t("error_text"),
+          title: t("title_profile_complete"),
           description: t("EnteryourBio"),
           color: "danger",
         });
@@ -127,7 +127,7 @@ export const TaskCard: React.FC<TaskCardProps> = ({
       }
       if (!user.profileData.education || user.profileData.education === "prefer_not_to_say") {
         addToast({
-          title: t("error_text"),
+          title: t("title_profile_complete"),
           description: t("EnteryourWorkandeducationstatus"),
           color: "danger",
         });
@@ -137,7 +137,7 @@ export const TaskCard: React.FC<TaskCardProps> = ({
       }
       if (!user.profileData.work || user.profileData.work === "prefer_not_to_say") {
         addToast({
-          title: t("error_text"),
+          title: t("title_profile_complete"),
           description: t("EnteryourWorkandeducationstatus"),
           color: "danger",
         });
@@ -148,7 +148,7 @@ export const TaskCard: React.FC<TaskCardProps> = ({
       if (user.moreAboutMe) {
         if (user.moreAboutMe.relationStatus === "4") {
           addToast({
-            title: t("error_text"),
+            title: t("title_profile_complete"),
             description: t("relationStatus"),
             color: "danger",
           });
@@ -158,7 +158,7 @@ export const TaskCard: React.FC<TaskCardProps> = ({
         }
         if (user.moreAboutMe.kids === "6") {
           addToast({
-            title: t("error_text"),
+            title: t("title_profile_complete"),
             description: t("kids"),
             color: "danger",
           });
@@ -168,7 +168,7 @@ export const TaskCard: React.FC<TaskCardProps> = ({
         }
         if (user.moreAboutMe.smoking === "5") {
           addToast({
-            title: t("error_text"),
+            title: t("title_profile_complete"),
             description: t("SmokingStatus"),
             color: "danger",
           });
@@ -178,7 +178,7 @@ export const TaskCard: React.FC<TaskCardProps> = ({
         }
         if (user.moreAboutMe.drink === "5") {
           addToast({
-            title: t("error_text"),
+            title: t("title_profile_complete"),
             description: t("DrinkStatus"),
             color: "danger",
           });
@@ -188,7 +188,7 @@ export const TaskCard: React.FC<TaskCardProps> = ({
         }
         if (user.moreAboutMe.pets === "5") {
           addToast({
-            title: t("error_text"),
+            title: t("title_profile_complete"),
             description: t("relationStatus"),
             color: "danger",
           });
@@ -198,7 +198,7 @@ export const TaskCard: React.FC<TaskCardProps> = ({
         }
         if (!user.moreAboutMe.height || user.moreAboutMe.height === 0) {
           addToast({
-            title: t("error_text"),
+            title: t("title_profile_complete"),
             description: t("Height"),
             color: "danger",
           });
