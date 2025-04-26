@@ -1,4 +1,4 @@
-import { Textarea } from "@heroui/react";
+import { Input } from "@heroui/react";
 import { useTranslation } from "react-i18next";
 
 const ChatInput = ({inputMessage, setInputMessage}) => {
@@ -11,12 +11,11 @@ const ChatInput = ({inputMessage, setInputMessage}) => {
       style={{ width: "100%"}}
     >
 
-      <Textarea
+      <Input
         className="w-full"
         value={inputMessage}
         onValueChange={setInputMessage}
         radius="none"
-        minRows={1}
         placeholder={t("enterMessage")}
         size="lg"
         variant="flat"
