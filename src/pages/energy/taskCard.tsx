@@ -6,6 +6,8 @@ import { useTranslation } from "react-i18next";
 import { AppDispatch, RootState } from "@/store";
 import { isUserSubscribed } from "@/helpers/checkUserJoinChannel";
 import { increaseReferralReward } from "@/features/userSlice";
+import { useNavigate } from "react-router-dom";
+import { openTelegramLink } from "@telegram-apps/sdk-react";
 
 interface TaskCardProps {
   title: string;
@@ -29,6 +31,7 @@ export const TaskCard: React.FC<TaskCardProps> = ({
   const { data: match } = useSelector((state: RootState) => state.match);
   const { likesCount } = useSelector((state: RootState) => state.likeLimit);
   const activityScore = useSelector((state: RootState) => state.activity.activityScore);
+  const navigate = useNavigate();
 
   const [loading, setLoading] = useState(false)
 
@@ -81,6 +84,13 @@ export const TaskCard: React.FC<TaskCardProps> = ({
           title: t("title_profile_complete"),
           description: t("weekend_getaway_text"),
           color: "danger",
+          timeout: 3000,
+          shouldShowTimeoutProgress: true,
+          endContent: (
+            <Button color="danger" onPress={()=> navigate("/edit-profile-field?page=quastion")} size="sm" variant="flat">
+              {t('open')}
+            </Button>
+          ),
         });
         setLoading(false)
         return;
@@ -90,6 +100,13 @@ export const TaskCard: React.FC<TaskCardProps> = ({
           title: t("title_profile_complete"),
           description: t("instagram_text"),
           color: "danger",
+          timeout: 3000,
+          shouldShowTimeoutProgress: true,
+          endContent: (
+            <Button color="danger" onPress={()=> navigate("/edit-profile-field?page=instagram")} size="sm" variant="flat">
+              {t('open')}
+            </Button>
+          ),
         });
         setLoading(false)
 
@@ -100,6 +117,13 @@ export const TaskCard: React.FC<TaskCardProps> = ({
           title: t("title_profile_complete"),
           description: t("Selectinterested"),
           color: "danger",
+          timeout: 3000,
+          shouldShowTimeoutProgress: true,
+          endContent: (
+            <Button color="danger" onPress={()=> navigate("/profile-edit")} size="sm" variant="flat">
+              {t('open')}
+            </Button>
+          ),
         });
         setLoading(false)
 
@@ -110,6 +134,13 @@ export const TaskCard: React.FC<TaskCardProps> = ({
           title: t("title_profile_complete"),
           description: t("insert_images_text"),
           color: "danger",
+          timeout: 3000,
+          shouldShowTimeoutProgress: true,
+          endContent: (
+            <Button color="danger" onPress={()=> navigate("/profile-edit")} size="sm" variant="flat">
+              {t('open')}
+            </Button>
+          ),
         });
         setLoading(false)
 
@@ -120,6 +151,13 @@ export const TaskCard: React.FC<TaskCardProps> = ({
           title: t("title_profile_complete"),
           description: t("EnteryourBio"),
           color: "danger",
+          timeout: 3000,
+          shouldShowTimeoutProgress: true,
+          endContent: (
+            <Button color="danger" onPress={()=> navigate("/profile-edit")} size="sm" variant="flat">
+              {t('open')}
+            </Button>
+          ),
         });
         setLoading(false)
 
@@ -130,6 +168,13 @@ export const TaskCard: React.FC<TaskCardProps> = ({
           title: t("title_profile_complete"),
           description: t("EnteryourWorkandeducationstatus"),
           color: "danger",
+          timeout: 3000,
+          shouldShowTimeoutProgress: true,
+          endContent: (
+            <Button color="danger" onPress={()=> navigate("/edit-profile-field?page=education")} size="sm" variant="flat">
+              {t('open')}
+            </Button>
+          ),
         });
         setLoading(false)
 
@@ -140,6 +185,13 @@ export const TaskCard: React.FC<TaskCardProps> = ({
           title: t("title_profile_complete"),
           description: t("EnteryourWorkandeducationstatus"),
           color: "danger",
+          timeout: 3000,
+          shouldShowTimeoutProgress: true,
+          endContent: (
+            <Button color="danger" onPress={()=> navigate("/edit-profile-field?page=work")} size="sm" variant="flat">
+              {t('open')}
+            </Button>
+          ),
         });
         setLoading(false)
 
@@ -151,6 +203,13 @@ export const TaskCard: React.FC<TaskCardProps> = ({
             title: t("title_profile_complete"),
             description: t("relationStatus"),
             color: "danger",
+            timeout: 3000,
+            shouldShowTimeoutProgress: true,
+            endContent: (
+              <Button color="danger" onPress={()=> navigate("/profile-edit")} size="sm" variant="flat">
+                {t('open')}
+              </Button>
+            ),
           });
           setLoading(false)
 
@@ -161,6 +220,13 @@ export const TaskCard: React.FC<TaskCardProps> = ({
             title: t("title_profile_complete"),
             description: t("kids"),
             color: "danger",
+            timeout: 3000,
+            shouldShowTimeoutProgress: true,
+            endContent: (
+              <Button color="danger" onPress={()=> navigate("/profile-edit")} size="sm" variant="flat">
+                {t('open')}
+              </Button>
+            ),
           });
           setLoading(false)
 
@@ -171,6 +237,13 @@ export const TaskCard: React.FC<TaskCardProps> = ({
             title: t("title_profile_complete"),
             description: t("SmokingStatus"),
             color: "danger",
+            timeout: 3000,
+            shouldShowTimeoutProgress: true,
+            endContent: (
+              <Button color="danger" onPress={()=> navigate("/profile-edit")} size="sm" variant="flat">
+                {t('open')}
+              </Button>
+            ),
           });
           setLoading(false)
 
@@ -181,6 +254,13 @@ export const TaskCard: React.FC<TaskCardProps> = ({
             title: t("title_profile_complete"),
             description: t("DrinkStatus"),
             color: "danger",
+            timeout: 3000,
+            shouldShowTimeoutProgress: true,
+            endContent: (
+              <Button color="danger" onPress={()=> navigate("/profile-edit")} size="sm" variant="flat">
+                {t('open')}
+              </Button>
+            ),
           });
           setLoading(false)
 
@@ -191,6 +271,13 @@ export const TaskCard: React.FC<TaskCardProps> = ({
             title: t("title_profile_complete"),
             description: t("relationStatus"),
             color: "danger",
+            timeout: 3000,
+            shouldShowTimeoutProgress: true,
+            endContent: (
+              <Button color="danger" onPress={()=> navigate("/profile-edit")} size="sm" variant="flat">
+                {t('open')}
+              </Button>
+            ),
           });
           setLoading(false)
 
@@ -201,6 +288,13 @@ export const TaskCard: React.FC<TaskCardProps> = ({
             title: t("title_profile_complete"),
             description: t("Height"),
             color: "danger",
+            timeout: 3000,
+            shouldShowTimeoutProgress: true,
+            endContent: (
+              <Button color="danger" onPress={()=> navigate("/profile-edit")} size="sm" variant="flat">
+                {t('open')}
+              </Button>
+            ),
           });
           setLoading(false)
 
@@ -210,9 +304,9 @@ export const TaskCard: React.FC<TaskCardProps> = ({
     } else if (taskType === "MATCH_USER") {
       if (!match || match.length <= 3) {
         addToast({
-          title: t("error_text"),
           description: t("description_match_Profile"),
           color: "danger",
+          
         });
         setLoading(false)
 
@@ -221,7 +315,6 @@ export const TaskCard: React.FC<TaskCardProps> = ({
     } else if (taskType === "LIKE_USER") {
       if (!likesCount || likesCount <= 10) {
         addToast({
-          title: t("error_text"),
           description: t("description_like_Profile"),
           color: "danger",
         });
@@ -235,9 +328,15 @@ export const TaskCard: React.FC<TaskCardProps> = ({
         const isSubscribed = await isUserSubscribed(url, userId);
         if (!isSubscribed) {
           addToast({
-            title: t("error_text"),
             description: t("description_channel_Profile"),
             color: "danger",
+            timeout: 3000,
+            shouldShowTimeoutProgress: true,
+            endContent: (
+              <Button color="danger" onPress={()=> openTelegramLink(url)} size="sm" variant="flat">
+                {t('open')}
+              </Button>
+            ),
           });
           return;
         }
@@ -250,7 +349,6 @@ export const TaskCard: React.FC<TaskCardProps> = ({
     } else if (taskType === "ACTIVITY_USER") {
       if (!activityScore || activityScore <= 80) {
         addToast({
-          title: t("error_text"),
           description: t("not_active_enough_text"),
           color: "danger",
         });
@@ -261,7 +359,6 @@ export const TaskCard: React.FC<TaskCardProps> = ({
     }else if(taskType === "VERIFY_ACCONT"){
       if(!user.verifiedAccount){
         addToast({
-          title: t("error_text"),
           description: t("account_not_verified_text"),
           color: "danger",
         });

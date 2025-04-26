@@ -44,7 +44,7 @@ const MainPage = () => {
   };
 
   return (
-    <Page back={searchParams.get('page') === "nearby"}>
+    <Page back={false}>
       {/* TopBar */}
         <TopBar />
       <section style={{ paddingTop: getPaddingForPlatform() }} className="flex flex-col items-center justify-center gap-4">
