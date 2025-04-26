@@ -18,6 +18,7 @@ const likeLimitationSlice = createSlice({
   reducers: {
     incrementLikes: (state) => {
       state.likesCount += 1;
+      console.log(state.likesCount.toString())
       localStorage.setItem('likesCount', state.likesCount.toString());
     },
     resetLikes: (state) => {
