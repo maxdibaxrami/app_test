@@ -306,6 +306,8 @@ export const TaskCard: React.FC<TaskCardProps> = ({
         addToast({
           description: t("description_match_Profile"),
           color: "danger",
+          timeout: 3000,
+          shouldShowTimeoutProgress: true,
           
         });
         setLoading(false)
@@ -317,6 +319,8 @@ export const TaskCard: React.FC<TaskCardProps> = ({
         addToast({
           description: t("description_like_Profile"),
           color: "danger",
+          timeout: 3000,
+          shouldShowTimeoutProgress: true,
         });
         setLoading(false)
         return;
@@ -351,6 +355,8 @@ export const TaskCard: React.FC<TaskCardProps> = ({
         addToast({
           description: t("not_active_enough_text"),
           color: "danger",
+          timeout: 3000,
+          shouldShowTimeoutProgress: true,
         });
         setLoading(false)
 
@@ -361,6 +367,8 @@ export const TaskCard: React.FC<TaskCardProps> = ({
         addToast({
           description: t("account_not_verified_text"),
           color: "danger",
+          timeout: 3000,
+          shouldShowTimeoutProgress: true,
         });
         setLoading(false)
 
@@ -387,6 +395,8 @@ export const TaskCard: React.FC<TaskCardProps> = ({
     addToast({
       title: t("success_text"),
       description: t("task_complete_text"),
+      timeout: 3000,
+      shouldShowTimeoutProgress: true,
       color: "success",
     });
 
