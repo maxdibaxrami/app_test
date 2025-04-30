@@ -154,7 +154,7 @@ export function App() {
                 path="*"
                 element={
                   data.profileStage !== 'draft'
-                    ? <Navigate to="/main?page=profile" replace />
+                    ? <Navigate to="/main?page=nearby" replace />
                     : <Navigate to="/sign-up" replace />
                 }
               />
