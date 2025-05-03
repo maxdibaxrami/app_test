@@ -13,11 +13,12 @@ const SwiperImages = ({ url }) => {
       }}
       src={`${BASEURL}${url}`}
       radius="lg"
+      shadow="none"
       loading="lazy"
       
       style={{
         objectFit: "cover",
-        height: "calc(100vh - 280px)", // Dynamic height based on status
+        height: "calc(100vh - 170px)", // Dynamic height based on status
         transition: "height 0.2s", // Smooth transition for height change
         transitionDelay: "0.5s"
       }}

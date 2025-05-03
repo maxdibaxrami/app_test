@@ -162,22 +162,41 @@ const ExplorePage = () => {
         ))}
       </Swiper>
 
-      <div style={{ bottom: "25px", zIndex: 50 }} className="fixed card p-2 w-full flex justify-center items-end">
-        <div className="p-2" style={{ borderRadius: "50%", zIndex: 50 }}>
-          <Popover backdrop="opaque" showArrow placement="bottom-start">
+      <div style={{ right: "12px", top:"30%", zIndex: 50 }} className="fixed card flex-col p-2 flex justify-center items-end">
+      <div className="p-2" style={{ borderRadius: "50%", zIndex: 50 }}>
+          <Popover backdrop="opaque" showArrow placement="bottom-end">
             <PopoverTrigger>
               <Button
                 isDisabled={likesCount >= maxLikes}
                 radius="lg"
-                style={{ width: "55px", height: "55px" }}
-                size="lg"
+                size="md"
+                isIconOnly
+                color="warning"
+                variant="shadow"
+              >
+                 <ChatIcon className="size-5 text-white"/>
+              </Button>
+            </PopoverTrigger>
+            <PopoverContent className="p-1 backdrop-blur bg-background/90 backdrop-saturate-150">
+              <FlashMessageCard userIds={user} user={users[activeSlideIndex]} />
+            </PopoverContent>
+          </Popover>
+        </div>
+
+        <div className="p-2" style={{ borderRadius: "50%", zIndex: 50 }}>
+          <Popover backdrop="opaque" showArrow placement="bottom-end">
+            <PopoverTrigger>
+              <Button
+                isDisabled={likesCount >= maxLikes}
+                radius="lg"
+                size="md"
                 isIconOnly
                 color="success"
                 variant="shadow"
                 
               >
                 
-                <GiftIcon className="size-7 text-white"/>
+                <GiftIcon className="size-5 text-white"/>
 
               </Button>
             </PopoverTrigger>
@@ -192,14 +211,13 @@ const ExplorePage = () => {
             isDisabled={likesCount >= maxLikes}
             onClick={handleNotLike}
             radius="lg"
-            style={{ width: "65px", height: "65px" }}
             size="lg"
             isIconOnly
             color="primary"
             variant="shadow"
             className="flex items-center justify-center"
           >
-            <CloseCircleIcon className="size-9"/>
+            <CloseCircleIcon className="size-7"/>
           </Button>
         </div>
 
@@ -209,30 +227,29 @@ const ExplorePage = () => {
               <Button
                 isDisabled
                 radius="lg"
-                style={{ width: "65px", height: "65px" }}
                 size="lg"
                 isIconOnly
                 color="secondary"
                 variant="shadow"
                 className="flex items-center justify-center"
               >
-                <LockIcon style={{ width: "2.5rem", height: "2.5rem" }} className="size-8" />
+                <LockIcon className="size-7" />
               </Button>
             </PopOverPerimum>
           ) : (
             <SparklesHeartText
               text={
                 <Button
-                  style={{ width: "65px", height: "65px" }}
                   radius="lg"
                   isLoading={requestLoading}
                   isIconOnly
+                  size="lg"
                   onPress={handleLikeUser}
                   color="secondary"
                   variant="shadow"
                   className="flex items-center justify-center"
                 >
-                  <LikeIcon className="size-9"/>
+                  <LikeIcon className="size-7"/>
                 </Button>
               }
               colors={{ first: "#ff4b61", second: "#A8B2BD" }}
@@ -241,26 +258,7 @@ const ExplorePage = () => {
           )}
         </div>
 
-        <div className="p-2" style={{ borderRadius: "50%", zIndex: 50 }}>
-          <Popover backdrop="opaque" showArrow placement="bottom-end">
-            <PopoverTrigger>
-              <Button
-                isDisabled={likesCount >= maxLikes}
-                radius="lg"
-                style={{ width: "55px", height: "55px" }}
-                size="lg"
-                isIconOnly
-                color="warning"
-                variant="shadow"
-              >
-                 <ChatIcon className="size-7 text-white"/>
-              </Button>
-            </PopoverTrigger>
-            <PopoverContent className="p-1 backdrop-blur bg-background/90 backdrop-saturate-150">
-              <FlashMessageCard userIds={user} user={users[activeSlideIndex]} />
-            </PopoverContent>
-          </Popover>
-        </div>
+
       </div>
 
       {users[activeSlideIndex - 1] && (

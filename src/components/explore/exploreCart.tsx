@@ -3,23 +3,24 @@ import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import './style.css';
 
-import { useState } from "react";
+import { useMemo } from "react";
 import { motion } from "framer-motion";
-import { Button, Card, CardFooter } from "@heroui/react";
+import { Card, CardFooter, Chip } from "@heroui/react";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperImages from './swiperImage';
 import { Pagination, Autoplay } from 'swiper/modules';
-import { ArowUpIcon, VerifyIconFill } from '@/Icons/index';
+import { HashtagIcon, HeartIconOutLine, HeightIcon, LanguageIcon, VerifyIconFill } from '@/Icons/index';
 import ExploreCartData from './exploreCartData';
-import React from 'react';
+import ParallaxText from '../animate/text-slider';
+import { gethobbies, getStaticData } from '@/constant';
+import { useTranslation } from 'react-i18next';
 
 
 const ExploreCard = (props) => {
-
-  const [openFooter, setOpenFooter] = useState(false);
+  const { t } = useTranslation();
     
-
-  const toggleFooter = () => setOpenFooter(!openFooter);
+  const hobbies = useMemo(() => gethobbies(t), [t,props.profile]);
+  const staticData = useMemo(() => getStaticData(t), [t,props.profile]);
  
 
   return (
@@ -36,13 +37,12 @@ const ExploreCard = (props) => {
         
       >
         <div className='py-2 pb-6' style={{ width: "calc(100% - 36px)" }}>
-          <Card radius="lg" isFooterBlurred className="w-full col-span-12 sm:col-span-7 border-0 shadow-0">
+          <Card shadow='none' radius="lg" className="w-full col-span-12 sm:col-span-7 border-0 shadow-0">
             <Swiper
               slidesPerView={1}
               spaceBetween={30}
               pagination={{ clickable: false }}
               navigation={false}
-              onClick={toggleFooter}
               modules={[Pagination, Autoplay]}
               className="mySwiper"
             >
@@ -60,16 +60,27 @@ const ExploreCard = (props) => {
                   }
                   
             </Swiper>
+            
 
-              {/* 
-            <div className="absolute" style={{ bottom: "125px", zIndex: 10 }}>
-              <ParallaxText baseVelocity={-1}>
+            <motion.div
+              animate={{ height: "auto" }}
+              transition={{ duration: 0.5, ease: "easeInOut" }}
+              style={{ overflow: "hidden" }}
+              className="absolute bottom-0 z-10 w-full"
+            >
+              <div className="relative h-full w-full">
+                <CardFooter
+                    style={{ height: "100%", maxHeight:"100%" , overflow:"hidden"}}
+                    className="items-start gap-1 px-0 border-0 flex-col py-2 bg-gradient-to-t from-black/100 via-black/50 to-transparent"
+                >
+
+              <ParallaxText  baseVelocity={-1}>
                 {Array.isArray(props.profile.interests) && props.profile.interests.length > 0?
                   props.profile.interests.map((value)=>{
                     return <Chip
                               variant="solid"
                               size="sm"
-                              className="mx-2 backdrop-blur bg-neutral/40 backdrop-saturate-150"
+                              className="mx-2 backdrop-blur bg-success/40 backdrop-saturate-150"
                               style={{ marginRight: "10px" }}
                               startContent={<HashtagIcon className="size-4  mx-1" />}
                             >
@@ -81,9 +92,7 @@ const ExploreCard = (props) => {
                 
               </ParallaxText>
 
-            </div>
 
-            <div className="absolute" style={{ bottom: "95px", zIndex: 10 }}>
               <ParallaxText baseVelocity={1}>
                 <Chip
                   variant="solid"
@@ -93,7 +102,7 @@ const ExploreCard = (props) => {
                   style={{ marginRight: "10px" }}
                   startContent={<HeartIconOutLine fill="#FFF" className="size-4  mx-1" />}
                 >
-                  {RealationStatus.find(RealationStatus => RealationStatus.key == props.profile.moreAboutMe.relationStatus).label}
+                  {staticData.RealationStatus.find(RealationStatus => RealationStatus.key == props.profile.moreAboutMe.relationStatus).label}
                 </Chip>
 
                 <Chip
@@ -108,7 +117,7 @@ const ExploreCard = (props) => {
                   {props.profile.moreAboutMe.height}
                 </Chip>
 
-                    {props.profile.moreAboutMe.languages.map((value)=> languages.find(languages => languages.key === value).label).map((value,index)=>{
+                    {props.profile.moreAboutMe.languages.map((value)=> staticData.languages.find(languages => languages.key === value).label).map((value,index)=>{
                           return <Chip
                           variant="solid"
                           color="primary"
@@ -123,24 +132,8 @@ const ExploreCard = (props) => {
                       })}
 
               </ParallaxText>
-            </div>
 
-            */}
-
-            <motion.div
-              initial={{ height: "93px" }}
-              animate={{ height: openFooter ? "100%" : "93px" }}
-              transition={{ duration: 0.5, ease: "easeInOut" }}
-              style={{ overflow: "hidden" }}
-              className="absolute bottom-0 z-10 w-full"
-            >
-              <div className="relative h-full w-full">
-                <CardFooter
-                    onClick={toggleFooter}
-                    style={openFooter? { height: "100%", maxHeight:"100%" , overflow:"scroll"}:{ height: "100%", maxHeight:"100%" , overflow:"hidden"}}
-                    className="items-start border-0 flex-col py-2 backdrop-blur bg-background/70 backdrop-saturate-150"
-                >
-                  <div style={{textAlign:"start"}} className="flex flex-grow w-full">
+                  <div style={{textAlign:"start"}} className="flex flex-grow w-full px-2">
                     <div className="flex flex-col w-full">
                       <div className="flex items-center justify-between w-full">
                         <div className="flex items-center">
@@ -150,22 +143,9 @@ const ExploreCard = (props) => {
                           {props.profile.verifiedAccount && <VerifyIconFill fill="#21b6a8" className="ml-2 size-6"/>}
                           
                         </div>
-                        <Button
-                          onPress={toggleFooter}
-                          size="sm"
-                          isIconOnly
-                          color="primary"
-                          radius="lg"
-                          variant="solid"
-                          aria-label="Toggle Footer"
-                          className='transition-all'
-                          style={openFooter? {transform: "rotate(180deg)"}:{transform: "rotate(0deg)"}}
-                        >
-                          <ArowUpIcon className="size-7" />
-                        </Button>
                       </div>
 
-                      <ExploreCartData openFooter={openFooter} profile={props.profile} />
+                      <ExploreCartData profile={props.profile} />
                     </div>
                   </div>
                 </CardFooter>
@@ -179,4 +159,4 @@ const ExploreCard = (props) => {
   );
 };
 
-export default React.memo(ExploreCard);
+export default ExploreCard;
