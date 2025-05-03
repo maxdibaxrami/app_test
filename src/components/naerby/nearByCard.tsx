@@ -8,7 +8,7 @@ const NearByCard = ({ data }) => {
     <Card className="col-span-12 sm:col-span-4 h-[100%]">
         <CardHeader className="absolute z-10 bottom-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent flex-col !items-start">
           <p className="text-tiny text-white/60 uppercase font-bold">{`${data.country}, ${data.city}`}</p>
-          <h4 className="font-bold flex items-center truncate gap-1 text-large">
+          <h4 className="font-bold text-white/90 flex items-center truncate gap-1 text-large">
           <span className="truncate">{`${data.firstName}`} </span>
           <span className="flex items-center">
             {data.verifiedAccount && <VerifyIconFill fill="#21b6a8" className="size-5"/>}
