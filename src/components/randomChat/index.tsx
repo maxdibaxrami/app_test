@@ -19,6 +19,7 @@ import {
   startWaiting, chatMatched, addMessage, cancelChat as cancelChatAction, resetChat 
 } from '@/features/chatSlice';
 import { useLaunchParams } from '@telegram-apps/sdk-react';
+import useChatSocket from '@/socket/useChatSocket';
 
 interface Message {
   senderId: string;
@@ -28,7 +29,7 @@ interface Message {
   timestamp: string;
 }
 
-const RandomChat = ({socket}) => {
+const RandomChat = () => {
 
   const { data: user } = useSelector((state: RootState) => state.user);
   const chatState = useSelector((state: RootState) => state.chat);
@@ -43,6 +44,7 @@ const RandomChat = ({socket}) => {
   const { t } = useTranslation();
   const { theme } = useTheme();
   const currentUserId = user.id.toString();
+  const socket = useChatSocket(currentUserId);
 
   // Local state for filters and input; socket is managed via custom hook.
   const [filter, setFilter] = useState<{ gender: string; city: string }>({ gender: '', city: '' });

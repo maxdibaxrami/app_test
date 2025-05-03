@@ -12,19 +12,13 @@ import { FitlerIcon } from '@/Icons';
 import NearByFilter from '@/components/naerby/NearByFilter';
 import { useRef } from 'react';
 import RandomChat from '@/components/randomChat';
-import { useSelector } from 'react-redux';
-import { RootState } from '@/store';
-import useChatSocket from '@/socket/useChatSocket';
+
 
 const MainPage = () => {
   
   const [searchParams] = useSearchParams();
   const lp = useLaunchParams();
   const FilterRef = useRef();
-  const { data: user } = useSelector((state: RootState) => state.user);
-
-  const currentUserId = user.id.toString();
-  const socket = useChatSocket(currentUserId);
 
   const getPaddingForPlatform = () => {
     if (['ios'].includes(lp.platform)) {
@@ -62,7 +56,7 @@ const MainPage = () => {
 
         {searchParams.get('page') === "RandomChat" && (
           <div className="fade-in" style={{ width: "100%" }}>
-            <RandomChat socket={socket}/>
+            <RandomChat/>
           </div>
         )}
 
