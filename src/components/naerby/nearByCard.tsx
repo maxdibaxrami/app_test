@@ -1,46 +1,30 @@
-import { Card, CardBody, CardHeader, Image } from "@heroui/react";
+import { Card, CardHeader, Image } from "@heroui/react";
 import { BASEURL } from "@/constant";
-import { Link } from "react-router-dom";
 import { VerifyIconFill, PerimumIcon } from "@/Icons";
-import { useState } from "react";
 
 const NearByCard = ({ data }) => {
-    const [isLoading, setIsLoading] = useState(true);
   
   return (
-    <Card
-        as={Link}
-        to={`/user?userId=${data.id}`}
-        className="py-4 h-[100%] bg-neutral/10"
-        shadow="none"
-        disableAnimation
-      >
-      <CardHeader className="pb-0 pt-0 px-4 flex-col items-start">
-        <small className="text-default-500 truncate">{`${data.country}, ${data.city}`}</small>
-        <h4 className="font-bold flex items-center truncate gap-1 text-large">
+    <Card className="col-span-12 sm:col-span-4 h-[100%]">
+        <CardHeader className="absolute z-10 bottom-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent flex-col !items-start">
+          <p className="text-tiny text-white/60 uppercase font-bold">{`${data.country}, ${data.city}`}</p>
+          <h4 className="font-bold flex items-center truncate gap-1 text-large">
           <span className="truncate">{`${data.firstName}`} </span>
           <span className="flex items-center">
             {data.verifiedAccount && <VerifyIconFill fill="#21b6a8" className="size-5"/>}
             {data.premium && <PerimumIcon className="size-5"/>}
           </span>
-        </h4>                                      
-      </CardHeader>
-      <CardBody className="overflow-visible py-2">
-          <Image
-            alt="Card background"
-            className="object-cover h-full w-full rounded-xl"
-            style={{ aspectRatio: "1/1" }}
-            classNames={{"wrapper":"aspackt-image-card"}}
-            isLoading={isLoading}
-            loading="lazy"
-            src={`${BASEURL}${data.photo}`}
-            onLoad={() => setIsLoading(false)}
-            onError={() => setIsLoading(false)}
-        
-          />
-      </CardBody>
-    </Card>
- 
+        </h4> 
+        </CardHeader>
+        <Image
+          removeWrapper
+          loading="lazy"
+          alt="Card background"
+          className="z-0 w-full h-full object-cover"
+          src={`${BASEURL}${data.photo}`}
+        />
+      </Card>
+
   );
 };
 

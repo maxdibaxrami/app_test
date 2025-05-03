@@ -1,6 +1,5 @@
 import 'swiper/css';
 import 'swiper/css/pagination';
-import 'swiper/css/navigation';
 import './style.css';
 
 import { useMemo } from "react";
@@ -14,7 +13,6 @@ import ExploreCartData from './exploreCartData';
 import ParallaxText from '../animate/text-slider';
 import { gethobbies, getStaticData } from '@/constant';
 import { useTranslation } from 'react-i18next';
-
 
 const ExploreCard = (props) => {
   const { t } = useTranslation();
