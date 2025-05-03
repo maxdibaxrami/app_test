@@ -7,7 +7,18 @@ export default {
     "./node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      keyframes: {
+        marquee: {
+          '0%':   { transform: 'translateX(0%)' },
+          '100%': { transform: 'translateX(-50%)' }, // adjust if you repeat more/fewer copies
+        },
+      },
+      animation: {
+        // --marquee-duration will be set inline for flexibility
+        marquee: 'marquee var(--marquee-duration) linear infinite',
+      },
+    },
   },
   darkMode: "class",
   plugins: [

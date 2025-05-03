@@ -197,7 +197,7 @@ const NearByUserModal = forwardRef((props:any, ref) => {
                         </Chip>
                     </div>
                     <div className="absolute" style={{ bottom: "135px", zIndex: 10, direction:"ltr" }}>
-                      <ParallaxText baseVelocity={2}>
+                      <ParallaxText duration={2}>
                         <Chip
                           variant="solid"
                           color="primary"

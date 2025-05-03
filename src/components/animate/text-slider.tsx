@@ -1,78 +1,38 @@
-import { useRef } from "react";
-import {
-  motion,
-  useScroll,
-  useSpring,
-  useTransform,
-  useMotionValue,
-  useVelocity,
-  useAnimationFrame,
-  wrap
-} from "framer-motion";
 import { useTranslation } from "react-i18next";
 
-interface ParallaxProps {
-  children: any;
-  baseVelocity: number;
+interface CSSMarqueeProps {
+  children: React.ReactNode;
+  duration?: number;   // seconds for one full loop
 }
 
-const ParallaxText = ({ children, baseVelocity = 100 }: ParallaxProps) => {
-    const { i18n } = useTranslation();
+export default function CSSMarquee({
+  children,
+  duration = 20,
+}: CSSMarqueeProps) {
+  const { i18n } = useTranslation();
+  const isRtl = ["ar", "fa"].includes(i18n.language);
 
-    const baseX = useMotionValue(0);
-    const { scrollY } = useScroll();
-    const scrollVelocity = useVelocity(scrollY);
-    const smoothVelocity = useSpring(scrollVelocity, {
-      damping: 50,
-      stiffness: 400
-    });
-    const velocityFactor = useTransform(smoothVelocity, [0, 1000], [0, 5], {
-      clamp: false
-    });
-  
-    /**
-     * This is a magic wrapping for the length of the text - you
-     * have to replace for wrapping that works for you or dynamically
-     * calculate
-     */
-    const x = i18n.language==="ar" || i18n.language==="fa"? useTransform(baseX, (v) => `${wrap(20, 45, v)}%`) : useTransform(baseX, (v) => `${wrap(-20, -45, v)}%`)
-  
-    const directionFactor = useRef<number>(1);
-    useAnimationFrame((_t, delta) => {
-      let moveBy = directionFactor.current * baseVelocity * (delta / 1000);
-  
-      /**
-       * This is what changes the direction of the scroll once we
-       * switch scrolling directions.
-       */
-      if (velocityFactor.get() < 0) {
-        directionFactor.current = -1;
-      } else if (velocityFactor.get() > 0) {
-        directionFactor.current = 1;
-      }
-  
-      moveBy += directionFactor.current * moveBy * velocityFactor.get();
-  
-      baseX.set(baseX.get() + moveBy);
-    });
-  
-    /**
-     * The number of times to repeat the child text should be dynamically calculated
-     * based on the size of the text and viewport. Likewise, the x motion value is
-     * currently wrapped between -20 and -45% - this 25% is derived from the fact
-     * we have four children (100% / 4). This would also want deriving from the
-     * dynamically generated number of children.
-     */
-    return (
-      <div className="parallax">
-        <motion.div className="scroller" style={{ x }}>
-          <span>{children} </span>
-          <span>{children} </span>
-          <span>{children} </span>
-          <span>{children} </span>
-        </motion.div>
+  // We’ll repeat the text 4× so that the loop is seamless.
+  const repeats = Array.from({ length: 4 }, (_, i) => <span key={i} className="inline-block">{children}</span>);
+
+  return (
+    <div
+      className={`
+        overflow-hidden whitespace-nowrap relative
+        ${isRtl ? "direction-rtl" : ""}
+      `}
+      style={{ "--marquee-duration": `${duration}s` } as React.CSSProperties}
+    >
+      <div
+        className="inline-block w-full animate-marquee will-change-transform"
+        // flip direction for RTL
+        style={isRtl 
+          ? { transform: "scaleX(-1)" } 
+          : undefined
+        }
+      >
+        {repeats}
       </div>
-    );
+    </div>
+  );
 }
-
-export default ParallaxText

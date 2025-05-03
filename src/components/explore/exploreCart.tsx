@@ -71,10 +71,10 @@ const ExploreCard = (props) => {
               <div className="relative h-full w-full">
                 <CardFooter
                     style={{ height: "100%", maxHeight:"100%" , overflow:"hidden"}}
-                    className="items-start gap-1 px-0 border-0 flex-col py-2 bg-gradient-to-t from-black/100 via-black/50 to-transparent"
+                    className="items-start gap-1 px-0 border-0 flex-col py-2 bg-gradient-to-t from-black/80 via-black/50 to-transparent"
                 >
 
-              <ParallaxText  baseVelocity={-1}>
+              <ParallaxText duration={30}>
                 {Array.isArray(props.profile.interests) && props.profile.interests.length > 0?
                   props.profile.interests.map((value)=>{
                     return <Chip
@@ -93,14 +93,13 @@ const ExploreCard = (props) => {
               </ParallaxText>
 
 
-              <ParallaxText baseVelocity={1}>
+              <ParallaxText duration={40}>
                 <Chip
                   variant="solid"
                   size="sm"
                   color="primary"
-                  className="mx-2 backdrop-blur bg-primary/60 backdrop-saturate-150"
-                  style={{ marginRight: "10px" }}
-                  startContent={<HeartIconOutLine fill="#FFF" className="size-4  mx-1" />}
+                  className="mx-1 backdrop-blur bg-primary/60 backdrop-saturate-150"
+                  startContent={<HeartIconOutLine fill="#FFF" className="size-4 mx-1" />}
                 >
                   {staticData.RealationStatus.find(RealationStatus => RealationStatus.key == props.profile.moreAboutMe.relationStatus).label}
                 </Chip>
@@ -109,10 +108,9 @@ const ExploreCard = (props) => {
                   variant="solid"
                   color="primary"
                   size="sm"
-                  style={{ marginRight: "10px" }}
-                  className="mx-2 backdrop-blur bg-primary/60 backdrop-saturate-150"
+                  className="mx-1 backdrop-blur bg-primary/60 backdrop-saturate-150"
 
-                  startContent={<HeightIcon fill="#FFF" className="size-4  mx-1" />}
+                  startContent={<HeightIcon fill="#FFF" className="size-4 mx-1" />}
                 >
                   {props.profile.moreAboutMe.height}
                 </Chip>
@@ -121,7 +119,7 @@ const ExploreCard = (props) => {
                           return <Chip
                           variant="solid"
                           color="primary"
-                          className="mx-2 backdrop-blur bg-primary/60 backdrop-saturate-150"
+                          className="mx-1 backdrop-blur bg-primary/60 backdrop-saturate-150"
                           key={index}
                           size="sm"
                           startContent={<LanguageIcon className="size-4  mx-1" />}
@@ -133,11 +131,11 @@ const ExploreCard = (props) => {
 
               </ParallaxText>
 
-                  <div style={{textAlign:"start"}} className="flex flex-grow w-full px-2">
+                  <div style={{textAlign:"start"}} className="flex flex-grow w-full px-3">
                     <div className="flex flex-col w-full">
                       <div className="flex items-center justify-between w-full">
                         <div className="flex items-center">
-                          <p className="text-foreground capitalize font-bold text-xl">
+                          <p className="text-white capitalize font-bold text-xl">
                             {props.profile.firstName}, {props.profile.age}
                           </p>
                           {props.profile.verifiedAccount && <VerifyIconFill fill="#21b6a8" className="ml-2 size-6"/>}

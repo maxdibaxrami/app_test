@@ -45,7 +45,7 @@ const ExploreCartData = ({ profile, openFooter }) => {
     {
       key: 4,
       color: "secondary",
-      icon: <p className="text-xl p-1">💼</p>,
+      icon: <p className="text-xl text-white p-1">💼</p>,
       label: t("work_text"),
       text: profile.profileData.work.replace("_"," "),
     },
@@ -83,8 +83,8 @@ const ExploreCartData = ({ profile, openFooter }) => {
           
         </div>
         <div className="flex flex-col">
-          <p className="text-small font-bold">{label}</p>
-          <p className="text-xs text-default-500">{text}</p>
+          <p className="text-small text-white font-bold">{label}</p>
+          <p className="text-xs text-white">{text}</p>
         </div>
       </motion.div>
     );
