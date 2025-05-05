@@ -5,7 +5,7 @@ import './style.css';
 import { useMemo } from "react";
 import { motion } from "framer-motion";
 import { Card, CardFooter, Chip } from "@heroui/react";
-import { Swiper, SwiperSlide } from 'swiper/react';
+import { Swiper, SwiperSlide, useSwiperSlide } from 'swiper/react';
 import SwiperImages from './swiperImage';
 import { Pagination, Autoplay } from 'swiper/modules';
 import { HashtagIcon, HeartIconOutLine, HeightIcon, LanguageIcon, VerifyIconFill } from '@/Icons/index';
@@ -19,7 +19,8 @@ const ExploreCard = (props) => {
     
   const hobbies = useMemo(() => gethobbies(t), [t,props.profile]);
   const staticData = useMemo(() => getStaticData(t), [t,props.profile]);
- 
+  const swiperSlide = useSwiperSlide();
+
 
   return (
     <>
@@ -72,7 +73,7 @@ const ExploreCard = (props) => {
                     className="items-start gap-1 px-0 border-0 flex-col py-2 bg-gradient-to-t from-black/80 via-black/50 to-transparent"
                 >
 
-              <ParallaxText duration={30}>
+              <ParallaxText duration={30} disableAnimation={!swiperSlide.isActive}>
                 {Array.isArray(props.profile.interests) && props.profile.interests.length > 0?
                   props.profile.interests.map((value)=>{
                     return <Chip
@@ -91,7 +92,7 @@ const ExploreCard = (props) => {
               </ParallaxText>
 
 
-              <ParallaxText duration={40}>
+              <ParallaxText duration={40} disableAnimation={!swiperSlide.isActive}>
                 <Chip
                   variant="solid"
                   size="sm"

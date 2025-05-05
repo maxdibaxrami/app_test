@@ -16,7 +16,6 @@ import { fetchFilteredExplore } from "@/features/exploreSlice";
 import { useTranslation } from "react-i18next";
 import { Popover, PopoverContent, PopoverTrigger, Spinner } from "@heroui/react";
 import { fetchMatches } from "@/features/matchSlice";
-import { SparklesHeartText } from "../animate/hearSparkles";
 import { incrementLikes, resetLikes, setLastReset } from "@/features/likeLimitationSlice";
 import { PopOverPerimum } from "../perimum/popOver";
 import { SendGiftCard } from "../gift";
@@ -184,29 +183,6 @@ const ExplorePage = () => {
         </div>
 
         <div className="p-2" style={{ borderRadius: "50%", zIndex: 50 }}>
-          <Popover backdrop="opaque" showArrow placement="bottom-end">
-            <PopoverTrigger>
-              <Button
-                isDisabled={likesCount >= maxLikes}
-                radius="lg"
-                size="md"
-                isIconOnly
-                color="success"
-                variant="shadow"
-                
-              >
-                
-                <GiftIcon className="size-5 text-white"/>
-
-              </Button>
-            </PopoverTrigger>
-            <PopoverContent className="p-1 backdrop-blur bg-background/90 backdrop-saturate-150">
-              <SendGiftCard userIds={user} user={users[activeSlideIndex]} />
-            </PopoverContent>
-          </Popover>
-        </div>
-
-        <div className="p-2" style={{ borderRadius: "50%", zIndex: 50 }}>
           <Button
             isDisabled={likesCount >= maxLikes}
             onClick={handleNotLike}
@@ -237,8 +213,6 @@ const ExplorePage = () => {
               </Button>
             </PopOverPerimum>
           ) : (
-            <SparklesHeartText
-              text={
                 <Button
                   radius="lg"
                   isLoading={requestLoading}
@@ -251,13 +225,31 @@ const ExplorePage = () => {
                 >
                   <LikeIcon className="size-7"/>
                 </Button>
-              }
-              colors={{ first: "#ff4b61", second: "#A8B2BD" }}
-              sparklesCount={5}
-            />
           )}
         </div>
 
+        <div className="p-2" style={{ borderRadius: "50%", zIndex: 50 }}>
+          <Popover backdrop="opaque" showArrow placement="bottom-end">
+            <PopoverTrigger>
+              <Button
+                isDisabled={likesCount >= maxLikes}
+                radius="lg"
+                size="md"
+                isIconOnly
+                color="success"
+                variant="shadow"
+                
+              >
+                
+                <GiftIcon className="size-5 text-white"/>
+
+              </Button>
+            </PopoverTrigger>
+            <PopoverContent className="p-1 backdrop-blur bg-background/90 backdrop-saturate-150">
+              <SendGiftCard userIds={user} user={users[activeSlideIndex]} />
+            </PopoverContent>
+          </Popover>
+        </div>
 
       </div>
 
