@@ -34,7 +34,7 @@ export const FlashMessageCard = ({user, userIds}) => {
         }
 
         setLoading(true)
-        await dispatch(decreaseReferralReward({ amount:20 }))
+        await dispatch(decreaseReferralReward({ amount:50 }))
         setLoading(false)
         setgifSended(true)
         setTimeout(()=>{
@@ -92,7 +92,7 @@ export const FlashMessageCard = ({user, userIds}) => {
                 : 
                 <div className="p-0.5 flex items-center">
                   <FlashIcon className="size-4" fill="#FFFFFF" />
-                  <p className="font-bold text-[#fff] text-tiny text-s">-20</p>
+                  <p className="font-bold text-[#fff] text-tiny text-s">-50</p>
                 </div>
               } 
               placement="bottom-left"
@@ -105,7 +105,7 @@ export const FlashMessageCard = ({user, userIds}) => {
                 style={{ width: "72px", height: "72px" }}
                 onPress={HandleSendMessage} 
                 isLoading={loading}
-                isDisabled={gifSended || userIds.rewardPoints < 20}
+                isDisabled={gifSended || userIds.rewardPoints < 50}
                 variant={"solid"}
                 
               >

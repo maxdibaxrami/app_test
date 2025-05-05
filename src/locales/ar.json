@@ -262,7 +262,7 @@
       "Youhavereachedyourdailylikelimitof5":"لقد وصلت إلى الحد اليومي للإعجابات وهو 5.",
       "Reachedlimit":"وصلت إلى الحد",
       "Tounlockallfeatures,youneedapremiumaccount.":"للوصول إلى جميع الميزات، يجب أن يكون لديك حساب مميز.",
-      "Inviteyourfriendsandgetapremiumaccount":"ادعُ أصدقاءك للحصول على 'TON' وستربح 50 طاقة لزيادة مستوى حسابك!",
+      "Inviteyourfriendsandgetapremiumaccount":"ادعُ أصدقاءك للحصول على 'Star' وستربح 50 طاقة لزيادة مستوى حسابك!",
       "Next":"التالي",
 
       "no_match_title": "لا توجد تطابقات بعد",
@@ -417,8 +417,8 @@
 
 
 
-  "claim_ton_text": "احصل على مكافأة TON الخاصة بك الآن!",
-  "activity_based_claim_text": "يتم حساب مكافأة TON بناءً على نشاط المستخدم ويمكن المطالبة بها كل شهر. فقط المستخدمين الذين لديهم نشاط مؤهلون للحصول على مكافأة TON.",
+  "claim_ton_text": "احصل على مكافأة Star الخاصة بك الآن!",
+  "activity_based_claim_text": "يتم حساب مكافأة Star بناءً على نشاط المستخدم ويمكن المطالبة بها كل شهر. فقط المستخدمين الذين لديهم نشاط مؤهلون للحصول على مكافأة Star.",
 
    "block_text": "حظر",
     "report_text": "إبلاغ",
@@ -449,7 +449,7 @@
 
   "account_not_verified_text": "الحساب غير مُحقق.",
   "how_much_earn_text": "كم تكسب؟",
-  "claim_reward_text": "تحتاج إلى 5 TON على الأقل للمطالبة بالمكافأة.",
+  "claim_reward_text": "تحتاج إلى 5 Star على الأقل للمطالبة بالمكافأة.",
 
   "connect_wallet_text": "اتصل بمحفظتك",
   "disconnect_wallet_text": "افصل محفظتك",

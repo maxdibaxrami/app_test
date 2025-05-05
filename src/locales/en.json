@@ -262,7 +262,7 @@
     "Youhavereachedyourdailylikelimitof5":"You have reached your daily like limit of 5.",
     "Reachedlimit":"Reached limit",
     "Tounlockallfeatures,youneedapremiumaccount.":"To unlock all features, you need a premium account.",
-    "Inviteyourfriendsandgetapremiumaccount":"Invite your friends to claim 'TON' and you'll earn 50 energy to level up your account!",
+    "Inviteyourfriendsandgetapremiumaccount":"Invite your friends to claim 'Star' and you'll earn 50 energy to level up your account!",
     "Next":"Next",
     "no_match_title": "No Matches Yet",
     "no_match_description": "Don’t worry! Get active, engage more, and soon you’ll find your perfect match. Keep exploring and connecting!",
@@ -319,7 +319,7 @@
     "energy":"Energy",
     "add_energy": "add energy",
 
-    "claim_reward_text": "You need at least 5 TON to claim the reward.",
+    "claim_reward_text": "You need at least 5 Star to claim the reward.",
 
 
 
@@ -422,8 +422,8 @@
     "description_supercharged_energy": "Unlock massive energy with 5000 for ultimate performance.",
     "referral_user_text": "The user you referred through your invitation.",
 
-    "claim_ton_text": "Claim your TON reward now!",
-  "activity_based_claim_text": "The TON reward is calculated based on user activity and is claimable every month. Only users with activity are eligible for the TON reward.",
+    "claim_ton_text": "Claim your Star reward now!",
+  "activity_based_claim_text": "The Star reward is calculated based on user activity and is claimable every month. Only users with activity are eligible for the Star reward.",
 
     "block_text": "Block",
     "report_text": "Report",

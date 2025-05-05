@@ -2,12 +2,12 @@ import TopBarPages from "@/components/tobBar/index";
 import { Page } from "@/components/Page";
 import { useLaunchParams, shareURL } from "@telegram-apps/sdk-react";
 import { motion } from "framer-motion";
-import { addToast, Button, Card, CardHeader,CircularProgress,Image, Listbox, ListboxItem, ListboxSection, Spinner } from "@heroui/react";
+import { Button, Card, CardHeader,CircularProgress, Listbox, ListboxItem, ListboxSection, Spinner } from "@heroui/react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/store";
 import { AddFirendsIcon } from "@/Icons";
 import { useTranslation } from "react-i18next";
-import { useEffect, useMemo } from "react";
+import { useEffect } from "react";
 import { fetchReferralUsersData } from "@/features/refralSlice";
 
 export default function AddFirends() {
@@ -19,9 +19,8 @@ export default function AddFirends() {
   const dispatch = useDispatch<AppDispatch>();
 
   const { data: referral, refraledUserData, loading, lrefraledUserDataoading } = useSelector((state: RootState) => state.referral);
-  const { data: user} = useSelector((state: RootState) => state.user);
 
-  const amoutPerUser = user.premium? 0.012 : 0.01 ;
+  const amoutPerUser = 50 ;
 
 
   useEffect(() => {
@@ -41,12 +40,6 @@ export default function AddFirends() {
     }
   };
 
-
-  const ActiveUsers = useMemo(() => {
-    if(refraledUserData !== null || refraledUserData.length !== 0){
-      return refraledUserData.filter(item => item.activityScore >= 80).length 
-    }
-  }, [refraledUserData]);
 
   return (
     <Page>
@@ -100,44 +93,14 @@ export default function AddFirends() {
                   <Card className="w-full mt-2">
                     <CardHeader className="justify-between">
                       <div className="flex gap-5">
-                        <Image
-                            alt="heroui logo"
-                            height={40}
-                            radius="sm"
-                            src="/assets/toncoin-ton-logo.png"
-                            width={40}
-                          />
+                  
                         <div className="flex flex-col gap-1 items-start justify-center">
                           <h4 className="text-small font-semibold leading-none text-default-600">{t("how_much_earn_text")}</h4>
-                          <h5 className="text-small tracking-tight text-default-400">{ActiveUsers * amoutPerUser} TON</h5>
-                          <p className="text-xs text-success/80">{`${amoutPerUser} TON ${t("per_active_user_text")}`}</p>
+                          <h5 className="text-small tracking-tight text-default-400">{refraledUserData && refraledUserData.length * amoutPerUser} Star</h5>
+                          <p className="text-xs text-success/80">{`${amoutPerUser} Star ${t("per_active_user_text")}`}</p>
 
                         </div>
                       </div>
-                      <Button
-                        color="primary"
-                        radius="full"
-                        size="sm"
-                        onPress={() => {
-                          if(ActiveUsers * amoutPerUser < 5 ){
-                            addToast({
-                              title: t("error_text"),
-                              description: t("claim_reward_text"),
-                              color: "danger",
-                            });
-                          } else{
-                            addToast({
-                                    title: "",
-                                    description: "feature are developing. that will add comming soon ...",
-                                    color: "danger",
-                                  });
-                          }
-                        }}
-                        variant={"solid"}
-                      >
-                         {t("claim")}
-                      </Button>
-
                     </CardHeader>
                   </Card>
                   <ListboxWrapper>

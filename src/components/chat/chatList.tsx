@@ -24,19 +24,19 @@ const ChatList = () => {
 
   const HandleAddToFavorite = async (value) => {
     const arrayOfIds = user.favoriteUsers.map(v=> v.id)
-    await dispatch(updateUserData({
+    await dispatch(updateUserData({updatedData:{
         favoriteUsers: Array.isArray(arrayOfIds) ? [...arrayOfIds, value] : [value]  // Ensure favoriteUsers is an array
-    }));
+    }}));
   };
 
   const HandleRemoveFromFavorite = async (value) => {
     const arrayOfIds = user.favoriteUsers.map(v=> v.id)
 
-    await dispatch(updateUserData({
+    await dispatch(updateUserData({updatedData:{
         favoriteUsers: Array.isArray(arrayOfIds)
           ? arrayOfIds.filter(favorite => favorite != value)  // Remove the user with the matching id
           : []  // If favoriteUsers is not an array, set it to an empty array
-    }));
+    }}));
   };
 
   const HandleBlockUser = async (value) => {

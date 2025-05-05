@@ -267,7 +267,7 @@
 
         "Reachedlimit":"به محدودیت رسیده‌اید",
         "Tounlockallfeatures,youneedapremiumaccount.":"برای دسترسی به تمام ویژگی‌ها، باید حساب کاربری ویژه داشته باشید.",
-        "Inviteyourfriendsandgetapremiumaccount":"دوستان خود را دعوت کنید تا 'TON' دریافت کنند و شما 50 انرژی کسب خواهید کرد تا سطح حساب خود را ارتقا دهید!",
+        "Inviteyourfriendsandgetapremiumaccount":"دوستان خود را دعوت کنید تا 'Star' دریافت کنند و شما 50 انرژی کسب خواهید کرد تا سطح حساب خود را ارتقا دهید!",
         "Next":"بعدی",
         "has_kids": "فرزند دارد",
         "no_kids": "فرزندی ندارد",
@@ -406,8 +406,8 @@
 
       "referral_user_text": "کاربری که از طریق دعوت‌نامه شما معرفی شده است.",
 
-      "claim_ton_text": "همین حالا جایزه TON خود را دریافت کنید!",
-      "activity_based_claim_text": "پاداش TON بر اساس فعالیت کاربران محاسبه می‌شود و هر ماه قابل دریافت است. تنها کاربرانی که فعالیت دارند، واجد شرایط دریافت پاداش TON هستند.",
+      "claim_ton_text": "همین حالا جایزه Star خود را دریافت کنید!",
+      "activity_based_claim_text": "پاداش Star بر اساس فعالیت کاربران محاسبه می‌شود و هر ماه قابل دریافت است. تنها کاربرانی که فعالیت دارند، واجد شرایط دریافت پاداش Star هستند.",
        "block_text": "مسدود کردن",
       "report_text": "گزارش دادن",
       "work_text": "کار",
@@ -439,14 +439,14 @@
 
   "account_not_verified_text": "حساب کاربری تایید نشده است.",
   "how_much_earn_text": "چقدر درآمد دارید؟",
-  "claim_reward_text": "شما به حداقل 5 TON برای دریافت جایزه نیاز دارید.",
+  "claim_reward_text": "شما به حداقل 5 Star برای دریافت جایزه نیاز دارید.",
 
   "connect_wallet_text": "کیف پول خود را متصل کنید",
   "disconnect_wallet_text": "کیف پول خود را قطع کنید",
   "payment_successful_text": "پرداخت با موفقیت انجام شد",
   "payment_failed_text": "پرداخت ناموفق بود",
   "power_added_successfully_text": "انرژی با موفقیت اضافه شد",
-  "connect_wallet_prompt_text": "لطفاً کیف پول خود را متصل کنید تا گزینه‌های Ton را مشاهده کنید.",
+  "connect_wallet_prompt_text": "لطفاً کیف پول خود را متصل کنید تا گزینه‌های Star را مشاهده کنید.",
   "per_active_user_text": "برای هر کاربر فعال",
 
 
