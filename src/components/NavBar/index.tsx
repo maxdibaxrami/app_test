@@ -1,7 +1,6 @@
 import { Tabs, Tab, Badge } from "@heroui/react";
 import { FireIcon, ChatIcon, ProfileIcon, LikeIcon, LocationIcon, RandomChatIcon } from '@/Icons/index';
 import { useLocation } from "react-router-dom";
-import { hapticFeedback } from "@telegram-apps/sdk-react";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store";
 import { useEffect } from "react";
