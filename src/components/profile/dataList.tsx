@@ -77,7 +77,7 @@ const DataList = ({user, verifiedAccountLoading}) => {
 
         <ListboxItem
           key="see_likes"
-          href={"/#/main?page=likes"}
+          href={"/#/main/likes"}
           showDivider
           description={t('see_likes')}
           classNames={{"description":"font-wrap w-[90%]"}}

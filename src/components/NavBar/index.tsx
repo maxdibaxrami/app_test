@@ -1,13 +1,15 @@
 import { Tabs, Tab, Badge } from "@heroui/react";
 import { FireIcon, ChatIcon, ProfileIcon, LikeIcon, LocationIcon, RandomChatIcon } from '@/Icons/index';
-import { useSearchParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { hapticFeedback } from "@telegram-apps/sdk-react";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store";
+import { useEffect } from "react";
 
 const BottomMenu = () => {
-  const [searchParams] = useSearchParams();
+    const { pathname } = useLocation();
   
+    useEffect(()=>{console.log(pathname.split('/')[2])},[pathname])
   const { data } = useSelector((state: RootState) => state.like);  // Assuming the like slice is in state.like
 
   return (
@@ -23,12 +25,6 @@ const BottomMenu = () => {
         >
           <Tabs
             aria-label="Options"
-            
-            onChange={()=>{
-              if (hapticFeedback.impactOccurred.isAvailable()) {
-                hapticFeedback.impactOccurred('medium');
-              }
-            }}
             classNames={{
               tab: "h-auto p-1 m-1 color-white",
               tabList: "bg-transparent gap-2 flex justify-center	",
@@ -36,8 +32,8 @@ const BottomMenu = () => {
               base:"flex items-center justify-center"
             }}
             color="primary"
-            size="sm"
-            selectedKey={searchParams.get("page")}
+            size="md"
+            selectedKey={pathname.split('/')[2]}
             style={{
               zIndex: "10",
               overflow: "hidden",
@@ -49,7 +45,7 @@ const BottomMenu = () => {
 
           <Tab
               key="likes"
-              href="/#/main?page=likes"
+              href="/#/main/likes"
               title={
                 
                 <div className="flex gap-1 justify-center items-center">
@@ -64,7 +60,7 @@ const BottomMenu = () => {
 
             <Tab
               key="explore"
-              href="/#/main?page=explore"
+              href="/#/main/explore"
               title={
                 <div className="flex  gap-1 justify-center items-center">
                   <div className="rounded-full flex items-center justify-center">
@@ -78,7 +74,7 @@ const BottomMenu = () => {
 
             <Tab
               key="nearby"
-              href="/#/main?page=nearby"
+              href="/#/main/nearby"
               title={
                 <div className="flex gap-1 justify-center items-center">
                   <div className="rounded-full flex items-center justify-center">
@@ -90,7 +86,7 @@ const BottomMenu = () => {
 
             <Tab
               key="chat"
-              href="/#/main?page=chat"
+              href="/#/main/chat"
               title={
                 <div className="flex gap-1 justify-center items-center">
                   <div className="rounded-full flex items-center justify-center">
@@ -101,8 +97,8 @@ const BottomMenu = () => {
             />
 
             <Tab
-              key="RandomChat"
-              href="/#/main?page=RandomChat"
+              key="random-chat"
+              href="/#/main/random-chat"
               title={
                 <div className="flex gap-1 justify-center items-center">
                   <div className="rounded-full flex items-center justify-center">
@@ -114,7 +110,7 @@ const BottomMenu = () => {
 
             <Tab
               key="profile"
-              href="/#/main?page=profile"
+              href="/#/main/profile"
               title={
                 <div className="flex gap-1 justify-center items-center">
                   <div className="rounded-full flex items-center justify-center">

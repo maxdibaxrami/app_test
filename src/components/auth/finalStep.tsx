@@ -17,7 +17,7 @@ const FinalStepAuth = ({ setSlideAvailable, setSlideUnAvailable, uploadImageLoad
 
   // Check if both auth and user are not loading
   if (!authLoading && !userLoading && !uploadImageLoading) {
-    return <Navigate to="/main?page=profile" replace />;
+    return <Navigate to="/main/profile" replace />;
   }
 
   // Show loading spinner if either auth or user is still loading

@@ -20,12 +20,12 @@ export default function LikesPage() {
       <Spinner size="lg" />
     </div>
   }
-  if(!loading && data.length===0){
+  if(!loading && data && data.length===0){
     return <div className="h-screen w-screen flex flex-col p-6 items-center justify-center"> 
         <NotFoundLike/>
         <div className="flex gap-4 flex-col px-6 text-center items-center">
           <p className="text-tiny">{t("nolikemessage")}</p>
-          <Button as={Link} to={"/main?page=explore"} color="primary" endContent={<FireIcon />}>
+          <Button as={Link} to={"/main/explore"} color="primary" endContent={<FireIcon />}>
             {t('Explore')}
           </Button>
         </div>
@@ -60,7 +60,7 @@ export default function LikesPage() {
             </div>
            }
 
-        {data.map((value, index) => (<LikeCard key={index} data={value} />))}
+        {data && data.map((value, index) => (<LikeCard key={index} data={value} />))}
 
       </div >
     </div>

@@ -13,7 +13,7 @@ const LikeCard = ({ data }) => {
   return (
     <Card
       as={Link}
-      to={user.premium ? `/user?userId=${data.id}` : "/main?page=likes"}
+      to={user.premium ? `/user?userId=${data.id}` : "/main/likes"}
       className={user.premium ? "py-4 h-[100%] " : "py-4 h-[100%] blurred-image" } 
       isPressable
     >

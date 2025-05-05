@@ -26,6 +26,13 @@ import { useTheme } from 'next-themes';
 
 // Blocked user page/component
 import BlockedUserPage from '@/pages/blockedUser';
+import MainPage from '@/pages/main';
+import RandomChat from './randomChat';
+import LikesPage from '@/pages/like';
+import ProfilePage from './profile';
+import ExplorePage from '@/components/explore/index'
+import NearByPage from '@/pages/nearby/page';
+import ChatPage from './chat';
 
 const GetStoredLanguage = async () => {
   try {
@@ -147,14 +154,38 @@ export function App() {
                   <Route
                     key={route.path}
                     path={route.path}
-                    element={<MobileApp><route.Component /></MobileApp>}
+                    element={
+                      <MobileApp>
+                        <route.Component />
+                      </MobileApp>
+                    }
                   />
                 ))}
+
+              <Route
+                path="/main/*"
+                element={
+                  <MobileApp>
+                    <MainPage />
+                  </MobileApp>
+                }
+              >
+                {/* default to /main/nearby */}
+                <Route index element={<Navigate to="nearby" replace />} />
+                <Route path="nearby" element={<ExplorePage />} />
+                <Route path="explore" element={<NearByPage />} />
+                <Route path="chat" element={<ChatPage />} />
+                <Route path="random-chat" element={<RandomChat />} />
+                <Route path="likes" element={<LikesPage />} />
+                <Route path="profile" element={<ProfilePage />} />
+                {/* add any new “tabs” here */}
+              </Route>
+
               <Route
                 path="*"
                 element={
                   data.profileStage !== 'draft'
-                    ? <Navigate to="/main?page=nearby" replace />
+                    ? <Navigate to="/main/nearby" replace />
                     : <Navigate to="/sign-up" replace />
                 }
               />

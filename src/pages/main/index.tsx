@@ -1,93 +1,44 @@
-import ChatPage from '@/components/chat'
-import TopBar from '@/components/tobBar'
-import { Page } from '@/components/Page.tsx';
-import { useSearchParams } from "react-router-dom";
-import ProfilePage from '@/components/profile';
-import LikesPage from '@/pages/like/index';
-import ExplorePage from '@/components/explore';
-import NearByPage from '@/pages/nearby/page';
-import { useLaunchParams } from '@telegram-apps/sdk-react';
-import { Button } from "@heroui/button";
-import { FitlerIcon } from '@/Icons';
-import NearByFilter from '@/components/naerby/NearByFilter';
-import { useRef } from 'react';
-import RandomChat from '@/components/randomChat';
+// src/pages/MainPage.tsx
+import React, { useRef, useMemo } from 'react'
+import { Outlet, useLocation } from 'react-router-dom'
+import { useLaunchParams } from '@telegram-apps/sdk-react'
+import { Page } from '@/components/Page'
+import TopBar from '@/components/tobBar/index'
+import NearByFilter from '@/components/naerby/NearByFilter'
+import { Button } from '@heroui/button'
+import { FitlerIcon } from '@/Icons'
 
+const MainPage: React.FC = React.memo(() => {
+  const lp = useLaunchParams()
+  const location = useLocation()
+  const filterRef = useRef(null)
 
-const MainPage = () => {
-  
-  const [searchParams] = useSearchParams();
-  const lp = useLaunchParams();
-  const FilterRef = useRef();
+  // only recalc when platform changes
+  const paddingTop = useMemo(
+    () => (['ios'].includes(lp.platform) ? '50px' : '25px'),
+    [lp.platform]
+  )
 
-  const getPaddingForPlatform = () => {
-    if (['ios'].includes(lp.platform)) {
-      // iOS/macOS specific padding (e.g., accounting for notches)
-      return '50px'; // Adjust as needed for iOS notch
-    } else {
-      // Android/base padding
-      return '25px'; // Default padding
-    }
-  };
+  // show the filter FAB only on the “nearby” sub‑route
+  const showFilter = location.pathname.endsWith('/explore')
 
   const handleFilterClick = () => {
-    if (FilterRef.current) {
-      /* @ts-ignore */
-      FilterRef.current.openModal();
-    }
-  };
+    filterRef.current?.openModal()
+  }
 
   return (
     <Page back={false}>
-      {/* TopBar */}
-        <TopBar />
-      <section style={{ paddingTop: getPaddingForPlatform() }} className="flex flex-col items-center justify-center gap-4">
-        {searchParams.get('page') === "nearby" && (
-          <div className="fade-in" style={{ width: "100%" }}>
-            <ExplorePage />
-          </div>
-        )}
+      <TopBar />
 
-        {searchParams.get('page') === "chat" && (
-          <div className="fade-in" style={{ width: "100%" }}>
-            <ChatPage />
-          </div>
-        )}
+      <section
+        style={{ paddingTop }}
+        className="flex flex-col items-center justify-center gap-4"
+      >
+        <Outlet />
 
-        {searchParams.get('page') === "RandomChat" && (
-          <div className="fade-in" style={{ width: "100%" }}>
-            <RandomChat/>
-          </div>
-        )}
-
-        {searchParams.get('page') === "likes" && (
-          <div className="fade-in" style={{ width: "100%" }}>
-            <LikesPage />
-          </div>
-        )}
-
-        {searchParams.get('page') === "explore" && (
-          <div className="fade-in" style={{ width: "100%" }}>
-            <NearByPage />
-          </div>
-        )}
-
-        {searchParams.get('page') === "profile" && (
-          <div className="fade-in">
-            <ProfilePage />
-          </div>
-        )}
-
-        {searchParams.get('page') === "explore" && (
+        {showFilter && (
           <div
-            style={{
-              position: "fixed",
-              zIndex: 50,
-              left: "50%",
-              transform: "translateX(-50%)",
-              bottom: "30px"
-            }}
-            className="fade-in"
+            className="fixed z-50 left-1/2 transform -translate-x-1/2 bottom-8 fade-in"
           >
             <Button
               variant="shadow"
@@ -99,16 +50,15 @@ const MainPage = () => {
               color="primary"
               className="bg-primary/80 backdrop-blur"
             >
-              <FitlerIcon className="size-5"/>
+              <FitlerIcon className="size-5" />
             </Button>
           </div>
         )}
-    
-          
-          <NearByFilter ref={FilterRef} />
       </section>
-    </Page>
-  );
-};
 
-export default MainPage;
+      <NearByFilter ref={filterRef} />
+    </Page>
+  )
+})
+
+export default MainPage

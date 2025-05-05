@@ -41,7 +41,7 @@ export default function VerifyAccontViewPage() {
         const response = await fetch(photo);
         const blob = await response.blob();
         const file = new File([blob], "photo.jpg", { type: "image/jpeg" });
-        navigate("/main?page=profile");
+        navigate("/main/profile");
         await dispatch(verifyUserPhoto({ userId: data.id.toString(), photoFile: file }));
       } catch (error) {
         console.error("Error uploading photo:", error);
