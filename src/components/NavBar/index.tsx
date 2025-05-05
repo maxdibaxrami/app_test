@@ -50,7 +50,7 @@ const BottomMenu = () => {
                 <div className="flex gap-1 justify-center items-center">
                   <div className="rounded-full flex items-center justify-center">
                     <Badge size="sm" showOutline={false} color="danger" variant="shadow" content={data && data.length} isInvisible={data && data.length === 0} shape="circle">
-                      <LikeIcon className="size-6" />
+                      <LikeIcon className="size-7" />
                     </Badge>
                   </div>
                 </div>
@@ -63,7 +63,7 @@ const BottomMenu = () => {
               title={
                 <div className="flex  gap-1 justify-center items-center">
                   <div className="rounded-full flex items-center justify-center">
-                    <LocationIcon className="size-6" />
+                    <LocationIcon className="size-7" />
                   </div>
                 </div>
               }
@@ -77,7 +77,7 @@ const BottomMenu = () => {
               title={
                 <div className="flex gap-1 justify-center items-center">
                   <div className="rounded-full flex items-center justify-center">
-                    <FireIcon className="size-6" />
+                    <FireIcon className="size-7" />
                   </div>
                 </div>
               }
@@ -89,7 +89,7 @@ const BottomMenu = () => {
               title={
                 <div className="flex gap-1 justify-center items-center">
                   <div className="rounded-full flex items-center justify-center">
-                    <ChatIcon className="size-6" />
+                    <ChatIcon className="size-7" />
                   </div>
                 </div>
               }
@@ -101,7 +101,7 @@ const BottomMenu = () => {
               title={
                 <div className="flex gap-1 justify-center items-center">
                   <div className="rounded-full flex items-center justify-center">
-                    <RandomChatIcon className="size-6" />
+                    <RandomChatIcon className="size-7" />
                   </div>
                 </div>
               }
@@ -113,7 +113,7 @@ const BottomMenu = () => {
               title={
                 <div className="flex gap-1 justify-center items-center">
                   <div className="rounded-full flex items-center justify-center">
-                    <ProfileIcon className="size-6" />
+                    <ProfileIcon className="size-7" />
                   </div>
                 </div>
               }
