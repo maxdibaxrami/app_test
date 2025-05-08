@@ -4,7 +4,7 @@ import { useState, useEffect, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { useTheme } from 'next-themes';
-import { addToast, Input, Textarea } from '@heroui/react';
+import { addToast, Input } from '@heroui/react';
 import axios from '@/api/base';
 import ChatProfileSection from '../chatPage/chatProfileSection';
 import MessageSection from '../chatPage/message';
@@ -18,9 +18,9 @@ import animationData from "@/components/animate/searchAnimation.json";
 import { 
   startWaiting, chatMatched, addMessage, cancelChat as cancelChatAction, resetChat 
 } from '@/features/chatSlice';
-import { useLaunchParams } from '@telegram-apps/sdk-react';
 import useChatSocket from '@/socket/useChatSocket';
 import { Page } from '../Page';
+import ChatLayout from '@/pages/chat/layout';
 
 interface Message {
   senderId: string;
@@ -34,8 +34,6 @@ const RandomChat = () => {
 
   const { data: user } = useSelector((state: RootState) => state.user);
   const chatState = useSelector((state: RootState) => state.chat);
-
-  const lp = useLaunchParams();
   
   useEffect(()=>{
     console.log(chatState)
@@ -161,15 +159,6 @@ const RandomChat = () => {
     }
   }, [socket, currentUserId, chatState.room, dispatch]);
 
-  const getPaddingForPlatform = () => {
-    if (['ios'].includes(lp.platform)) {
-      // iOS/macOS specific padding (e.g., accounting for notches)
-      return '50px'; // Adjust as needed for iOS notch
-    } else {
-      // Android/base padding
-      return '25px'; // Default padding
-    }
-  };
 
   return (
       <Page>
@@ -189,7 +178,7 @@ const RandomChat = () => {
               <Lottie animationData={animationData} loop={true} autoplay={true} />
             </div>
             :chatState.isActive ? (
-              <div style={{height:`calc(100vh - ${getPaddingForPlatform()})`}} className="h-full flex flex-col relative">
+              <ChatLayout>
                 <ChatProfileSection 
                   userId2={chatState.partnerId} 
                   profileDataState={profileDataState} 
@@ -206,7 +195,7 @@ const RandomChat = () => {
                   size="lg"
                   variant="flat"
                 />
-              </div>
+              </ChatLayout>
             ) : (
               <div style={{paddingTop: "4.5rem"}}  className="h-[80vh] px-5 flex flex-col items-center">
                 <div className="mb-1 mt-1 px-6 pt-8 pb-4 flex flex-col gap-2">
