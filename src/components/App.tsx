@@ -27,7 +27,6 @@ import { useTheme } from 'next-themes';
 // Blocked user page/component
 import BlockedUserPage from '@/pages/blockedUser';
 import MainPage from '@/pages/main';
-import RandomChat from './randomChat';
 import LikesPage from '@/pages/like';
 import ProfilePage from './profile';
 import ExplorePage from '@/components/explore/index'
@@ -205,7 +204,6 @@ export function App() {
                 <Route path="nearby"       element={<ExplorePage />} />
                 <Route path="explore"      element={<NearByPage />} />
                 <Route path="chat"         element={<ChatPage />} />
-                <Route path="random-chat"  element={<RandomChat />} />
                 <Route path="likes"        element={<LikesPage />} />
                 <Route path="profile"      element={<ProfilePage />} />
               </Route>

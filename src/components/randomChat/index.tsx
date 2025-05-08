@@ -192,8 +192,6 @@ const RandomChat = () => {
               userId2={chatState.partnerId} 
               profileDataState={profileDataState} 
               loading={messageUserLoading}
-              position={false}
-              online={true}
             />
             <main style={{ display: "flex", position: "relative", overflow: "auto", flexGrow: 1 }}>
               <MessageSection disablePadding={true} messages={chatState.messages} user={user} />

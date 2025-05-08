@@ -23,6 +23,7 @@ const importProfileGroup = () =>
     import('@/pages/verifyAccont/index'),
     import('@/pages/editProfileFild/index'),
     import('@/pages/profileGift/index'),
+    import('@/components/randomChat/index'),
 
   ]).then(([
     EditProfile,
@@ -32,7 +33,8 @@ const importProfileGroup = () =>
     FavoritePage,
     VerifyAccount,
     EditProfileField,
-    GiftViewPage
+    GiftViewPage,
+    RandomPageView
   ]) => ({
     EditProfile: EditProfile.default,
     UserPage: UserPage.default,
@@ -42,6 +44,7 @@ const importProfileGroup = () =>
     VerifyAccount: VerifyAccount.default,
     EditProfileField: EditProfileField.default,
     GiftViewPage: GiftViewPage.default,
+    RandomPageView: RandomPageView.default
 
   }));
 
@@ -70,6 +73,7 @@ const AddFriends = lazyGroup(importProfileGroup, 'AddFriends');
 const FavoritePage = lazyGroup(importProfileGroup, 'FavoritePage');
 const VerifyAccount = lazyGroup(importProfileGroup, 'VerifyAccount');
 const EditProfileField = lazyGroup(importProfileGroup, 'EditProfileField');
+const RandomPageView = lazyGroup(importProfileGroup, 'RandomPageView');
 
 const PremiumPage = lazyGroup(importPremiumGroup, 'Premium');
 const EnergyPage = lazyGroup(importPremiumGroup, 'Energy');
@@ -102,5 +106,8 @@ export const routes: RouteConfig[] = [
   { path: '/chat-detail',                Component: ChatPage,             title: 'Chat',            auth: true },
   { path: '/edit-stepper',        Component: EditProfileStepper,   title: 'Edit Stepper',    auth: true },
   { path: '/gift-view',        Component: GiftViewPage,   title: 'Edit Stepper',    auth: true },
+  { path: '/random-chat',        Component: RandomPageView,   title: 'Edit Stepper',    auth: true },
+
+  
 
 ];

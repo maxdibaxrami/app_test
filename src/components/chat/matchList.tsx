@@ -1,7 +1,6 @@
 import { BASEURL } from "@/constant";
-import { LikeIcon } from "@/Icons";
 import { RootState } from "@/store";
-import { Alert, Avatar, ScrollShadow } from "@heroui/react";
+import { Avatar, ScrollShadow } from "@heroui/react";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
@@ -41,7 +40,7 @@ const MatchList = () => {
       }
       
       
-      {match && match.length === 0 &&     
+      {/*match && match.length === 0 &&     
         <Alert
             color="default"
             description={t("no_match_description")}
@@ -49,7 +48,7 @@ const MatchList = () => {
             icon={<LikeIcon className="size-4"/>}
             variant="flat"
           />
-        }
+        */}
 
     </div>)
   );

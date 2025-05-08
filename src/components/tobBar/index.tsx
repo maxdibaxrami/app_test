@@ -48,11 +48,11 @@ const navItems: NavConfig[] = [
   { path: '/gift-view', icon: GiftIcon, labelKey: 'gift_List' },
   { path: '/verify-account', icon: VerifyIconFill, labelKey: 'Verification' },
   { path: '/energy', icon: FlashIcon, labelKey: 'energy' },
+  { path: '/random-chat', icon: RandomChatIcon, labelKey: 'anonymous_chat' },
 
   { page: 'profile', icon: ProfileIcon, labelKey: 'Profile' },
   { page: 'nearby', icon: FireIcon, labelKey: 'Nearby' },
   { page: 'explore', icon: LocationIcon, labelKey: 'Explore' },
-  { page: 'random-chat', icon: RandomChatIcon, labelKey: 'anonymous_chat' },
   { page: 'likes', icon: LikeIcon, labelKey: 'Likes' },
   { page: 'chat', icon: ChatIcon, labelKey: 'Chat' },
 ];
