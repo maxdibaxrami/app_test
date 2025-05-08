@@ -86,7 +86,7 @@ const ProfilePage = () => {
           </div>
         </Card>
 
-        <Card as={Link} to={'/premium-Page'} shadow="none" className="border-1 border-default-200 dark:border-default-100 backdrop-blur aspect-square bg-neutral/10" radius="lg">
+        <Card as={Link} to={'/premium'} shadow="none" className="border-1 border-default-200 dark:border-default-100 backdrop-blur aspect-square bg-neutral/10" radius="lg">
           <div className="flex flex-col items-center justify-center h-full">
             <p className="text-4xl">⭐️</p>
             <CardFooter className="justify-center border-none overflow-hidden py-1 absolute before:rounded rounded bottom-1 w-full z-10">

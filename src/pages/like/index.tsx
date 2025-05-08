@@ -48,7 +48,7 @@ export default function LikesPage() {
                 color="warning"
                 description={t("premium_description")}
                 endContent={
-                  <Button as={Link} to={'/premium-Page'} color="warning" size="sm" variant="flat">
+                  <Button as={Link} to={'/premium'} color="warning" size="sm" variant="flat">
                     {t("open")}
                   </Button>
                 }

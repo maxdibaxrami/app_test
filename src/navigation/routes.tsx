@@ -22,6 +22,8 @@ const importProfileGroup = () =>
     import('@/pages/favoritePage'),
     import('@/pages/verifyAccont/index'),
     import('@/pages/editProfileFild/index'),
+    import('@/pages/profileGift/index'),
+
   ]).then(([
     EditProfile,
     UserPage,
@@ -30,6 +32,7 @@ const importProfileGroup = () =>
     FavoritePage,
     VerifyAccount,
     EditProfileField,
+    GiftViewPage
   ]) => ({
     EditProfile: EditProfile.default,
     UserPage: UserPage.default,
@@ -38,6 +41,8 @@ const importProfileGroup = () =>
     FavoritePage: FavoritePage.default,
     VerifyAccount: VerifyAccount.default,
     EditProfileField: EditProfileField.default,
+    GiftViewPage: GiftViewPage.default,
+
   }));
 
 // Premium-related pages bundled together
@@ -55,6 +60,7 @@ const MainPage = lazy(() => import('@/pages/main/index'));
 const SettingPage = lazy(() => import('@/pages/setting/page'));
 const ChatPage = lazy(() => import('@/pages/chat/page'));
 import EditProfileStepper from '@/pages/editProfileStepper/index';
+import GiftViewPage from '@/pages/profileGift/index';
 
 // Extract individual components from the grouped bundles
 const ProfileEdit = lazyGroup(importProfileGroup, 'EditProfile');
@@ -85,14 +91,16 @@ export const routes: RouteConfig[] = [
   { path: '/main',                Component: MainPage,             title: 'Main',           auth: true },
   { path: '/profile-edit',        Component: ProfileEdit,          title: 'Edit Profile',    auth: true },
   { path: '/profile-view',        Component: ProfileView,          title: 'Profile View',    auth: true },
-  { path: '/profile/user',        Component: UserPage,             title: 'User',            auth: true },
-  { path: '/profile/add-friends', Component: AddFriends,           title: 'Add Friends',     auth: true },
-  { path: '/profile/favorites',   Component: FavoritePage,         title: 'Favorites',       auth: true },
-  { path: '/profile/verify',      Component: VerifyAccount,        title: 'Verify Account',  auth: true },
-  { path: '/profile/field',       Component: EditProfileField,     title: 'Edit Field',      auth: true },
+  { path: '/user',        Component: UserPage,             title: 'User',            auth: true },
+  { path: '/add-friends', Component: AddFriends,           title: 'Add Friends',     auth: true },
+  { path: '/favorite-view',   Component: FavoritePage,         title: 'Favorites',       auth: true },
+  { path: '/verify-account',      Component: VerifyAccount,        title: 'Verify Account',  auth: true },
+  { path: '/edit-profile-field',       Component: EditProfileField,     title: 'Edit Field',      auth: true },
   { path: '/premium',             Component: PremiumPage,          title: 'Premium',         auth: true },
   { path: '/energy',              Component: EnergyPage,           title: 'Energy',          auth: true },
-  { path: '/setting',             Component: SettingPage,          title: 'Settings',        auth: true },
+  { path: '/setting',            Component: SettingPage,          title: 'Settings',        auth: true },
   { path: '/chat',                Component: ChatPage,             title: 'Chat',            auth: true },
   { path: '/edit-stepper',        Component: EditProfileStepper,   title: 'Edit Stepper',    auth: true },
+  { path: '/gift-view',        Component: GiftViewPage,   title: 'Edit Stepper',    auth: true },
+
 ];

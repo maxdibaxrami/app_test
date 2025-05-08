@@ -44,7 +44,7 @@ export const PopOverPerimum = (props) => {
                     {t("Youhavereachedyourdailylikelimitof50")}
                 </p>
                 <p className="text-center mt-2 text-sm font-tiny text-foreground/70">
-                  <Link className="text-center" size="sm" color="warning" href={"/#/premium-Page"} underline="none">
+                  <Link className="text-center" size="sm" color="warning" href={"/#/premium"} underline="none">
                     {t("Tounlockallfeatures,youneedapremiumaccount.")}
                   </Link>
                 </p>
