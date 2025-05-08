@@ -4,7 +4,7 @@ import { useState, useEffect, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { useTheme } from 'next-themes';
-import { addToast, Textarea } from '@heroui/react';
+import { addToast, Input, Textarea } from '@heroui/react';
 import axios from '@/api/base';
 import ChatProfileSection from '../chatPage/chatProfileSection';
 import MessageSection from '../chatPage/message';
@@ -20,6 +20,7 @@ import {
 } from '@/features/chatSlice';
 import { useLaunchParams } from '@telegram-apps/sdk-react';
 import useChatSocket from '@/socket/useChatSocket';
+import { Page } from '../Page';
 
 interface Message {
   senderId: string;
@@ -171,84 +172,86 @@ const RandomChat = () => {
   };
 
   return (
-    <div 
-      className="relative w-screen h-full text-default-700"
-      style={{
-        maxHeight: "100%",
-      }}
-    >
+      <Page>
+        <div 
+          className="relative w-screen h-full text-default-700"
+          style={{
+            maxHeight: "100%",
+          }}
+        >
 
-      {chatState.isWaiting? 
-        <div style={{paddingTop: "4.5rem"}} className="h-[75vh] px-5 flex flex-col items-center">
-          <div className="mb-1 mt-1 px-6 pt-8 pb-4 flex flex-col gap-2">
-            <p className="text-base font-semibold text-center">{t("anonymous_title")} 🎲</p>
-            <p className="text-xs text-center">{t("anonymous_description")}</p>
-          </div>
-          <Lottie animationData={animationData} loop={true} autoplay={true} />
-        </div>
-        :chatState.isActive ? (
-          <div style={{height:`calc(100vh - ${getPaddingForPlatform()})`}} className="h-full flex flex-col relative">
-            <ChatProfileSection 
-              userId2={chatState.partnerId} 
-              profileDataState={profileDataState} 
-              loading={messageUserLoading}
-            />
-            <main style={{ display: "flex", position: "relative", overflow: "auto", flexGrow: 1 }}>
-              <MessageSection disablePadding={true} messages={chatState.messages} user={user} />
-            </main>
-            <Textarea
-              className="w-full"
-              value={input}
-              onValueChange={setInput}
-              minRows={1}
-              placeholder={t("enterMessage")}
-              size="lg"
-              variant="flat"
-            />
-          </div>
-        ) : (
-          <div style={{paddingTop: "4.5rem"}}  className="h-[80vh] px-5 flex flex-col items-center">
-            <div className="mb-1 mt-1 px-6 pt-8 pb-4 flex flex-col gap-2">
-              <p className="text-base font-semibold text-center">{t("anonymous_title")} 🎲</p>
-              <p className="text-xs text-center">{t("anonymous_description")}</p>
+          {chatState.isWaiting? 
+            <div style={{paddingTop: "4.5rem"}} className="h-[75vh] px-5 flex flex-col items-center">
+              <div className="mb-1 mt-1 px-6 pt-8 pb-4 flex flex-col gap-2">
+                <p className="text-base font-semibold text-center">{t("anonymous_title")} 🎲</p>
+                <p className="text-xs text-center">{t("anonymous_description")}</p>
+              </div>
+              <Lottie animationData={animationData} loop={true} autoplay={true} />
             </div>
-            <RandomChatSvg />
-          </div>
-        )
-      }
-      {/* Action Buttons */}
-      <MainButton
-        text={chatState.isActive ? t("send_message") : t("start_chat")}
-        backgroundColor="#1FB6A8"
-        textColor="#FFFFFF"
-        hasShineEffect={true}
-        // When active, enable the button. Otherwise, only enable it if not waiting.
-        isEnabled={chatState.isActive ? chatState.isActive : !chatState.isWaiting}
-        // Show the loader only when waiting and not active.
-        isLoaderVisible={chatState.isWaiting && !chatState.isActive}
-        // You could always show the button; if you need conditional visibility, adjust accordingly.
-        isVisible={!chatState.isWaiting}
-        // Choose the onClick handler based on whether chat is active.
-        onClick={chatState.isActive ? sendMessage : startChat}
-      />
+            :chatState.isActive ? (
+              <div style={{height:`calc(100vh - ${getPaddingForPlatform()})`}} className="h-full flex flex-col relative">
+                <ChatProfileSection 
+                  userId2={chatState.partnerId} 
+                  profileDataState={profileDataState} 
+                  loading={messageUserLoading}
+                />
+                <main style={{ display: "flex", position: "relative", overflow: "auto", flexGrow: 1 }}>
+                  <MessageSection messages={chatState.messages} user={user} />
+                </main>
+                <Input
+                  className="w-full"
+                  value={input}
+                  onValueChange={setInput}
+                  placeholder={t("enterMessage")}
+                  size="lg"
+                  variant="flat"
+                />
+              </div>
+            ) : (
+              <div style={{paddingTop: "4.5rem"}}  className="h-[80vh] px-5 flex flex-col items-center">
+                <div className="mb-1 mt-1 px-6 pt-8 pb-4 flex flex-col gap-2">
+                  <p className="text-base font-semibold text-center">{t("anonymous_title")} 🎲</p>
+                  <p className="text-xs text-center">{t("anonymous_description")}</p>
+                </div>
+                <RandomChatSvg />
+              </div>
+            )
+          }
+          {/* Action Buttons */}
+          <MainButton
+            text={chatState.isActive ? t("send_message") : t("start_chat")}
+            backgroundColor="#1FB6A8"
+            textColor="#FFFFFF"
+            hasShineEffect={true}
+            // When active, enable the button. Otherwise, only enable it if not waiting.
+            isEnabled={chatState.isActive ? chatState.isActive : !chatState.isWaiting}
+            // Show the loader only when waiting and not active.
+            isLoaderVisible={chatState.isWaiting && !chatState.isActive}
+            // You could always show the button; if you need conditional visibility, adjust accordingly.
+            isVisible={!chatState.isWaiting}
+            // Choose the onClick handler based on whether chat is active.
+            onClick={chatState.isActive ? sendMessage : startChat}
+          />
 
 
 
-      {(chatState.isWaiting || chatState.isActive) && (
-        <SecondaryButton
-          text={t("end_chat")}
-          backgroundColor={theme === "light" ? "#FFFFFF" : "#000000"}
-          textColor={theme === "light" ? "#000000" : "#FFFFFF"}
-          hasShineEffect={false}
-          isEnabled={true}
-          isVisible={true}
-          position="left"
-          onClick={cancelChat}
-        />
-      )}
+          {(chatState.isWaiting || chatState.isActive) && (
+            <SecondaryButton
+              text={t("end_chat")}
+              backgroundColor={theme === "light" ? "#FFFFFF" : "#000000"}
+              textColor={theme === "light" ? "#000000" : "#FFFFFF"}
+              hasShineEffect={false}
+              isEnabled={true}
+              isVisible={true}
+              position="left"
+              onClick={cancelChat}
+            />
+          )}
 
-      
-    </div>
+          
+        </div>
+      </Page>
+
   );
 };
 
