@@ -15,7 +15,7 @@ const BottomMenu = () => {
 
   return (
         <div
-          className="flex w-full safe-area-bottom---padding pb-1"
+          className="flex w-full pb-1"
           style={{
             zIndex: "50",
             width: "100%",
