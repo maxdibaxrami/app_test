@@ -1,6 +1,5 @@
 import { PerimumIcon } from "@/Icons";
 import {Popover, PopoverTrigger, PopoverContent, Button, Link} from "@heroui/react";
-import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 
 export const PopOverPerimum = (props) => {
