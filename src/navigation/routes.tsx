@@ -52,7 +52,6 @@ const importPremiumGroup = () =>
 
 // Individual lazy-loaded pages
 const MainPage = lazy(() => import('@/pages/main/index'));
-const SignUpPage = lazy(() => import('@/pages/signup/page'));
 const SettingPage = lazy(() => import('@/pages/setting/page'));
 const ChatPage = lazy(() => import('@/pages/chat/page'));
 import EditProfileStepper from '@/pages/editProfileStepper/index';
