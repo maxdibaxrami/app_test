@@ -197,7 +197,9 @@ export function App() {
 
               <Route
                 path="/main/*"
-                element={<MobileApp><MainPage /></MobileApp>}
+                element={<MobileApp>
+                  <MainPage />
+                  </MobileApp>}
               >
                 <Route index element={<Navigate to="nearby" replace />} />
                 <Route path="nearby"       element={<ExplorePage />} />
