@@ -99,7 +99,7 @@ export const routes: RouteConfig[] = [
   { path: '/premium',             Component: PremiumPage,          title: 'Premium',         auth: true },
   { path: '/energy',              Component: EnergyPage,           title: 'Energy',          auth: true },
   { path: '/setting',            Component: SettingPage,          title: 'Settings',        auth: true },
-  { path: '/chat',                Component: ChatPage,             title: 'Chat',            auth: true },
+  { path: '/chat-detail',                Component: ChatPage,             title: 'Chat',            auth: true },
   { path: '/edit-stepper',        Component: EditProfileStepper,   title: 'Edit Stepper',    auth: true },
   { path: '/gift-view',        Component: GiftViewPage,   title: 'Edit Stepper',    auth: true },
 
