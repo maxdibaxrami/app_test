@@ -26,7 +26,7 @@ const ProfilePage = () => {
       style={{
         maxHeight: "100%",
         height:"100%",
-        marginTop:"6.5rem",
+        marginTop:"4rem",
         marginBottom:"3rem",
       }}
     >

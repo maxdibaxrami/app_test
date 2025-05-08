@@ -148,7 +148,7 @@ const ExplorePage = () => {
         effect={"fade"}
         grabCursor={true}
         className="mySwiper"
-        style={{ marginTop: "6rem" }}
+        style={{ marginTop: "4rem" }}
         allowTouchMove={false}
         modules={[EffectFade]}
         onSwiper={setSwiperInstance}
@@ -161,7 +161,7 @@ const ExplorePage = () => {
         ))}
       </Swiper>
 
-      <div style={{ right: "12px", top:"30%", zIndex: 50 }} className="fixed card flex-col p-2 flex justify-center items-end">
+      <div style={{ right: "12px", top:"20%", zIndex: 50 }} className="fixed card flex-col p-2 flex justify-center items-end">
       <div className="p-2" style={{ borderRadius: "50%", zIndex: 50 }}>
           <Popover backdrop="opaque" showArrow placement="bottom-end">
             <PopoverTrigger>

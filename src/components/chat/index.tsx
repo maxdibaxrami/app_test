@@ -10,7 +10,7 @@ const ChatPage = () => {
       className="w-full h-full"
       style={{
         overflow: "scroll",
-        marginTop:"6.5rem",
+        marginTop:"4rem",
         paddingBottom: "1rem",
         zIndex: 5,
       }}

@@ -7,6 +7,8 @@ import TopBar from '@/components/tobBar/index'
 import NearByFilter from '@/components/naerby/NearByFilter'
 import { Button } from '@heroui/button'
 import { FitlerIcon } from '@/Icons'
+import { Navbar, NavbarContent, NavbarItem } from '@heroui/react'
+import NavBar from '@/components/NavBar'
 
 const MainPage: React.FC = React.memo(() => {
   const lp = useLaunchParams()
@@ -32,7 +34,7 @@ const MainPage: React.FC = React.memo(() => {
 
       <section
         style={{ paddingTop }}
-        className="flex flex-col items-center justify-center gap-4"
+        className="flex relative flex-col items-center justify-center gap-4"
       >
         <Outlet />
 
@@ -54,7 +56,24 @@ const MainPage: React.FC = React.memo(() => {
             </Button>
           </div>
         )}
+
+          <div
+            className="fixed w-full z-50 left-1/2 transform -translate-x-1/2 bottom-0 fade-in"
+          >
+            <Navbar style={{height:"80px", zIndex:1000}} className="px-1 w-full flex items-start justify-center">
+              <NavbarContent className="w-full" justify="center">
+                <NavbarItem className="w-full">
+                  <NavBar />
+                </NavbarItem>
+              </NavbarContent>
+            </Navbar>
+
+           </div>
       </section>
+
+
+
+
 
       <NearByFilter ref={filterRef} />
     </Page>

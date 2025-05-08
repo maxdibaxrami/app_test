@@ -7,12 +7,10 @@ import {
 } from "@heroui/react";
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-import { AnimatePresence, motion } from 'framer-motion';
 
 import BlurFade from '../animate/BlurFade';
 import ThemeSwitch from './switchTheme';
 import { EnergyButton } from './energyButton';
-import NavBar from '../NavBar';
 import { RootState } from '@/store';
 import {
   FireIcon,
@@ -120,26 +118,6 @@ const TopBar: React.FC = () => {
         </NavbarContent>
         <NavbarContent justify="end" />
       </Navbar>
-
-      <AnimatePresence>
-        {pathname.split('/')['1'] === 'main' && (
-          <motion.div
-            initial={{ opacity: 0, y: -100 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -100 }}
-            transition={{ duration: 0.3 }}
-            
-          >
-            <Navbar style={{height:"50px"}} className="px-1 w-full h-auto flex items-center justify-center">
-              <NavbarContent className="w-full" justify="center">
-                <NavbarItem className="w-full">
-                  <NavBar />
-                </NavbarItem>
-              </NavbarContent>
-            </Navbar>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </div>
   );
 };
