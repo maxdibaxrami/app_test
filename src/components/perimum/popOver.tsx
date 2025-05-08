@@ -19,24 +19,10 @@ export const PopOverPerimum = (props) => {
           <div className="flex-1 w-0 py-6">
             <div className="flex flex-col items-center">
               <div className="flex items-center mb-4 px-0.5">
-                <motion.div
-                  animate={{
-                    scale: [1.2, 1.4, 1.4, 1.4, 1.2],
-                    rotate: [0, 0, 5, -5, 0],
-                    borderRadius: ["50%", "50%", "50%", "50%", "50%"],
-                  }}
-                  transition={{
-                    duration: 2,
-                    ease: "easeInOut",
-                    times: [0, 0.2, 0.5, 0.8, 1],
-                    repeat: Infinity,
-                    repeatDelay: 1,
-                  }}
-                >         
+                    
                   <Button size="lg" radius="full" isIconOnly aria-label="Like" color="default">
                     <PerimumIcon className="size-7"/>
                   </Button>
-                </motion.div>
               </div>
               <div className="px-1 flex-1  mt-2">
                 <p className="text-sm text-center font-bold text-foreground-900">

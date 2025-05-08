@@ -18,7 +18,7 @@ const importProfileGroup = () =>
     import('@/pages/editprofile/page'),
     import('@/pages/userPage/index'),
     import('@/pages/profileView'),
-    import('@/pages/favoritePage/index'),
+    import('@/pages/addFirends/page'),
     import('@/pages/favoritePage'),
     import('@/pages/verifyAccont/index'),
     import('@/pages/editProfileFild/index'),

@@ -57,8 +57,8 @@ const ChatProfileSection = ({ loading, profileDataState, userId2, position=true,
         <NavbarContent justify="start">
           <NavbarItem className="lg:flex"></NavbarItem>
         </NavbarContent>
-        <NavbarContent className="flex items-center" justify="center">
-          <Link to={`/user?userId=${userId2}`} className="lg:flex flex items-center" onClick={handleClick}>
+        <NavbarContent className="flex items-end" justify="center">
+          <Link to={`/user?userId=${userId2}`} className="lg:flex flex items-end" onClick={handleClick}>
             <div className="relative">
               <Avatar
                 className="mx-1"
