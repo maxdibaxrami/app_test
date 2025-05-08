@@ -83,7 +83,6 @@ const TopBar: React.FC = () => {
     return undefined;
   }, [pathname, nestedPage]);
 
-  const showFilterAndTheme = nestedPage !== undefined || pathname !== '/main';
 
   return (
     <div style={{ zIndex: 999999 }} className="fixed flex flex-col top-0 w-full">
