@@ -25,7 +25,7 @@ export default function NearByPage() {
       dispatch(
         fetchNearBySliceUsers({
           page: page,
-          limit: 50,
+          limit: 20,
           ...filters,
         })
       );

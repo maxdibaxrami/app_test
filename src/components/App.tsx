@@ -101,7 +101,7 @@ export function App() {
       dispatch(fetchLiked());
       dispatch(fetchConversations());
       dispatch(fetchFilteredExplore({  page: 1, limit: 10 }));
-      dispatch(fetchNearBySliceUsers({ page: 1, limit: 50, genderFilter: genderOpposite, ...updatedFilters }));
+      dispatch(fetchNearBySliceUsers({ page: 1, limit: 20, genderFilter: genderOpposite, ...updatedFilters }));
     }
   }, [data, dispatch, hasFetchedDetails]);
 

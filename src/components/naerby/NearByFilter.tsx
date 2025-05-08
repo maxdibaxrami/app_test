@@ -61,7 +61,7 @@ const ExploreFilter = forwardRef((props, ref) => {
         longitude: null,
         radius: null,
         page: 1,
-        limit: 50,
+        limit: 20,
         genderFilter: selectGender || null, // Include genderFilter in API call
       })
     );
