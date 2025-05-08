@@ -60,7 +60,7 @@ const MainPage: React.FC = React.memo(() => {
           <div
             className="fixed w-full z-50 left-1/2 transform -translate-x-1/2 bottom-0 fade-in"
           >
-            <Navbar style={{ zIndex:1000 }} className="px-1 w-full safe-area-bottom---padding  flex items-start justify-center pb-2">
+            <Navbar style={{ zIndex:1000 }} className="px-1 w-full safe-area-bottom---padding  flex items-start justify-center">
               <NavbarContent className="w-full" justify="center">
                 <NavbarItem className="w-full">
                   <NavBar />
