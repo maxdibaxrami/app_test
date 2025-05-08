@@ -108,7 +108,7 @@ const TopBar: React.FC = () => {
               </BlurFade>
             )}
 
-            {showFilterAndTheme && (
+            {pathname.split('/')[1] === 'main' && (
               <div className="flex gap-1">
                 <ThemeSwitch />
                 <EnergyButton />
