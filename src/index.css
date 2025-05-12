@@ -16,7 +16,7 @@
 }
 
 .safe-area-bottom---padding {
-  padding-bottom: var(--tg-viewport-safe-area-inset-bottom);
+  padding-bottom: var(--tg-viewport-content-safe-area-inset-bottom);
 }
 
 .safe-area-top---padding-----height {
