@@ -40,7 +40,7 @@ const MainPage: React.FC = React.memo(() => {
 
         {showFilter && (
           <div
-            className="fixed z-50 left-1/2 transform -translate-x-1/2 bottom-[100px] fade-in"
+            className="fixed z-50 left-1/2 transform -translate-x-1/2 bottom-[130px] fade-in"
           >
             <Button
               variant="shadow"
