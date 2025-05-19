@@ -125,6 +125,25 @@ const DataList = ({user, verifiedAccountLoading}) => {
           <p className="font-semibold">{t('favorite')} </p>
         </ListboxItem>
 
+
+        <ListboxItem
+          key="support"
+          description={t('form_message_us')}
+          href={`/#/chat-detail?user1=${user.id}&user2=${1339}`}
+          className="px-0 w-full"
+          classNames={{"description":"font-wrap w-[90%]"}}
+          endContent={user && user.favoriteUsers.length === 0? <ArrowRight className="size-6 mx-1" style={{transform:`${i18n.language==="ar" || i18n.language === 'fa'?"rotate(180deg)":"rotate(0deg)"}`}}/> : <Chip color="warning">{user && user.favoriteUsers.length}</Chip>}
+          startContent={
+            <IconWrapper className="aspect-square flex items-center p-0 w-10 h-10 text-primary"> 
+                <p className="text-md">💭</p>
+            </IconWrapper>
+          }
+        >
+          <p className="font-semibold">{t('support')} </p>
+        </ListboxItem>
+
+
+
       </Listbox>
     </div>
   );
