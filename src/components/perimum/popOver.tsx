@@ -6,7 +6,7 @@ export const PopOverPerimum = (props) => {
     const { t } = useTranslation();  // Initialize translation hook
     
   return (
-    <Popover className="before:bg-background/90" {...props} showArrow placement="left">
+    <Popover className="before:bg-background/90" {...props} showArrow placement="top">
       <PopoverTrigger>
         {props.children}
       </PopoverTrigger>

@@ -193,7 +193,7 @@ const ExplorePage = () => {
             isIconOnly
             color="primary"
             variant="shadow"
-            className="flex items-center justify-center"
+            className="flex items-center w-[55px] h-[55px] justify-center"
           >
             <CloseCircleIcon className="size-7"/>
           </Button>
@@ -209,7 +209,7 @@ const ExplorePage = () => {
                 isIconOnly
                 color="secondary"
                 variant="shadow"
-                className="flex items-center justify-center"
+                className="flex items-center w-[55px] h-[55px] justify-center"
               >
                 <LockIcon className="size-7" />
               </Button>
@@ -223,7 +223,7 @@ const ExplorePage = () => {
                   onPress={handleLikeUser}
                   color="secondary"
                   variant="shadow"
-                  className="flex items-center justify-center"
+                  className="flex items-center w-[55px] h-[55px] justify-center"
                 >
                   <LikeIcon className="size-7"/>
                 </Button>

@@ -60,7 +60,7 @@ const MainPage: React.FC = React.memo(() => {
           <div
             className="fixed w-full z-50 left-1/2 transform -translate-x-1/2 bottom-0 fade-in"
           >
-            <Navbar isBlurred style={{ zIndex:1000 }} className="px-1 w-full pb-[15px]  flex items-start justify-center">
+            <Navbar isBlurred style={{ zIndex:1000 }} className="px-1 w-full pb-[20px]  flex items-start justify-center">
               <NavbarContent className="w-full" justify="center">
                 <NavbarItem className="w-full">
                   <NavBar />
