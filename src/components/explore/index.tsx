@@ -1,6 +1,7 @@
 import "swiper/css";
 import "swiper/css/effect-creative";
 import "./style.css";
+import 'swiper/css/virtual';
 
 import React, { useEffect, useState, useCallback } from "react";
 import ExploreCard from "./exploreCart";
@@ -24,10 +25,10 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import 'swiper/css/effect-fade';
 
-import { EffectFade } from 'swiper/modules';
+import { EffectFade, Virtual } from 'swiper/modules';
 
 const ExplorePage = () => {
-  const maxLikes = 30;
+  const maxLikes = 20;
   const dispatch: AppDispatch = useDispatch();
   const { data: user } = useSelector((state: RootState) => state.user);
   const { data: users, loading, page, limit, total, secondLoading } = useSelector((state: RootState) => state.explore);
@@ -150,7 +151,7 @@ const ExplorePage = () => {
         className="mySwiper"
         style={{ marginTop: "4rem" }}
         allowTouchMove={false}
-        modules={[EffectFade]}
+        modules={[EffectFade, Virtual]}
         onSwiper={setSwiperInstance}
         onSlideChange={(swiper) => setActiveSlideIndex(swiper.activeIndex)}
       >

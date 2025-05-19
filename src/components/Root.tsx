@@ -11,7 +11,7 @@ import animationData from "@/components/animate/error.json";
 
 function ErrorBoundaryError() {
   return (
-    <div className="h-screen gap-4 flex items-center justify-center flex-col">
+    <div className="h-screen gap-4 flex items-center justify-center bg-white flex-col">
     <Lottie animationData={animationData} loop={true} autoplay={true} />
     <p className="text-md text-black"> No internet connection :( </p>
     <Button onPress={()=> location.reload()} color="primary" variant="shadow">

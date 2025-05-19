@@ -15,7 +15,6 @@ const SwiperImages = ({ url }) => {
       radius="lg"
       shadow="none"
       loading="lazy"
-      
       style={{
         objectFit: "cover",
         height: "calc(100vh - 240px)", // Dynamic height based on status
