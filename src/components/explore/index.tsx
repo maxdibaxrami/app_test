@@ -1,6 +1,6 @@
 import "swiper/css";
+import "swiper/css/effect-creative";
 import "./style.css";
-import 'swiper/css/effect-fade';
 
 import React, { useEffect, useState, useCallback } from "react";
 import ExploreCard from "./exploreCart";
@@ -21,11 +21,13 @@ import { PopOverPerimum } from "../perimum/popOver";
 import { SendGiftCard } from "../gift";
 import { FlashMessageCard } from "./flashMessage";
 import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import 'swiper/css/effect-fade';
 
 import { EffectFade } from 'swiper/modules';
 
 const ExplorePage = () => {
-  const maxLikes = 20;
+  const maxLikes = 30;
   const dispatch: AppDispatch = useDispatch();
   const { data: user } = useSelector((state: RootState) => state.user);
   const { data: users, loading, page, limit, total, secondLoading } = useSelector((state: RootState) => state.explore);
