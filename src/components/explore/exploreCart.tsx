@@ -35,7 +35,7 @@ const ExploreCard = (props) => {
         }}
         
       >
-        <div className='py-2 pb-6' style={{ width: "calc(100% - 36px)" }}>
+        <div className='py-2' style={{ width: "calc(100% - 36px)" }}>
           <Card shadow='none' radius="lg" className="w-full col-span-12 sm:col-span-7 border-0 shadow-0">
             <Swiper
               slidesPerView={1}
@@ -61,9 +61,7 @@ const ExploreCard = (props) => {
             </Swiper>
             
 
-            <motion.div
-              animate={{ height: "auto" }}
-              transition={{ duration: 0.5, ease: "easeInOut" }}
+            <div
               style={{ overflow: "hidden" }}
               className="absolute bottom-0 z-10 w-full"
             >
@@ -130,7 +128,7 @@ const ExploreCard = (props) => {
 
               </ParallaxText>
 
-                  <div style={{textAlign:"start"}} className="flex flex-grow w-full px-3">
+                  <div style={{textAlign:"start"}} className="flex flex-grow pb-6 w-full px-3">
                     <div className="flex flex-col w-full">
                       <div className="flex items-center justify-between w-full">
                         <div className="flex items-center">
@@ -147,7 +145,7 @@ const ExploreCard = (props) => {
                   </div>
                 </CardFooter>
               </div>
-            </motion.div>
+            </div>
           </Card>
         </div>
       </div>

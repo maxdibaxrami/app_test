@@ -159,15 +159,17 @@ const ExplorePage = () => {
             <ExploreCard profile={value} />
           </SwiperSlide>
         ))}
-      </Swiper>
 
-      <div style={{ right: "12px", top:"20%", zIndex: 50 }} className="fixed card flex-col p-2 flex justify-center items-end">
-      <div className="p-2" style={{ borderRadius: "50%", zIndex: 50 }}>
+      <div
+        style={{marginTop:"-50px", zIndex: 50 }}
+        className="card p-2 flex justify-center items-center"
+      >
+        <div className="p-2" style={{ borderRadius: "50%", zIndex: 50 }}>
           <Popover backdrop="opaque" showArrow placement="bottom-end">
             <PopoverTrigger>
               <Button
                 isDisabled={likesCount >= maxLikes}
-                radius="lg"
+                radius="md"
                 size="md"
                 isIconOnly
                 color="warning"
@@ -185,8 +187,8 @@ const ExplorePage = () => {
         <div className="p-2" style={{ borderRadius: "50%", zIndex: 50 }}>
           <Button
             isDisabled={likesCount >= maxLikes}
-            onClick={handleNotLike}
-            radius="lg"
+            onPress={handleNotLike}
+            radius="md"
             size="lg"
             isIconOnly
             color="primary"
@@ -202,7 +204,7 @@ const ExplorePage = () => {
             <PopOverPerimum isOpen={true}>
               <Button
                 isDisabled
-                radius="lg"
+                radius="md"
                 size="lg"
                 isIconOnly
                 color="secondary"
@@ -214,7 +216,7 @@ const ExplorePage = () => {
             </PopOverPerimum>
           ) : (
                 <Button
-                  radius="lg"
+                  radius="md"
                   isLoading={requestLoading}
                   isIconOnly
                   size="lg"
@@ -233,7 +235,7 @@ const ExplorePage = () => {
             <PopoverTrigger>
               <Button
                 isDisabled={likesCount >= maxLikes}
-                radius="lg"
+                radius="md"
                 size="md"
                 isIconOnly
                 color="success"
@@ -252,6 +254,9 @@ const ExplorePage = () => {
         </div>
 
       </div>
+      </Swiper>
+
+
 
       {users[activeSlideIndex - 1] && (
         <MatchModal

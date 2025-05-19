@@ -1,82 +1,82 @@
-import { Calendar } from "@heroui/react";
-import { useEffect, useState } from "react";
-import { parseDate, today, getLocalTimeZone, DateValue } from "@internationalized/date";
 
-const CalendarPicker = ({ setSlideAvailable, setSlideUnAvailable, user, showError }) => {
-  // Define min and max allowed dates
-  const minDate = parseDate("1900-01-01");
-  const todayDate = today(getLocalTimeZone());
-  const maxDate = todayDate.subtract({ years: 18 });
+/* YearWheelPicker.tsx */
+import React, { useMemo, useState, useEffect, useCallback } from 'react'
+import Wheel from '../core/While';
 
-  const [age, setAge] = useState(user.age);
-  const [dateBirth, setDateBirth] = useState(user.dateBirth);
+interface YearWheelPickerProps {
+  user: { age?: number; dateBirth?: string }
+  setSlideAvailable: (key: string, val: number | string) => void
+  setSlideUnAvailable: () => void
+  showError?: boolean
+}
 
-  // Initialize state with the given initial date
-  const initialDate = dateBirth ? parseDate(dateBirth) : null;
+const YearWheelPicker: React.FC<YearWheelPickerProps> = ({
+  user,
+  setSlideAvailable,
+  setSlideUnAvailable,
+  showError = false,
+}) => {
+  const currentYear = useMemo(() => new Date().getFullYear(), [])
+  const maxYear = currentYear - 18
 
-  const [value, setValue] = useState<DateValue | null>(initialDate);
+  const years = useMemo(
+    () => Array.from({ length: 101 }, (_, i) => maxYear - 100 + i),
+    [maxYear]
+  )
 
-  // Helper to format date as "YYYY-MM-DD"
-  const formatDate = (dateValue) => {
-    return `${dateValue.year}-${String(dateValue.month).padStart(2, "0")}-${String(dateValue.day).padStart(2, "0")}`;
-  };
+  const initYear = useMemo(
+    () => (user.dateBirth ? new Date(user.dateBirth).getFullYear() : maxYear),
+    [user.dateBirth, maxYear]
+  )
 
-  // Helper to calculate age based on date string
-  const calculateAge = (birthDateString) => {
-    const birthDate = new Date(birthDateString);
-    const today = new Date();
-  
-    let age = today.getFullYear() - birthDate.getFullYear();
-    const monthDifference = today.getMonth() - birthDate.getMonth();
-    const dayDifference = today.getDate() - birthDate.getDate();
-  
-    if (monthDifference < 0 || (monthDifference === 0 && dayDifference < 0)) {
-      age--;
-    }
-    return age;
-  };
+  const initIndex = useMemo(() => {
+    const idx = years.indexOf(initYear)
+    return idx >= 0 ? idx : 0
+  }, [initYear, years])
 
-  // Handle changes in the DatePicker
-  const handleDateChange = (newValue: DateValue | null) => {
-    if (newValue) {
-      const formattedDate = formatDate(newValue);
-      setValue(parseDate(formattedDate));
-      setDateBirth(formattedDate);
-      setAge(calculateAge(formattedDate));
-    }
-  };
+  // selectedYear only updates when a new slide is snapped
+  const [selectedYear, setSelectedYear] = useState<number>(years[initIndex])
+
+  // only update when slide snaps (via slideChanged), not on every frame
+  const handleChange = useCallback(
+    (_rel: number, abs: number) => {
+      const pos = ((abs % years.length) + years.length) % years.length
+      const year = years[pos]
+      setSelectedYear((prev) => (prev !== year ? year : prev))
+    },
+    [years]
+  )
 
   useEffect(() => {
-    if (dateBirth) {
-      setSlideAvailable("dateBirth", dateBirth);
-      setSlideAvailable("age", age);
-
+    if (selectedYear != null) {
+      setSlideAvailable('dateBirth', `${selectedYear}-01-01`)
+      setSlideAvailable('age', currentYear - selectedYear)
     } else {
-      setSlideUnAvailable();
+      setSlideUnAvailable()
     }
-  }, [ dateBirth, age]);
+  }, [selectedYear, currentYear])
 
   return (
-    <div className="flex justify-between flex-col px-6 pb-4">
-      <form className="flex w-full flex-col gap-2">
-        <div className="flex flex-col gap-4">
-                  <Calendar 
-                    value={value}
-                    onChange={handleDateChange}
-                    style={{ width: "100%" }}
-                    showMonthAndYearPickers
-                    minValue={minDate}
-                    maxValue={maxDate}
-                    color="primary"
-                    
-                    errorMessage="Select date of birth"
-                    isInvalid={showError && value === null}
-                    
-                  />
-            </div>
-          </form>
+    <div className="flex flex-col items-center px-4 py-6">
+      <h2 className="mb-3 text-lg font-medium">
+        Select Birth Year{' '}
+        {showError && !selectedYear && <span className="text-red-500">*</span>}
+      </h2>
+      <div className="w-full max-w-xs h-48">
+        <Wheel
+          length={years.length}
+          width={24}
+          loop={true}
+          initIdx={initIndex}
+          onChange={handleChange}
+          getValue={(idx, abs) => {
+            const pos = ((abs % years.length) + years.length) % years.length
+            return years[(pos + idx) % years.length]
+          }}
+        />
       </div>
-  );
-};
+    </div>
+  )
+}
 
-export default CalendarPicker;
+export default YearWheelPicker
