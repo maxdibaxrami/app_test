@@ -22,10 +22,10 @@ const ChatPage = () => {
     >
 
         <div className="mx-4">
-          <Card shadow="none" isPressable as={Link} to={"/random-chat"} className="border-1 border-default-200 dark:border-default-100  backdrop-blur bg-neutral/10" radius="lg">
+          <Card shadow="none" isPressable as={Link} to={"/random-chat"} className="border-1 border-default-200 dark:border-default-100  backdrop-blur bg-primary/0" radius="lg">
             <div className="flex items-center p-1 py-3 h-full">
                 <div>
-                  <p className="text-4xl p-2">🎲</p>
+                  <p className="text-4xl px-4 p-2">🎲</p>
                 </div>
                 <div>
                     <p className="text-base font-bold">{t('anonymous_chat')} </p>
