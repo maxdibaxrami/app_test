@@ -10,6 +10,7 @@ import { useLaunchParams } from "@telegram-apps/sdk-react";
 import { useTheme } from "next-themes";
 import { useTranslation } from "react-i18next";  // Importing useTranslation hook
 import LanguageSection from "@/components/setting/LanguageSection";
+import FaqModal from "@/components/setting/faqModal";
 
 export default function Setting() {
   const { t } = useTranslation();  // Initialize translation hook
@@ -85,8 +86,13 @@ export default function Setting() {
                 <p className="text-tiny text-default-400">{t('profile_visibility_desc')}</p>
               </div>
             </Switch>
+
+            <div className="w-full h-full px-2 pb-4">
+              <FaqModal/>
+            </div>        
            <LanguageSection/>
             </div>
+
         </section>
       </div>
     </Page>

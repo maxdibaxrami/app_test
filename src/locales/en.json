@@ -535,7 +535,11 @@
       "block_user_text": "You have been banned for violating our privacy policy or engaging in inappropriate behavior.",
 
         "support": "Support",
-        "form_message_us": "You can contact us through this form"
+        "form_message_us": "You can contact us through this form",
+
+
+          "faq": "FAQ",
+  "faq_description": "Find answers to the most frequently asked questions"
    
    
 
