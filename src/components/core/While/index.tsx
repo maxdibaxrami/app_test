@@ -1,5 +1,5 @@
 /* Wheel.tsx */
-import React, { useRef, useState, useLayoutEffect, useCallback, useMemo } from 'react'
+import React, { useRef, useState, useCallback, useMemo } from 'react'
 import { KeenSliderOptions, TrackDetails, useKeenSlider } from 'keen-slider/react'
 import './style.css'
 

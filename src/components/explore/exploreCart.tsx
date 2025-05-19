@@ -3,7 +3,6 @@ import 'swiper/css/pagination';
 import './style.css';
 
 import { useMemo } from "react";
-import { motion } from "framer-motion";
 import { Card, CardFooter, Chip } from "@heroui/react";
 import { Swiper, SwiperSlide, useSwiperSlide } from 'swiper/react';
 import SwiperImages from './swiperImage';
