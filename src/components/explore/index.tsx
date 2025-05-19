@@ -1,7 +1,6 @@
 import "swiper/css";
-import "swiper/css/effect-creative";
 import "./style.css";
-import 'swiper/css/virtual';
+import 'swiper/css/effect-fade';
 
 import React, { useEffect, useState, useCallback } from "react";
 import ExploreCard from "./exploreCart";
@@ -22,10 +21,8 @@ import { PopOverPerimum } from "../perimum/popOver";
 import { SendGiftCard } from "../gift";
 import { FlashMessageCard } from "./flashMessage";
 import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import 'swiper/css/effect-fade';
 
-import { EffectFade, Virtual } from 'swiper/modules';
+import { EffectFade } from 'swiper/modules';
 
 const ExplorePage = () => {
   const maxLikes = 20;
@@ -151,7 +148,7 @@ const ExplorePage = () => {
         className="mySwiper"
         style={{ marginTop: "4rem" }}
         allowTouchMove={false}
-        modules={[EffectFade, Virtual]}
+        modules={[EffectFade]}
         onSwiper={setSwiperInstance}
         onSlideChange={(swiper) => setActiveSlideIndex(swiper.activeIndex)}
       >
