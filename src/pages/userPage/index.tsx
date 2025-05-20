@@ -19,7 +19,6 @@ import {
 } from "@/Icons/index";
 
 import { Page } from '@/components/Page.tsx';
-import { useLaunchParams } from "@telegram-apps/sdk-react";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../store';
@@ -32,8 +31,6 @@ import { motion } from "framer-motion";
 import { resetLikes, setLastReset } from "@/features/NearByLikeLimitation";
 import { SendGiftCard } from "@/components/gift";
 import { FlashMessageCard } from "@/components/explore/flashMessage";
-
-import TopBarPages from "@/components/tobBar/index";
 import { ProfileBackgroundSvg } from "@/Icons/profileBackgroundSVG";
 
 import ModalFormReport from '@/components/core/reportModal/index'
@@ -41,7 +38,6 @@ import ModalFormReport from '@/components/core/reportModal/index'
 export default function ProfilePage() {
   const maxLikes = 5;
   const { t } = useTranslation();  // Initialize translation hook
-  const lp = useLaunchParams();
   const [searchParams] = useSearchParams();
   const dispatch = useDispatch<AppDispatch>();
 
@@ -116,17 +112,6 @@ export default function ProfilePage() {
       dispatch(fetchUserDataId(userId))
     }
   } ,[userId])
-
-  const getPaddingForPlatform = () => {
-    if (['ios','android'].includes(lp.platform)) {
-      // iOS/macOS specific padding (e.g., accounting for notches)
-      return '0px'  // Adjust as needed for iOS notch
-    } else {
-      // Android/base padding
-      return '70px' // Default padding
-    }
-  };
-
 
    const HandleAddToFavorite = async (value) => {
     
