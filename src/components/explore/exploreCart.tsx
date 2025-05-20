@@ -3,15 +3,16 @@ import 'swiper/css/pagination';
 import './style.css';
 
 import { useMemo } from "react";
-import { Card, CardFooter, Chip } from "@heroui/react";
+import { Button, Card, CardFooter, Chip } from "@heroui/react";
 import { Swiper, SwiperSlide, useSwiperSlide } from 'swiper/react';
 import SwiperImages from './swiperImage';
 import { Pagination, Autoplay } from 'swiper/modules';
-import { HashtagIcon, HeartIconOutLine, HeightIcon, LanguageIcon, LocationIcon, VerifyIconFill } from '@/Icons/index';
+import { HashtagIcon, HeartIconOutLine, HeightIcon, LanguageIcon, LocationIcon, ProfileIcon, VerifyIconFill } from '@/Icons/index';
 import ExploreCartData from './exploreCartData';
 import ParallaxText from '../animate/text-slider';
 import { gethobbies, getStaticData } from '@/constant';
 import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
 
 const ExploreCard = (props) => {
   const { t } = useTranslation();
@@ -41,7 +42,7 @@ const ExploreCard = (props) => {
                 {props?.profile.city}
               </Chip>
             }
-            
+                   
             <Swiper
               slidesPerView={1}
               spaceBetween={30}
@@ -141,8 +142,13 @@ const ExploreCard = (props) => {
                             {props.profile.firstName}, {props.profile.age}
                           </p>
                           {props.profile.verifiedAccount && <VerifyIconFill fill="#21b6a8" className="ml-2 size-6"/>}
-                          
+                           
                         </div>
+
+                        <Button  size="sm" as={Link} to={`/main/nearby?user=${props?.profile.id}`} className='text-white px-0 mx-0 backdrop-blur bg-primary/60 backdrop-saturate-150' isIconOnly color="primary" variant="shadow">
+                            <ProfileIcon className="size-5 text-white"/>
+                        </Button>
+
                       </div>
 
                       <ExploreCartData profile={props.profile} />

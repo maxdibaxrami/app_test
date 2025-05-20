@@ -8,7 +8,7 @@ const NearByCard = ({ data }) => {
   return (
     <Card
     as={Link}
-    to={`/user?userId=${data.id}`}
+    to={`/main/explore?user=${data.id}`}
     className="col-span-12 sm:col-span-4 h-[100%]">
         <CardHeader className="absolute z-10 bottom-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent flex-col !items-start">
           <p className="text-tiny text-white/60 uppercase font-bold">{`${data.country}, ${data.city}`}</p>

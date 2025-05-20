@@ -9,6 +9,7 @@ import { Button } from '@heroui/button'
 import { FitlerIcon } from '@/Icons'
 import { Navbar, NavbarContent, NavbarItem } from '@heroui/react'
 import NavBar from '@/components/NavBar'
+import UserProfileModal from '@/components/user/UserProfileModal'
 
 const MainPage: React.FC = React.memo(() => {
   const lp = useLaunchParams()
@@ -74,7 +75,7 @@ const MainPage: React.FC = React.memo(() => {
 
 
 
-
+      <UserProfileModal />
       <NearByFilter ref={filterRef} />
     </Page>
   )

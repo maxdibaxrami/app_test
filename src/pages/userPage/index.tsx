@@ -50,7 +50,7 @@ export default function ProfilePage() {
 
   const { likesCount, lastReset } = useSelector((state: RootState) => state.NearByLimitation);
 
-  const userId = searchParams.get("userId")
+  const userId = searchParams.get("user")
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   
@@ -303,28 +303,24 @@ export default function ProfilePage() {
   return (
     <Page>
         <div
-          className="containe relative pt-3 mx-auto max-w-7xl flex-grow top-bar-height w-full safe-area-top"
+          className="containe relative mx-auto mt-1 max-w-7xl flex-grow w-full"
           style={{
             maxHeight: "100%",
             height:"100%",
-            marginBottom:"5rem",
-            
+            paddingBottom:"6rem",
+            overflow:"scroll"
           }}
       >
 
               <motion.div transition={{ delay: 2 , duration: 2 }} initial={{opacity:0}} animate={{opacity:1}} className="fixed h-full dark:opacity-70 -top-[80px] inset-0 flex items-center z-[-10]">
                 <ProfileBackgroundSvg/>
               </motion.div>
-              
-         <TopBarPages />
-        {!LoadingUser ? 
+                         {!LoadingUser ? 
               <section
-                className="flex flex-col safe-area-top"
+                className="flex flex-col"
               >
-              
-      
-                  <div  className="w-full mb-32">
-                    <div style={{marginTop:`${getPaddingForPlatform()}`}} className="w-full px-1  text-default-700">
+                  <div  className="w-full">
+                    <div className="w-full px-1  text-default-700">
                       <Listbox 
                         aria-label="Listbox menu with sections" 
                         variant="solid"
@@ -691,10 +687,10 @@ export default function ProfilePage() {
               :
 
               <div 
-                className="flex flex-col items-center justify-center"
-                style={{paddingTop:`calc(4rem + ${getPaddingForPlatform()})`, height:`calc(100vh)`}}  
+                className="flex flex-col justify-center"
+                style={{height:`calc(100vh)`}}  
               >
-                <Spinner size="lg" />
+                <Spinner className="mt-16" size="lg" />
               </div>
         }
 

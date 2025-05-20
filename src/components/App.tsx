@@ -214,6 +214,7 @@ export function App() {
               />
             </Routes>
           </HashRouter>
+          
         </AppRoot>
       </Suspense>
     </I18nextProvider>
