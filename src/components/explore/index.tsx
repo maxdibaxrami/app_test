@@ -52,7 +52,6 @@ const ExplorePage = () => {
   const closeModal = useCallback(() => setIsModalOpen(false), []);
 
   const handleLikeUser = useCallback(async () => {
-    console.log(likesCount > maxLikes)
     if (likesCount > maxLikes) return;
     try {
       if(user.premium === false){
@@ -71,7 +70,7 @@ const ExplorePage = () => {
     } finally {
       swiperInstance?.slideNext();
     }
-  }, [dispatch, likesCount, maxLikes, user.id, users, activeSlideIndex, swiperInstance, openModal]);
+  }, [likesCount, maxLikes, user.id, users, activeSlideIndex, swiperInstance]);
 
   const handleNotLike = useCallback(() => {
     console.log(users.length)
@@ -82,7 +81,7 @@ const ExplorePage = () => {
     if (user.premium === false) {
       dispatch(incrementLikes());
     }
-  }, [dispatch, likesCount, maxLikes, swiperInstance]);
+  }, [likesCount, maxLikes, swiperInstance]);
 
   const lp = useLaunchParams();
   const getPaddingForPlatform = () => (["ios"].includes(lp.platform) ? "50px" : "25px");
@@ -103,7 +102,7 @@ const ExplorePage = () => {
       // Reset the slider to start with the new batch.
       setActiveSlideIndex(0);
     }
-  }, [activeSlideIndex, users, page, limit, total, dispatch]);
+  }, [activeSlideIndex, users, page, limit, total]);
 
 
   useEffect(()=>{
@@ -147,6 +146,7 @@ const ExplorePage = () => {
       <Swiper
         effect={"fade"}
         grabCursor={true}
+        lazyPreloadPrevNext={2}
         className="mySwiper"
         style={{ marginTop: "4rem" }}
         allowTouchMove={false}
@@ -155,7 +155,7 @@ const ExplorePage = () => {
         onSlideChange={(swiper) => setActiveSlideIndex(swiper.activeIndex)}
       >
         {users.map((value) => (
-          <SwiperSlide className="bg-background" key={value.id}>
+          <SwiperSlide lazy className="bg-background" key={value.id}>
             <ExploreCard profile={value} />
           </SwiperSlide>
         ))}
