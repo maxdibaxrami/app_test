@@ -126,13 +126,10 @@ export default function NearByPage() {
         }}
       >
         {Cell}
+        
       </Grid>
       {/* Loading spinner for more data */}
-      {loadingMore && hasMore && (
-        <div className="w-full mt-6 mb-6 flex items-center justify-center">
-          <Spinner size="lg" />
-        </div>
-      )}
+        
 
       <motion.div
         transition={{ delay: 2, duration: 2 }}
