@@ -147,6 +147,7 @@ const ExplorePage = () => {
         effect={"fade"}
         grabCursor={true}
         lazyPreloadPrevNext={2}
+        lazyPreloaderClass="hidden"
         className="mySwiper"
         style={{ marginTop: "4rem" }}
         allowTouchMove={false}

@@ -7,7 +7,7 @@ import { Card, CardFooter, Chip } from "@heroui/react";
 import { Swiper, SwiperSlide, useSwiperSlide } from 'swiper/react';
 import SwiperImages from './swiperImage';
 import { Pagination, Autoplay } from 'swiper/modules';
-import { HashtagIcon, HeartIconOutLine, HeightIcon, LanguageIcon, VerifyIconFill } from '@/Icons/index';
+import { HashtagIcon, HeartIconOutLine, HeightIcon, LanguageIcon, LocationIcon, VerifyIconFill } from '@/Icons/index';
 import ExploreCartData from './exploreCartData';
 import ParallaxText from '../animate/text-slider';
 import { gethobbies, getStaticData } from '@/constant';
@@ -35,7 +35,13 @@ const ExploreCard = (props) => {
         
       >
         <div className='py-2' style={{ width: "calc(100% - 36px)" }}>
-          <Card shadow='none' radius="lg" className="w-full col-span-12 sm:col-span-7 border-0 shadow-0">
+          <Card shadow='none' radius="lg" className="w-full relative col-span-12 sm:col-span-7 border-0 shadow-0">
+            {props?.profile.city && 
+              <Chip startContent={<LocationIcon className="size-4 mx-1.5 text-white"/>} className='absolute z-50 top-2 text-white left-2' color="primary" variant="flat">
+                {props?.profile.city}
+              </Chip>
+            }
+            
             <Swiper
               slidesPerView={1}
               spaceBetween={30}
