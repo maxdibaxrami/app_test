@@ -17,7 +17,6 @@ import {
 } from "@heroui/react";
 import { SearchIcon } from "@/Icons";
 import axios from "axios";
-import axiosInstance from "@/api/base";
 import SecondaryButton from "@/components/miniAppButtons/secondaryButton";
 import MainButton from "@/components/miniAppButtons/MainButton";
 import { useLocation, useSearchParams } from "react-router-dom";
@@ -129,7 +128,7 @@ export default function EditProfilePageText() {
     const endpoint = `https://copychic.ru/api/cities/search?name=${encodeURIComponent(
       debouncedInput
     )}`;
-    axiosInstance
+    axios
       .get(endpoint, { cancelToken: source.token })
       .then((response) => {
         setCityList(response.data);

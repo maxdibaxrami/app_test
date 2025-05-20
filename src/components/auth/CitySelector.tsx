@@ -3,7 +3,6 @@ import { Input, Spinner } from "@heroui/react"; // use the Input component from 
 import { Listbox, ListboxItem } from "@heroui/react"; // use the Listbox components from HeroUI
 import { useTranslation } from "react-i18next";
 import axios from "axios";
-import axiosInstance from "@/api/base";
 import { SearchIcon } from "@/Icons";
 
 // Helper: convert country code to flag emoji.
@@ -161,7 +160,7 @@ const SelectCity: React.FC<SelectCityProps> = ({
     const endpoint = `https://copychic.ru/api/cities/search?name=${encodeURIComponent(
       debouncedInput
     )}`;
-    axiosInstance
+    axios
       .get(endpoint, { cancelToken: source.token })
       .then((response) => {
         setCityList(response.data);
