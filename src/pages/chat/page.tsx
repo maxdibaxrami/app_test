@@ -20,6 +20,7 @@ import { addMessage, setLoading, setMessages } from "@/features/messageSlice";
 import MainButton from "@/components/miniAppButtons/MainButton";
 import { useTheme } from "next-themes";
 import SecondaryButton from "@/components/miniAppButtons/secondaryButton";
+import UserProfileModal from "@/components/user/UserProfileModal";
 
 
 interface Message {
@@ -236,6 +237,9 @@ export default function ChatPage() {
               onChange={handleFileChange}
               ref={fileInputRef} // Link file input with ref
       />
+
+      <UserProfileModal />
+      
       <MainButton
         text={t("send_message")}
         backgroundColor="#1FB6A8"

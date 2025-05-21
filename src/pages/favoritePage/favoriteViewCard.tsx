@@ -12,7 +12,7 @@ const ProfileViewCard = ({ data }) => {
         radius="lg"
         className="border-none aspect-square w-full relative"
         as={Link}
-        to={`/user?userId=${data.id}`}
+        to={`/favorite-view?user=${data.id}`}
 
       >
         <Image

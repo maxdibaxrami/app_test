@@ -12,7 +12,7 @@ const ProfileGiftViewCard = ({ data }) => {
         radius="lg"
         className="border-none aspect-square w-full relative"
         as={Link}
-        to={`/user?userId=${data.id}`}
+        to={`/gift-view?user=${data.id}`}
 
       >
         <Image

@@ -288,7 +288,7 @@ export default function ProfilePage() {
   return (
     <Page>
         <div
-          className="containe relative mx-auto mt-1 max-w-7xl flex-grow w-full"
+          className="containe bg-background relative mx-auto mt-1 max-w-7xl flex-grow w-full"
           style={{
             maxHeight: "100%",
             height:"100%",

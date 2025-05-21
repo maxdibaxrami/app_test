@@ -9,6 +9,7 @@ import TopBarPages from "@/components/tobBar/index";
 import { useLaunchParams } from "@telegram-apps/sdk-react";
 import { GiftNotFound } from "@/Icons/giftIcon";
 import { useMemo } from "react";
+import UserProfileModal from "@/components/user/UserProfileModal";
 
 
 
@@ -79,6 +80,8 @@ export default function GiftViewPage() {
         </motion.div >
         </section>
       </div>
+       <UserProfileModal />
+      
     </Page>
   );
 }

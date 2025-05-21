@@ -1,19 +1,21 @@
 import { Navbar, NavbarContent, NavbarItem, Skeleton, Avatar } from "@heroui/react";
 import { useRef } from 'react';
-import { useTranslation } from "react-i18next";
 import { BASEURL } from "@/constant";
-import { Link } from "react-router-dom";
-import { useSelector } from 'react-redux';
-import { RootState } from "@/store";
+import { useSearchParams } from "react-router-dom";
 
-const ChatProfileSection = ({ loading, profileDataState, userId2, position=true, online=false }) => {
+const ChatProfileSection = ({ loading, profileDataState, userId2, position=true }) => {
   const childRef = useRef();
-  const { t } = useTranslation();
+  const [searchParams, setSearchParams] = useSearchParams();
 
+    const handleClickProfile = () => {
+      const newParams = new URLSearchParams(searchParams); // clone existing
+      newParams.set('user', userId2); // add or update param
+      setSearchParams(newParams); // update the URL
+    };
   // Accessing online status from Redux state based on userId2
-  const isUserOnline = useSelector((state : RootState) => state.status.onlineUsers.some(user => user.userId === userId2));
 
   const handleClick = () => {
+    handleClickProfile()
     if (childRef.current) {
       /* @ts-ignore */
       childRef.current.callChildFunction(); // Call the function in the child
@@ -58,30 +60,21 @@ const ChatProfileSection = ({ loading, profileDataState, userId2, position=true,
           <NavbarItem className="lg:flex"></NavbarItem>
         </NavbarContent>
         <NavbarContent className="flex items-end" justify="center">
-          <Link to={`/user?userId=${userId2}`} className="lg:flex flex items-end" onClick={handleClick}>
+          <div className="lg:flex mb-1 flex items-center" onClick={handleClick}>
             <div className="relative">
               <Avatar
                 className="mx-1"
-                color={isUserOnline ? "success" : "primary"}
+                color={"primary"}
                 radius="lg"
                 size="md"
                 src={`${BASEURL}${profileDataState.photos && profileDataState.photos[0].small}`}
               />
 
             </div>
-            <div className="flex flex-col mx-1 text-start">
+            <div className="flex items-center flex-col mx-1 text-start">
               <span className="text-l text-foreground font-bold">{profileDataState.firstName}</span>
-              {isUserOnline || online ? (
-                <span className="text-small bold" style={{ color: "#22c55e" }}>
-                  {t("Online")}
-                </span>
-              ) : (
-                <span className="text-small bold text-foreground">
-                  {t("Offline")}
-                </span>
-              )}
             </div>
-          </Link>
+          </div>
         </NavbarContent>
         <NavbarContent justify="end"></NavbarContent>
       </Navbar>

@@ -9,6 +9,7 @@ import TopBarPages from "@/components/tobBar/index";
 import { useLaunchParams } from "@telegram-apps/sdk-react";
 import { NotFoundUserExplore } from "@/Icons/notFoundUserExplore";
 import { useMemo } from "react";
+import UserProfileModal from "@/components/user/UserProfileModal";
 
 
 
@@ -78,6 +79,8 @@ export default function FavoriteViewPage() {
         </motion.div >
         </section>
       </div>
+       <UserProfileModal />
+      
     </Page>
   );
 }

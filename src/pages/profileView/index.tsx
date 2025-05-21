@@ -11,6 +11,7 @@ import { NotFoundUserExplore } from "@/Icons/notFoundUserExplore";
 import { useMemo } from "react";
 import { PerimumIcon } from "@/Icons";
 import { Link } from "react-router-dom";
+import UserProfileModal from "@/components/user/UserProfileModal";
 
 
 
@@ -98,6 +99,8 @@ export default function ProfileViewPage() {
         </motion.div >
         </section>
       </div>
+      <UserProfileModal />
+      
     </Page>
   );
 }

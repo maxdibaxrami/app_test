@@ -3,16 +3,15 @@ import 'swiper/css/pagination';
 import './style.css';
 
 import { useMemo } from "react";
-import { Button, Card, CardFooter, Chip } from "@heroui/react";
+import { Card, CardFooter, Chip } from "@heroui/react";
 import { Swiper, SwiperSlide, useSwiperSlide } from 'swiper/react';
 import SwiperImages from './swiperImage';
 import { Pagination, Autoplay } from 'swiper/modules';
-import { HashtagIcon, HeartIconOutLine, HeightIcon, LanguageIcon, LocationIcon, ProfileIcon, VerifyIconFill } from '@/Icons/index';
+import { HashtagIcon, HeartIconOutLine, HeightIcon, LanguageIcon, LocationIcon, VerifyIconFill } from '@/Icons/index';
 import ExploreCartData from './exploreCartData';
 import ParallaxText from '../animate/text-slider';
 import { gethobbies, getStaticData } from '@/constant';
 import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
 
 const ExploreCard = (props) => {
   const { t } = useTranslation();
@@ -20,6 +19,13 @@ const ExploreCard = (props) => {
   const hobbies = useMemo(() => gethobbies(t), [t,props.profile]);
   const staticData = useMemo(() => getStaticData(t), [t,props.profile]);
   const swiperSlide = useSwiperSlide();
+
+  const pagination = {
+    clickable: true,
+    renderBullet: function (index, className) {
+      return '<span class="swiper-pagination-bullet ' + className + '">' + (index + 1) + '</span>';
+    },
+  };
 
 
   return (
@@ -38,7 +44,7 @@ const ExploreCard = (props) => {
         <div className='py-2' style={{ width: "calc(100% - 36px)" }}>
           <Card shadow='none' radius="lg" className="w-full relative col-span-12 sm:col-span-7 border-0 shadow-0">
             {props?.profile.city && 
-              <Chip startContent={<LocationIcon className="size-4 mx-1.5 text-white"/>} className='absolute z-50 top-2 text-white left-2' color="primary" variant="flat">
+              <Chip startContent={<LocationIcon className="size-5 mx-1 text-white"/>} className='absolute z-50 font-bold top-2 text-white left-2' color="primary" variant="flat">
                 {props?.profile.city}
               </Chip>
             }
@@ -46,7 +52,7 @@ const ExploreCard = (props) => {
             <Swiper
               slidesPerView={1}
               spaceBetween={30}
-              pagination={{ clickable: false }}
+              pagination={pagination}
               navigation={false}
               modules={[Pagination, Autoplay]}
               className="mySwiper"
@@ -144,11 +150,6 @@ const ExploreCard = (props) => {
                           {props.profile.verifiedAccount && <VerifyIconFill fill="#21b6a8" className="ml-2 size-6"/>}
                            
                         </div>
-
-                        <Button  size="sm" as={Link} to={`/main/nearby?user=${props?.profile.id}`} className='text-white px-0 mx-0 backdrop-blur bg-primary/60 backdrop-saturate-150' isIconOnly color="primary" variant="shadow">
-                            <ProfileIcon className="size-5 text-white"/>
-                        </Button>
-
                       </div>
 
                       <ExploreCartData profile={props.profile} />

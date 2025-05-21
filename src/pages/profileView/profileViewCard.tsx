@@ -16,7 +16,7 @@ const ProfileViewCard = ({ data }) => {
         isPressable
         className="border-none aspect-square w-full relative"
         as={Link}
-        to={user.premium ? `/user?userId=${data.id}` : '/profile-view'}
+        to={user.premium ? `/profile-view?user=${data.id}` : '/profile-view'}
 
       >
         <Image
