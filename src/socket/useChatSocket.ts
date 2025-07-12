@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 import io from 'socket.io-client';
 
-const SERVER_URL = 'https://copychic.ru/';
+const SERVER_URL = 'https://mix-app-database.up.railway.app/';
 
 const useChatSocket = (userId: string) => {
   const [socket, setSocket] = useState(null);

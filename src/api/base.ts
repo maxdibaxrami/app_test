@@ -5,7 +5,7 @@ import { retrieveLaunchParams } from '@telegram-apps/sdk';
 const { initDataRaw } = retrieveLaunchParams();
 
 const axiosInstance = axios.create({
-  baseURL: 'https://copychic.ru/api',
+  baseURL: 'https://mix-app-database.up.railway.app/api',
   timeout: 40000,
 });
 
