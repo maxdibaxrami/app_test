@@ -25,7 +25,7 @@ const UserProfileModal: React.FC = () => {
   if (!isOpen) return null;
 
   return (
-    <Modal  hideCloseButton scrollBehavior={"inside"} isOpen size="5xl" onClose={handleClose}>
+    <Modal  hideCloseButton scrollBehavior={"inside"} isOpen={isOpen} size="5xl" onClose={handleClose}>
       <ModalContent className="py-1 bg-background">
         {() => (
           <Suspense
