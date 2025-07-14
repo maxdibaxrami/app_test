@@ -1,13 +1,12 @@
 // src/components/UserProfileModal.tsx
 import React, { lazy, Suspense, useEffect, useState } from "react";
-import { useSearchParams, useNavigate } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import { Modal, ModalContent, Spinner } from "@heroui/react";
 
 const ProfilePage = lazy(() => import("@/pages/userPage/index"));        // ← code-split
 
 const UserProfileModal: React.FC = () => {
   const [searchParams] = useSearchParams();
-  const navigate = useNavigate();
 
   const userId = searchParams.get("user");          // ?user=123
   const [isOpen, setIsOpen] = useState(Boolean(userId));
@@ -15,17 +14,12 @@ const UserProfileModal: React.FC = () => {
   /* keep modal state in sync with URL */
   useEffect(() => setIsOpen(Boolean(userId)), [userId]);
 
-  const handleClose = () => {
-    setIsOpen(false);
-    searchParams.delete("user");                    // pop the param
-    navigate({ search: searchParams.toString() }, { replace: true });
-  };
 
   /* nothing to render when closed → no extra work */
   if (!isOpen) return null;
 
   return (
-    <Modal hideCloseButton scrollBehavior={"inside"}isOpen={!!userId} size="5xl" onClose={handleClose}>
+    <Modal hideCloseButton scrollBehavior={"inside"}isOpen={!!userId} size="5xl">
       <ModalContent className="py-1 bg-background">
         {() => (
           <Suspense
