@@ -31,7 +31,7 @@ export default function FaqModal() {
         <ModalContent>
           {(onClose) => (
             <>
-              <ModalHeader className="text-2xl font-semibold">
+              <ModalHeader className="text-2xl pt-14 font-semibold">
   🚀  Face Match — Everything You Can Do
 </ModalHeader>
 

@@ -539,7 +539,14 @@
 
 
           "faq": "FAQ",
-  "faq_description": "Find answers to the most frequently asked questions"
+  "faq_description": "Find answers to the most frequently asked questions",
+
+
+    "verifying_profile_title": "Verifying your profile",
+  "verifying_profile_description": "This may take a few moments. Please be patient while we complete the verification.",
+
+   "profile_verified_success": "Profile verified successfully"
+
    
    
 

@@ -2,7 +2,7 @@ import { useState, useRef, useCallback } from "react";
 import { RootState, AppDispatch } from "@/store";
 import { useSelector, useDispatch } from "react-redux";
 import { useTranslation } from "react-i18next";
-import { Button, Card, CardBody, CardFooter, Image, Spinner } from "@heroui/react";
+import { addToast, Button, Card, CardBody, CardFooter, closeAll, Image, Spinner } from "@heroui/react";
 import { Page } from "@/components/Page.tsx";
 import TopBarPages from "@/components/tobBar/index";
 import { useLaunchParams } from "@telegram-apps/sdk-react";
@@ -10,6 +10,7 @@ import Webcam from "react-webcam";
 import { UploadIcon } from "@/Icons";
 import { verifyUserPhoto } from "@/features/userSlice";
 import { useNavigate } from "react-router-dom";
+import MainButton from "@/components/miniAppButtons/MainButton";
 
 export default function VerifyAccontViewPage() {
   const navigate = useNavigate();
@@ -38,13 +39,41 @@ export default function VerifyAccontViewPage() {
   const uploadPhoto = async () => {
     if (photo && data) {
       try {
+        addToast({
+              title: t("verifying_profile_title"),
+              description:t("verifying_profile_description"),
+              timeout: Infinity,
+              endContent:<Spinner size="sm" />,
+        });
         const response = await fetch(photo);
         const blob = await response.blob();
         const file = new File([blob], "photo.jpg", { type: "image/jpeg" });
         navigate("/main/profile");
-        await dispatch(verifyUserPhoto({ userId: data.id.toString(), photoFile: file }));
+        const verified = await dispatch(verifyUserPhoto({ userId: data.id.toString(), photoFile: file }));
+        if(verified.payload){
+          closeAll()
+          if(verified.payload?.verified === true){
+            addToast({
+              title: t("profile_verified_success"),
+              timeout: 3000,
+              color:"success"
+        });
+          }else{
+             addToast({
+              description: t("Your_face_should_match_the_one_shown_in_your_profile_image_for_verification_purposes."),
+              title:t("Profile_Verification_Requirements"),
+              timeout: 6000,
+              color:"danger"
+        });
+          }
+        }
+       
+
       } catch (error) {
         console.error("Error uploading photo:", error);
+
+       
+
       }
     }
   };
@@ -71,24 +100,15 @@ export default function VerifyAccontViewPage() {
                   className="w-full h-[300px] rounded-xl"
                   videoConstraints={{ facingMode: "user" }}
                 />
-                <div className="mt-2 w-full flex items-center justify-center">
-                  <Button onClick={capturePhoto} variant="shadow" className="w-full mt-2" color="secondary">
-                    {t("take_Photo")}
-                  </Button>
-                </div>
               </>
             ) : (
               <>
                 <Image src={photo} alt="Captured" className="w-full h-[300px] aspect-video" />
-                <Button onClick={uploadPhoto} variant="shadow" color="primary" className="w-full mt-2">
-                  <UploadIcon className="size-6" />
-                  {t("upload_Photo")}
-                </Button>
               </>
             )}
           </CardBody>
 
-          <CardFooter className="mt-4 flex-col flex items-start text-green-500">
+          <CardFooter className="mt-2 flex-col flex items-start text-green-500">
             <p className="text-tiny uppercase font-bold text-danger">{t("Profile_Verification_Requirements")}</p>
             <ul>
               <li>
@@ -107,6 +127,24 @@ export default function VerifyAccontViewPage() {
           </CardFooter>
         </Card>
       </div>
+
+       <MainButton
+            text={!photoTaken? t("take_Photo"): t("upload_Photo")}
+            backgroundColor={!photoTaken?"#D54C52" : "#33C2BA"}
+            textColor="#FFFFFF"
+            hasShineEffect={true}
+            isEnabled={ true} 
+            isLoaderVisible={false}
+            isVisible={true}
+            onClick={()=>{
+                if(!photoTaken){
+                  capturePhoto()
+                }else{
+                  uploadPhoto()
+                }
+              }
+            }
+          />
     </Page>
   );
 }

@@ -17,7 +17,7 @@ import { useTranslation } from "react-i18next";
         classNames={{
           base: cn(
             "inline-flex py-2 m-0 w-full bg-foreground/20 hover:bg-content items-center justify-between",
-            "flex-row-reverse max-w-[600px] cursor-pointer rounded-lg p-2 border-1 border-transparent",
+            "flex-row-reverse max-w-[600px] cursor-pointer rounded-lg p-4 border-1 border-transparent",
             "data-[selected=true]:border-primary data-[selected=true]:bg-primary/10"
    
           ),

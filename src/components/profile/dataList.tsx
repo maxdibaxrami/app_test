@@ -130,7 +130,7 @@ const DataList = ({user, verifiedAccountLoading}) => {
         <ListboxItem
           key="support"
           description={t('form_message_us')}
-          href={`/#/chat-detail?user1=${user.id}&user2=${1339}`}
+          href={`/#/chat-detail?user1=${user.id}&user2=${1}`}
           className="px-0 w-full"
           classNames={{"description":"font-wrap w-[90%]"}}
           endContent={<ArrowRight className="size-6 mx-1" style={{transform:`${i18n.language==="ar" || i18n.language === 'fa'?"rotate(180deg)":"rotate(0deg)"}`}}/>}
