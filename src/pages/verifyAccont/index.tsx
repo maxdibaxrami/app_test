@@ -2,12 +2,11 @@ import { useState, useRef, useCallback } from "react";
 import { RootState, AppDispatch } from "@/store";
 import { useSelector, useDispatch } from "react-redux";
 import { useTranslation } from "react-i18next";
-import { addToast, Button, Card, CardBody, CardFooter, closeAll, Image, Spinner } from "@heroui/react";
+import { addToast, Card, CardBody, CardFooter, closeAll, Image, Spinner } from "@heroui/react";
 import { Page } from "@/components/Page.tsx";
 import TopBarPages from "@/components/tobBar/index";
 import { useLaunchParams } from "@telegram-apps/sdk-react";
 import Webcam from "react-webcam";
-import { UploadIcon } from "@/Icons";
 import { verifyUserPhoto } from "@/features/userSlice";
 import { useNavigate } from "react-router-dom";
 import MainButton from "@/components/miniAppButtons/MainButton";
@@ -52,6 +51,7 @@ export default function VerifyAccontViewPage() {
         const verified = await dispatch(verifyUserPhoto({ userId: data.id.toString(), photoFile: file }));
         if(verified.payload){
           closeAll()
+          //@ts-ignore
           if(verified.payload?.verified === true){
             addToast({
               title: t("profile_verified_success"),
