@@ -692,7 +692,7 @@ export default function ProfilePage() {
           style={{ borderRadius: "50%", zIndex: 50 }}
         >
 
-        <Popover backdrop="opaque" showArrow>
+        <Popover triggerType="menu" backdrop="opaque" showArrow>
           <PopoverTrigger>
 
           <Button isDisabled={likesCount >= maxLikes} radius="lg" style={{ width: "62px", height: "62px" }} size="lg" isIconOnly color="success" variant="shadow">
@@ -712,7 +712,7 @@ export default function ProfilePage() {
           style={{ borderRadius: "50%", zIndex: 50 }}
         >   
 
-          <Popover backdrop="opaque" showArrow>
+          <Popover triggerType="menu" backdrop="opaque" showArrow>
             <PopoverTrigger>
 
             <Button isDisabled={likesCount >= maxLikes} radius="lg" style={{ width: "62px", height: "62px" }} size="lg" isIconOnly color="warning" variant="shadow">

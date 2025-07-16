@@ -44,7 +44,7 @@ export const FlashMessageCard = ({user, userIds}) => {
 
       
       return (
-    <Card className="max-w-[250px] border-none bg-transparent" shadow="none">
+    <Card className="max-w-[250px] border-none bg-transparent z-100" shadow="none">
       <CardHeader className="justify-between gap-3 flex flex-col">
         <div className="flex gap-3">
           <Avatar
@@ -82,7 +82,7 @@ export const FlashMessageCard = ({user, userIds}) => {
               color={gifSended ? "primary" : "warning"}
               size="lg"
               isInvisible={user.premium}
-              className={"flex flex-col"}
+              className={"flex flex-col "}
               classNames={!gifSended? {"badge":"w-[45px]"}:{}}
               content={
                 gifSended ? 
@@ -107,6 +107,7 @@ export const FlashMessageCard = ({user, userIds}) => {
                 isLoading={loading}
                 isDisabled={gifSended || userIds.rewardPoints < 50}
                 variant={"solid"}
+                className="z-100"
                 
               >
                 <ChatIcon className="size-7 text-white"/>

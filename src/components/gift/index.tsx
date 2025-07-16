@@ -44,7 +44,7 @@ export const SendGiftCard = ({user, userIds}) => {
       };
 
       return (
-    <Card className="max-w-[300px] border-none bg-transparent" shadow="none">
+    <Card className="max-w-[300px] border-none bg-transparent z-100" shadow="none">
       <CardHeader className="justify-between gap-3">
         <div className="flex gap-3">
           <Avatar
@@ -88,6 +88,7 @@ export const SendGiftCard = ({user, userIds}) => {
               isLoading={loading}
               isDisabled={gifSended || userIds.rewardPoints < 10}
               variant={"solid"}
+              className="z-100"
               onPress={HandleSendGifts}
 
             >
