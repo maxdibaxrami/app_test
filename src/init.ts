@@ -26,9 +26,8 @@ export function init(debug: boolean): void {
   initSDK();
 
   // Add Eruda if needed (for debugging in development).
-  // 
 
-  import('eruda')
+  debug && import('eruda')
     .then((lib) => lib.default.init())
     .catch(console.error);
 
@@ -46,7 +45,6 @@ export function init(debug: boolean): void {
   initData.restore();
   closingBehavior.mount();
   closingBehavior.enableConfirmation();
-
 
   // Mount and configure the viewport
   void viewport
