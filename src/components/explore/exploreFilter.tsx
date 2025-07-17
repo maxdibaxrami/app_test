@@ -48,7 +48,9 @@ const ExploreFilter = forwardRef((props,ref) => {{
             ageRange: `${age[0]},${age[1]}`,
             city:locationValue==="city"? data.city : null,
             country:locationValue==="country"? data.country : null,
-            languages:Array.from(langauge).length!==0? Array.from(langauge).join(",") : null
+            languages:Array.from(langauge).length!==0? Array.from(langauge).join(",") : null,
+            longitude:data.lon,
+            latitude:data.lat
           }));
 
           onClose()

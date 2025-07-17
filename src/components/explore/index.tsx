@@ -25,13 +25,17 @@ import "swiper/css";
 import 'swiper/css/effect-fade';
 
 import { EffectFade } from 'swiper/modules';
+import { LocationIconSVG } from "@/Icons/LocationIcon";
 
 const ExplorePage = () => {
   const maxLikes = 20;
   const dispatch: AppDispatch = useDispatch();
+
   const { data: user } = useSelector((state: RootState) => state.user);
-  const { data: users, loading, page, limit, total, secondLoading } = useSelector((state: RootState) => state.explore);
+  const { data: users, loading, page, limit, total, secondLoading, error } = useSelector((state: RootState) => state.explore);
+
   const { t } = useTranslation();
+
   const { likesCount, lastReset } = useSelector((state: RootState) => state.likeLimit);
   const { requestLoading } = useSelector((state: RootState) => state.like);
 
@@ -97,6 +101,8 @@ const ExplorePage = () => {
           languages: null,
           page,
           limit,
+          longitude:user.lon,
+          latitude:user.lat
         })
       );
       // Reset the slider to start with the new batch.
@@ -128,6 +134,20 @@ const ExplorePage = () => {
     );
   }
 
+  if(!users || error) {
+     return (
+      <div className="relative h-screen w-screen p-6 flex flex-col items-center justify-center">
+        <LocationIconSVG />
+        <div className="flex gap-1 flex-col px-6 text-center items-center">
+          <p className="text-bold font-bold">{t("access_to_location")}</p>
+          <p className="text-tiny">{t("location_access_prompt")}</p>
+          {/* <Button onPress={()=> getLocation(dispatch)} className="my-1 px-8" startContent={<LocationIcon/>} color="primary">{t("access_to_location")}</Button> */}
+        </div>
+      </div>
+    );
+  }
+
+
   if (!users || users.length === 0) {
     return (
       <div className="relative h-screen w-screen p-6 flex flex-col items-center justify-center">
@@ -138,6 +158,8 @@ const ExplorePage = () => {
       </div>
     );
   }
+
+
 
   
 

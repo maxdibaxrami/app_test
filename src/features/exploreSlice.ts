@@ -79,6 +79,8 @@ export const fetchFilteredExplore = createAsyncThunk(
       languages,
       page,
       limit,
+      latitude,
+      longitude
     }: {
       ageRange?: string;
       city?: string;
@@ -86,11 +88,13 @@ export const fetchFilteredExplore = createAsyncThunk(
       languages?: string;
       page?: number;
       limit?: number;
+      latitude:string;
+      longitude:string
     },
     { rejectWithValue }
   ) => {
     try {
-      const queryParams = buildQueryParams({ ageRange, city, country, languages, page, limit });
+      const queryParams = buildQueryParams({ ageRange, city, country, languages, page, limit, latitude,longitude });
       const response = await axios.get(`/users/filter?${queryParams}`);
       return response.data as { users: User[]; total: number };
     } catch (error: any) {

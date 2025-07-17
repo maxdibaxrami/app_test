@@ -88,7 +88,7 @@ export const SendGiftCard = ({user, userIds}) => {
               isLoading={loading}
               isDisabled={gifSended || userIds.rewardPoints < 10}
               variant={"solid"}
-              className="z-100"
+              className="z-1000"
               onPress={HandleSendGifts}
 
             >

@@ -151,7 +151,7 @@ const EditMoreAboutMeModal = forwardRef((props:any, ref)=> {
             </ScrollShadow>
           </ModalBody>
 
-          <ModalFooter className="pb-6">
+          <ModalFooter>
             <Button color="default" variant="solid" onPress={onClose}>
               {t("Close")}
             </Button>

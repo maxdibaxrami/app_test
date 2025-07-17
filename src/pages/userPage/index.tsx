@@ -23,7 +23,7 @@ import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../store';
 import { BASEURL, getDrinkStatus, gethobbies, getKidStatus, getlanguages, getPetStatus, getRealationStatus, getSexualityStatus, getSmokingStatus } from "@/constant";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { fetchUserDataId, updateUserData, updateUserProfileViews } from "@/features/userSlice";
 import { useSearchParams } from "react-router-dom";
 import MatchModal from "@/components/explore/matchModal";
@@ -40,6 +40,8 @@ export default function ProfilePage() {
   const { t } = useTranslation();  // Initialize translation hook
   const [searchParams] = useSearchParams();
   const dispatch = useDispatch<AppDispatch>();
+  const first = useRef();
+  const secondary = useRef();
 
   const { data: user, updateUserData:updateUserDataLoading , userPageData : UserData , userPageLoading : LoadingUser } = useSelector((state: RootState) => state.user);
   const { likedUsers } = useSelector((state: RootState) => state.like);
@@ -288,7 +290,7 @@ export default function ProfilePage() {
   return (
     <Page>
         <div
-          className="containe bg-background relative mx-auto mt-1 max-w-7xl flex-grow w-full"
+          className="containe relative mt-1 w-full flex-grow w-full"
           style={{
             maxHeight: "100%",
             height:"100%",
@@ -329,7 +331,7 @@ export default function ProfilePage() {
                                         <p className="text-tiny">{`${UserData.country}, ${UserData.city}`}</p>
                                       </div>
                                     </div>
-                                    <div className="flex items-center">
+                                    <div ref={secondary} className="flex items-center">
                                       <div>
                                         {user.favoriteUsers.map(v=> v.id).includes(UserData.id) ? 
                                           <Button className="mx-1" isLoading={updateUserDataLoading} size="sm" onPress={()=> HandleRemoveFromFavorite(UserData.id)} radius="lg" isIconOnly color="warning" variant="shadow">
@@ -342,13 +344,13 @@ export default function ProfilePage() {
                                         }
                                       </div>
 
-                                      <Dropdown>
+                                      <Dropdown portalContainer={secondary.current} className="z-100">
                                         <DropdownTrigger>
                                           <Button size="sm" radius="lg" isIconOnly variant="solid">
                                             <MoreIcon fill="#FFF"/>
                                           </Button>
                                         </DropdownTrigger>
-                                        <DropdownMenu aria-label="Dropdown menu with icons" variant="faded">
+                                        <DropdownMenu className="z-100" aria-label="Dropdown menu with icons" variant="faded">
                                           <DropdownItem
                                             key="edit"
                                             onPress={()=> setOpenModalReport(true)}
@@ -684,15 +686,18 @@ export default function ProfilePage() {
 
       <div 
         className="fixed card p-2 w-full flex justify-center items-end"
-        style={{opacity:1, bottom:"25px", zIndex:50}}
+        style={{opacity:1, bottom:"25px", zIndex:1000}}
+        ref={first}
       >
 
         <div
           className="p-2"
-          style={{ borderRadius: "50%", zIndex: 50 }}
+          style={{ borderRadius: "50%", zIndex: 100 }}
         >
 
-        <Popover triggerType="menu" backdrop="opaque" className="z-100" showArrow>
+        <Popover 
+          portalContainer={first.current} triggerType="menu" backdrop="opaque" className="z-100" showArrow
+        >
           <PopoverTrigger>
 
           <Button isDisabled={likesCount >= maxLikes} radius="lg" style={{ width: "62px", height: "62px" }} size="lg" isIconOnly color="success" variant="shadow">
@@ -709,10 +714,10 @@ export default function ProfilePage() {
 
         <div
           className="p-2"
-          style={{ borderRadius: "50%", zIndex: 50 }}
+          style={{ borderRadius: "50%", zIndex: 100 }}
         >   
 
-          <Popover className="z-100" triggerType="menu" backdrop="opaque" showArrow>
+          <Popover portalContainer={first.current} className="z-100" triggerType="menu" backdrop="opaque" showArrow>
             <PopoverTrigger>
 
             <Button isDisabled={likesCount >= maxLikes} radius="lg" style={{ width: "62px", height: "62px" }} size="lg" isIconOnly color="warning" variant="shadow">

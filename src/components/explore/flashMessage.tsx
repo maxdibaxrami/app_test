@@ -72,6 +72,7 @@ export const FlashMessageCard = ({user, userIds}) => {
               onPress={HandleSendMessage} 
               isLoading={loading}
               variant={"solid"}
+              className="z-1000"
             >
               <p className="text-3xl mt-0.5">💬</p>
             </Button>
@@ -107,7 +108,7 @@ export const FlashMessageCard = ({user, userIds}) => {
                 isLoading={loading}
                 isDisabled={gifSended || userIds.rewardPoints < 50}
                 variant={"solid"}
-                className="z-100"
+                className="z-1000"
                 
               >
                 <ChatIcon className="size-7 text-white"/>

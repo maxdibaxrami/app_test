@@ -7,7 +7,6 @@ const ProfilePage = lazy(() => import("@/pages/userPage/index"));        // ← 
 
 const UserProfileModal: React.FC = () => {
   const [searchParams] = useSearchParams();
-
   const userId = searchParams.get("user");          // ?user=123
   const [isOpen, setIsOpen] = useState(Boolean(userId));
 
@@ -19,8 +18,8 @@ const UserProfileModal: React.FC = () => {
   if (!isOpen) return null;
 
   return (
-    <Modal hideCloseButton scrollBehavior={"inside"}isOpen={!!userId} size="5xl">
-      <ModalContent className="py-1 bg-background">
+    <Modal classNames={{"base":"m-0 p-0 "}} backdrop="transparent" hideCloseButton scrollBehavior={"inside"} isOpen={!!userId} size="5xl">
+      <ModalContent className="py-0.5 px-0.5">
         {() => (
           <Suspense
             fallback={

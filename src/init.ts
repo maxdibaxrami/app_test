@@ -10,7 +10,8 @@ import {
   $debug,
   swipeBehavior,
   init as initSDK,
-  closingBehavior
+  closingBehavior,
+  
 } from '@telegram-apps/sdk-react';
 
 /**

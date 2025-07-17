@@ -99,7 +99,7 @@ export function App() {
       dispatch(fetchMatches());
       dispatch(fetchLiked());
       dispatch(fetchConversations());
-      dispatch(fetchFilteredExplore({  page: 1, limit: 11 }));
+      dispatch(fetchFilteredExplore({  page: 1, limit: 11,longitude:data.lon, latitude:data.lat }));
       dispatch(fetchNearBySliceUsers({ page: 1, limit: 20, genderFilter: genderOpposite, ...updatedFilters }));
     }
   }, [data, dispatch, hasFetchedDetails]);
