@@ -15,9 +15,10 @@ export const BlurIn = ({
     <motion.div
       ref={ref}
       animate={data ? { filter: "blur(0px)", opacity: 1 } : {}}
-      className="w-full"
+      className="w-full text-center font-bold text-2xl"
       initial={{ filter: "blur(20px)", opacity: 0 }}
       transition={{ duration: 0.3 }}
+      
     >
       {children}
     </motion.div>

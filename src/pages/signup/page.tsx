@@ -19,6 +19,7 @@ import CalendarPicker from "@/components/auth/SelectBirthDate";
 import LookingforList from "@/components/core/WhyIamHereAuthList";
 import SelectCity from "@/components/auth/CitySelector";
 import { useTheme } from "next-themes";
+import InterestingAuth from "@/components/auth/interstingAuth";
 
 
 export default function SignupPage() {
@@ -64,7 +65,7 @@ export default function SignupPage() {
     image2:null,
     referralCode:initDataState.startParam || null ,
     telegramImage:initDataState.user.photoUrl || null,
-    modalStatus:false
+    modalStatus:false,
   });
   
   useEffect(()=>{
@@ -137,7 +138,7 @@ export default function SignupPage() {
           {['android', 'ios'].includes(lp.platform) ? <div className="top-bar-height w-full safe-area-top"></div> : null}
         
         {
-        selectedTab !== 0 ?
+        selectedTab !== 0 && selectedTab !==7 ?
         ['android', 'ios'].includes(lp.platform) ? 
           <div className="fixed top-0 w-full flex items-center justify-center top-bar-height safe-area-top text-center"> 
             <SparklesText sparklesCount={10} className="text-xl" text="FACE MATCH" /> 
@@ -211,6 +212,19 @@ export default function SignupPage() {
               {selectedTab === 5 && (
                 <>
                   <div className="mb-1 mt-1 px-6 pt-8 pb-4 flex flex-col gap-2">
+                    <p className="text-base text-center font-semibold">{t("Selectinterested")} ⁉️</p>
+                    <p className="text-xs text-center">{t("interestedDescription")}</p>
+                  </div>
+                  <InterestingAuth setSlideUnAvailable={setSlideUnAvailable} user={user} showError={setShowError} setSlideAvailable={setSlideAvailable} />
+                </>
+              )}
+            </div>
+
+
+            <div className={selectedTab === 6 ? "fade-in" : ""}>
+              {selectedTab === 6 && (
+                <>
+                  <div className="mb-1 mt-1 px-6 pt-8 pb-4 flex flex-col gap-2">
                     <p className="text-base text-center font-semibold">{t("photoTitle")} 📸</p>
                     <p className="text-xs text-center">{t("photoDescription")}</p>
                   </div>
@@ -219,8 +233,8 @@ export default function SignupPage() {
               )}
             </div>
 
-            <div className={selectedTab === 6 ? "fade-in" : ""}>
-              {selectedTab === 6 && (
+            <div className={selectedTab === 7 ? "fade-in" : ""}>
+              {selectedTab === 7 && (
                 <>
                   <FinalStepAuth uploadImageLoading={uploadImageLoading} setSlideAvailable={setSlideAvailable} setSlideUnAvailable={setSlideUnAvailable} />
                 </>
@@ -237,11 +251,11 @@ export default function SignupPage() {
                 backgroundColor="#1FB6A8"
                 textColor="#FFFFFF"
                 hasShineEffect={nextSlideAvalable}
-                isEnabled={ selectedTab === 6 ? false : true} 
+                isEnabled={ selectedTab === 7 ? false : true} 
                 isLoaderVisible={false}
-                isVisible={selectedTab !== 6}
+                isVisible={selectedTab !== 7}
                 onClick={()=>{
-                  if(selectedTab === 5 ){
+                  if(selectedTab === 6 ){
                     if(user.image1 !== null && user.image2 !== null){
                       NextPage()
                       handleSignup()
@@ -270,10 +284,10 @@ export default function SignupPage() {
               backgroundColor={theme === "light"? "#FFFFFF" : "#000000"}
               textColor="#FFFFFF"
               hasShineEffect={false}
-              isEnabled={selectedTab === 6 ? false : true} 
+              isEnabled={selectedTab === 7 ? false : true} 
               isLoaderVisible={false}
               isVisible={
-                !(selectedTab === 0 || selectedTab === 6)
+                !(selectedTab === 0 || selectedTab === 7)
               }
               position="left"
               onClick={prevPage}

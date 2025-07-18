@@ -536,7 +536,9 @@
     "verifying_profile_title": "جارٍ التحقق من ملفك الشخصي",
   "verifying_profile_description": "قد يستغرق الأمر بعض الوقت، يرجى الانتظار بصبر.",
 
-    "profile_verified_success": "تم التحقق من الملف الشخصي بنجاح"
+    "profile_verified_success": "تم التحقق من الملف الشخصي بنجاح",
+      "interestedDescription": "أخبر الآخرين بما تهتم به! سواء كنت تبحث عن صداقات، أو الحب، أو محادثات عابرة، شارك أهدافك من استخدام التطبيق."
+
 
 
 

@@ -1,12 +1,14 @@
 import InterestingList from "../core/InterstingList";
 
-const InterestingAuth = ({setSlideAvailable, setSlideUnAvailable, user}) => {
+const InterestingAuth = ({setSlideAvailable, setSlideUnAvailable, showError, user}) => {
 
   const onChangeValue = (value) => {
     if(value.size !== 0 ){
       setSlideAvailable("interests", Array.from(new Set(value)))
+      showError(true)
     }else{
-      setSlideUnAvailable("interests", Array.from(new Set(value)))
+      setSlideUnAvailable("interests", new Set([]))
+      showError(false)
     }
   }
   

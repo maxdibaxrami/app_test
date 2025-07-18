@@ -38,7 +38,7 @@ export default function InterestingList({onChangeValue, user}) {
         orientation="horizontal"
       >
         {arrayValues.map((value, index) => (
-          <Chip className="bg-neutral" key={index}  >{hobbies.find((hobbies) => `${hobbies.id}` === `${value}`)?.name}</Chip>
+          <Chip className="bg-default/70" key={index}  >{hobbies.find((hobbies) => `${hobbies.id}` === `${value}`)?.emoji} {hobbies.find((hobbies) => `${hobbies.id}` === `${value}`)?.name}</Chip>
         ))}
       </ScrollShadow>
     );
@@ -53,9 +53,9 @@ export default function InterestingList({onChangeValue, user}) {
           base: "w-full",
           list: "max-h-[55vh] overflow-scroll",
         }}
-        defaultSelectedKeys={user.interests.map(v=> v.toString())}
         items={hobbies}
         label={t('Selectinterested')}
+        selectedKeys={values}
         selectionMode="multiple"
         topContent={topContent}
         variant="flat"
@@ -64,7 +64,7 @@ export default function InterestingList({onChangeValue, user}) {
         {(item) => (
           <ListboxItem key={item.id} textValue={item.name}>
             <div className="flex gap-2 items-center">
-              <Avatar color="success" icon={<HashtagIcon className="size-5" />} className="flex-shrink-0" size="sm" />
+              <Avatar color="default" icon={item.emoji} className="flex-shrink-0" size="sm" />
               <div className="flex flex-col">
                 <span className="text-small">{item.name}</span>
               </div>
