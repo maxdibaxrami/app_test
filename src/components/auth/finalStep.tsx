@@ -3,13 +3,10 @@ import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Spinner } from "@heroui/react";
 import { Navigate } from "react-router-dom";
-import { useTranslation } from "react-i18next";
-import { BlurIn } from "../animate/blurIn";
 
 const FinalStepAuth = ({ setSlideAvailable, setSlideUnAvailable, uploadImageLoading }) => {
   const { loading: authLoading } = useSelector((state: RootState) => state.auth);
   const { loading: userLoading } = useSelector((state: RootState) => state.user);
-  const { t } = useTranslation();
 
   useEffect(() => {
     setSlideUnAvailable();

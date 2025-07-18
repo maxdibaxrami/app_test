@@ -2,7 +2,6 @@ import type {Selection} from "@react-types/shared";
 
 import React, { useEffect } from "react";
 import {Listbox, ListboxItem, Chip, ScrollShadow, Avatar} from "@heroui/react";
-import { HashtagIcon } from "@/Icons";
 import { useTranslation } from "react-i18next";
 import { gethobbies } from "@/constant";
 
@@ -60,6 +59,7 @@ export default function InterestingList({onChangeValue, user}) {
         topContent={topContent}
         variant="flat"
         onSelectionChange={setValues}
+        
       >
         {(item) => (
           <ListboxItem key={item.id} textValue={item.name}>

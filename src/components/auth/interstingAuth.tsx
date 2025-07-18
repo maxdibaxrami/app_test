@@ -5,7 +5,7 @@ const InterestingAuth = ({setSlideAvailable, setSlideUnAvailable, showError, use
   const onChangeValue = (value) => {
     if(value.size !== 0 ){
       setSlideAvailable("interests", Array.from(new Set(value)))
-      showError(true)
+      showError(false)
     }else{
       setSlideUnAvailable("interests", new Set([]))
       showError(false)

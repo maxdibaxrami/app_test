@@ -248,7 +248,7 @@ export default function SignupPage() {
           {!user.modalStatus && <>
              <MainButton
                 text={t('Next')}
-                backgroundColor="#1FB6A8"
+                backgroundColor={nextSlideAvalable? "#1FB6A8" : "#33C2BA"}
                 textColor="#FFFFFF"
                 hasShineEffect={nextSlideAvalable}
                 isEnabled={ selectedTab === 7 ? false : true} 

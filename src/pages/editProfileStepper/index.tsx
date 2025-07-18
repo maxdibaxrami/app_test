@@ -184,7 +184,7 @@ export default function EditProfileStepper() {
                   <div className="mb-1 mt-1 px-6 pt-8 pb-4 flex flex-col gap-2">
                     <p className="text-base font-semibold text-center">{t("interested")} 😍</p>
                   </div>
-                  <InterestingAuth user={user} setSlideAvailable={setSlideAvailable} setSlideUnAvailable={setSlideUnAvailable} />
+                  <InterestingAuth user={user} setSlideAvailable={setSlideAvailable} setSlideUnAvailable={setSlideUnAvailable} showError={showError} />
                 </>
               )}
             </div>
