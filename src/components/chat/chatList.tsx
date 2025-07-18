@@ -46,7 +46,7 @@ const ChatList = () => {
     }));
   };
   
- {/**? const HandleUnblockUser = async (value) => {
+ /*const HandleUnblockUser = async (value) => {
     await dispatch(updateUserData({
       userId: user.id.toString(),
       updatedData: {
@@ -55,7 +55,7 @@ const ChatList = () => {
           : []  // If blockedUsers is not an array, set it to an empty array
       }
     }));
-  }; */}
+  };*/
 
   const handleDelete = (userId1: number, userId2: number) => {
     dispatch(deleteConversation({ userId1, userId2 }));
@@ -92,7 +92,8 @@ const ChatList = () => {
       }
   
       // Otherwise, return all users except blocked ones
-      return true;
+      return item.recipientId !== item.senderId;
+
     }) || [];
   }, [data, user.favoriteUsers, selectedValue, user]);
   

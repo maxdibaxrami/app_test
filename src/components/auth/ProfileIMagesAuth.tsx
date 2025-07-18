@@ -9,6 +9,7 @@ const ImageDataAuth = ({
   setSlideAvailable,
   isSelectTelegramImage,
   setIsSelectTelegramImage,
+  setSlideUnAvailable
 }) => {
   const { t } = useTranslation();
 
@@ -21,6 +22,7 @@ const ImageDataAuth = ({
         isTelegramImageSelected={isSelectTelegramImage}
         setIsTelegramImageSelected={setIsSelectTelegramImage}
       />
+
       <form className="flex mt-2 justify-center w-full h-m-[250px] mb-2 gap-4">
         {isSelectTelegramImage ? (
           <div style={{ maxWidth: "60%" }} className="w-full h-full">
@@ -32,15 +34,26 @@ const ImageDataAuth = ({
               
             />
           </div>
-        ) : (
+        ) : <>
           <ImageUploader
             user={user}
             showError={showError}
             setSlideAvailable={setSlideAvailable}
+            setSlideUnAvailable={setSlideUnAvailable}
             id="1"
             text={t("firstPhotoTitle")}
           />
-        )}
+
+          <ImageUploader
+            user={user}
+            showError={showError}
+            setSlideUnAvailable={setSlideUnAvailable}
+            setSlideAvailable={setSlideAvailable}
+            id="2"
+            text={t("secondPhotoTitle")}
+          />
+
+        </>}
       </form>
 
 

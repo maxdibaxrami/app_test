@@ -6,7 +6,7 @@ import {
   Button,
 } from "@heroui/react";
 
-import { DeleteChatIcon, Favorite, MoreIcon } from "@/Icons/index";
+import { BlockAndReport, DeleteChatIcon, Favorite, MoreIcon } from "@/Icons/index";
 import { useTranslation } from "react-i18next";
 import { useState, useMemo } from "react";
 import { RootState } from "@/store";
@@ -44,7 +44,7 @@ const ChatItemMenu = ({ data, HandleBlockUser, HandleAddToFavorite, targetUser, 
   };
 
   return (
-    <Dropdown backdrop="opaque">
+    <Dropdown  backdrop="opaque">
       <DropdownTrigger>
         <Button
           isIconOnly
@@ -77,14 +77,14 @@ const ChatItemMenu = ({ data, HandleBlockUser, HandleAddToFavorite, targetUser, 
         </DropdownItem>
 
         {/* Uncomment if "Block and Report" is needed */}
-        {/* <DropdownItem
+         <DropdownItem
           key="blockandreport"
           className="text-danger"
           color="danger"
           startContent={<BlockAndReport />}
         >
           {t("blockAndReport")}
-        </DropdownItem> */}
+        </DropdownItem> 
       </DropdownMenu>
     </Dropdown>
   );

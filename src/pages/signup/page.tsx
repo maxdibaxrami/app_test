@@ -8,9 +8,9 @@ import FinalStepAuth from "@/components/auth/finalStep";
 import { Page } from "@/components/Page";
 import { useLaunchParams, useSignal, initData } from "@telegram-apps/sdk-react";
 import { signupUser } from "@/features/authSlice";
-import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch, RootState } from '../../store';
-import { fetchUserData, fetchUserPhotoFromTelegram, uploadProfileImage } from "@/features/userSlice";
+import { useDispatch } from 'react-redux';
+import { AppDispatch } from '../../store';
+import { fetchUserData } from "@/features/userSlice";
 import { useTranslation } from "react-i18next";
 import SecondaryButton from "@/components/miniAppButtons/secondaryButton";
 import MainButton from "@/components/miniAppButtons/MainButton";
@@ -18,13 +18,14 @@ import { SparklesText } from "@/components/animate/sparkles";
 import CalendarPicker from "@/components/auth/SelectBirthDate";
 import LookingforList from "@/components/core/WhyIamHereAuthList";
 import SelectCity from "@/components/auth/CitySelector";
+import { useTheme } from "next-themes";
 
 
 export default function SignupPage() {
 
-
+  const { theme } = useTheme();
+  
   const { i18n, t } = useTranslation();
-  const { data } = useSelector((state: RootState) => state.user);
 
   const lp = useLaunchParams();
 
@@ -60,8 +61,10 @@ export default function SignupPage() {
     profileStage:"complete",
     selectedCityInputValue: new Set([]),
     image1:null,
+    image2:null,
     referralCode:initDataState.startParam || null ,
     telegramImage:initDataState.user.photoUrl || null,
+    modalStatus:false
   });
   
   useEffect(()=>{
@@ -97,25 +100,9 @@ export default function SignupPage() {
   
   const handleSignup = async () => {
     try {
-      if (isSelectTelegramImage && user.telegramImage) {
-        await dispatch(
-          fetchUserPhotoFromTelegram({
-            userId: data.id.toString(),
-            image: user.telegramImage,
-          })
-        );
-      } else {
-        await dispatch(
-          uploadProfileImage({
-            userId: data.id.toString(),
-            imageFile: user.image1,
-            order: 1,
-          })
-        );
-      }
   
       // Destructure unwanted keys and gather the rest into "restUser"
-      const { selectedCityInputValue, telegramImage, image1, referralCode, ...restUser } = user;
+      const { selectedCityInputValue, telegramImage, image1,modalStatus , image2, referralCode, ...restUser } = user;
   
       // Conditionally add referralCode only if it has 3 or more characters
       const userData = {
@@ -227,7 +214,7 @@ export default function SignupPage() {
                     <p className="text-base text-center font-semibold">{t("photoTitle")} 📸</p>
                     <p className="text-xs text-center">{t("photoDescription")}</p>
                   </div>
-                  <ImageDataAuth isSelectTelegramImage={isSelectTelegramImage} setIsSelectTelegramImage={setIsSelectTelegramImage} user={user} showError={showError} setSlideAvailable={setSlideAvailable} />
+                  <ImageDataAuth setSlideUnAvailable={setSlideUnAvailable} isSelectTelegramImage={isSelectTelegramImage} setIsSelectTelegramImage={setIsSelectTelegramImage} user={user} showError={showError} setSlideAvailable={setSlideAvailable} />
                 </>
               )}
             </div>
@@ -244,53 +231,55 @@ export default function SignupPage() {
           </div>
 
           {/* Wrapping BottomController in motion.div for smooth position changes */}
-         
-          <MainButton
-            text={t('Next')}
-            backgroundColor="#1FB6A8"
-            textColor="#FFFFFF"
-            hasShineEffect={nextSlideAvalable}
-            isEnabled={ selectedTab === 6 ? false : true} 
-            isLoaderVisible={false}
-            isVisible={selectedTab !== 6}
-            onClick={()=>{
-              if(selectedTab === 5 ){
-                if(user.image1 !== null || isSelectTelegramImage){
-                  NextPage()
-                  handleSignup()
-                  return
-                }else{
-                  setShowError(true)
-                  return
+          {!user.modalStatus && <>
+             <MainButton
+                text={t('Next')}
+                backgroundColor="#1FB6A8"
+                textColor="#FFFFFF"
+                hasShineEffect={nextSlideAvalable}
+                isEnabled={ selectedTab === 6 ? false : true} 
+                isLoaderVisible={false}
+                isVisible={selectedTab !== 6}
+                onClick={()=>{
+                  if(selectedTab === 5 ){
+                    if(user.image1 !== null && user.image2 !== null){
+                      NextPage()
+                      handleSignup()
+                      return
+                    }else{
+                      setShowError(true)
+                      return
+                    }
+                  }
+                  if(nextSlideAvalable){
+                    NextPage()
+                    setShowError(false)
+                    return
+                  }else{
+                    setShowError(true)
+                    return
+                  }
+                
+                  }
                 }
-              }
-              if(nextSlideAvalable){
-                NextPage()
-                setShowError(false)
-                return
-              }else{
-                setShowError(true)
-                return
-              }
-            
-              }
-            }
-          />
+              />
 
         
-          <SecondaryButton
-            text={t('previous')}
-            backgroundColor="#000000"
-            textColor="#FFFFFF"
-            hasShineEffect={false}
-            isEnabled={selectedTab === 6 ? false : true} 
-            isLoaderVisible={false}
-            isVisible={
-              !(selectedTab === 0 || selectedTab === 6)
-            }
-            position="left"
-            onClick={prevPage}
-          />
+            <SecondaryButton
+              text={t('previous')}
+              backgroundColor={theme === "light"? "#FFFFFF" : "#000000"}
+              textColor="#FFFFFF"
+              hasShineEffect={false}
+              isEnabled={selectedTab === 6 ? false : true} 
+              isLoaderVisible={false}
+              isVisible={
+                !(selectedTab === 0 || selectedTab === 6)
+              }
+              position="left"
+              onClick={prevPage}
+            />
+          </>}
+       
          
         </motion.div>
     </Page>

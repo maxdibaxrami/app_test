@@ -14,7 +14,7 @@ const MatchList = () => {
   return (
     (<div style={{position:"relative",zIndex:10}} className=" rounded-xl">
       {match && match.length !== 0 &&
-            <div style={{ paddingBottom: "0.5rem" }} className="flex justify-between items-center">
+            <div style={{ paddingTop: "0.5rem" }} className="flex justify-between items-center">
             <span className="text-large text-default-600 font-bold">
               {t("matches")}
             </span>

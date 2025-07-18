@@ -188,7 +188,7 @@ const ExplorePage = () => {
         className="card p-2 flex justify-center items-center"
       >
         <div className="p-2" style={{ borderRadius: "50%", zIndex: 50 }}>
-          <Popover backdrop="opaque" showArrow placement="top">
+          <Popover backdrop="opaque" placement="top">
             <PopoverTrigger>
               <Button
                 isDisabled={likesCount >= maxLikes}
@@ -254,7 +254,7 @@ const ExplorePage = () => {
         </div>
 
         <div className="p-2" style={{ borderRadius: "50%", zIndex: 50 }}>
-          <Popover backdrop="opaque" showArrow placement="top">
+          <Popover backdrop="opaque" placement="top">
             <PopoverTrigger>
               <Button
                 isDisabled={likesCount >= maxLikes}

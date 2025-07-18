@@ -4,6 +4,7 @@ import "cropperjs/dist/cropper.css";
 import { useTranslation } from "react-i18next";
 import { CutIcon } from "@/Icons";
 import Cropper  from 'react-cropper'
+
 // Lazy load the Cropper library to avoid heavy upfront loading.
 
 interface ImageCropModalProps {
@@ -50,14 +51,10 @@ const ImageCropModal = ({ imageToCrop, onImageCropped, onClose }: ImageCropModal
         <>
           <ModalHeader className="flex items-center justify-between">
             <div className="flex gap-2 items-center">
-              <CutIcon className="size-6" />
-              <p>{t("Crop Image")}</p>
+              <p>{t("Crop_Image")}</p>
             </div>
             <div>
-              <Button color="default" variant="light" onPress={onClose}>
-                {t("Close")}
-              </Button>
-              <Button isLoading={loading} color="primary" radius="sm" onPress={handleCrop}>
+              <Button startContent={<CutIcon className="size-5" />} isLoading={loading} color="primary" onPress={handleCrop}>
                 {t("Save")}
               </Button>
             </div>
@@ -78,7 +75,8 @@ const ImageCropModal = ({ imageToCrop, onImageCropped, onClose }: ImageCropModal
             )}
           </ModalBody>
         </>
-      </ModalContent>
+      </ModalContent>           
+
     </Modal>
   );
 };

@@ -8,7 +8,7 @@ export default function SelectTelegramImageComponent({isTelegramImageSelected, s
     <Switch
       classNames={{
         base: cn(
-          "inline-flex flex-row-reverse w-full mb-2 max-w-md bg-content1 hover:bg-content2 items-center",
+          "inline-flex hidden flex-row-reverse w-full mb-2 max-w-md bg-content1 hover:bg-content2 items-center",
           "justify-between cursor-pointer rounded-lg py-4 gap-2 p-2 border-1 border-transparent",
           "data-[selected=true]:border-primary",
         ),

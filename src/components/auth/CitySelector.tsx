@@ -81,7 +81,7 @@ const CityListBox: React.FC<CityListBoxProps> = React.memo(
       () =>
         cities.map((city) => ({
           key: `${city.name}-${city.country}-${city.lat}`,
-          label: `${getFlagEmoji(city.country)} ${city.country}, ${city.name}`,
+          label: `${getFlagEmoji(city.country)} ${city.name}`,
           city,
         })),
       [cities]
