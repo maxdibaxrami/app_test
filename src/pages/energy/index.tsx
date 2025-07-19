@@ -83,6 +83,13 @@ const EnergyViewPage: React.FC = () => {
   };*/}
 
   const TaskList = [
+     {
+      title: t("vote_title"),
+      description: t("vote_description"),
+      reward: "30",
+      type: "VOTE_ACCONT",
+      isDaily: false,
+    },
     {
       title: t("title_task_Profile"),
       description: t("description_task_Profile"),

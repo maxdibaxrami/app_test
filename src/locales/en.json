@@ -546,7 +546,11 @@
     "verifying_profile_title": "Verifying your profile",
   "verifying_profile_description": "This may take a few moments. Please be patient while we complete the verification.",
 
-   "profile_verified_success": "Profile verified successfully"
+   "profile_verified_success": "Profile verified successfully",
+
+     "vote_title": "Support Us with Your Vote",
+  "vote_description": "Your vote helps us grow and bring you even better features!"
+
 
    
    

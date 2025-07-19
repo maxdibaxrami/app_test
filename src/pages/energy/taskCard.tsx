@@ -362,7 +362,7 @@ export const TaskCard: React.FC<TaskCardProps> = ({
 
         return;
       }
-    }else if(taskType === "VERIFY_ACCONT"){
+    } else if(taskType === "VERIFY_ACCONT"){
       if(!user.verifiedAccount){
         addToast({
           description: t("account_not_verified_text"),
@@ -376,6 +376,10 @@ export const TaskCard: React.FC<TaskCardProps> = ({
       }
 
     
+    } else if(taskType === "VOTE_ACCONT"){
+      if (openTelegramLink.isAvailable()) {
+        openTelegramLink('https://t.me/tapps_bot/center?startapp=app_facematch');
+      }
     }
 
     // If all validations pass, update the user reward.
@@ -420,6 +424,13 @@ export const TaskCard: React.FC<TaskCardProps> = ({
                   {t("daily_text")}
                 </Chip>
               )}
+              {type === "VOTE_ACCONT"  && 
+            
+               <Chip color="danger" variant="shadow" size="sm">
+                HIT
+              </Chip>
+              }
+              
             </span>
           </h4>
           <h5 className="text-xs flex items-center tracking-tight text-default-400">{description}</h5>
