@@ -552,15 +552,15 @@ export default function ProfilePage() {
                                   
                                 <div className="flex flex-wrap">
                                   {UserData.interests.map((value, index) => {
+                                    const hobbiesList = hobbies.find(hobbie => hobbie.id == value)
                                       return (
                                         <Chip
                                           key={index}
-                                          className="m-1 bg-neutral/70"
-                                          color="success"
-                                          avatar={<HashtagIcon className="size-4"/>}
+                                          className="m-1"
+                                          color="default"
                                           variant="solid"
                                         >
-                                          {hobbies.find(hobbie => hobbie.id == value).name}
+                                          {hobbiesList.emoji} {hobbiesList.name}
                                         </Chip>
                                       );
                                     })}

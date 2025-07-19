@@ -1,6 +1,6 @@
 import type {Selection} from "@react-types/shared";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {Listbox, ListboxItem, Chip, ScrollShadow, Avatar} from "@heroui/react";
 import { useTranslation } from "react-i18next";
 import { gethobbies } from "@/constant";
@@ -18,7 +18,7 @@ export default function InterestingList({onChangeValue, user}) {
 
   const hobbies = gethobbies(t)
   
-  const [values, setValues] = React.useState<Selection>(new Set(user.interests));
+  const [values, setValues] = useState<Selection>(new Set(user.interests));
 
   useEffect(()=> onChangeValue(values) ,[values])
   

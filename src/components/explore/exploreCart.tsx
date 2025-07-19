@@ -85,15 +85,16 @@ const ExploreCard = (props) => {
 
               <ParallaxText duration={30} disableAnimation={!swiperSlide.isActive}>
                 {Array.isArray(props.profile.interests) && props.profile.interests.length > 0?
-                  props.profile.interests.map((value)=>{
+                  props.profile.interests.map((value)=> {
+                    const interests = hobbies.find(hobbie => hobbie.id == parseInt(value))
+                    
                     return <Chip
                               variant="solid"
                               size="sm"
                               className="mx-2 backdrop-blur bg-success/40 backdrop-saturate-150"
                               style={{ marginRight: "10px" }}
-                              startContent={<HashtagIcon className="size-4  mx-1" />}
                             >
-                              {hobbies.find(hobbie => hobbie.id == parseInt(value)).name}
+                              {interests.emoji} {interests.name}
                           </Chip>
                         })
                         : null

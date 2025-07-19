@@ -717,14 +717,15 @@ export default function EditProfilePage() {
                   >
                     <EditIntersting user={user} loading={updateUserData}>
                       {user.interests.map((value, index) => {
+                        const interestsList = hobbies.find((hobbie) => hobbie.id == value);
                         return (
                           <Chip
                             key={index}
-                            className="m-1 bg-neutral/70"
-                            avatar={<HashtagIcon className="size-4" />}
+                            className="m-1"
                             variant="solid"
+                            color="default"
                           >
-                            {hobbies.find((hobbie) => hobbie.id == value).name}
+                            {interestsList.emoji} {interestsList.name}
                           </Chip>
                         );
                       })}
