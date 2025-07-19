@@ -9,7 +9,6 @@ import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
 import BlurFade from '../animate/BlurFade';
-import ThemeSwitch from './switchTheme';
 import { EnergyButton } from './energyButton';
 import { RootState } from '@/store';
 import {
@@ -109,7 +108,6 @@ const TopBar: React.FC = () => {
 
             {pathname.split('/')[1] === 'main' && (
               <div className="flex gap-1">
-                <ThemeSwitch />
                 <EnergyButton />
               </div>
             )}
