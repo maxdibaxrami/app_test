@@ -5,7 +5,6 @@ import "swiper/css/effect-creative";
 import { Avatar, Button, cn, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger, Image, Popover, PopoverContent, PopoverTrigger, Spinner } from "@heroui/react";
 import { Listbox, ListboxItem, ListboxSection, Chip } from "@heroui/react";
 import {
-  HashtagIcon,
   AboutMeSolid,
   PerimumIcon,
   VerifyIconFill,

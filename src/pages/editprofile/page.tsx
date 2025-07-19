@@ -1,7 +1,6 @@
 import { addToast, Button, cn, Image } from "@heroui/react";
 import { Listbox, ListboxItem, ListboxSection, Chip } from "@heroui/react";
 import {
-  HashtagIcon,
   ArrowRight,
   PlusIconRound,
 } from "@/Icons/index";

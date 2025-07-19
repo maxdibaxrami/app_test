@@ -7,7 +7,7 @@ import { Card, CardFooter, Chip } from "@heroui/react";
 import { Swiper, SwiperSlide, useSwiperSlide } from 'swiper/react';
 import SwiperImages from './swiperImage';
 import { Pagination, Autoplay } from 'swiper/modules';
-import { HashtagIcon, HeartIconOutLine, HeightIcon, LanguageIcon, LocationIcon, VerifyIconFill } from '@/Icons/index';
+import { HeartIconOutLine, HeightIcon, LanguageIcon, LocationIcon, VerifyIconFill } from '@/Icons/index';
 import ExploreCartData from './exploreCartData';
 import ParallaxText from '../animate/text-slider';
 import { gethobbies, getStaticData } from '@/constant';
